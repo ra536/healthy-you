@@ -1,11 +1,15 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 const db = require("./db");
 
-const bodyParser = require("body-parser");
-const cors = require("cors");
-
 const app = express();
+
+// Allows for two different domains to interact
+app.use(cors());
+
+//Express JSON middleware
+app.use(express.json());
 
 // Example middleware
 app.use((req, res, next) => {
@@ -13,28 +17,43 @@ app.use((req, res, next) => {
   next();
 });
 
-//Example route to get started
-app.get("/register", (req, res) => {
-  console.log("get all registration information")
+//Test route to get started and gets all test objects from test table in db
+//Try catch is needed for async await
+app.get("/api/v1/test", async (req, res) => {
+  try {
+    const testResults = await db.query("SELECT * FROM test");
+    console.log(testResults);
+    res.status(200).json({
+      status: "success",
+      testResults: testResults.rows.length,
+      data: {
+        test: testResults.rows
+      }
+    })
+  } 
+  catch (err) {
+    console.error(err.message);
+  }
 });
 
+// Route to create a test object in DB
+app.post("/api/v1/test", async (req, res) => {
+  // Express JSON middleware allows for results to be in body
+  console.log(req.body);
+  try{
+    const testResults = await db.query(
+      "INSERT INTO test (test_id, content) values ($1, $2)",
+      [req.body.test_id, req.body.content])
+    console.log(testResults)
+    res.status(201).json({
+      status: "success",
+    })
+  }
+  catch (err) {
+    console.log(err)
+  }
+})
 
-var corsOptions = {
-  origin: "http://localhost:8081"
-};
-
-app.use(cors(corsOptions));
-
-// parse requests of content-type - application/json
-app.use(bodyParser.json());
-
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// simple route
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to Healthy You!" });
-});
 
 // set port, listen for requests
 const PORT = process.env.PORT;
