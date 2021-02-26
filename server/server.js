@@ -1,9 +1,23 @@
 require("dotenv").config();
 const express = require("express");
+const db = require("./db");
+
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const app = express();
+
+// Example middleware
+app.use((req, res, next) => {
+  console.log("Middleware worked");
+  next();
+});
+
+//Example route to get started
+app.get("/register", (req, res) => {
+  console.log("get all registration information")
+});
+
 
 var corsOptions = {
   origin: "http://localhost:8081"

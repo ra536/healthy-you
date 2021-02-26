@@ -22,6 +22,21 @@ So far, the database hasn't been set up yet, along with middle-end.
 
 
 ## Steps to run
-Set up environment variables according to the screenshot posted on discord (TODO)
+Make a file in your server directory called .env
+
+Set up environment variables in .env according to the screenshot posted on discord (TODO)
+
 To run the back-end, type node server.js from the server directory.
+
+To run the back-end with nodemon enabled, type npm start from the server directory. (Allows server to update without having to restart it after every change)
+
 To run the front-end, type npm start from the client directory.
+
+## Troubleshooting
+If you have not done an npm install recently you may have to follow these steps:
+
+Firstly cd into the server folder and then:
+
+To have your server automatically update without having to restart it, install the package nodemon with npm install nodemon
+
+Install dotenv for management of environment variables with: npm install dotenv
