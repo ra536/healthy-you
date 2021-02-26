@@ -23,5 +23,7 @@ So far, the database hasn't been set up yet, along with middle-end.
 
 ## Steps to run
 Set up environment variables according to the screenshot posted on discord (TODO)
+
 To run the back-end, type node server.js from the server directory.
+
 To run the front-end, type npm start from the client directory.
