@@ -19,3 +19,9 @@ You may also have to `cd react-gmf` and also run `npm install` there.
 Essentially, our outer file structure is for the back-end, while everything in `react-gmf` is front-end.  The two will communicate with REST API requests.
 
 So far, the database hasn't been set up yet, along with middle-end.
+
+
+## Steps to run
+Set up environment variables according to the screenshot posted on discord (TODO)
+To run the back-end, type node server.js from the server directory.
+To run the front-end, type npm start from the client directory.
