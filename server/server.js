@@ -39,14 +39,17 @@ app.get("/api/v1/test", async (req, res) => {
 // Route to create a test object in DB
 app.post("/api/v1/test", async (req, res) => {
   // Express JSON middleware allows for results to be in body
-  console.log(req.body);
+  // console.log(req.body);
   try{
     const testResults = await db.query(
-      "INSERT INTO test (test_id, content) values ($1, $2)",
+      "INSERT INTO test (test_id, content) values ($1, $2) RETURNING *",
       [req.body.test_id, req.body.content])
     console.log(testResults)
     res.status(201).json({
       status: "success",
+      data: {
+        test: testResults.rows[0],
+      }
     })
   }
   catch (err) {

@@ -3,9 +3,16 @@ import React, { useState, createContext } from 'react';
 export const TestContext = createContext();
 
 export const TestContextProvider = props => {
-    const [test, setTest] = useState([])
+    const [tests, setTests] = useState([])
+
+    //updates state with new array when adding a test object
+    //this is to have the client render a new test object automatically without having to refresh page
+    const addTests = (test) => {
+        setTests([...tests, test]);
+    }
+
     return (
-        <TestContext.Provider value={{ test, setTest }}>
+        <TestContext.Provider value={{ tests, setTests, addTests }}>
             { props.children }
         </TestContext.Provider>
     )
