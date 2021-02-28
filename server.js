@@ -59,8 +59,7 @@ app.post("/api/v1/test", async (req, res) => {
 
 
 // set port, listen for requests
-const PORT = process.env.PORT;
-app.listen(PORT, () => {
+app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
