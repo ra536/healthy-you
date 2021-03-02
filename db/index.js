@@ -11,6 +11,9 @@ const devConfig = {
 
 const proConfig = {
   connectionString: process.env.DATABASE_URL, // from heroku
+  ssl: {
+    rejectUnauthorized: false
+  }
 }
 
 const pool = new Pool(
