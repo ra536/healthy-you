@@ -5,7 +5,12 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "engines":{
+    "node": "15.10.0",
+    "npm": "7.5.3"
   },
   "repository": {
     "type": "git",
