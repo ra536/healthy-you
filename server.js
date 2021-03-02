@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const db = require("./db");
+const path = require("path");
 
 const app = express();
 
@@ -10,6 +11,14 @@ app.use(cors());
 
 //Express JSON middleware
 app.use(express.json());
+
+if(process.env.NODE_ENV === "production"){
+  // server static content
+  //npm run build
+  app.use(express.static(path.join(__dirname, "client/build")));
+}
+
+console.log(__dirname);
 
 // Example middleware
 app.use((req, res, next) => {
@@ -57,9 +66,14 @@ app.post("/api/v1/test", async (req, res) => {
   }
 })
 
+// catch-all method
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build/index.html"));
+});
 
 // set port, listen for requests
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on port ${process.env.PORT}.`);
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
 });
 
