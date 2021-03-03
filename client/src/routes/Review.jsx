@@ -8,14 +8,24 @@ const Review = (props) => {
     // const { tests, setTests } = useContext(TestContext);
 
     // Call our backend API to retrieve list of test objects from db
-    const url = props.url.substr(props.url.indexOf("leaveReview/") + 12, 5);
+    const accessCode = props.url.substr(props.url.indexOf("leaveReview/") + 12, 5);
     // Constant Review ID Value
+
+    const validCodes = [12345, 23456];
+
+    if(validCodes.some(code => code.toString() === accessCode)){
+        return (
+            <div>
+                <h1>Review</h1>
+                <h2>Valid: {accessCode}</h2>
+            </div>
+        )
+    }
 
     return (
         // Return different webpage, depending on the validity of the ID provided
         <div>
-            <h1>Review</h1>
-            <p>{url}</p>
+            <p>Error: invalid access code {accessCode}</p>
         </div>
     )
 }
