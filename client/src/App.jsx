@@ -11,7 +11,9 @@ const App = () => {
                 <Router>
                     <Switch>
                         <Route exact path="/" component={ Home }/>
-                        <Route path="/leaveReview" component={ Review }/>
+                        <Route path="/leaveReview/:id">
+                            <Review url={window.location.href}/>
+                        </Route>
                     </Switch>
                 </Router>
             </div>
