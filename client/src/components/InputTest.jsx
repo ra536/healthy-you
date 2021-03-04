@@ -5,7 +5,7 @@ import { TestContext } from '../context/TestContext';
 
 //Lets user input a test object into backend db
 const InputTest = () => {
-    const { addTests } = useContext(TestContext);
+    const { addTest } = useContext(TestContext);
     const [testID, setTestID] = useState();
     const [content, setContent] = useState("");
 
@@ -16,8 +16,8 @@ const InputTest = () => {
                 test_id: testID,
                 content: content
             })
-            addTests(response.data.data.test)
-            console.log(response.data.data.test)
+            addTest(response.data.data)
+            console.log(response.data.data)
         }
         catch (err) {
             console.log(err)
