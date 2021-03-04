@@ -14,6 +14,8 @@ const Review = (props) => {
     const validCodes = [12345, 23456];
 
     if(validCodes.some(code => code.toString() === accessCode)){
+        // come up with the form and create form handler component
+        // pull the corresponding information (doctor, etc.)
         return (
             <div>
                 <h1>Review</h1>
