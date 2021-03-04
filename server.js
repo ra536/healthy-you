@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require("cors");
 const path = require('path');
-const models = require('./db/models/test')
 
 const app = express();
 
@@ -19,11 +18,14 @@ db.authenticate()
     .then(() => console.log("Database connected..."))
     .catch(err => console.log(err))
 
+// Sync DBs
+db.sync()
+  .then(() => console.log("Models have been synced..."))
+  .catch(err => console.log(err))
+
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 
-models.sequelize.sync().then(() => {
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}.`);
-  });
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
 });
