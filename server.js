@@ -4,8 +4,12 @@ const path = require('path');
 
 // Database
 const db = require('./db/index')
+const { request } = require('http');
 
 const app = express();
+
+// test routes
+app.use("/api/v1/test", require('./routes/test'));
 
 // Test db connection
 db.authenticate()
