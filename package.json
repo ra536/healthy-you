@@ -8,7 +8,7 @@
     "start": "nodemon server.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
-  "engines":{
+  "engines": {
     "node": "15.10.0",
     "npm": "7.5.3"
   },
