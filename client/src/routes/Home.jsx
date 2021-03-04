@@ -13,7 +13,8 @@ const Home = () => {
         const fetchData = async () => {
             try {
                 const response = await (TestAPI.get("/"));
-                setTests(response.data.data.test);
+                console.log(response.data.data)
+                setTests(response.data.data);
             }
             catch (err) {
                 console.log(err)
