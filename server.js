@@ -7,6 +7,12 @@ const app = express();
 // Allows for two different domains to interact
 app.use(cors());
 
+if(process.env.NODE_ENV === "production"){
+  // server static content
+  //npm run build
+  app.use(express.static(path.join(__dirname, "client/build")));
+}
+
 // Database
 const db = require('./db/index')
 
