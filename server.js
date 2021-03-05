@@ -30,7 +30,7 @@ db.sync()
   .catch(err => console.log(err))
 
 app.get('/*', (req, res) => {
-  let url = path.join(__dirname, '../client/build', 'index.html');
+  let url = path.join(__dirname, 'client/build', 'index.html');
   res.sendFile(url);
 });
 
