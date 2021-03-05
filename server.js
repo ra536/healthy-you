@@ -10,7 +10,7 @@ app.use(cors());
 // Database
 const db = require('./db/index')
 
-// test routes
+// routes
 app.use("/api/v1/test", require('./routes/test'));
 
 // Test db connection
