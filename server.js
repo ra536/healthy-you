@@ -29,6 +29,12 @@ db.sync()
   .then(() => console.log("Models have been synced..."))
   .catch(err => console.log(err))
 
+app.get('/*', (req, res) => {
+  let url = path.join(__dirname, '../client/build', 'index.html');
+  res.sendFile(url);
+});
+
+
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 
