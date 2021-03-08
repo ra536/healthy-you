@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const db = require("./db");
+const db = require("./server");
 const path = require("path");
 
 const app = express();
@@ -21,10 +21,19 @@ if(process.env.NODE_ENV === "production"){
 console.log(__dirname);
 
 // Example middleware
-app.use((req, res, next) => {
-  console.log("Middleware worked");
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log("Middleware worked");
+//   next();
+// });
+
+
+//Routes
+
+//Register/Login routes
+app.use("/auth", require("./routes/jwtAuth"));
+
+//Dashboard route
+app.use("/dashboard", require("./routes/dashboard"));
 
 //Test route to get started and gets all test objects from test table in db
 //Try catch is needed for async await
