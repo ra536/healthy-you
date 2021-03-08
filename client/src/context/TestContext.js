@@ -7,12 +7,12 @@ export const TestContextProvider = props => {
 
     //updates state with new array when adding a test object
     //this is to have the client render a new test object automatically without having to refresh page
-    const addTests = (test) => {
+    const addTest = (test) => {
         setTests([...tests, test]);
     }
 
     return (
-        <TestContext.Provider value={{ tests, setTests, addTests }}>
+        <TestContext.Provider value={{ tests, setTests, addTest }}>
             { props.children }
         </TestContext.Provider>
     )
