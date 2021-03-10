@@ -4,7 +4,7 @@ import InputTest from '../components/InputTest';
 import { TestContext } from '../context/TestContext';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap';
-import { Container } from 'react-bootstrap';
+import { Container,Row,Col } from 'react-bootstrap';
 
 // bootstrap styles library (gives automatic styling)
 import 'bootstrap/dist/css/bootstrap.css';
@@ -53,7 +53,45 @@ const Home = () => {
                 </Navbar.Collapse>
             </Navbar>
             <br />
+            <Container>
+                <div align= "center">
+                    <h2>Health Guide</h2>
+                    
+                </div>
+                 <Row>
+                     <Col>
+                        <Button
+                            variant="primary"
+                            >
+                        Doctor
+                        </Button>
+                    </Col>
+                    <Col> 
+                        <Button
+                             variant="primary"
+                     >
+                         Dentist
+                         </Button>
+                    </Col>
+                 </Row>
+                 <br/>
+                 <Row>
+                    <Col>
+                        <Button
+                            variant="primary"
+                    >
+                        Chiropractor
+                        </Button>
+                    </Col>
+                     <Col>            
+                    <Button
+                        variant="primary"
+                    >
+                    More...
+                    </Button></Col>
+                </Row>
 
+            </Container>
             <Container>
                 <h1>Home</h1>
                 <InputTest />
