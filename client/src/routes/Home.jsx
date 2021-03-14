@@ -2,7 +2,15 @@ import React, { useEffect, useContext } from 'react';
 import TestAPI from '../apis/TestAPI';
 import InputTest from '../components/InputTest';
 import { TestContext } from '../context/TestContext';
-
+import Carousel from 'react-bootstrap/Carousel';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Image from 'react-bootstrap/Image';
+import Card from 'react-bootstrap/Card';
+import hwf_logo from'./hwf_logo.png';
+import ad_logo from'./ad_logo.jpeg';
+import 'bootstrap/dist/css/bootstrap.css';
 const Home = () => {
     // Store the data retrieved from backend API into context
     const { tests, setTests } = useContext(TestContext);
@@ -23,20 +31,55 @@ const Home = () => {
         fetchData();
     }, []);
 
+// add image,fix carousel
+
     return (
         <div>
-            <h1>Home</h1>
-            <InputTest />
-            <div>
-                {tests && tests.map(tests => {
-                    return (
-                        <ol key={tests.test_id}>
-                            <li>{ tests.test_id }</li>
-                            <li>{ tests.content }</li>
-                        </ol>
-                    )
-                })}
+        
+            <div align="center">
+                <h1>MORRIS</h1>
             </div>
+
+            <Container>
+                 <Row>
+                    <Col>
+
+                        <Image src={hwf_logo} style={{ width: '100%' }}fluid/>  
+                                
+                    </Col>
+                 </Row>
+            </Container>
+
+            <Carousel>
+            <Carousel.Item>
+                <img
+                className="d-block w-100"
+                src={ad_logo}
+                alt="First slide"
+                />
+ 
+            </Carousel.Item>
+            <Carousel.Item>
+                <img
+                className="d-block w-100"
+                src={ad_logo}
+                alt="Second slide"
+                />
+
+
+            </Carousel.Item>
+            <Carousel.Item>
+                <img
+                className="d-block w-100"
+                src={ad_logo}
+                alt="Third slide"
+                />
+
+            </Carousel.Item>
+            </Carousel>
+
+
+           
         </div>
     )
 }
