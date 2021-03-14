@@ -4,7 +4,11 @@ import InputTest from '../components/InputTest';
 import { TestContext } from '../context/TestContext';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Image, Col } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card'
+import Kika from './Kika.png';
+import JesseJeffers from './JesseJeffers.jpg';
+
 
 // bootstrap styles library (gives automatic styling)
 import 'bootstrap/dist/css/bootstrap.css';
@@ -32,48 +36,64 @@ const Home = () => {
     return (
         <div>
             <Navbar bg="dark" variant="dark" expand="lg">
-                <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#link">Link</Nav.Link>
-                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                    </NavDropdown>
+                    <Nav className="m-auto">
+						<Nav.Link href="#link">Home</Nav.Link>
+						<Nav.Link href="#home">Food</Nav.Link>
+						<Nav.Link href="#link">Nutrition</Nav.Link>
+						<Nav.Link href="#link">Health</Nav.Link>
+						<Nav.Link href="#link">Blog</Nav.Link>
+						<Nav.Link href="#home">Language</Nav.Link>
+						<Nav.Link href="#link">Covid 19</Nav.Link>
+						<Nav.Link href="#home">News</Nav.Link>
+						<Nav.Link href="#link">Exercise</Nav.Link>
+						<Nav.Link href="#home">Directory</Nav.Link>
+						<Nav.Link href="#link">Contact Us</Nav.Link>
                     </Nav>
-                    <Form inline>
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                    <Button variant="outline-success">Search</Button>
-                    </Form>
                 </Navbar.Collapse>
             </Navbar>
             <br />
-
-            <Container>
-                <h1>Home</h1>
-                <InputTest />
-                <br />
-                <br />
-                <h2>Results:</h2>
-                <div>
-                    {tests && tests.map(tests => {
-                        return (
-                            <ListGroup key={tests.test_id}>
-                                <ListGroup.Item>
-                                    { tests.test_id }
-                                    <br/>
-                                    { tests.content }
-                                </ListGroup.Item>
-                            </ListGroup>
-                        )
-                    })}
-                </div>
-            </Container>
+		<Container>
+		
+			<Row>
+			<Col>
+			<div align="center">
+				<Image src={Kika} className="mx-auto d-block" style={{ width: '70%' }} fluid rounded />
+				<h1>
+				this is a test for heading 1
+				</h1>
+			</div>
+			</Col>			
+			</Row>
+			<br/>
+			<br/>
+			<br/>
+			
+			<Row>
+				<Col>
+					<div align="center">
+					<Image src={Kika} fluid rounded />
+					<h4>
+					this is a test for heading 1
+					</h4>
+					</div>
+				</Col>
+				<Col>
+					<Image src={JesseJeffers} fluid rounded />
+					<h1>
+					
+					</h1>
+				</Col>
+				<Col>
+					<Image src={Kika} fluid rounded />
+					<h1>
+					
+					</h1>
+				</Col>
+			</Row>
+		</Container>
+            
             
         </div>
     )
