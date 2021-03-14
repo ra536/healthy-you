@@ -8,7 +8,8 @@ import { Container, Row, Image, Col } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card'
 import Kika from './Kika.png';
 import JesseJeffers from './JesseJeffers.jpg';
-
+import PinkRibbonProgram1 from './PinkRibbonProgram1.png';
+import stretchstock from './stretchstock.jpg';
 
 // bootstrap styles library (gives automatic styling)
 import 'bootstrap/dist/css/bootstrap.css';
@@ -59,10 +60,13 @@ const Home = () => {
 			<Row>
 			<Col>
 			<div align="center">
-				<Image src={Kika} className="mx-auto d-block" style={{ width: '70%' }} fluid rounded />
-				<h1>
-				this is a test for heading 1
-				</h1>
+				<Image src={PinkRibbonProgram1} className="mx-auto d-block" style={{ width: '70%' }} fluid rounded />
+				<h2>
+				Empowering Breast Cancer Survivors through Fitness, through the first post-operative exercise program for Breast Cancer Survivors 
+				<p>
+				by Lealah Afif
+				</p>
+				</h2>
 			</div>
 			</Col>			
 			</Row>
@@ -75,21 +79,26 @@ const Home = () => {
 					<div align="center">
 					<Image src={Kika} fluid rounded />
 					<h4>
-					this is a test for heading 1
+					Learn the story of how Kika's studio came to be, and how it manages to continue through the pandemic
 					</h4>
 					</div>
 				</Col>
 				<Col>
+					<div align="center">
 					<Image src={JesseJeffers} fluid rounded />
-					<h1>
-					
-					</h1>
+					<h4>
+					Meet Jesse Jeffers, Morristown's first personal Trainer, and learn with a professional
+					</h4>
+					</div>
 				</Col>
 				<Col>
-					<Image src={Kika} fluid rounded />
-					<h1>
-					
-					</h1>
+					<div align="center">
+					<Image src={stretchstock} fluid rounded />
+					<h4>
+					As Small Businesses Close, Gym Owners and Fitness Professionals Open the Door
+						to New Methods of Exercise and Advocacy
+					</h4>
+					</div>
 				</Col>
 			</Row>
 		</Container>
