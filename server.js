@@ -1,6 +1,6 @@
-const express = require("express");
-const bodyParser = require("body-parser");
+const express = require('express');
 const cors = require("cors");
+const path = require('path');
 
 const app = express();
 
@@ -11,22 +11,37 @@ var corsOptions = {
   origin: "http://localhost:8081"
 };
 
-app.use(cors(corsOptions));
+if(process.env.NODE_ENV === "production"){
+  // server static content
+  //npm run build
+  app.use(express.static(path.join(__dirname, "client/build")));
+}
 
-// parse requests of content-type - application/json
-app.use(bodyParser.json());
+// Database
+const db = require('./db/index')
 
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+// test routes
+app.use("/api/v1/test", require('./routes/test'));
 
-// simple route
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to Healthy You!" });
+// Test db connection
+db.authenticate()
+    .then(() => console.log("Database connected..."))
+    .catch(err => console.log(err))
+
+// Sync DBs
+db.sync()
+  .then(() => console.log("Models have been synced..."))
+  .catch(err => console.log(err))
+
+app.get('/*', (req, res) => {
+  let url = path.join(__dirname, 'client/build', 'index.html');
+  res.sendFile(url);
 });
+
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
-
