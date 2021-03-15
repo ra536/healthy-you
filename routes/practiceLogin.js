@@ -5,12 +5,19 @@ const login = require('../db/models/registration')
 
 router.use(express.json());
 
-router.get("/", async (req, res) =>{
+router.get("/:id", async (req, res) =>{
     try {
+        str = req.params.id
+        const userInfo = str.split(' ');
+        const username = userInfo[0];
+        const password = userInfo[1];
         const userResults = await login.findOne({
-            raw: true
+           where:{
+             practiceUserName: username,
+             practicePassword: password
+           }, 
+          raw: true
         });
-        console.log("what's going on here?????")
         console.log(userResults);
         res.status(200).json({
           status: "success",

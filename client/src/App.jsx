@@ -5,6 +5,7 @@ import Home from "./routes/Home";
 import Review from "./routes/Review";
 import Login from "./routes/Login";
 import Register from "./routes/Register";
+import Dashboard from "./routes/Dashboard";
 
 const App = () => {
     return (
@@ -15,6 +16,7 @@ const App = () => {
                         <Route exact path="/" component={ Home }/>
                         <Route exact path="/login" component={ Login }/> .
                         <Route exact path="/register" component={ Register }/>
+                        <Route exact path="/dashboard" component={ Dashboard }/>
                         <Route path="/leaveReview/:id">
                             <Review url={window.location.href}/>
                         </Route>

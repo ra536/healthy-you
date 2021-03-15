@@ -19,7 +19,7 @@ const db = require('./db/index')
 // test routes
 app.use("/api/v1/test", require('./routes/test'));
 app.use("/api/v1/register", require('./routes/practiceRegistration'));
-app.use("/api/v1/login/:id", require('./routes/practiceLogin'));
+app.use("/api/v1/login/", require('./routes/practiceLogin'));
 
 // Test db connection
 db.authenticate()
