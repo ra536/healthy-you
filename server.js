@@ -18,6 +18,7 @@ const db = require('./db/index')
 
 // test routes
 app.use("/api/v1/test", require('./routes/test'));
+app.use("/api/v1/dashboard", require('./routes/dashboard'));
 
 // Test db connection
 db.authenticate()
