@@ -38,6 +38,7 @@ import drkai from './drkai.jpg';
 
 import Carousel from 'react-bootstrap/Carousel';
 import hwf_logo from'./hwf_logo.png';
+import hwf_logo_small from'./hwf_logo_small.png';
 import ad_logo from'./ad_logo.jpeg';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -65,24 +66,14 @@ const Home = () => {
 
     return (
         <div>
-
-            <div align="center">
-                <h1>MORRIS</h1>
-            </div>
-
-            <Container>
-                 <Row>
-                    <Col>
-
-                        <Image src={hwf_logo} style={{ width: '100%' }}fluid/>  
-                                
-                    </Col>
-                 </Row>
-            </Container>
-            <Navbar bg="dark" variant="dark" expand="lg">
+            <Navbar fixed="top" bg="dark" variant="dark" expand="lg">
+                <Navbar.Brand>
+                    <Image width="30px" src={hwf_logo_small} fluid/>  
+                </Navbar.Brand>
+                <br />
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="m-auto">
+                    <Nav>
 						<Nav.Link href="#link">Home</Nav.Link>
 						<Nav.Link href="#home">Food</Nav.Link>
 						<Nav.Link href="#link">Nutrition</Nav.Link>
@@ -96,35 +87,42 @@ const Home = () => {
 						<Nav.Link href="#link">Contact Us</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
+                <Image vertical-align="top" width="30%" src={hwf_logo} fluid/>
             </Navbar>
+            <br />
+            <br />
+            <br />
+            <br />
+            
+            <div align="center" display="inline">
+                <Carousel controls={false} indicators={false} style={{ width: "500px", display: "inline-block" }}>
+                    <Carousel.Item>
+                        <img
+                        className="d-block w-100"
+                        src={ad_logo}
+                        alt="First slide"
+                        />
+        
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                        className="d-block w-100"
+                        src={ad_logo}
+                        alt="Second slide"
+                        />
 
-            <Carousel>
-            <Carousel.Item>
-                <img
-                className="d-block w-100"
-                src={ad_logo}
-                alt="First slide"
-                />
- 
-            </Carousel.Item>
-            <Carousel.Item>
-                <img
-                className="d-block w-100"
-                src={ad_logo}
-                alt="Second slide"
-                />
 
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                        className="d-block w-100"
+                        src={ad_logo}
+                        alt="Third slide"
+                        />
 
-            </Carousel.Item>
-            <Carousel.Item>
-                <img
-                className="d-block w-100"
-                src={ad_logo}
-                alt="Third slide"
-                />
-
-            </Carousel.Item>
-            </Carousel>
+                    </Carousel.Item>
+                </Carousel>
+            </div>
 
             <br />
 		<Container>
