@@ -4,7 +4,17 @@ import InputTest from '../components/InputTest';
 import { TestContext } from '../context/TestContext';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap';
-import { Container, Row, Col, Media} from 'react-bootstrap';
+import { Container, Row, Image, Col } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card'
+import Kika from './Kika.png';
+import JesseJeffers from './JesseJeffers.jpg';
+import PinkRibbonProgram1 from './PinkRibbonProgram1.png';
+import stretchstock from './stretchstock.jpg';
+import { Media } from 'react-bootstrap';
+import strech from './strech.jpeg';
+import cleanjuice from './cleanjuice.jpeg';
+import Health from './Health.png';
+import wellness from './wellness.jpeg';
 import coke from './coke.jpg';
 import magazine from './magazine.jpg';
 import ad250 from './ad250.jpg';
@@ -26,7 +36,9 @@ import drkai from './drkai.jpg';
 
 
 
-// bootstrap styles library (gives automatic styling)
+import Carousel from 'react-bootstrap/Carousel';
+import hwf_logo from'./hwf_logo.png';
+import ad_logo from'./ad_logo.jpeg';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const Home = () => {
@@ -49,131 +61,369 @@ const Home = () => {
         fetchData();
     }, []);
 
+// add image,fix carousel
+
     return (
         <div>
+
+            <div align="center">
+                <h1>MORRIS</h1>
+            </div>
+
+            <Container>
+                 <Row>
+                    <Col>
+
+                        <Image src={hwf_logo} style={{ width: '100%' }}fluid/>  
+                                
+                    </Col>
+                 </Row>
+            </Container>
             <Navbar bg="dark" variant="dark" expand="lg">
-                <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#link">Link</Nav.Link>
-                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                    </NavDropdown>
+                    <Nav className="m-auto">
+						<Nav.Link href="#link">Home</Nav.Link>
+						<Nav.Link href="#home">Food</Nav.Link>
+						<Nav.Link href="#link">Nutrition</Nav.Link>
+						<Nav.Link href="#link">Health</Nav.Link>
+						<Nav.Link href="#link">Blog</Nav.Link>
+						<Nav.Link href="#home">Language</Nav.Link>
+						<Nav.Link href="#link">Covid 19</Nav.Link>
+						<Nav.Link href="#home">News</Nav.Link>
+						<Nav.Link href="#link">Exercise</Nav.Link>
+						<Nav.Link href="#home">Directory</Nav.Link>
+						<Nav.Link href="#link">Contact Us</Nav.Link>
                     </Nav>
-                    <Form inline>
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                    <Button variant="outline-success">Search</Button>
-                    </Form>
                 </Navbar.Collapse>
             </Navbar>
+
+            <Carousel>
+            <Carousel.Item>
+                <img
+                className="d-block w-100"
+                src={ad_logo}
+                alt="First slide"
+                />
+ 
+            </Carousel.Item>
+            <Carousel.Item>
+                <img
+                className="d-block w-100"
+                src={ad_logo}
+                alt="Second slide"
+                />
+
+
+            </Carousel.Item>
+            <Carousel.Item>
+                <img
+                className="d-block w-100"
+                src={ad_logo}
+                alt="Third slide"
+                />
+
+            </Carousel.Item>
+            </Carousel>
+
+            <br />
+		<Container>
+		
+			<Row>
+			<Col>
+			<div align="center">
+				<Image src={PinkRibbonProgram1} className="mx-auto d-block" style={{ width: '70%' }} fluid rounded />
+				<h2>
+				Empowering Breast Cancer Survivors through Fitness, through the first post-operative exercise program for Breast Cancer Survivors 
+				<p>
+				by Lealah Afif
+				</p>
+				</h2>
+			</div>
+			</Col>			
+			</Row>
+			<br/>
+			<br/>
+			<br/>
+			
+			<Row>
+				<Col>
+					<div align="center">
+					<Image src={Kika} fluid rounded />
+					<h4>
+					Learn the story of how Kika's studio came to be, and how it manages to continue through the pandemic
+					</h4>
+					</div>
+				</Col>
+				<Col>
+					<div align="center">
+					<Image src={JesseJeffers} fluid rounded />
+					<h4>
+					Meet Jesse Jeffers, Morristown's first personal Trainer, and learn with a professional
+					</h4>
+					</div>
+				</Col>
+				<Col>
+					<div align="center">
+					<Image src={stretchstock} fluid rounded />
+					<h4>
+					As Small Businesses Close, Gym Owners and Fitness Professionals Open the Door
+						to New Methods of Exercise and Advocacy
+					</h4>
+					</div>
+				</Col>
+			</Row>
+		</Container>
+
+
+
+        <Container>
+            <div align= "center">
+                <h2>Health Guide</h2>
+            </div>
+
+            <Container>
+                 <Row>
+                     <Col>
+                        <Button
+                            variant="outline-dark"size="sm" block
+                            >
+                        Doctor
+                        </Button>
+                    </Col>
+                    <Col> 
+                        <Button
+                             variant="outline-dark"size="sm" block
+                     >
+                         Dentist
+                         </Button>
+                    </Col>
+                 </Row>
+                 <br/>
+                 <Row>
+                    <Col>
+                        <Button
+                            variant="outline-dark"size="sm" block
+                    >
+                        Chiropractor
+                        </Button>
+                    </Col>
+                     <Col>            
+                    <Button
+                        variant="outline-dark"size="sm" block
+                    >
+                    More...
+                    </Button></Col>
+                </Row>
+
+            </Container>
             <br />
 
             <Container>
+            <div align= "left">
+                    <h3>The Latest</h3>       
+            </div>
+
+            <br />
+                 <Row>
+                     <Col>
+                        <img src={strech} alt="strech"width={330} height={210} mode='fit' /> 
+                    </Col>
+             
+                    <Col>
+                        <Card style={{ width: '23rem' }}>
+                        <Card.Body>
+                            <Card.Title>Strech</Card.Title>
+                            <Card.Subtitle className="mb-2 text-muted">Fitness</Card.Subtitle>
+                            <Card.Text>
+                            As Small Businesses Close, Gym Owners and Fitness Profressionals Open the Door to New Methods of Excercise and Advocacy
+                            </Card.Text>
+                            <Card.Link href="#">Read More...</Card.Link>
+                            <Card.Link href="#">Share article...</Card.Link>
+                        </Card.Body>
+                        <Card.Footer>
+                         <small className="text-muted">Author Name | March 12, 2021</small>
+                         </Card.Footer>
+                        </Card>
+                    </Col>
+
+                    <Col>3 of 3</Col>
+                 </Row>
+                 
+                 <br />
+
+                 <Row>
+                     <Col>
+                        <img src={cleanjuice} alt="cleanjuice"width={330} height={210} mode='fit' /> 
+                    </Col>
+             
+                    <Col>
+                        <Card style={{ width: '23rem' }}>
+                        <Card.Body>
+                            <Card.Title>Clean Juice is Good for the Soul</Card.Title>
+                            <Card.Subtitle className="mb-2 text-muted">Food</Card.Subtitle>
+                            <Card.Text>
+                            I chatted with Leilah and David Tyree about their new business adventure, "Tyree Nation," (comprised of seven childen)
+                            </Card.Text>
+                            <Card.Link href="#">Read More...</Card.Link>
+                            <Card.Link href="#">Share article...</Card.Link>
+                        </Card.Body>
+                        <Card.Footer>
+                        <small className="text-muted">Author Name | March 12, 2021</small>
+                        </Card.Footer>
+                        </Card>
+                    </Col>
+
+                    <Col>3 of 3</Col>
+                 </Row>
+
+                 <br />
+
+                 <Row>
+                     <Col>
+                        <img src={Health} alt="Health"width={330} height={210} mode='fit' /> 
+                    </Col>
+             
+                    <Col>
+                        <Card style={{ width: '23rem' }}>
+                        <Card.Body>
+                            <Card.Title>Thank You Health Care Heroes</Card.Title>
+                            <Card.Subtitle className="mb-2 text-muted">Health</Card.Subtitle>
+                            <Card.Text>
+                            2020 has been a year of controversy and dramatic change due to the Covid-19 pandemic. 
+                            </Card.Text>
+                            <Card.Link href="#">Read More...</Card.Link>
+                            <Card.Link href="#">Share article...</Card.Link>
+                        </Card.Body>
+                        <Card.Footer>
+                        <small className="text-muted">Author Name | March 12, 2021</small>
+                        </Card.Footer>
+                        </Card>
+                    </Col>
+
+                    <Col>3 of 3</Col>
+                 </Row>
+
+                 <br />
+
+                <Row>
+                    <Col>
+                    <img src={wellness} alt="wellness"width={330} height={210} mode='fit' /> 
+                </Col>
+
+                <Col>
+                    <Card style={{ width: '23rem' }}>
+                    <Card.Body>
+                        <Card.Title>Obesity & Cancer</Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">Wellness</Card.Subtitle>
+                        <Card.Text>
+                        Did you know that 2 out of every 3 adults in the United States is overweight or obese? While we may live...
+                        </Card.Text>
+                        <Card.Link href="#">Read More...</Card.Link>
+                        <Card.Link href="#">Share article...</Card.Link>
+                    </Card.Body>
+                    <Card.Footer>
+                    <small className="text-muted">Author Name | March 12, 2021</small>
+                    </Card.Footer>
+                    </Card>
+                </Col>
+
+                <Col>3 of 3</Col>
+                </Row>
+ 
+            </Container>
+                    
             <Row>
-    <Col>1 of 3</Col>
-    <Col>2 of 3</Col>
-    <Col>3 of 3</Col>
-    
+                <Col>1 of 3</Col>
+                <Col>2 of 3</Col>
+                <Col>3 of 3</Col>
+            </Row>
+            <Row>
+                <Col>1 of 3</Col>
+                <Col>2 of 3</Col>
+                <Col><img src={ad250} alt="ad250"width={250} height={250} mode='fit' /></Col>
+            </Row>
+            <br />
+            <Row>
+                <Col>1 of 3</Col>
+                <Col>2 of 3</Col>
+                <Col><img src={magazine} alt="magazine"width={250} height={250} mode='fit' /></Col>
+            </Row>
+            <br />
+            <Row>
+                <Col>1 of 3</Col>
+                <Col>2 of 3</Col>
+                <Col> Recent Articles </Col>
+            </Row>
+            <br />
+            <Row>
+                <Col>1 of 3</Col>
+                <Col>2 of 3</Col>
+                <Col><ul className="list-unstyled">
+                    <Media as="li">
+                        <img
+                        width={64}
+                        height={64}
+                        className="mr-3"
+                        src="holder.js/64x64"
+                        alt="Generic placeholder"
+                        />
+                        <Media.Body>
+                        <h5>Expert Name</h5>
+                        <p>
+                            Expert Description
+                        </p>
+                        </Media.Body>
+                    </Media>
 
-  </Row>
-  <Row>
-    <Col>1 of 3</Col>
-    <Col>2 of 3</Col>
-    <Col><img src={ad250} alt="ad250"width={250} height={250} mode='fit' /></Col>
-    
+                    <Media as="li">
+                        <img
+                        width={64}
+                        height={64}
+                        className="mr-3"
+                        src="holder.js/64x64"
+                        alt="Generic placeholder"
+                        />
+                        <Media.Body>
+                        <h5>Expert Name</h5>
+                        <p>
+                        Expert Description
+                        </p>
+                        </Media.Body>
+                    </Media>
 
-  </Row>
-  <br />
-  <Row>
-    <Col>1 of 3</Col>
-    <Col>2 of 3</Col>
-    <Col><img src={magazine} alt="magazine"width={250} height={250} mode='fit' /></Col>
-    
-
-  </Row>
-  <br />
-  <Row>
-    <Col>1 of 3</Col>
-    <Col>2 of 3</Col>
-    <Col> Recent Articles </Col>
-    
-    </Row>
-  <br />
-  <Row>
-    <Col>1 of 3</Col>
-    <Col>2 of 3</Col>
-    <Col><ul className="list-unstyled">
-  <Media as="li">
-    <img
-      width={64}
-      height={64}
-      className="mr-3"
-      src="holder.js/64x64"
-      alt="Generic placeholder"
-    />
-    <Media.Body>
-      <h5>Expert Name</h5>
-      <p>
-        Expert Description
-      </p>
-    </Media.Body>
-  </Media>
-
-  <Media as="li">
-    <img
-      width={64}
-      height={64}
-      className="mr-3"
-      src="holder.js/64x64"
-      alt="Generic placeholder"
-    />
-    <Media.Body>
-      <h5>Expert Name</h5>
-      <p>
-       Expert Description
-      </p>
-    </Media.Body>
-  </Media>
-
-  <Media as="li">
-    <img
-      width={64}
-      height={64}
-      className="mr-3"
-      src="holder.js/64x64"
-      alt="Generic placeholder"
-    />
-    <Media.Body>
-      <h5>Expert Name</h5>
-      <p>
-        Expert Description
-      </p>
-    </Media.Body>
-  </Media>
-</ul> </Col>
-
-
-</Row>
-  <Row>
-    <Col>1 of 3</Col>
-    <Col>2 of 3</Col>
-    <Col><img src={ad250} alt="ad250"width={250} height={250} mode='fit' /></Col>
+                    <Media as="li">
+                        <img
+                        width={64}
+                        height={64}
+                        className="mr-3"
+                        src="holder.js/64x64"
+                        alt="Generic placeholder"
+                        />
+                        <Media.Body>
+                        <h5>Expert Name</h5>
+                        <p>
+                            Expert Description
+                        </p>
+                        </Media.Body>
+                    </Media>
+                    </ul>
+                </Col>
+            </Row>
+            <Row>
+                <Col>1 of 3</Col>
+                <Col>2 of 3</Col>
+                <Col><img src={ad250} alt="ad250"width={250} height={250} mode='fit' /></Col>
 
 
-  </Row>
-  <br>
-  </br>
-  <br>
-  </br>
+            </Row>
+            <br>
+            </br>
+            <br>
+            </br>
 
   
-            </Container>
+        </Container>
             
 
             <Col><img src={ad728} alt="ad728"width={728} height={90} mode='fit' /></Col>
@@ -355,27 +605,11 @@ const Home = () => {
 </Container>
 <br>
 </br>
-            <Container>
-                <h1>Home</h1>
-                <InputTest />
-                <br />
-                <br />
-                <h2>Results:</h2>
-                <div>
-                    {tests && tests.map(tests => {
-                        return (
-                            <ListGroup key={tests.test_id}>
-                                <ListGroup.Item>
-                                    { tests.test_id }
-                                    <br/>
-                                    { tests.content }
-                                </ListGroup.Item>
-                            </ListGroup>
-                        )
-                    })}
-                </div>
-            </Container>
+
+
             
+            
+
         </div>
     )
 }
