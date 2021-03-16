@@ -9,10 +9,10 @@ const doctor = db.define('doctor', {
         allowNull: false,
         primaryKey: true
     },
-    practice_id: {
-        type: DataTypes.UUID,
-        allowNull: false
-    },
+    // practice_id: {
+    //     type: DataTypes.UUID,
+    //     allowNull: false
+    // },
     doctor_name: {
         type: DataTypes.STRING,
         allowNull: false

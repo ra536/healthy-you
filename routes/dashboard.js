@@ -10,15 +10,15 @@ const { Op } = require("sequelize");
 router.use(express.json());
 
 
-doctor.belongsTo(practice, {
-    foreignKey: 'practice_id',
-    targetKey: 'practice_id'
-});
+// doctor.belongsTo(practice, {
+//     foreignKey: 'practice_id',
+//     targetKey: 'practice_id'
+// });
 
-practice.hasMany(doctor, {
-    foreignKey: 'practice_id',
-    sourceKey: 'practice_id'
-});
+// practice.hasMany(doctor, {
+//     foreignKey: 'practice_id',
+//     sourceKey: 'practice_id'
+// });
 
 // location.belongsTo(practice, {
 //     foreignKey: 'practice_id',
