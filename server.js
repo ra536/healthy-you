@@ -7,11 +7,18 @@ const app = express();
 // Allows for two different domains to interact
 app.use(cors());
 
+if(process.env.NODE_ENV === "production"){
+  // server static content
+  //npm run build
+  app.use(express.static(path.join(__dirname, "client/build")));
+}
+
 // Database
 const db = require('./db/index')
 
 // routes
 app.use("/api/v1/test", require('./routes/test'));
+app.use("/api/v1/dashboard", require('./routes/dashboard'));
 
 // Test db connection
 db.authenticate()
@@ -22,6 +29,12 @@ db.authenticate()
 db.sync()
   .then(() => console.log("Models have been synced..."))
   .catch(err => console.log(err))
+
+app.get('/*', (req, res) => {
+  let url = path.join(__dirname, 'client/build', 'index.html');
+  res.sendFile(url);
+});
+
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

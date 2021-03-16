@@ -1,6 +1,10 @@
 import React, { useContext, useState } from 'react'
 import TestAPI from '../apis/TestAPI'
 import { TestContext } from '../context/TestContext';
+import { Button, Form } from 'react-bootstrap';
+
+// bootstrap styles library (gives automatic styling)
+import 'bootstrap/dist/css/bootstrap.css';
 
 
 //Lets user input a test object into backend db
@@ -22,27 +26,48 @@ const InputTest = () => {
         catch (err) {
             console.log(err)
         }
+        // clear input
+        setTestID("");
+        setContent("");
     }
 
     return (
-        <form>
+        <Form>
             <div>
-                <input
-                    value={ testID }
-                    onChange={e => setTestID(e.target.value)}
-                />
-                <input
-                    value={ content }
-                    onChange={e => setContent(e.target.value)}
-                />
+                <Form.Group controlId="formTestID">
+                    <Form.Label>TestID</Form.Label>
+                    <Form.Control
+                        type="text"
+                        id="testID"
+                        placeholder="Enter testID"
+                        value={ testID }
+                        onChange={e => setTestID(e.target.value)}
+                    />
+                    <Form.Text className="text-muted">
+                    Choose a unique number
+                    </Form.Text>
+                </Form.Group>
+                <Form.Group controlId="formContent">
+                    <Form.Label>Content</Form.Label>
+                    <Form.Control
+                        type="text"
+                        id="content"
+                        placeholder="Enter content"
+                        value={ content }
+                        onChange={e => setContent(e.target.value)}
+                    />
+                    <Form.Text className="text-muted">
+                    Enter some text
+                    </Form.Text>
+                </Form.Group>
+                <Button
+                    onClick={ handleSubmit }
+                    type="submit"
+                >
+                    Add
+                </Button>
             </div>
-            <button
-                onClick={ handleSubmit }
-                type="submit"
-            >
-                Add
-            </button>
-        </form>
+        </Form>
     )
 }
 
