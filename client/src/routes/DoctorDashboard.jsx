@@ -7,6 +7,7 @@ import InputNewPractice from '../components/InputNewPractice';
 import QueryDB from '../components/QueryDB';
 
 const DoctorDashboard = () => {
+    
     return(
         <div>
             <h1>Dashboard</h1>

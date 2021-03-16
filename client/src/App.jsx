@@ -14,7 +14,11 @@ const App = () => {
                     <Switch>
                         <Route exact path="/" component={ Home }/>
                         <Route exact path="/register" component = { Register }/>
-                        <Route exact path="/doctor/dashboard" component={ DoctorDashboard }/>
+                        <Route exact path="/doctorid/doctor-dashboard">
+                            <DoctorDashboard
+                                doctorID = "test"
+                            />
+                        </Route>
                         <Route path="/leaveReview/:id">
                             <Review url={window.location.href}/>
                         </Route>
