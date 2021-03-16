@@ -49,44 +49,6 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.post("/add_doctor", async (req, res) => {
-    try {
-        if(req.body.practiceName != "" && req.body.doctor != ""){
-            const pid = await practice.findOne({
-                where: {name: req.body.practiceName}
-            });
-            if(pid != null){
-                //Array type to hold more than one specialty per doctor
-                var specialties = [];
-                specialties.push(req.body.specialty);
-                const doctors = await doctor.create({
-                    practice_id: pid.practice_id,
-                    doctor_name: req.body.doctor,
-                    rating: req.body.rating,
-                    profile_picture: req.body.profilePic,
-                    specialty: specialties,
-                    bio: req.body.bio
-                })
-                console.log(doctors.dataValues)
-                res.status(201).json({
-                    status: "success",
-                    data: {
-                        practice_id: doctors.dataValues.practice_id,
-                        doctor_name: doctors.dataValues.doctor_name,
-                        rating: doctors.dataValues.rating,
-                        profile_picture: doctors.dataValues.profilePic,
-                        specialty: doctors.dataValues.specialty,
-                        bio: doctors.dataValues.bio
-                    }
-                })
-            }
-        }
-    }
-    catch (err) {
-      console.log(err)
-    }
-});
-
 // (Location merged with practice table)
 // router.post("/add_location", async (req, res) => {
 //     try {
