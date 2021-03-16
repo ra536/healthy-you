@@ -4,8 +4,12 @@ const path = require('path');
 
 const app = express();
 
-// Allows for two different domains to interact
-app.use(cors());
+const db = require("./app/models");
+db.sequelize.sync();
+
+var corsOptions = {
+  origin: "http://localhost:8081"
+};
 
 if(process.env.NODE_ENV === "production"){
   // server static content
