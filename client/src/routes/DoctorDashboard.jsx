@@ -1,27 +1,59 @@
 import React, { useEffect, useContext, useState } from 'react';
-import DashboardAPI from '../apis/DashboardAPI'
+import DoctorAPI from '../apis/DoctorAPI'
 import { TestContext } from '../context/TestContext';
 // import InputNewDoc from '../components/InputNewDoc';
 // import InputNewLoc from '../components/InputNewLoc';
 import InputNewPractice from '../components/InputNewPractice';
 import QueryDB from '../components/QueryDB';
 
-const DoctorDashboard = () => {
+const DoctorDashboard = (props) => {
+    const [rating, setRating] = useState();
+    const [name, setName] = useState();
+    const [profilePicture, setProfilePicture] = useState();
+    const [specialties, setSpecialties] = useState();
+
+    useEffect( () => {
+        // Define a function fetchData that calls APIs which is then called in useEffect
+        const fetchData = async () => {
+            try {
+                const response = await (DoctorAPI.post("/findDoctor", {
+                    doctorID: props.doctorID
+                }));
+                console.log(response.data.data[0])
+                setRating(response.data.data[0].rating)
+                setName(response.data.data[0].doctor_name)
+                setProfilePicture(response.data.data[0].profile_picture)
+                setSpecialties(response.data.data[0].specialty)
+            }
+            catch (err) {
+                console.log(err)
+            }
+        }
+        fetchData();
+    }, []);
     
     return(
         <div>
             <h1>Dashboard</h1>
             <br/>
+            <h1>Name</h1>
+                { name }
+            <br/>
             <h1>Profile Picture</h1>
+                { profilePicture }
             <br/>
             <h1>Phone Number</h1>
             <br/>
             <h1>Biography</h1>
             <br/>
             <h1>Specialties</h1>
+                { specialties }
+            <br/>
+            <h1>Rating</h1>
+                { rating }
             <br/>
             <h1>Practices</h1>
-            <InputNewPractice/>
+                <InputNewPractice/>
             <br/>
             <QueryDB/>
         </div>

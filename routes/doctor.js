@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db/index')
-const doctor = require('../db/models/doctor')
+const db = require('../db/index');
+const doctor = require('../db/models/doctor');
+
 
 router.use(express.json());
 
@@ -10,6 +11,25 @@ router.use(express.json());
 // READ everything in their dashboard
 // UPDATE bio and maybe appointments, profile pictures
 // DELETE specialties, practices, appointments,
+
+router.post("/findDoctor", async (req, res) => {
+    try {
+        const doctorResult = await doctor.findAll({
+            where: {
+                doctor_name: req.body.doctorID
+            },
+            raw: true
+        })
+        console.log(req.body)
+        res.status(200).json({
+            status: "success",
+            data: doctorResult
+        })
+    }
+    catch (err) {
+      console.log(err)
+    }
+});
 
 // router.post("/create", async (req, res) => {
 //     try {
