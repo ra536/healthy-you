@@ -1,6 +1,5 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../index');
-const location = require('./location');
 const doctor = require('./doctor');
 
 const practice = db.define('practice', {
@@ -34,7 +33,18 @@ const practice = db.define('practice', {
             is: /^(\()?[2-9]{1}\d{2}(\))?(-|\s)?[2-9]{1}\d{2}(-|\s)\d{4}$/
         },
         allowNull: false
-    }
+    },
+    doctor_id: {
+        type: DataTypes.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        allowNull: false,
+        foreignKey: true
+    },
+});
+
+practice.belongsTo(doctor, {
+    targetKey: 'doctor_id',
+    foreignKey: 'doctor_id'
 });
 
 // practice.create({practice_id:'d41ba10b-bb8b-4ff2-8c7f-7ef7c818b484', name:'PRACTICE CLINIC', location:'HERE', sum_rating:5.0, website:"WEBSITE.COM", social_media:"@SOCIALMEDIA", fax:'fax', phone:'555-555-5555'});
