@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { TestContextProvider } from './context/TestContext';
 import Home from "./routes/Home";
 import Review from "./routes/Review";
+import Appointments from "./routes/Appointments";
 
 const App = () => {
     return (
@@ -14,6 +15,7 @@ const App = () => {
                         <Route path="/leaveReview/:id">
                             <Review url={window.location.href}/>
                         </Route>
+                        <Route exact path="/appt" component={ Appointments }/>
                     </Switch>
                 </Router>
             </div>
