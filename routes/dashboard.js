@@ -20,23 +20,22 @@ practice.hasMany(doctor, {
     sourceKey: 'practice_id'
 });
 
-location.belongsTo(practice, {
-    foreignKey: 'practice_id',
-    targetKey: 'practice_id'
-});
+// location.belongsTo(practice, {
+//     foreignKey: 'practice_id',
+//     targetKey: 'practice_id'
+// });
 
-practice.hasMany(location, {
-    foreignKey: 'practice_id',
-    sourceKey: 'practice_id'
-});
+// practice.hasMany(location, {
+//     foreignKey: 'practice_id',
+//     sourceKey: 'practice_id'
+// });
 
 
 router.get("/", async (req, res) => {
     try {
         const practiceResults = await practice.findAll({
             include: [
-                { model: doctor},
-                { model: location}
+                { model: doctor}
             ]
         });
         console.log(practiceResults);
@@ -55,16 +54,24 @@ router.post("/add_practice", async (req, res) => {
         if(req.body.practiceName != ""){
             const practices = await practice.create({
                 name: req.body.practiceName,
+                location: req.body.location,
                 website: req.body.website,
-                social_media: req.body.socialMedia
+                social_media: req.body.socialMedia,
+                address: req.body.address,
+                phone: req.body.phone,
+                fax: req.body.fax
             })
             console.log(practices.dataValues)
             res.status(201).json({
                 status: "success",
                 data: {
                     name: practices.dataValues.name,
+                    location: practices.dataValues.location,
                     website: practices.dataValues.website,
-                    social_media: practices.dataValues.social_media
+                    social_media: practices.dataValues.social_media,
+                    address: practices.dataValues.address,
+                    phone: practices.dataValues.phone,
+                    fax: practices.dataValues.fax
                 }
             })
         }
@@ -81,9 +88,16 @@ router.post("/add_doctor", async (req, res) => {
                 where: {name: req.body.practiceName}
             });
             if(pid != null){
+                //Array type to hold more than one specialty per doctor
+                var specialties = [];
+                specialties.push(req.body.specialty);
                 const doctors = await doctor.create({
                     practice_id: pid.practice_id,
                     doctor_name: req.body.doctor,
+                    rating: req.body.rating,
+                    profile_picture: req.body.profilePic,
+                    specialty: specialties,
+                    bio: req.body.bio
                 })
                 console.log(doctors.dataValues)
                 res.status(201).json({
@@ -91,7 +105,10 @@ router.post("/add_doctor", async (req, res) => {
                     data: {
                         practice_id: doctors.dataValues.practice_id,
                         doctor_name: doctors.dataValues.doctor_name,
-                        rating: doctors.dataValues.rating
+                        rating: doctors.dataValues.rating,
+                        profile_picture: doctors.dataValues.profilePic,
+                        specialty: doctors.dataValues.specialty,
+                        bio: doctors.dataValues.bio
                     }
                 })
             }
@@ -102,34 +119,35 @@ router.post("/add_doctor", async (req, res) => {
     }
 });
 
-router.post("/add_location", async (req, res) => {
-    try {
-        if(req.body.practiceName != "" && req.body.location != "" && req.body.phone != ""){
-            const pid = await practice.findOne({
-                where: {name: req.body.practiceName}
-            });
-            if(pid != null){
-                const locations = await location.create({
-                    practice_id: pid.practice_id,
-                    address: req.body.location,
-                    phone: req.body.phone,
-                })
-                console.log(locations.dataValues)
-                res.status(201).json({
-                    status: "success",
-                    data: {
-                        practice_id: locations.dataValues.practice_id,
-                        address: locations.dataValues.address,
-                        phone: locations.dataValues.phone
-                    }
-                })
-            }
-        }
-    }
-    catch (err) {
-      console.log(err)
-    }
-});
+// (Location merged with practice table)
+// router.post("/add_location", async (req, res) => {
+//     try {
+//         if(req.body.practiceName != "" && req.body.location != "" && req.body.phone != ""){
+//             const pid = await practice.findOne({
+//                 where: {name: req.body.practiceName}
+//             });
+//             if(pid != null){
+//                 const locations = await location.create({
+//                     practice_id: pid.practice_id,
+//                     address: req.body.location,
+//                     phone: req.body.phone,
+//                 })
+//                 console.log(locations.dataValues)
+//                 res.status(201).json({
+//                     status: "success",
+//                     data: {
+//                         practice_id: locations.dataValues.practice_id,
+//                         address: locations.dataValues.address,
+//                         phone: locations.dataValues.phone
+//                     }
+//                 })
+//             }
+//         }
+//     }
+//     catch (err) {
+//       console.log(err)
+//     }
+// });
 
 router.post("/query", async (req, res) => {
     try {
@@ -141,8 +159,7 @@ router.post("/query", async (req, res) => {
             });
             const results = await practice.findAll({
                 include: [
-                    { model: doctor, where:{ practice_id: pid.practice_id} },
-                    { model: location, where:{ practice_id: pid.practice_id} }
+                    { model: doctor, where:{ practice_id: pid.practice_id} }
             ],
                 where: {name: req.body.practice}
             });
@@ -151,11 +168,10 @@ router.post("/query", async (req, res) => {
                 status: "success",
                 data: results
             })
-        }else{
+        }else{ // Returns all results if no input
             const results = await practice.findAll({
                 include: [
-                    { model: doctor },
-                    { model: location }
+                    { model: doctor }
                 ]
             });
             console.log(results);

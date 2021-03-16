@@ -2,8 +2,8 @@ import React, { useContext, useState } from 'react'
 import DashboardAPI from '../apis/DashboardAPI'
 import { TestContext } from '../context/TestContext';
 
+// Form to input a new location for a practice --> location merged with practice so this is not being used rn
 
-//Lets user input a test object into backend db
 const InputNewLoc = () => {
     const [practiceName, setPractice] = useState("");
     const [location, setLocation] = useState("");

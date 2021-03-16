@@ -29,7 +29,6 @@ const Dashboard = () => {
             <h1>Dashboard</h1>
             <InputNewPractice/>
             <InputNewDoc/>
-            <InputNewLoc/>
             <br/>
             <QueryDB/>
         </div>

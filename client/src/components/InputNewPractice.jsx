@@ -9,6 +9,9 @@ const InputNewPractice = () => {
     const [practiceName, setPractice] = useState("");
     const [website, setWebsite] = useState("");
     const [socialMedia, setSocialMedia] = useState("");
+    const [location, setLocation] = useState("");
+    const [phone, setPhone] = useState("");
+    const [fax, setFax] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -16,7 +19,10 @@ const InputNewPractice = () => {
             const response = await DashboardAPI.post("/add_practice", {
                 practiceName: practiceName,
                 website: website,
-                socialMedia: socialMedia
+                socialMedia: socialMedia,
+                location: location,
+                phone: phone,
+                fax: fax
             }) 
             console.log(response.data.data)
         }
@@ -26,6 +32,10 @@ const InputNewPractice = () => {
         setPractice("");
         setWebsite("");
         setSocialMedia("");
+        setPractice("");
+        setLocation("");
+        setPhone("");
+        setFax("");
     }
 
     return(
@@ -47,6 +57,24 @@ const InputNewPractice = () => {
                 value={socialMedia} 
                 placeholder="Social Media" 
                 onChange={e => setSocialMedia(e.target.value)} 
+            />
+            <input 
+                id="input-location" 
+                value={location} 
+                placeholder="Location" 
+                onChange={e => setLocation(e.target.value)} 
+            />
+            <input 
+                id="input-phone" 
+                value={phone} 
+                placeholder="Phone Number" 
+                onChange={e => setPhone(e.target.value)} 
+            />
+            <input 
+                id="input-fax" 
+                value={fax} 
+                placeholder="Fax" 
+                onChange={e => setFax(e.target.value)} 
             />
             <button type="submit" onClick={handleSubmit}>
                 Insert New Practice
