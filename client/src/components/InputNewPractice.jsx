@@ -16,7 +16,7 @@ const InputNewPractice = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await PracticeAPI.post("/add", {
+            const response = await PracticeAPI.post("/create", {
                 practiceName: practiceName,
                 website: website,
                 socialMedia: socialMedia,

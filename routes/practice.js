@@ -7,7 +7,7 @@ const doctor = require('../db/models/doctor');
 
 router.use(express.json());
 
-router.post("/add", async (req, res) => {
+router.post("/create", async (req, res) => {
     try {
         if(req.body.practiceName != ""){
             const practices = await practice.create({
