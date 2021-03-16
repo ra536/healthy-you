@@ -6,7 +6,7 @@ import InputNewLoc from '../components/InputNewLoc';
 import InputNewPractice from '../components/InputNewPractice';
 import QueryDB from '../components/QueryDB';
 
-const Dashboard = () => {
+const DoctorDashboard = () => {
     const { tests, setTests } = useContext(TestContext);
 
     useEffect( () => {
@@ -28,11 +28,10 @@ const Dashboard = () => {
         <div>
             <h1>Dashboard</h1>
             <InputNewPractice/>
-            <InputNewDoc/>
             <br/>
             <QueryDB/>
         </div>
     )
 };
 
-export default Dashboard;
+export default DoctorDashboard;
