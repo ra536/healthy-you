@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import TestAPI from '../apis/TestAPI';
 import InputTest from '../components/InputTest';
 import { TestContext } from '../context/TestContext';
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
+import { Form, FormControl, Button } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap';
 import { Container, Row, Image, Col } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card'
@@ -33,13 +33,9 @@ import foodpic2 from './foodpic2.jpg';
 import foodpic3 from './foodpic3.jpg';
 import drkai from './drkai.jpg';
 
-
-
-
 import Carousel from 'react-bootstrap/Carousel';
-import hwf_logo from'./hwf_logo.png';
-import hwf_logo_small from'./hwf_logo_small.png';
-import ad_logo from'./ad_logo.jpeg';
+import ad_logo from './ad_logo.jpeg';
+import TopNavBar from './TopNavBar';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const Home = () => {
@@ -66,35 +62,37 @@ const Home = () => {
 
     return (
         <div>
-            <Navbar fixed="top" bg="dark" variant="dark" expand="lg">
-                <Navbar.Brand>
-                    <Image width="30px" src={hwf_logo_small} fluid/>  
-                </Navbar.Brand>
-                <br />
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav>
-						<Nav.Link href="#link">Home</Nav.Link>
-						<Nav.Link href="#home">Food</Nav.Link>
-						<Nav.Link href="#link">Nutrition</Nav.Link>
-						<Nav.Link href="#link">Health</Nav.Link>
-						<Nav.Link href="#link">Blog</Nav.Link>
-						<Nav.Link href="#home">Language</Nav.Link>
-						<Nav.Link href="#link">Covid 19</Nav.Link>
-						<Nav.Link href="#home">News</Nav.Link>
-						<Nav.Link href="#link">Exercise</Nav.Link>
-						<Nav.Link href="#home">Directory</Nav.Link>
-						<Nav.Link href="#link">Contact Us</Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-                <Image vertical-align="top" width="30%" src={hwf_logo} fluid/>
-            </Navbar>
-            <br />
-            <br />
-            <br />
-            <br />
+            <TopNavBar />
             
             <div align="center" display="inline">
+                <Carousel controls={false} indicators={false} style={{ width: "500px", display: "inline-block" }}>
+                    <Carousel.Item>
+                        <img
+                        className="d-block w-100"
+                        src={ad_logo}
+                        alt="First slide"
+                        />
+        
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                        className="d-block w-100"
+                        src={ad_logo}
+                        alt="Second slide"
+                        />
+
+
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                        className="d-block w-100"
+                        src={ad_logo}
+                        alt="Third slide"
+                        />
+
+                    </Carousel.Item>
+                </Carousel>
+                {' '}
                 <Carousel controls={false} indicators={false} style={{ width: "500px", display: "inline-block" }}>
                     <Carousel.Item>
                         <img
