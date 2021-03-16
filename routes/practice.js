@@ -17,7 +17,8 @@ router.post("/create", async (req, res) => {
                 social_media: req.body.socialMedia,
                 address: req.body.address,
                 phone: req.body.phone,
-                fax: req.body.fax
+                fax: req.body.fax,
+                doctor_id: req.body.doctorID
             })
             console.log(practices.dataValues)
             res.status(201).json({
@@ -33,6 +34,25 @@ router.post("/create", async (req, res) => {
                 }
             })
         }
+    }
+    catch (err) {
+      console.log(err)
+    }
+});
+
+router.post("/findAll", async (req, res) => {
+    try {
+        const practiceResult = await practice.findAll({
+            where: {
+                doctorID: req.body.doctorID
+            },
+            raw: true
+        })
+        console.log(req.body)
+        res.status(200).json({
+            status: "success",
+            data: doctorResult
+        })
     }
     catch (err) {
       console.log(err)

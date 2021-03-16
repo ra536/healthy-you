@@ -4,7 +4,7 @@ import { TestContext } from '../context/TestContext';
 
 
 //Lets user input a test object into backend db
-const InputNewPractice = () => {
+const InputNewPractice = (props) => {
 
     const [practiceName, setPractice] = useState("");
     const [website, setWebsite] = useState("");
@@ -22,7 +22,8 @@ const InputNewPractice = () => {
                 socialMedia: socialMedia,
                 location: location,
                 phone: phone,
-                fax: fax
+                fax: fax,
+                doctorID: props.doctorID
             }) 
             console.log(response.data.data)
         }
