@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import DashboardAPI from '../apis/DashboardAPI'
+import PracticeAPI from '../apis/PracticeAPI'
 import { TestContext } from '../context/TestContext';
 
 
@@ -16,7 +16,7 @@ const InputNewPractice = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await DashboardAPI.post("/add_practice", {
+            const response = await PracticeAPI.post("/add", {
                 practiceName: practiceName,
                 website: website,
                 socialMedia: socialMedia,

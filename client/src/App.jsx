@@ -4,6 +4,7 @@ import { TestContextProvider } from './context/TestContext';
 import Home from "./routes/Home";
 import Dashboard from "./routes/Dashboard";
 import Review from "./routes/Review";
+import Register from './routes/Register'
 
 const App = () => {
     return (

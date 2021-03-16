@@ -49,38 +49,6 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.post("/add_practice", async (req, res) => {
-    try {
-        if(req.body.practiceName != ""){
-            const practices = await practice.create({
-                name: req.body.practiceName,
-                location: req.body.location,
-                website: req.body.website,
-                social_media: req.body.socialMedia,
-                address: req.body.address,
-                phone: req.body.phone,
-                fax: req.body.fax
-            })
-            console.log(practices.dataValues)
-            res.status(201).json({
-                status: "success",
-                data: {
-                    name: practices.dataValues.name,
-                    location: practices.dataValues.location,
-                    website: practices.dataValues.website,
-                    social_media: practices.dataValues.social_media,
-                    address: practices.dataValues.address,
-                    phone: practices.dataValues.phone,
-                    fax: practices.dataValues.fax
-                }
-            })
-        }
-    }
-    catch (err) {
-      console.log(err)
-    }
-});
-
 router.post("/add_doctor", async (req, res) => {
     try {
         if(req.body.practiceName != "" && req.body.doctor != ""){
