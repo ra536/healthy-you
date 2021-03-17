@@ -52,4 +52,3 @@ practice.belongsTo(doctor, {
 
 
 module.exports = practice;
-
