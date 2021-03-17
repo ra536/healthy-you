@@ -51,6 +51,8 @@ const DoctorDashboard = (props) => {
             <h1>Rating</h1>
                 { rating }
             <br/>
+            <h1>Reviews</h1>
+            <br/>
             <h1>Practices</h1>
                 <PracticeList
                     doctorID = "test"
@@ -58,6 +60,8 @@ const DoctorDashboard = (props) => {
                 <InputNewPractice
                     doctorID = { doctorID }
                 />
+            <br/>
+            <h1>Appointments</h1>
             <br/>
         </div>
     )

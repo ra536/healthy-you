@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import DashboardAPI from '../apis/DashboardAPI'
-import { TestContext } from '../context/TestContext';
+import { AppContext } from '../context/AppContext';
 
 
 const QueryDB = () => {
@@ -8,7 +8,7 @@ const QueryDB = () => {
     const [location, setLocation] = useState("");
     const [doctor, setDoctor] = useState("");
 
-    const { tests, setTests } = useContext(TestContext);
+    const { tests, setTests } = useContext(AppContext);
 
 
     const handleSubmit = async (e) => {
