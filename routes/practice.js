@@ -48,7 +48,7 @@ router.post("/findAll", async (req, res) => {
             },
             raw: true
         })
-        console.log(req.body)
+        console.log("This is the body of the request!: " + req.body.doctorID)
         res.status(200).json({
             status: "success",
             data: practiceResult

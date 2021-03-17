@@ -11,8 +11,19 @@ export const TestContextProvider = props => {
         setTests([...tests, test]);
     }
 
+    // Practice List context
+    const [practices, setPractices] = useState([]);
+
+    const addPractice = (practice) => {
+        setPractices([...practices, practice]);
+    }
+
     return (
-        <TestContext.Provider value={{ tests, setTests, addTest }}>
+        <TestContext.Provider value={
+            {
+                tests, setTests, addTest,
+                practices, setPractices, addPractice
+            }}>
             { props.children }
         </TestContext.Provider>
     )

@@ -20,7 +20,7 @@ router.post("/findDoctor", async (req, res) => {
             },
             raw: true
         })
-        console.log(req.body)
+        //console.log(req.body)
         res.status(200).json({
             status: "success",
             data: doctorResult
