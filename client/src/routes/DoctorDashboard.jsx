@@ -21,12 +21,28 @@ const DoctorDashboard = (props) => {
                 const response = await (DoctorAPI.post("/findDoctor", {
                     doctorID: props.doctorID
                 }));
-                console.log(response.data.data[0])
+                //console.log(response.data.data[0])
                 setRating(response.data.data[0].rating)
                 setName(response.data.data[0].doctor_name)
                 setProfilePicture(response.data.data[0].profile_picture)
                 setSpecialties(response.data.data[0].specialty)
                 setDoctorID(response.data.data[0].doctor_id)
+            }
+            catch (err) {
+                console.log(err)
+            }
+        }
+        fetchData();
+    }, []);
+
+    useEffect( () => {
+        // Define a function fetchData that calls APIs which is then called in useEffect
+        const fetchData = async () => {
+            try {
+                const response = await (PracticeAPI.post("/findAll", {
+                    doctorID: props.doctorID
+                }));
+                console.log(response.data.data[0])
             }
             catch (err) {
                 console.log(err)

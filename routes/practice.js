@@ -44,7 +44,7 @@ router.post("/findAll", async (req, res) => {
     try {
         const practiceResult = await practice.findAll({
             where: {
-                doctorID: req.body.doctorID
+                name: req.body.doctorID
             },
             raw: true
         })
