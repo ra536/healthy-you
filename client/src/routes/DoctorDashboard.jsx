@@ -2,7 +2,6 @@ import React, { useEffect, useContext, useState } from 'react';
 import DoctorAPI from '../apis/DoctorAPI'
 import InputNewPractice from '../components/InputNewPractice';
 import PracticeList from '../components/PracticeList';
-import { PracticeContextProvider } from '../context/PracticeContext';
 
 const DoctorDashboard = (props) => {
     const [rating, setRating] = useState();
@@ -53,11 +52,9 @@ const DoctorDashboard = (props) => {
                 { rating }
             <br/>
             <h1>Practices</h1>
-                <PracticeContextProvider>
-                    <PracticeList
-                        doctorID = "test"
-                    />
-                </PracticeContextProvider>
+                <PracticeList
+                    doctorID = "test"
+                />
                 <InputNewPractice
                     doctorID = { doctorID }
                 />

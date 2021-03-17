@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react'
 import PracticeAPI from '../apis/PracticeAPI'
-import { TestContext } from '../context/TestContext';
+import { AppContext } from '../context/AppContext';
 
 const PracticeList = (props) => {
-    const { practices, setPractices } = useContext(TestContext);
+    const { practices, setPractices } = useContext(AppContext);
     //const [practices, setPractices] = useState([]);
 
     useEffect( () => {

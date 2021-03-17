@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { TestContextProvider } from './context/TestContext';
+import { AppContextProvider } from './context/AppContext';
 import Home from "./routes/Home";
 import DoctorDashboard from "./routes/DoctorDashboard";
 import Review from "./routes/Review";
@@ -8,7 +8,7 @@ import Register from './routes/Register'
 
 const App = () => {
     return (
-        <TestContextProvider>
+        <AppContextProvider>
             <div>
                 <Router>
                     <Switch>
@@ -25,7 +25,7 @@ const App = () => {
                     </Switch>
                 </Router>
             </div>
-        </TestContextProvider>
+        </AppContextProvider>
     )
 };
 
