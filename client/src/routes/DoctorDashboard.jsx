@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import DoctorAPI from '../apis/DoctorAPI'
-import { TestContext } from '../context/TestContext';
+import PracticeAPI from '../apis/PracticeAPI'
 // import InputNewDoc from '../components/InputNewDoc';
 // import InputNewLoc from '../components/InputNewLoc';
 import InputNewPractice from '../components/InputNewPractice';
@@ -11,6 +11,8 @@ const DoctorDashboard = (props) => {
     const [name, setName] = useState();
     const [profilePicture, setProfilePicture] = useState();
     const [specialties, setSpecialties] = useState();
+    const [practices, setPractices] = useState([]);
+    const [doctorID, setDoctorID] = useState("");
 
     useEffect( () => {
         // Define a function fetchData that calls APIs which is then called in useEffect
@@ -24,6 +26,7 @@ const DoctorDashboard = (props) => {
                 setName(response.data.data[0].doctor_name)
                 setProfilePicture(response.data.data[0].profile_picture)
                 setSpecialties(response.data.data[0].specialty)
+                setDoctorID(response.data.data[0].doctor_id)
             }
             catch (err) {
                 console.log(err)
@@ -53,9 +56,11 @@ const DoctorDashboard = (props) => {
                 { rating }
             <br/>
             <h1>Practices</h1>
-                <InputNewPractice/>
+                { practices }
+                <InputNewPractice
+                    doctorID = { doctorID }
+                />
             <br/>
-            <QueryDB/>
         </div>
     )
 };
