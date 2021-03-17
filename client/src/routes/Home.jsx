@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import TestAPI from '../apis/TestAPI';
 import InputTest from '../components/InputTest';
-import { TestContext } from '../context/TestContext';
+import { AppContext } from '../context/AppContext';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap';
 import { Container, Card, Carousel } from 'react-bootstrap';
@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 const Home = () => {
     // Store the data retrieved from backend API into context
-    const { tests, setTests } = useContext(TestContext);
+    const { tests, setTests } = useContext(AppContext);
 
     // Call our backend API to retrieve list of test objects from db
     useEffect( () => {

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import TestAPI from '../apis/TestAPI'
-import { TestContext } from '../context/TestContext';
+import { AppContext } from '../context/AppContext';
 import { Button, Form } from 'react-bootstrap';
 
 // bootstrap styles library (gives automatic styling)
@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 //Lets user input a test object into backend db
 const InputTest = () => {
-    const { addTest } = useContext(TestContext);
+    const { addTest } = useContext(AppContext);
     const [testID, setTestID] = useState();
     const [content, setContent] = useState("");
 
