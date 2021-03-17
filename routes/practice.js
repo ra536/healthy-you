@@ -51,7 +51,7 @@ router.post("/findAll", async (req, res) => {
         console.log(req.body)
         res.status(200).json({
             status: "success",
-            data: doctorResult
+            data: practiceResult
         })
     }
     catch (err) {
