@@ -5,6 +5,8 @@ import Home from "./routes/Home";
 import DoctorDashboard from "./routes/DoctorDashboard";
 import Review from "./routes/Review";
 import Register from './routes/Register'
+import Search from './routes/Search'
+import SearchResults from './components/SearchResults'
 
 const App = () => {
     return (
@@ -13,6 +15,8 @@ const App = () => {
                 <Router>
                     <Switch>
                         <Route exact path="/" component={ Home }/>
+                        <Route exact path="/search" component={ Search }/>
+                        <Route path="/results" component={ SearchResults }/>
                         <Route exact path="/register" component = { Register }/>
                         <Route exact path="/doctorid/doctor-dashboard">
                             <DoctorDashboard
