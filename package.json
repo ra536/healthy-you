@@ -23,6 +23,11 @@
   },
   "homepage": "https://github.com/ra536/healthy-you#readme",
   "dependencies": {
+    "@fullcalendar/core": "^5.5.1",
+    "@fullcalendar/daygrid": "^5.5.0",
+    "@fullcalendar/react": "^5.5.0",
+    "@fullcalendar/timegrid": "^5.5.1",
+    "@material-ui/core": "^4.11.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -31,6 +36,7 @@
     "nodemon": "^2.0.7",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
+    "react-bootstrap-date-picker": "^5.1.0",
     "sequelize": "^6.5.0"
   }
 }
