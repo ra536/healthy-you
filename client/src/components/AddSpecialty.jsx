@@ -3,7 +3,7 @@ import SpecialtyAPI from '../apis/SpecialtyAPI'
 import DoctorAPI from '../apis/DoctorAPI'
 import { AppContext } from '../context/AppContext';
 
-const Specialty = (props) => {
+const AddSpecialty = (props) => {
     const [specialties, setSpecialties] = useState([]);
     const [specialty, setSpecialty] = useState("")
 
@@ -63,6 +63,6 @@ const Specialty = (props) => {
     )
 }
 
-export default Specialty;
+export default AddSpecialty;
 
 
