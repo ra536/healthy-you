@@ -47,7 +47,9 @@ const DoctorDashboard = (props) => {
             <h1>Biography</h1>
             <br/>
             <h1>Specialties</h1>
-                <Specialty />
+                <Specialty 
+                    doctorID = "test"
+                />
             <br/>
             <h1>Rating</h1>
                 { rating }

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db/index');
 const doctor = require('../db/models/doctor');
+const { Sequelize } = require('sequelize');
 
 
 router.use(express.json());
@@ -35,7 +36,7 @@ router.post("/addSpecialty", async (req, res) => {
     try {
         const specialty = await doctor.update(
             {
-                specialty: doctor.fn('array_append', doctor.col('specialty'), req.body.specialty)
+                specialty: Sequelize.fn('array_append', Sequelize.col('specialty'), req.body.specialty)
             },
             {
                 where: {doctor_name: req.body.doctorID}

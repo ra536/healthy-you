@@ -3,7 +3,7 @@ import SpecialtyAPI from '../apis/SpecialtyAPI'
 import DoctorAPI from '../apis/DoctorAPI'
 import { AppContext } from '../context/AppContext';
 
-const PracticeList = (props) => {
+const Specialty = (props) => {
     const [specialties, setSpecialties] = useState([]);
     const [specialty, setSpecialty] = useState("")
 
@@ -31,8 +31,17 @@ const PracticeList = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setSpecialty(e.target.value);
-        console.log(e.target.value);
+        try {
+            const response = await DoctorAPI.post("/addSpecialty", {
+                specialty: specialty,
+                doctorID: props.doctorID
+            })
+            //addTest(response.data.data)
+            console.log(response.data.data)
+        }
+        catch (err) {
+            console.log(err)
+        }
     };
 
     return (
@@ -54,6 +63,6 @@ const PracticeList = (props) => {
     )
 }
 
-export default PracticeList;
+export default Specialty;
 
 
