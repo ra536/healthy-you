@@ -6,29 +6,13 @@ import Card from 'react-bootstrap/Card'
 import drfarhad from './drfarhad.jpg';
 import fivestar from './fivestar.jpg';
 import Accordion from 'react-bootstrap/Accordion'
+import TopNavBar from './TopNavBar';
 
 
 const DoctorReview = () => {
 	return (
 	<>
-	<Navbar bg="dark" variant="dark" expand="lg">
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="m-auto">
-						<Nav.Link href="#link">Home</Nav.Link>
-						<Nav.Link href="#home">Food</Nav.Link>
-						<Nav.Link href="#link">Nutrition</Nav.Link>
-						<Nav.Link href="#link">Health</Nav.Link>
-						<Nav.Link href="#link">Blog</Nav.Link>
-						<Nav.Link href="#home">Language</Nav.Link>
-						<Nav.Link href="#link">Covid 19</Nav.Link>
-						<Nav.Link href="#home">News</Nav.Link>
-						<Nav.Link href="#link">Exercise</Nav.Link>
-						<Nav.Link href="#home">Directory</Nav.Link>
-						<Nav.Link href="#link">Contact Us</Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-            </Navbar>
+	<TopNavBar />
 	 <Row>
                     <Col>
                     <Image src={drfarhad} className="mx-auto d-block" style={{ width: '50%' }} fluid roundedCircle />
