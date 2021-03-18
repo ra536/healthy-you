@@ -23,6 +23,8 @@ app.use("/api/v1/doctor", require('./routes/doctor'));
 app.use("/api/v1/practice", require('./routes/practice'));
 app.use("/api/v1/specialty", require('./routes/specialty'));
 app.use("/api/v1/user", require('./routes/user'));
+app.use("/api/v1/article", require('./routes/article'));
+app.use("/api/v1/writer", require('./routes/writer'));
 
 // Test db connection
 db.authenticate()
