@@ -1,17 +1,17 @@
 import React, { useEffect, useContext } from 'react';
 import TestAPI from '../apis/TestAPI';
 import InputTest from '../components/InputTest';
-import { TestContext } from '../context/TestContext';
+import { AppContext } from '../context/AppContext';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap';
-import { Container } from 'react-bootstrap';
+import { Container, Card, Carousel } from 'react-bootstrap';
 
 // bootstrap styles library (gives automatic styling)
 import 'bootstrap/dist/css/bootstrap.css';
 
 const Home = () => {
     // Store the data retrieved from backend API into context
-    const { tests, setTests } = useContext(TestContext);
+    const { tests, setTests } = useContext(AppContext);
 
     // Call our backend API to retrieve list of test objects from db
     useEffect( () => {
@@ -31,8 +31,10 @@ const Home = () => {
 
     return (
         <div>
-            <Navbar bg="dark" variant="dark" expand="lg">
-                <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+            <Navbar bg="primary" variant="dark" expand="lg">
+                <Navbar.Brand href="#home">
+                    React-Bootstrap
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
@@ -53,6 +55,9 @@ const Home = () => {
                 </Navbar.Collapse>
             </Navbar>
             <br />
+            <Container>
+
+            </Container>
 
             <Container>
                 <h1>Home</h1>

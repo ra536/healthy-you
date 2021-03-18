@@ -1,8 +1,8 @@
 import React, { useState, createContext } from 'react';
 
-export const TestContext = createContext();
+export const AppContext = createContext();
 
-export const TestContextProvider = props => {
+export const AppContextProvider = props => {
     const [tests, setTests] = useState([])
 
     //updates state with new array when adding a test object
@@ -11,10 +11,21 @@ export const TestContextProvider = props => {
         setTests([...tests, test]);
     }
 
+    // Practice List context
+    const [practices, setPractices] = useState([]);
+
+    const addPractice = (practice) => {
+        setPractices([...practices, practice]);
+    }
+
     return (
-        <TestContext.Provider value={{ tests, setTests, addTest }}>
+        <AppContext.Provider value={
+            {
+                tests, setTests, addTest,
+                practices, setPractices, addPractice
+            }}>
             { props.children }
-        </TestContext.Provider>
+        </AppContext.Provider>
     )
 }
 
