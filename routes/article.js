@@ -22,6 +22,35 @@ router.get("/", async (req, res) => {
     }
 });
 
+router.post("/create", async (req, res) => {
+    try {
+        if(req.body.headline != ""){
+            const article = await articles.create({
+                headline: req.body.headline,
+                category: req.body.category,
+                summary: req.body.summary,
+                content: req.body.content
+            })
+            console.log(article.dataValues)
+            res.status(201).json({
+                status: "success",
+                data: {
+                    article_id: article.dataValues.article_id,
+                    headline: article.dataValues.headline,
+                    category: article.dataValues.category,
+                    summary: article.dataValues.summary,
+                    content: article.dataValues.content,
+                    publication_date: article.dataValues.publication_date,
+                    image: article.dataValues.image,
+                }
+            })
+        }
+    }
+    catch (err) {
+      console.log(err)
+    }
+});
+
 // Route to create a test object in DB
 router.post("/", async (req, res) => {
     // Express JSON middleware allows for results to be in body

@@ -1,6 +1,8 @@
 import React, { useEffect, useContext, useState } from 'react';
 import ArticleAPI from '../apis/ArticleAPI';
 import { useParams } from 'react-router-dom';
+import InputNewArticle from '../components/InputNewArticle';
+import ArticleList from '../components/ArticleList';
 
 
 const Article = (props) => {
@@ -10,8 +12,8 @@ const Article = (props) => {
         const fetchData = async () => {
             try {
                 console.log(id);
-                const response = await (ArticleAPI.get("/"));
-                console.log(response.data.data)
+                //const response = await (ArticleAPI.get("/"));
+                //console.log(response.data.data)
             }
             catch (err) {
                 console.log(err)
@@ -24,6 +26,10 @@ const Article = (props) => {
         <div>
             <h1>Article with id: {id}</h1>
             <br/>
+
+            <InputNewArticle />
+
+            <ArticleList />
         </div>
     )
 };

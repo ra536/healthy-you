@@ -18,11 +18,18 @@ export const AppContextProvider = props => {
         setPractices([...practices, practice]);
     }
 
+    const [articles, setArticles] = useState([]);
+
+    const addArticle = (article) => {
+        setArticles([...articles, article]);
+    }
+
     return (
         <AppContext.Provider value={
             {
                 tests, setTests, addTest,
-                practices, setPractices, addPractice
+                practices, setPractices, addPractice,
+                articles, setArticles, addArticle
             }}>
             { props.children }
         </AppContext.Provider>

@@ -5,7 +5,9 @@ const article = db.define('article', {
     
     article_id: {
         type: DataTypes.UUID,
-        allowNull: false
+        defaultValue: Sequelize.UUIDV4,
+        allowNull: false,
+        primaryKey: true
     },
     headline: {
         type: DataTypes.STRING,
@@ -25,7 +27,6 @@ const article = db.define('article', {
     },
     publication_date: {
         type: DataTypes.DATE,
-        allowNull: false
     },
     image: {
         type: DataTypes.BLOB,
