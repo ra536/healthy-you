@@ -52,4 +52,24 @@ router.post("/addSpecialty", async (req, res) => {
     }
 });
 
+router.post("/removeSpecialty", async (req, res) => {
+    try {
+        const specialty = await doctor.update(
+            {
+                specialty: Sequelize.fn('array_remove', Sequelize.col('specialty'), req.body.specialty)
+            },
+            {
+                where: {doctor_name: req.body.doctorID}
+            }
+           );
+        console.log(req.body)
+        res.status(200).json({
+            status: "success",
+        })
+    }
+    catch (err) {
+      console.log(err)
+    }
+});
+
 module.exports = router;

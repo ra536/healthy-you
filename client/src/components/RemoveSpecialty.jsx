@@ -38,7 +38,7 @@ const RemoveSpecialty = (props) => {
                 doctorID: props.doctorID
             })
             //addTest(response.data.data)
-            console.log(response.data.data)
+            console.log(response.data.status)
         }
         catch (err) {
             console.log(err)
