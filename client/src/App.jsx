@@ -6,6 +6,7 @@ import Review from "./routes/Review";
 import Appointments from "./routes/Appointments";
 import Blog from "./routes/Blog";
 import DoctorProfile from "./routes/DoctorProfile";
+import DoctorReview from "./routes/DoctorReview";
 
 const App = () => {
     return (
@@ -15,6 +16,7 @@ const App = () => {
                     <Switch>
                         <Route exact path="/" component={ Home }/>
                         <Route exact path="/doctor" component={ DoctorProfile }/>
+						<Route exact path="/DoctorReview" component={ DoctorReview }/>
                         <Route path="/leaveReview/:id">
                             <Review url={window.location.href}/>
                         </Route>
