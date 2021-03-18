@@ -8,7 +8,7 @@ router.use(express.json());
 //Test route to get started and gets all test objects from test table in db
 router.get("/", async (req, res) => {
     try {
-        const testResults = await test.findAll({
+        const testResults = await articles.findAll({
             raw: true
         });
         console.log(testResults);

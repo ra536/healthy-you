@@ -4,7 +4,8 @@ import { AppContextProvider } from './context/AppContext';
 import Home from "./routes/Home";
 import DoctorDashboard from "./routes/DoctorDashboard";
 import Review from "./routes/Review";
-import Register from './routes/Register'
+import Register from './routes/Register';
+import Article from './routes/Article';
 
 const App = () => {
     return (
@@ -22,6 +23,7 @@ const App = () => {
                         <Route path="/leaveReview/:id">
                             <Review url={window.location.href}/>
                         </Route>
+                        <Route exact path="/article" component = { Article }/>
                     </Switch>
                 </Router>
             </div>
