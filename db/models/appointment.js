@@ -20,6 +20,10 @@ const appointment = db.define('appointment', {
         type: DataTypes.UUID,
         allowNull: false
     },
+    user_id: {
+        type: DataTypes.UUID,
+        allowNull: false
+    },
     date: {
         type: DataTypes.STRING,
         allowNull: false
