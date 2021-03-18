@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from 'react';
 import DoctorAPI from '../apis/DoctorAPI'
 import InputNewPractice from '../components/InputNewPractice';
 import PracticeList from '../components/PracticeList';
+import Specialty from '../components/Specialty'
 
 const DoctorDashboard = (props) => {
     const [rating, setRating] = useState();
@@ -46,7 +47,7 @@ const DoctorDashboard = (props) => {
             <h1>Biography</h1>
             <br/>
             <h1>Specialties</h1>
-                { specialties }
+                <Specialty />
             <br/>
             <h1>Rating</h1>
                 { rating }
