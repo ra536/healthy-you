@@ -23,7 +23,7 @@ const App = () => {
                         <Route path="/leaveReview/:id">
                             <Review url={window.location.href}/>
                         </Route>
-                        <Route exact path="/article" component = { Article }/>
+                        <Route path="/article/:id" component = { Article }/>
                     </Switch>
                 </Router>
             </div>

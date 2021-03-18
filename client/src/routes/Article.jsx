@@ -1,17 +1,15 @@
 import React, { useEffect, useContext, useState } from 'react';
-import ArticleAPI from '../apis/ArticleAPI'
+import ArticleAPI from '../apis/ArticleAPI';
+import { useParams } from 'react-router-dom';
+
 
 const Article = (props) => {
-    const [rating, setRating] = useState();
-    const [name, setName] = useState();
-    const [profilePicture, setProfilePicture] = useState();
-    const [specialties, setSpecialties] = useState();
-    const [doctorID, setDoctorID] = useState("");
-
+    let { id } = useParams();
     useEffect( () => {
         // Define a function fetchData that calls APIs which is then called in useEffect
         const fetchData = async () => {
             try {
+                console.log(id);
                 const response = await (ArticleAPI.get("/"));
                 console.log(response.data.data)
             }
@@ -24,7 +22,7 @@ const Article = (props) => {
     
     return(
         <div>
-            <h1>Article</h1>
+            <h1>Article with id: {id}</h1>
             <br/>
         </div>
     )
