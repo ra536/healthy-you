@@ -28,8 +28,11 @@ const article = db.define('article', {
     publication_date: {
         type: DataTypes.DATE,
     },
-    image: {
-        type: DataTypes.BLOB,
+    image_link: {
+        type: DataTypes.STRING,
+    },
+    image_caption: {
+        type: DataTypes.STRING,
     }
 
 }, {underscored: true})

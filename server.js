@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require("cors");
 const path = require('path');
+var multer = require('multer');
 
 const app = express();
 
@@ -13,8 +14,30 @@ if(process.env.NODE_ENV === "production"){
   app.use(express.static(path.join(__dirname, "client/build")));
 }
 
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+
 // Database
 const db = require('./db/index')
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, "uploads");
+  },
+  filename: (req, file, cb) => {
+      console.log(file);
+      cb(null, Date.now() + path.extname(file.originalname));
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  if(file.mimetype == 'image/jpeg' || file.mimetype == 'image/png'){
+      cb(null, true);
+  } else {
+      cb(null, false);
+  }
+}
+
+const upload = multer({ storage: storage, fileFilter: fileFilter });
 
 // routes
 app.use("/api/v1/test", require('./routes/test'));
