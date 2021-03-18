@@ -65,7 +65,7 @@ const Home = () => {
             <TopNavBar />
             
             <div align="center" display="inline">
-                <Carousel controls={false} indicators={false} style={{ width: "500px", display: "inline-block" }}>
+                <Carousel interval={10000} controls={false} indicators={false} style={{ width: "500px", display: "inline-block" }}>
                     <Carousel.Item>
                         <img
                         className="d-block w-100"
@@ -93,7 +93,7 @@ const Home = () => {
                     </Carousel.Item>
                 </Carousel>
                 {' '}
-                <Carousel controls={false} indicators={false} style={{ width: "500px", display: "inline-block" }}>
+                <Carousel interval={10000} controls={false} indicators={false} style={{ width: "500px", display: "inline-block" }}>
                     <Carousel.Item>
                         <img
                         className="d-block w-100"

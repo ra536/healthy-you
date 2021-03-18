@@ -10,22 +10,46 @@ const TopNavBar = () => {
         <>
             <Navbar fixed="top" bg="dark" variant="dark" expand="lg">
                 <Navbar.Brand>
-                    <Image width="30px" src={hwf_logo_small} fluid/>  
+                    <Nav.Link href="/">
+                        <Image width="30px" src={hwf_logo_small} fluid/>  
+                    </Nav.Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav>
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#food">Food</Nav.Link>
-                        <Nav.Link href="#nutrition">Nutrition</Nav.Link>
-                        <Nav.Link href="#health">Health</Nav.Link>
-                        <Nav.Link href="#blog">Blog</Nav.Link>
-                        <Nav.Link href="#language">Language</Nav.Link>
-                        <Nav.Link href="#covid-19">Covid-19</Nav.Link>
-                        <Nav.Link href="#news">News</Nav.Link>
-                        <Nav.Link href="#exercise">Exercise</Nav.Link>
-                        <Nav.Link href="#directory">Directory</Nav.Link>
-                        <Nav.Link href="#contact-us">Contact Us</Nav.Link>
+                        <Nav.Link href="#home">
+                            <b>Home</b>
+                        </Nav.Link>
+                        <Nav.Link href="#food">
+                            <b>Food</b>
+                        </Nav.Link>
+                        <Nav.Link href="#nutrition">
+                            <b>Nutrition</b>
+                        </Nav.Link>
+                        <Nav.Link href="#health">
+                            <b>Health</b>
+                        </Nav.Link>
+                        <Nav.Link href="#blog">
+                            <b>Blog</b>
+                        </Nav.Link>
+                        <Nav.Link href="#language">
+                            <b>Language</b>
+                        </Nav.Link>
+                        <Nav.Link href="#covid-19">
+                            <b>Covid-19</b>
+                        </Nav.Link>
+                        <Nav.Link href="#news">
+                            <b>News</b>
+                        </Nav.Link>
+                        <Nav.Link href="#exercise">
+                            <b>Exercise</b>
+                        </Nav.Link>
+                        <Nav.Link href="#directory">
+                            <b>Directory</b>
+                        </Nav.Link>
+                        <Nav.Link href="#contact-us">
+                            <b>Contact Us</b>
+                        </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
                 <Image vertical-align="top" width="30%" src={hwf_logo} fluid/>
