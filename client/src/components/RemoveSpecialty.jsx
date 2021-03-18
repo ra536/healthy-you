@@ -13,7 +13,7 @@ const RemoveSpecialty = (props) => {
                 const response = await (DoctorAPI.post("/findDoctor", {
                     doctorID: props.doctorID
                 }));
-                console.log(response.data.data[0].specialty[0])
+                //console.log(response.data.data[0].specialty[0])
                 setSpecialties(response.data.data[0].specialty)
                 setSpecialty(response.data.data[0].specialty[0])
             }

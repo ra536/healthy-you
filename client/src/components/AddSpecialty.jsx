@@ -12,7 +12,7 @@ const AddSpecialty = (props) => {
         const fetchData = async () => {
             try {
                 const response = await (SpecialtyAPI.get("/findAll"));
-                console.log(response.data.data)
+                //console.log(response.data.data)
                 setSpecialties(response.data.data)
                 setSpecialty(response.data.data[0].specialty)
             }

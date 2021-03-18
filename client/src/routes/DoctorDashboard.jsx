@@ -19,7 +19,7 @@ const DoctorDashboard = (props) => {
                 const response = await (DoctorAPI.post("/findDoctor", {
                     doctorID: props.doctorID
                 }));
-                //console.log(response.data.data[0])
+                console.log(response.data.data[0])
                 setRating(response.data.data[0].rating)
                 setName(response.data.data[0].doctor_name)
                 setProfilePicture(response.data.data[0].profile_picture)
@@ -48,7 +48,13 @@ const DoctorDashboard = (props) => {
             <h1>Biography</h1>
             <br/>
             <h1>Specialties</h1>
-                { specialties }
+                {/* {specialties.map(specialties => {
+                    return (
+                        <li>
+                            { specialties }
+                        </li>
+                    )
+                })} */ specialties }
                 <AddSpecialty 
                     doctorID = "test"
                 />
