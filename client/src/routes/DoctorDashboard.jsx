@@ -3,6 +3,7 @@ import DoctorAPI from '../apis/DoctorAPI'
 import InputNewPractice from '../components/InputNewPractice';
 import PracticeList from '../components/PracticeList';
 import AddSpecialty from '../components/AddSpecialty'
+import RemoveSpecialty from '../components/RemoveSpecialty'
 
 const DoctorDashboard = (props) => {
     const [rating, setRating] = useState();
@@ -49,6 +50,9 @@ const DoctorDashboard = (props) => {
             <h1>Specialties</h1>
                 { specialties }
                 <AddSpecialty 
+                    doctorID = "test"
+                />
+                <RemoveSpecialty 
                     doctorID = "test"
                 />
             <br/>
