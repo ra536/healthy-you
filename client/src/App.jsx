@@ -4,7 +4,8 @@ import { AppContextProvider } from './context/AppContext';
 import Home from "./routes/Home";
 import DoctorDashboard from "./routes/DoctorDashboard";
 import Review from "./routes/Review";
-import Register from './routes/Register'
+import Register from './routes/Register';
+import Login from "./routes/Login";
 
 const App = () => {
     return (
@@ -14,6 +15,7 @@ const App = () => {
                     <Switch>
                         <Route exact path="/" component={ Home }/>
                         <Route exact path="/register" component = { Register }/>
+                        <Route exact path="/login" component={ Login }/>
                         <Route exact path="/doctorid/doctor-dashboard">
                             <DoctorDashboard
                                 doctorID = "test"

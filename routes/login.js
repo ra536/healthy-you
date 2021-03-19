@@ -1,0 +1,46 @@
+const express = require('express');
+const router = express.Router();
+const db = require('../db/index')
+const user = require('../db/models/user');
+const doctorUser = require('../db/models/doctor');
+
+router.use(express.json());
+
+router.get("/:id", async (req, res) =>{
+    try {
+        str = req.params.id
+        const userInfo = str.split(' ');
+        const username = userInfo[0];
+        const password = userInfo[1];
+        const userResults = await user.findOne({
+           where:{
+             email: username,
+             password: password
+           }, 
+          raw: true
+        });
+
+        console.log(userResults);
+        uniqueID = userResults.user_id
+
+        if(userResults.role === "Doctor")
+        {
+            const userResults = await doctorUser.findOne({
+                where:{
+                    doctor_id: uniqueID
+                }, 
+               raw: true
+             });
+        }
+
+        res.status(200).json({
+          status: "success",
+          data: userResults
+        })
+      } 
+    catch (err) {
+        console.error(err.message);
+    }
+});
+
+module.exports = router;
