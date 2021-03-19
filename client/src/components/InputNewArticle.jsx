@@ -19,7 +19,7 @@ const InputNewArticle = (props) => {
 
     function submitForm(contentType, data, setResponse) {
         axios({
-            url: `http://localhost:3000/upload`,
+            url: `http://localhost:8080/uploads`,
             method: 'POST',
             data: data,
             headers: {
@@ -92,7 +92,7 @@ const InputNewArticle = (props) => {
                 category: category,
                 summary: summary,
                 content: content,
-                image: image,
+                image_link: image,
                 caption: caption
                 // doctorID: props.doctorID
             })
@@ -153,7 +153,7 @@ const InputNewArticle = (props) => {
             <button type="submit" onClick={handleSubmit}>
                 Insert New Article
             </button>
-            <img src={image} id="preview">
+            <img src={image} width="200px" id="preview">
             </img>
         </form>
     )

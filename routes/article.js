@@ -36,7 +36,7 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-    if(file.mimetype == 'image/jpeg' || file.mimetype == 'image/png'){
+    if (file.mimetype == 'image/jpeg' || file.mimetype == 'image/png') {
         cb(null, true);
     } else {
         cb(null, false);
@@ -45,24 +45,52 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({ storage: storage, fileFilter: fileFilter });
 
-// router.post("/upload", upload.single("article-image"), (req, res) => {
-//     try {
-//         console.log(req.body.image);
-//         console.log("Run upload");
-//         res.status(201).json({
-//             status: "success",
-//             message: "File uploaded successfully"
-//         });
-//     } catch (error) {
-//         console.error(error.message);
-//     }
-// });
+router.post("/upload", upload.single("input-file"), (req, res) => {
+    try {
+        console.log(req.body.image);
+        console.log("Run upload");
+        res.status(201).json({
+            status: "success",
+            message: "File uploaded successfully"
+        });
+    } catch (error) {
+        console.error(error.message);
+    }
+});
 
 router.route("/uploadmulter")
     .post(upload.single('image_link'), (req, res, next) => {
         console.log(req.body);
-        
+
     })
+
+// router.route("/uploadbase")
+//     .post((req, res, next) => {
+//         if (req.body.headline != "") {
+//             const article = await articles.create({
+//                 headline: req.body.headline,
+//                 category: req.body.category,
+//                 summary: req.body.summary,
+//                 content: req.body.content,
+//                 image: req.body.image,
+//                 caption: req.body.caption
+//             });
+//             console.log(article.dataValues)
+//             res.status(201).json({
+//                 status: "success",
+//                 data: {
+//                     article_id: article.dataValues.article_id,
+//                     headline: article.dataValues.headline,
+//                     category: article.dataValues.category,
+//                     summary: article.dataValues.summary,
+//                     content: article.dataValues.content,
+//                     publication_date: article.dataValues.publication_date,
+//                     image: article.dataValues.image,
+//                     caption: article.dataValues.caption
+//                 }
+//             })
+//         }
+//     });
 
 router.post("/create", async (req, res) => {
     try {
@@ -72,6 +100,7 @@ router.post("/create", async (req, res) => {
                 category: req.body.category,
                 summary: req.body.summary,
                 content: req.body.content,
+                image: req.body.image,
                 caption: req.body.caption
             })
             console.log(article.dataValues)
