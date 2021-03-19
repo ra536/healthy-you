@@ -7,7 +7,7 @@ const AddSpecialty = (props) => {
     // const [specialties, setSpecialties] = useState([]);
     const [specialty, setSpecialty] = useState("");
     const [ allSpecialties, setAllSpecialties ] = useState([]);
-    const { specialties, setSpecialties, addSpecialty } = useContext(AppContext);
+    const { specialties, addSpecialty } = useContext(AppContext);
 
     useEffect(() => {
         // Define a function fetchData that calls APIs which is then called in useEffect

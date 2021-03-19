@@ -3,7 +3,8 @@ import DoctorAPI from '../apis/DoctorAPI'
 import { AppContext } from '../context/AppContext';
 
 const RemoveSpecialty = (props) => {
-    const [specialties, setSpecialties] = useState([]);
+    // const [specialties, setSpecialties] = useState([]);
+    const { specialties, setSpecialties, removeSpecialty } = useContext(AppContext);
 
     // Remove in real-time as well, using AppContext !! (TODO)
     const [specialty, setSpecialty] = useState("")
@@ -40,7 +41,8 @@ const RemoveSpecialty = (props) => {
                 doctorID: props.doctorID
             })
             //addTest(response.data.data)
-            console.log(response.data.status)
+            console.log(response.data.status);
+            removeSpecialty(response.data.data.specialty);
         }
         catch (err) {
             console.log(err)

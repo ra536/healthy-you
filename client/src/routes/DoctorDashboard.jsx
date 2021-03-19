@@ -51,13 +51,13 @@ const DoctorDashboard = (props) => {
             <h1>Biography</h1>
             <br/>
             <h1>Specialties</h1>
-                {/* {specialties.map(specialties => {
+                {specialties.map(specialties => {
                     return (
                         <li>
                             { specialties }
                         </li>
                     )
-                })} */ specialties }
+                })}
                 <AddSpecialty 
                     doctorID = "test"
                 />
