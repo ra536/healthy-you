@@ -3,14 +3,17 @@ import DoctorAPI from '../apis/DoctorAPI'
 import InputNewPractice from '../components/InputNewPractice';
 import PracticeList from '../components/PracticeList';
 import AddSpecialty from '../components/AddSpecialty'
-import RemoveSpecialty from '../components/RemoveSpecialty'
+import RemoveSpecialty from '../components/RemoveSpecialty';
+import { AppContext } from '../context/AppContext';
+
 
 const DoctorDashboard = (props) => {
     const [rating, setRating] = useState();
     const [name, setName] = useState();
     const [profilePicture, setProfilePicture] = useState();
-    const [specialties, setSpecialties] = useState();
+    // const [specialties, setSpecialties] = useState();
     const [doctorID, setDoctorID] = useState("");
+    const { specialties, setSpecialties } = useContext(AppContext);
 
     useEffect( () => {
         // Define a function fetchData that calls APIs which is then called in useEffect

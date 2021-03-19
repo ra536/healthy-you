@@ -4,16 +4,18 @@ import DoctorAPI from '../apis/DoctorAPI'
 import { AppContext } from '../context/AppContext';
 
 const AddSpecialty = (props) => {
-    const [specialties, setSpecialties] = useState([]);
-    const [specialty, setSpecialty] = useState("")
+    // const [specialties, setSpecialties] = useState([]);
+    const [specialty, setSpecialty] = useState("");
+    const [ allSpecialties, setAllSpecialties ] = useState([]);
+    const { specialties, setSpecialties, addSpecialty } = useContext(AppContext);
 
-    useEffect( () => {
+    useEffect(() => {
         // Define a function fetchData that calls APIs which is then called in useEffect
         const fetchData = async () => {
             try {
                 const response = await (SpecialtyAPI.get("/findAll"));
                 //console.log(response.data.data)
-                setSpecialties(response.data.data)
+                setAllSpecialties(response.data.data)
                 setSpecialty(response.data.data[0].specialty)
             }
             catch (err) {
@@ -37,7 +39,10 @@ const AddSpecialty = (props) => {
                 doctorID: props.doctorID
             })
             //addTest(response.data.data)
+            console.log("SPECIALTY");
             console.log(response.data.data)
+            addSpecialty(response.data.data.specialty);
+            console.log(specialties);
         }
         catch (err) {
             console.log(err)
@@ -46,15 +51,15 @@ const AddSpecialty = (props) => {
 
     return (
         <div>
-            <form onSubmit={ handleSubmit }>
-                <select value={ specialty } onChange={ handleChange }>
-                    {specialties.map(specialties => {
-                                return (
-                                    <option value={ specialties.specialty }>
-                                        { specialties.specialty }
-                                    </option>
-                                )
-                            })
+            <form onSubmit={handleSubmit}>
+                <select value={specialty} onChange={handleChange}>
+                    {allSpecialties.map(specialties => {
+                        return (
+                            <option key={"add " + specialties.specialty} value={specialties.specialty}>
+                                { specialties.specialty}
+                            </option>
+                        )
+                    })
                     }
                 </select>
                 <input type="submit" value="Add" />

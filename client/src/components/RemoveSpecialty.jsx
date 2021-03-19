@@ -4,6 +4,8 @@ import { AppContext } from '../context/AppContext';
 
 const RemoveSpecialty = (props) => {
     const [specialties, setSpecialties] = useState([]);
+
+    // Remove in real-time as well, using AppContext !! (TODO)
     const [specialty, setSpecialty] = useState("")
 
     useEffect( () => {
@@ -51,7 +53,7 @@ const RemoveSpecialty = (props) => {
                 <select value={ specialty } onChange={ handleChange }>
                     {specialties.map(specialties => {
                                 return (
-                                    <option value={ specialties }>
+                                    <option key={"remove " + specialties} value={ specialties }>
                                         { specialties }
                                     </option>
                                 )
