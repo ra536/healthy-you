@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require("cors");
 const path = require('path');
+const fileUpload = require('express-fileupload')
 
 const app = express();
 
@@ -13,7 +14,8 @@ if(process.env.NODE_ENV === "production"){
   app.use(express.static(path.join(__dirname, "client/build")));
 }
 
-app.use('/uploads', express.static('uploads'));
+app.use(express.static('uploads'));
+app.use(fileUpload());
 
 // Database
 const db = require('./db/index')
@@ -27,6 +29,25 @@ app.use("/api/v1/specialty", require('./routes/specialty'));
 app.use("/api/v1/user", require('./routes/user'));
 app.use("/api/v1/article", require('./routes/article'));
 app.use("/api/v1/writer", require('./routes/writer'));
+
+// Code to upload/save files into 'uploads' folder -- maybe move this later
+app.post('/upload', (req, res) => {
+  if (!req.files) {
+      return res.status(500).send({ msg: "file is not found" })
+  }
+      // accessing the file
+  const myFile = req.files.file;
+  //  mv() method places the file inside public directory
+  myFile.mv(`${__dirname}/uploads/${myFile.name}`, function (err) {
+      if (err) {
+          console.log(err)
+          return res.status(500).send({ msg: "Error occured" });
+      }
+      // returing the response with file path and name
+      return res.send({name: myFile.name, path: `/${myFile.name}`});
+  });
+})
+
 
 // Test db connection
 db.authenticate()

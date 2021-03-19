@@ -16,20 +16,35 @@ const InputNewArticle = (props) => {
     const [content, setContent] = useState("");
     const [image, setImage] = useState(""); // image link
     const [caption, setCaption] = useState("");
+    
+    const [file, setFile] = useState("");
+    //const [data, getFile] = useState({ name: "", path: "" });    
 
-    function submitForm(contentType, data, setResponse) {
-        axios({
-            url: `http://localhost:3000/upload`,
-            method: 'POST',
-            data: data,
-            headers: {
-                'Content-Type': contentType
-            }
-        }).then((response) => {
-            setResponse(response.data);
-        }).catch((error) => {
-            setResponse("error");
-        })
+    // function submitForm(contentType, data, setResponse) {
+    //     axios({
+    //         url: 'http://localhost:8080/upload',
+    //         method: 'POST',
+    //         data: data,
+    //         headers: {
+    //             'content-type': contentType
+    //         }
+    //     }).then((response) => {
+    //         setResponse(response.data);
+    //     }).catch((error) => {
+    //         setResponse("error");
+    //     })
+    // }
+
+    const uploadFile = () => {
+        const formData = new FormData();        
+        formData.append('file', file); // appending file
+        axios.post('http://localhost:8080/upload', formData
+        ).then(res => {
+            console.log(res);
+            // getFile({ name: res.data.name,
+            //          path: 'http://localhost:8080' + res.data.path
+            //        })
+        }).catch(err => console.log(err))
     }
 
     const previewImage = async (e) => {
@@ -46,6 +61,7 @@ const InputNewArticle = (props) => {
             console.log(typeof this.result);
         }, false);
 
+        setFile(e.target.files[0]);
         reader.readAsDataURL(e.target.files[0]);
     }
 
@@ -74,25 +90,29 @@ const InputNewArticle = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            // upload the image
+            //upload the image
             // const fileUpload = await ArticleAPI.post("/upload", {
             //     image: image
             // })
             // console.log(fileUpload.data.data);
 
-            const formData = new FormData();
-            formData.append("caption", caption);
-            formData.append("image", image);
-
-            submitForm("multipart/form-data", formData, (msg) => console.log(msg));
-
+            // const formData = new FormData();
+            // formData.append("caption", caption);
+            // formData.append("image", image);
+            // formData.append("image",file);
+            // console.log(formData);
+            // submitForm("multipart/form-data", formData, (msg) => console.log(msg));
+            
+            uploadFile();
+            console.log(file);
+            console.log(file.name);
 
             const response = await ArticleAPI.post("/create", {
                 headline: headline,
                 category: category,
                 summary: summary,
                 content: content,
-                image: image,
+                image_link: image,
                 caption: caption
                 // doctorID: props.doctorID
             })
@@ -113,7 +133,7 @@ const InputNewArticle = (props) => {
     }
 
     return (
-        <form enctype="multipart/form-data" method="POST">
+        <form encType="multipart/form-data" method="POST">
             <input
                 id="input-headline"
                 value={headline}
@@ -153,7 +173,7 @@ const InputNewArticle = (props) => {
             <button type="submit" onClick={handleSubmit}>
                 Insert New Article
             </button>
-            <img src={image} id="preview">
+            <img src={image} width="200px" id="preview">
             </img>
         </form>
     )
