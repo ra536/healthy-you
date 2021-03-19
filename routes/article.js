@@ -100,7 +100,7 @@ router.post("/create", async (req, res) => {
                 category: req.body.category,
                 summary: req.body.summary,
                 content: req.body.content,
-                image_link: req.body.image,
+                //image_link: req.body.image_link,
                 caption: req.body.caption
             })
             console.log(article.dataValues)
