@@ -25,7 +25,7 @@ router.get("/:id", async (req, res) =>{
 
         if(userResults.role === "Doctor")
         {
-            const userResults = await doctorUser.findOne({
+            const doctorResults = await doctorUser.findOne({
                 where:{
                     doctor_id: uniqueID
                 }, 
@@ -33,10 +33,20 @@ router.get("/:id", async (req, res) =>{
              });
         }
 
+        if ( userResults.role === "User" ){
         res.status(200).json({
+
           status: "success",
           data: userResults
         })
+    }
+    else{
+        res.status(200).json({
+
+            status: "success",
+            data: doctorResults
+          })
+    }
       } 
     catch (err) {
         console.error(err.message);
