@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "uploads");
+        cb(null, "./uploads/");
     },
     filename: (req, file, cb) => {
         console.log(file);
@@ -45,18 +45,24 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({ storage: storage, fileFilter: fileFilter });
 
-router.post("/upload", upload.single("article-image"), (req, res) => {
-    try {
-        console.log(req.body.image);
-        console.log("Run upload");
-        res.status(201).json({
-            status: "success",
-            message: "File uploaded successfully"
-        });
-    } catch (error) {
-        console.error(error.message);
-    }
-});
+// router.post("/upload", upload.single("article-image"), (req, res) => {
+//     try {
+//         console.log(req.body.image);
+//         console.log("Run upload");
+//         res.status(201).json({
+//             status: "success",
+//             message: "File uploaded successfully"
+//         });
+//     } catch (error) {
+//         console.error(error.message);
+//     }
+// });
+
+router.route("/uploadmulter")
+    .post(upload.single('image_link'), (req, res, next) => {
+        console.log(req.body);
+        
+    })
 
 router.post("/create", async (req, res) => {
     try {
