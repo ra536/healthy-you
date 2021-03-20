@@ -24,6 +24,7 @@ router.post("/create", async (req, res) => {
             res.status(201).json({
                 status: "success",
                 data: {
+                    practice_id: practices.dataValues.practice_id,
                     name: practices.dataValues.name,
                     location: practices.dataValues.location,
                     website: practices.dataValues.website,
@@ -44,11 +45,11 @@ router.post("/findAll", async (req, res) => {
     try {
         const practiceResult = await practice.findAll({
             where: {
-                name: req.body.doctorID
+                doctor_id: req.body.doctor_id
             },
             raw: true
         })
-        console.log("This is the body of the request!: " + req.body.doctorID)
+        console.log("This is the body of the request!: " + req.body.doctor_id)
         res.status(200).json({
             status: "success",
             data: practiceResult

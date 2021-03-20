@@ -9,7 +9,8 @@ const specialty = db.define('specialty', {
     },
     specialty: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     }
 })
 
