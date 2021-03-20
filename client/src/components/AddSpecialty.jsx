@@ -36,7 +36,7 @@ const AddSpecialty = (props) => {
         try {
             const response = await DoctorAPI.post("/addSpecialty", {
                 specialty: specialty,
-                doctorID: props.doctorID
+                doctor_id: props.doctorID
             })
             //addTest(response.data.data)
             console.log("SPECIALTY");

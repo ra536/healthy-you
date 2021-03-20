@@ -17,7 +17,7 @@ router.post("/findDoctor", async (req, res) => {
     try {
         const doctorResult = await doctor.findAll({
             where: {
-                doctor_name: req.body.doctorID
+                doctor_id: req.body.doctor_id
             },
             raw: true
         })
@@ -39,7 +39,7 @@ router.post("/addSpecialty", async (req, res) => {
                 specialty: Sequelize.fn('array_append', Sequelize.col('specialty'), req.body.specialty)
             },
             {
-                where: {doctor_name: req.body.doctorID}
+                where: {doctor_id: req.body.doctor_id}
             }
            );
         console.log(req.body)
@@ -47,7 +47,7 @@ router.post("/addSpecialty", async (req, res) => {
             status: "success",
             data: {
                 specialty: req.body.specialty,
-                doctorID: req.body.doctorID
+                doctor_id: req.body.doctor_id
             }
         })
     }
@@ -63,7 +63,7 @@ router.post("/removeSpecialty", async (req, res) => {
                 specialty: Sequelize.fn('array_remove', Sequelize.col('specialty'), req.body.specialty)
             },
             {
-                where: {doctor_name: req.body.doctorID}
+                where: {doctor_id: req.body.doctor_id}
             }
            );
         console.log(req.body)
