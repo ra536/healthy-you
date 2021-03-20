@@ -17,6 +17,16 @@ export const AppContextProvider = props => {
     const addPractice = (practice) => {
         setPractices([...practices, practice]);
     }
+    
+    const [specialties, setSpecialties] = useState([]);
+
+    const addSpecialty = (specialty) => {
+        setSpecialties([...specialties, specialty])
+    }
+
+    const removeSpecialty = (specialty) => {
+        setSpecialties(specialties.filter(item => item !== specialty));
+    }
 
     const [results, setResults] = useState([]);
     const addResult = (result) => {
@@ -28,7 +38,8 @@ export const AppContextProvider = props => {
             {
                 tests, setTests, addTest,
                 practices, setPractices, addPractice,
-                results, setResults, addResult
+                results, setResults, addResult,
+                specialties, setSpecialties, addSpecialty, removeSpecialty
             }}>
             { props.children }
         </AppContext.Provider>
