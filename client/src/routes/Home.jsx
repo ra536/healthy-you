@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import TestAPI from '../apis/TestAPI';
 import InputTest from '../components/InputTest';
-import { TestContext } from '../context/TestContext';
+//import { TestContext } from '../context/TestContext';
 import { Form, FormControl, Button } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap';
 import { Container, Row, Col, Media, Card, Image } from 'react-bootstrap';
@@ -36,24 +36,24 @@ import TopNavBar from './TopNavBar';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const Home = () => {
-    // Store the data retrieved from backend API into context
-    const { tests, setTests } = useContext(TestContext);
+    // // Store the data retrieved from backend API into context
+    // const { tests, setTests } = useContext(TestContext);
 
-    // Call our backend API to retrieve list of test objects from db
-    useEffect(() => {
-        // Define a function fetchData that calls APIs which is then called in useEffect
-        const fetchData = async () => {
-            try {
-                const response = await (TestAPI.get("/"));
-                console.log(response.data.data)
-                setTests(response.data.data);
-            }
-            catch (err) {
-                console.log(err)
-            }
-        }
-        fetchData();
-    }, []);
+    // // Call our backend API to retrieve list of test objects from db
+    // useEffect(() => {
+    //     // Define a function fetchData that calls APIs which is then called in useEffect
+    //     const fetchData = async () => {
+    //         try {
+    //             const response = await (TestAPI.get("/"));
+    //             console.log(response.data.data)
+    //             setTests(response.data.data);
+    //         }
+    //         catch (err) {
+    //             console.log(err)
+    //         }
+    //     }
+    //     fetchData();
+    // }, []);
 
     return (
         <div>

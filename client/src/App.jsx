@@ -4,11 +4,8 @@ import { AppContextProvider } from './context/AppContext';
 import Home from "./routes/Home";
 import DoctorDashboard from "./routes/DoctorDashboard";
 import Review from "./routes/Review";
-<<<<<<< HEAD
 import Appointments from "./routes/Appointments";
-=======
 import Register from './routes/Register'
->>>>>>> 46aa4ec252561d7fbacef6bb72cca5bba6c445a5
 
 const App = () => {
     return (
