@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react';
 import SearchAPI from '../apis/SearchAPI'
 import { useHistory } from 'react-router-dom';
+import SpecialtyAPI from '../apis/SpecialtyAPI'
 
 const Search = () => {
     const [practice, setPractice] = useState("");
@@ -8,21 +9,34 @@ const Search = () => {
     const [doctor_name, setDoctor] = useState("");
     const [specialty, setSpecialty] = useState("");
     const [rating, setRating] = useState("");
+    const [ allSpecialties, setAllSpecialties ] = useState([""]);
 
     const history = useHistory();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await (SpecialtyAPI.get("/findAll"));
+                console.log(response)
+                setAllSpecialties(response.data.data)
+                setSpecialty(response.data.data[0].specialty)
+            }
+            catch (err) {
+                console.log(err)
+            }
+        }
+        fetchData();
+    }, []);
+
+    const handleChange = (e) => {
+        setSpecialty(e.target.value);
+        console.log(e.target.value);
+        e.preventDefault();
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            // const response = await SearchAPI.post("/search", {
-            //     practice: practice,
-            //     doctor_name: doctor_name,
-            //     location: location,
-            //     rating: rating,
-            //     specialty: specialty
-            // })
-            // setDoctors(response.data.data)
-            // console.log(response.data.data)
             history.push({
                 pathname: '/results/',
                 search: 'practice=' + practice +"&doctor="+doctor_name+"&specialty="+specialty+"&location="+location+"&rating="+rating
@@ -44,12 +58,17 @@ const Search = () => {
                     placeholder="Practice" 
                     onChange={e => setPractice(e.target.value)} 
                 />
-                <input 
-                    id="search-specialty" 
-                    value={specialty} 
-                    placeholder="Specialty" 
-                    onChange={e => setSpecialty(e.target.value)} 
-                />
+                <select value={specialty} onChange={handleChange}>
+                    <option value="" selected="selected"> </option>
+                    {allSpecialties.map(specialties => {
+                        return (
+                            <option key={specialties.specialty} value={specialties.specialty}>
+                                { specialties.specialty}
+                            </option>
+                        )
+                    })
+                    }
+                </select>
                 <input 
                     id="search-doctor" 
                     value={doctor_name} 
@@ -73,20 +92,6 @@ const Search = () => {
                 </button>
             </form>
             <br/>
-            {/* {doctors.map((doctors, index) => {
-                return (
-                    <ul key={index} type="none">
-                        <img src={doctors.doctor.profile_picture} width="100" height="100" />
-                        <li>{"Name: " + doctors.doctor.doctor_name}</li>
-                        <li>{"Specialty: " + doctors.doctor.specialty}</li>
-                        <li>{"Rating: " + doctors.doctor.rating}</li>
-                        <li>{"Bio: " + doctors.doctor.bio}</li>
-                        <li>{"Practice: " + doctors.name}</li>
-                        <li>{"Address: " + doctors.location}</li>
-                        <br/>
-                    </ul>
-                )
-            })} */}
         </div>
     )
 };
