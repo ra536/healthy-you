@@ -4,6 +4,7 @@ import { ListGroup } from 'react-bootstrap';
 import { Container, Row, Image, Col, DropdownButton, Dropdown} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import hwf_logo from'./hwf_logo.png';
+import TopNavBar from './TopNavBar';
 
 
 
@@ -19,37 +20,7 @@ const Appointments = () => {
 
     return ( 
         <div>
-        <div align="center">
-        <h1>MORRIS</h1>
-    </div>
-
-    <Container>
-         <Row>
-            <Col>
-
-                <Image src={hwf_logo} style={{ width: '100%' }}fluid/>
-
-            </Col>
-         </Row>
-    </Container>
-    <Navbar bg="dark" variant="dark" expand="lg">
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="m-auto">
-                <Nav.Link href="#link">Home</Nav.Link>
-                <Nav.Link href="#home">Food</Nav.Link>
-                <Nav.Link href="#link">Nutrition</Nav.Link>
-                <Nav.Link href="#link">Health</Nav.Link>
-                <Nav.Link href="#link">Blog</Nav.Link>
-                <Nav.Link href="#home">Language</Nav.Link>
-                <Nav.Link href="#link">Covid 19</Nav.Link>
-                <Nav.Link href="#home">News</Nav.Link>
-                <Nav.Link href="#link">Exercise</Nav.Link>
-                <Nav.Link href="#home">Directory</Nav.Link>
-                <Nav.Link href="#link">Contact Us</Nav.Link>
-            </Nav>
-        </Navbar.Collapse>
-    </Navbar>
+        <TopNavBar/>
     <br />
         <div align= "center">
             <h3>Book an Appointment Today!</h3>
