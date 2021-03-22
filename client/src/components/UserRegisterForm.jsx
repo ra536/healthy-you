@@ -83,14 +83,14 @@ const RegisterForm = () => {
                 />
                 <p> { errors.username?.message } </p>
                 <input
-                    type="text"
+                    type="password"
                     name="password"
                     placeholder="Password"
                     ref={ register }
                 />
                 <p> { errors.password?.message } </p>
                 <input
-                    type="text"
+                    type="password"
                     name="confirmPassword"
                     placeholder="Confirm Password"
                     ref={ register }
@@ -134,7 +134,7 @@ const RegisterForm = () => {
                 <input
                     type="text"
                     name="birthdate"
-                    placeholder="Birthdate"
+                    placeholder="Birthdate MM/DD/YYYY"
                     ref={ register }
                 />
                 <p> { errors.birthdate?.message } </p>
