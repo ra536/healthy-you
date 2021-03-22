@@ -7,7 +7,7 @@ import RegisterAPI from '../apis/RegisterAPI'
 const schema = yup.object().shape({
     username: yup.string().required(),
     password: yup.string().min(4).max(16).required(),
-    confirmPassword: yup.string().oneOf([yup.ref("password", null)]),
+    confirmPassword: yup.string().oneOf([yup.ref("password")]),
     email: yup.string().email().required(),
     firstName: yup.string().required(),
     lastName: yup.string().required(),
@@ -48,63 +48,80 @@ const RegisterForm = () => {
     //     }
     // }
 
+    const { register, handleSubmit, errors } = useForm({
+        resolver: yupResolver(schema)
+    });
+
+    const submitForm = (data) => {
+        console.log(data);
+    };
+
     return (
-        <form>
+        <form onSubmit={ handleSubmit(submitForm) }>
             <div>
                 <input
                     type="text"
                     name="username"
                     placeholder="Username"
-                    //onChange={e => setUsername(e.target.value)}
+                    ref={ register }
                 />
+                <p> { errors.username?.message } </p>
                 <input
                     type="text"
                     name="password"
                     placeholder="Password"
-                    //onChange={e => setPassword(e.target.value)}
+                    ref={ register }
                 />
+                <p> { errors.password?.message } </p>
                 <input
                     type="text"
                     name="confirmPassword"
                     placeholder="Confirm Password"
-                    //onChange={e => setPassword(e.target.value)}
+                    ref={ register }
                 />
+                <p> { errors.confirmPassword && "Passwords don't match" } </p>
                 <input
                     type="text"
                     name="email"
                     placeholder="Email Address"
-                    //onChange={e => setEmail(e.target.value)}
+                    ref={ register }
                 />
+                <p> { errors.email?.message } </p>
                 <input
                     type="text"
                     name="firstName"
                     placeholder="First Name"
-                    //onChange={e => setFirstName(e.target.value)}
+                    ref={ register }
                 />
+                <p> { errors.firstName?.message } </p>
                 <input
                     type="text"
                     name="lastName"
                     placeholder="Last Name"
-                    //onChange={e => setlastName(e.target.value)}
+                    ref={ register }
                 />
+                <p> { errors.lastName?.message } </p>
                 <input
                     type="text"
                     name="city"
                     placeholder="City"
-                    //onChange={e => setCity(e.target.value)}
+                    ref={ register }
                 />
+                <p> { errors.city?.message } </p>
                 <input
                     type="text"
                     name="state"
                     placeholder="State"
-                    //onChange={e => setState(e.target.value)}
+                    ref={ register }
                 />
+                <p> { errors.state?.message } </p>
                 <input
                     type="text"
                     name="birthdate"
                     placeholder="Birthdate"
-                    //onChange={e => setBirthdate(e.target.value)}
+                    ref={ register }
                 />
+                <p> { errors.birthdate?.message } </p>
                 <input type="submit" id="submit" />
             </div>
         </form>
