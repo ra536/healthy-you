@@ -37,52 +37,55 @@ const RegisterForm = () => {
         <form>
             <div>
                 <input
-                    value={ username }
+                    type="text"
+                    name="username"
                     placeholder="Username"
                     onChange={e => setUsername(e.target.value)}
                 />
                 <input
-                    value={ password }
+                    type="text"
+                    name="password"
                     placeholder="Password"
                     onChange={e => setPassword(e.target.value)}
                 />
                 <input
-                    value={ firstName }
+                    type="text"
+                    name="firstName"
                     placeholder="First Name"
                     onChange={e => setFirstName(e.target.value)}
                 />
                 <input
-                    value={ lastName }
+                    type="text"
+                    name="lastName"
                     placeholder="Last Name"
                     onChange={e => setlastName(e.target.value)}
                 />
                 <input
-                    value={ city }
+                    type="text"
+                    name="city"
                     placeholder="City"
                     onChange={e => setCity(e.target.value)}
                 />
                 <input
-                    value={ state }
+                    type="text"
+                    name="state"
                     placeholder="State"
                     onChange={e => setState(e.target.value)}
                 />
                 <input
-                    value={ email }
+                    type="text"
+                    name="email"
                     placeholder="Email Address"
                     onChange={e => setEmail(e.target.value)}
                 />
                 <input
-                    value={ birthdate }
+                    type="text"
+                    name="birthdate"
                     placeholder="Birthdate"
                     onChange={e => setBirthdate(e.target.value)}
                 />
+                <input type="submit" id="submit" />
             </div>
-            <button
-                onClick={ handleSubmit }
-                type="submit"
-            >
-                Submit
-            </button>
         </form>
     )
 }
