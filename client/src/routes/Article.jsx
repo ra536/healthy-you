@@ -3,6 +3,7 @@ import ArticleAPI from '../apis/ArticleAPI';
 import { useParams } from 'react-router-dom';
 import InputNewArticle from '../components/InputNewArticle';
 import ArticleList from '../components/ArticleList';
+import file from './file.jpg';
 
 
 const Article = (props) => {

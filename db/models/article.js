@@ -33,6 +33,15 @@ const article = db.define('article', {
     },
     image_caption: {
         type: DataTypes.STRING,
+    },
+    image_type: {
+        type: DataTypes.STRING,
+    },
+    image_name: {
+        type: DataTypes.STRING,
+    },
+    image_data: {
+        type: DataTypes.TEXT,
     }
 
 }, {underscored: true})

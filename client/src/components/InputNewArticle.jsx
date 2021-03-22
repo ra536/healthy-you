@@ -38,6 +38,7 @@ const InputNewArticle = (props) => {
     const uploadFile = () => {
         const formData = new FormData();        
         formData.append('file', file); // appending file
+        formData.append('name', 'test');
         axios.post('http://localhost:8080/upload', formData
         ).then(res => {
             console.log(res);
@@ -103,16 +104,17 @@ const InputNewArticle = (props) => {
             // console.log(formData);
             // submitForm("multipart/form-data", formData, (msg) => console.log(msg));
             
-            uploadFile();
+            // uploadFile();
             console.log(file);
             console.log(file.name);
+            console.log(image);
 
             const response = await ArticleAPI.post("/create", {
                 headline: headline,
                 category: category,
                 summary: summary,
                 content: content,
-                image_link: image,
+                image: image,
                 caption: caption
                 // doctorID: props.doctorID
             })
@@ -131,9 +133,10 @@ const InputNewArticle = (props) => {
 
         console.log(document.getElementById("input-file").files[0]);
     }
+    //encType="multipart/form-data" method="POST"
 
     return (
-        <form encType="multipart/form-data" method="POST">
+        <form>
             <input
                 id="input-headline"
                 value={headline}

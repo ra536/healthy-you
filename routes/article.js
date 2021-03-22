@@ -100,7 +100,7 @@ router.post("/create", async (req, res) => {
                 category: req.body.category,
                 summary: req.body.summary,
                 content: req.body.content,
-                //image_link: req.body.image_link,
+                image_data: req.body.image,
                 caption: req.body.caption
             })
             console.log(article.dataValues)
@@ -113,7 +113,7 @@ router.post("/create", async (req, res) => {
                     summary: article.dataValues.summary,
                     content: article.dataValues.content,
                     publication_date: article.dataValues.publication_date,
-                    image: article.dataValues.image,
+                    image_data: article.dataValues.image_data,
                     caption: article.dataValues.caption
                 }
             })

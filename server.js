@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require("cors");
 const path = require('path');
 const fileUpload = require('express-fileupload')
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -15,7 +16,15 @@ if(process.env.NODE_ENV === "production"){
 }
 
 app.use(express.static('uploads'));
-app.use(fileUpload());
+// app.use(fileUpload({
+//   limits: {
+//     fileSize: 5000000
+//   },
+//   abortOnLimit: true
+// }));
+app.use(express.json({
+  limit: '5mb'
+}));
 
 // Database
 const db = require('./db/index')
@@ -30,6 +39,8 @@ app.use("/api/v1/user", require('./routes/user'));
 app.use("/api/v1/article", require('./routes/article'));
 app.use("/api/v1/writer", require('./routes/writer'));
 
+// app.use("/api/v1/image", require('./routes/image'));
+
 // Code to upload/save files into 'uploads' folder -- maybe move this later
 app.post('/upload', (req, res) => {
   if (!req.files) {
@@ -37,6 +48,8 @@ app.post('/upload', (req, res) => {
   }
       // accessing the file
   const myFile = req.files.file;
+  console.log(myFile);
+  console.log(path.extname(myFile.name));
   //  mv() method places the file inside public directory
   myFile.mv(`${__dirname}/uploads/${myFile.name}`, function (err) {
       if (err) {
