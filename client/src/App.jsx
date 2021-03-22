@@ -4,7 +4,7 @@ import { AppContextProvider } from './context/AppContext';
 import Home from "./routes/Home";
 import DoctorDashboard from "./routes/DoctorDashboard";
 import Review from "./routes/Review";
-import Register from './routes/Register'
+import UserRegistration from './routes/UserRegistration'
 
 const App = () => {
     return (
@@ -13,7 +13,7 @@ const App = () => {
                 <Router>
                     <Switch>
                         <Route exact path="/" component={ Home }/>
-                        <Route exact path="/register" component = { Register }/>
+                        <Route exact path="/register" component = { UserRegistration }/>
                         <Route exact path="/doctor-dashboard/:doctorID" component = { DoctorDashboard }>
                         </Route>
                         <Route path="/leaveReview/:id">
