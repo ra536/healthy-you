@@ -42,17 +42,17 @@ router.use(express.json());
 
 router.post("/create", async (req, res) => {
     try {
+        console.log(req.body.firstName)
         const users = await user.create({
             username: req.body.username,
             password: req.body.password,
             email: req.body.email,
-            first_name: req.body.firstName,
-            last_name: req.body.lastName,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
             city: req.body.city,
             state: req.body.state,
             birthdate: req.body.birthdate
         })
-        console.log(tests.dataValues)
         res.status(201).json({
             status: "success",
         })

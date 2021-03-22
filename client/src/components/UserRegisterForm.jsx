@@ -55,12 +55,17 @@ const RegisterForm = () => {
     const submitForm = async (data) => {
         console.log(data);
         try {
-            const response = await UserAPI.post("/", {
-                username: testID,
-                content: content
+            const response = await UserAPI.post("/create", {
+                username: data.username,
+                password: data.password,
+                email: data.email,
+                firstName: data.firstName,
+                lastName: data.lastName,
+                city: data.city,
+                state: data.state,
+                birthdate: data.birthdate
             })
-            addTest(response.data.data)
-            console.log(response.data.data)
+            console.log(response.data.status)
         }
         catch (err) {
             console.log(err)
