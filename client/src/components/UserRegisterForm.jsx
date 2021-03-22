@@ -47,8 +47,9 @@ const RegisterForm = () => {
     //         console.log(err)
     //     }
     // }
+    const [serverError, setServerError] = useState("");
 
-    const { register, handleSubmit, errors } = useForm({
+    const { register, handleSubmit, errors, setError } = useForm({
         resolver: yupResolver(schema)
     });
 
@@ -65,7 +66,12 @@ const RegisterForm = () => {
                 state: data.state,
                 birthdate: data.birthdate
             })
-            console.log(response.data.status)
+            console.log(response.data.status[0].message);
+            //setServerError(response.data.status[0].message);
+            setError('email', {
+                type: "server",
+                message: response.data.status[0].message,
+            });
         }
         catch (err) {
             console.log(err)
@@ -102,7 +108,7 @@ const RegisterForm = () => {
                     placeholder="Email Address"
                     ref={ register }
                 />
-                <p> { errors.email?.message } </p>
+                <p> { errors.email && errors.email.message} </p>
                 <input
                     type="text"
                     name="firstName"

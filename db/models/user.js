@@ -12,12 +12,18 @@ const user = db.define('user', {
     username: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        unique: {
+            args: true,
+            msg: 'Username already in use.'
+        }
     },
     email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        unique: {
+            args: true,
+            msg: 'Email address already in use.'
+        }
     },
     password: {
         type: DataTypes.STRING,
