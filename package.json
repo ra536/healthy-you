@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/ra536/healthy-you#readme",
   "dependencies": {
+    "@hookform/resolvers": "^1.3.5",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -33,7 +34,9 @@
     "path": "^0.12.7",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
+    "react-hook-form": "^6.15.5",
     "sequelize": "^6.5.1",
-    "sequelize-cli": "^6.2.0"
+    "sequelize-cli": "^6.2.0",
+    "yup": "^0.32.9"
   }
 }
