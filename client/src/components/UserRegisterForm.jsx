@@ -36,7 +36,6 @@ const RegisterForm = () => {
                 state: data.state,
                 birthdate: data.birthdate
             })
-            console.log(response.data.status[0].message);
             setError('email', {
                 type: "server",
                 message: response.data.status[0].message,
