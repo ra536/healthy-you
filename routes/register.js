@@ -27,7 +27,8 @@ router.post("/", async (req, res) => {
         console.log(userdata.dataValues)
 
         if (req.body.role === "Doctor"){
-            doctorFullName = req.body.firstname + " " + req.body.lastname
+            doctorFullName = userdata.dataValues.firstName + " " + userdata.dataValues.lastName
+            console.log("what is this?",userdata.dataValues.firstName )
 
             const doctor = await doctorUser.create({
 

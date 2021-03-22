@@ -18,6 +18,8 @@ const Login = () => {
     }
 
     const handleSubmit = async (e, value) => {
+
+      console.log("huhuh???")
       let endpoint = "/" + email + " " + password;
       e.preventDefault();
       try {

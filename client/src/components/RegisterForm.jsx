@@ -35,7 +35,6 @@ const RegisterForm = () => {
                 role: roleChosen
             })
             console.log(response.data.data)
-            console.log(response.data.data.role)
 
             if (response.data.data === null){
                 //return error profile exists
@@ -46,13 +45,19 @@ const RegisterForm = () => {
                 setIsRegistered(true)
             }
 
-            if (response.data.data.role === "User"){
-                setIsUser(true)
+            if (response.data.data.role === "Doctor"){
+                setIsDoctor(true)
+                localStorage.setItem('userRole', response.data.data.role);
+                localStorage.setItem('userID', response.data.data.doctor_id);
             }
 
             else{
-                setIsDoctor(true)
+                setIsUser(true)
+                localStorage.setItem('userRole', response.data.data.role);
+                localStorage.setItem('userID', response.data.data.user_id);
             }
+
+
             
         }
         catch (err) {
