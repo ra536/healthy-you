@@ -1,42 +1,60 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db/index')
-const users = require('../db/models/user.js')
+const user = require('../db/models/user')
 
 router.use(express.json());
 
-//Test route to get started and gets all test objects from test table in db
-router.get("/", async (req, res) => {
-    try {
-        const testResults = await test.findAll({
-            raw: true
-        });
-        console.log(testResults);
-        res.status(200).json({
-          status: "success",
-          data: testResults
-        })
-      } 
-    catch (err) {
-        console.error(err.message);
-    }
-});
+// router.post("/create", async (req, res) => {
+//     try {
+//         if(req.body.practiceName != ""){
+//             const practices = await practice.create({
+//                 username: req.body.username,
+//                 password: req.body.password,
+//                 email: req.body.email,
+//                 first_name: req.body.socialMedia,
+//                 last_name: req.body.address,
+//                 email: req.body.phone,
+//                 city: req.body.fax,
+//                 state: req.body.doctorID,
+//                 birthdate: req.body.doctorID
+//             })
+//             console.log(practices.dataValues)
+//             res.status(201).json({
+//                 status: "success",
+//                 // data: {
+//                 //     practice_id: practices.dataValues.practice_id,
+//                 //     name: practices.dataValues.name,
+//                 //     location: practices.dataValues.location,
+//                 //     website: practices.dataValues.website,
+//                 //     social_media: practices.dataValues.social_media,
+//                 //     address: practices.dataValues.address,
+//                 //     phone: practices.dataValues.phone,
+//                 //     fax: practices.dataValues.fax
+//                 // }
+//             })
+//         }
+//     }
+//     catch (err) {
+//       console.log(err)
+//     }
+// });
 
-// Route to create a test object in DB
-router.post("/", async (req, res) => {
-    // Express JSON middleware allows for results to be in body
+router.post("/create", async (req, res) => {
     try {
-        const tests = await test.create({
-            test_id: req.body.test_id,
-            content: req.body.content,
+        const users = await user.create({
+            username: req.body.username,
+            password: req.body.password,
+            email: req.body.email,
+            first_name: req.body.firstName,
+            last_name: req.body.lastName,
+            city: req.body.city,
+            state: req.body.state,
+            birthdate: req.body.birthdate
         })
         console.log(tests.dataValues)
         res.status(201).json({
             status: "success",
-            data: {
-                test_id: tests.dataValues.test_id,
-                content: tests.dataValues.content
-            }
         })
     }
     catch (err) {

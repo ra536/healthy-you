@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import RegisterAPI from '../apis/RegisterAPI'
+import UserAPI from '../apis/UserAPI'
 
 const schema = yup.object().shape({
     username: yup.string().required(),
@@ -52,8 +52,19 @@ const RegisterForm = () => {
         resolver: yupResolver(schema)
     });
 
-    const submitForm = (data) => {
+    const submitForm = async (data) => {
         console.log(data);
+        try {
+            const response = await UserAPI.post("/", {
+                username: testID,
+                content: content
+            })
+            addTest(response.data.data)
+            console.log(response.data.data)
+        }
+        catch (err) {
+            console.log(err)
+        }
     };
 
     return (
