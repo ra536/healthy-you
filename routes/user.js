@@ -43,7 +43,6 @@ router.use(express.json());
 router.post("/create", async (req, res) => {
     try {
         const users = await user.create({
-            username: req.body.username,
             password: req.body.password,
             email: req.body.email,
             firstName: req.body.firstName,
@@ -57,7 +56,7 @@ router.post("/create", async (req, res) => {
         })
     }
     catch (err) {
-        console.log(err.errors)
+        console.log(err)
         res.json({
             status: err.errors,
         })

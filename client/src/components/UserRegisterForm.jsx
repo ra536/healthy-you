@@ -19,35 +19,6 @@ const schema = yup.object().shape({
 
 //Lets user input a test object into backend db
 const RegisterForm = () => {
-    // const [username, setUsername] = useState("");
-    // const [password, setPassword] = useState("");
-    // const [firstName, setFirstName] = useState("");
-    // const [lastName, setlastName] = useState("");
-    // const [city, setCity] = useState("");
-    // const [state, setState] = useState("");
-    // const [email, setEmail] = useState("");
-    // const [birthdate, setBirthdate] = useState("");
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault()
-    //     try {
-    //         const response = await RegisterAPI.post("/", {
-    //             username: username,
-    //             password: password,
-    //             firstName: firstName,
-    //             lastName: lastName,
-    //             city: city,
-    //             state: state,
-    //             email: email,
-    //             birthdate: birthdate
-    //         })
-    //         console.log(response.data.data)
-    //     }
-    //     catch (err) {
-    //         console.log(err)
-    //     }
-    // }
-    const [serverError, setServerError] = useState("");
 
     const { register, handleSubmit, errors, setError } = useForm({
         resolver: yupResolver(schema)
@@ -57,7 +28,6 @@ const RegisterForm = () => {
         console.log(data);
         try {
             const response = await UserAPI.post("/create", {
-                username: data.username,
                 password: data.password,
                 email: data.email,
                 firstName: data.firstName,
@@ -67,7 +37,6 @@ const RegisterForm = () => {
                 birthdate: data.birthdate
             })
             console.log(response.data.status[0].message);
-            //setServerError(response.data.status[0].message);
             setError('email', {
                 type: "server",
                 message: response.data.status[0].message,
@@ -81,13 +50,13 @@ const RegisterForm = () => {
     return (
         <form onSubmit={ handleSubmit(submitForm) }>
             <div>
-                <input
+            <input
                     type="text"
-                    name="username"
-                    placeholder="Username"
+                    name="email"
+                    placeholder="Email Address"
                     ref={ register }
                 />
-                <p> { errors.username?.message } </p>
+                <p> { errors.email && errors.email.message} </p>
                 <input
                     type="password"
                     name="password"
@@ -102,13 +71,6 @@ const RegisterForm = () => {
                     ref={ register }
                 />
                 <p> { errors.confirmPassword && "Passwords don't match" } </p>
-                <input
-                    type="text"
-                    name="email"
-                    placeholder="Email Address"
-                    ref={ register }
-                />
-                <p> { errors.email && errors.email.message} </p>
                 <input
                     type="text"
                     name="firstName"

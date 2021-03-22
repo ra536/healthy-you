@@ -9,14 +9,6 @@ const user = db.define('user', {
         allowNull: false,
         primaryKey: true
     },
-    username: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: {
-            args: true,
-            msg: 'Username already in use.'
-        }
-    },
     email: {
         type: DataTypes.STRING,
         allowNull: false,
