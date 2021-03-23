@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import InputNewArticle from '../components/InputNewArticle';
 import ArticleList from '../components/ArticleList';
 import file from './file.jpg';
+import { Container, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 
 
 const WriterDashboard = (props) => {
@@ -24,14 +26,20 @@ const WriterDashboard = (props) => {
     }, []);
     
     return(
-        <div>
+        <Container>
             <h1>Writer with id: {id}</h1>
             <br/>
 
+            
+
             <InputNewArticle id={id}/>
+            <br />
+            <Button>[+] New Article</Button>
+            <br />
+            <br />
 
             <ArticleList id={id}/>
-        </div>
+        </Container>
     )
 };
 

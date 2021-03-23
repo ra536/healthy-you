@@ -24,12 +24,19 @@ export const AppContextProvider = props => {
         setArticles([...articles, article]);
     }
 
+    const [articleDeleteShow, setArticleDeleteShow] = useState(false);
+    const [articleDeleteHeadline, setArticleDeleteHeadline] = useState("");
+    const [articleDeleteID, setArticleDeleteID] = useState("");
+
     return (
         <AppContext.Provider value={
             {
                 tests, setTests, addTest,
                 practices, setPractices, addPractice,
-                articles, setArticles, addArticle
+                articles, setArticles, addArticle,
+                articleDeleteShow, setArticleDeleteShow,
+                articleDeleteHeadline, setArticleDeleteHeadline,
+                articleDeleteID, setArticleDeleteID
             }}>
             { props.children }
         </AppContext.Provider>

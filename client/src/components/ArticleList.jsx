@@ -1,9 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react'
 import ArticleAPI from '../apis/ArticleAPI'
 import { AppContext } from '../context/AppContext';
+import { Button, Table } from 'react-bootstrap';
+import { DeleteArticleModal } from './DeleteArticleModal';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const ArticleList = (props) => {
-    const { articles, setArticles } = useContext(AppContext);
+    const { articles, setArticles, setArticleDeleteShow } = useContext(AppContext);
     //const [practices, setPractices] = useState([]);
 
     useEffect( () => {
@@ -28,6 +31,20 @@ const ArticleList = (props) => {
 
     return (
         <div>
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th>Headline</th>
+                        <th>Summary</th>
+                        <th>Category</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                
+
+            
             {articles.map(articles => {
                 console.log(articles);
                 // let TYPED_ARRAY = new Uint8Array(articles.image_data);
@@ -38,17 +55,20 @@ const ArticleList = (props) => {
                 // console.log(img);
                 // console.log(base64String);
                         return (
-                            <li key={articles.article_id}>
-                                ID: {articles.article_id} <br />
-                                HEADLINE: { articles.headline } <br />
-                                SUMMARY: { articles.summary } <br />
-                                CONTENT: { articles.content } <br />
-                                CATEGORY: { articles.category } <br />
-                                <img height="100px" src={articles.image_data}/> <br /><br />
-                            </li>
+                            <tr key={articles.article_id}>
+                                <td>{ articles.headline }</td> 
+                                <td> { articles.summary }</td>
+                                <td> { articles.category }</td>
+                                <td>
+                                    <Button variant="warning">Edit Article</Button>{' '}
+                                    <DeleteArticleModal id={articles.article_id} name={articles.headline}/>
+                                </td>
+                            </tr>
                         )
                     })
             }
+                </tbody>
+            </Table>
         </div>
     )
 }
