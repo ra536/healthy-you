@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import RegisterAPI from '../apis/RegisterAPI'
 import { Redirect, Link } from 'react-router-dom'
+import { LoginContext } from '../context/LoginPersistence';
 
 //Lets user input a test object into backend db
 const RegisterForm = () => {
@@ -11,9 +12,7 @@ const RegisterForm = () => {
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
     const [birthdate, setBirthdate] = useState("");
-    const [isRegistered, setIsRegistered] = useState(false);
-    const [isDoctor, setIsDoctor] = useState(false);
-    const [isUser, setIsUser] = useState(false);
+    const { loggedIn, isDoctor, isUser, onlineStatus, isRoleDoctor , isRoleUser } = useContext(LoginContext)
 
       function validateForm() {
         return email.length > 0 && password.length > 0 && firstName.length > 0 && lastName.length > 0 && city.length > 0 && state.length > 0 && birthdate.length > 0;
@@ -42,22 +41,19 @@ const RegisterForm = () => {
 
             else{
                 //redirect to proper dashboard
-                setIsRegistered(true)
+                onlineStatus(true)
+                    if (response.data.data.role === undefined){
+                    isRoleDoctor(true)
+                    localStorage.setItem('userRole', response.data.data.role);
+                    localStorage.setItem('userID', response.data.data.doctor_id);
+                }
+
+                else{
+                    isRoleUser(true)
+                    localStorage.setItem('userRole', response.data.data.role);
+                    localStorage.setItem('userID', response.data.data.user_id);
+                }
             }
-
-            if (response.data.data.role === "Doctor"){
-                setIsDoctor(true)
-                localStorage.setItem('userRole', response.data.data.role);
-                localStorage.setItem('userID', response.data.data.doctor_id);
-            }
-
-            else{
-                setIsUser(true)
-                localStorage.setItem('userRole', response.data.data.role);
-                localStorage.setItem('userID', response.data.data.user_id);
-            }
-
-
             
         }
         catch (err) {
@@ -65,9 +61,9 @@ const RegisterForm = () => {
         }
     }
 
-    return isRegistered && isUser ? (
+    return loggedIn && isUser ? (
         <Redirect to='/' />
-      ) : isRegistered && isDoctor ? (
+      ) : loggedIn && isDoctor ? (
         <Redirect to='/doctorid/doctor-dashboard' />
       ) : (
         <form>

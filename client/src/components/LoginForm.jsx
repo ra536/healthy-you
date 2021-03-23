@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import LoginAPI from '../apis/LoginAPI';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Redirect, Link } from 'react-router-dom'
+import { LoginContext } from '../context/LoginPersistence';
 
 
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [loggedIn, setLoggedIn] = useState(false);
-    const [isDoctor, setIsDoctor] = useState(false);
-    const [isUser, setIsUser] = useState(false);
+    const { loggedIn, isDoctor, isUser, onlineStatus, isRoleDoctor , isRoleUser } = useContext(LoginContext)
+    
 
     function validateForm() {
         return email.length > 0 && password.length > 0;
@@ -19,7 +19,6 @@ const Login = () => {
 
     const handleSubmit = async (e, value) => {
 
-      console.log("huhuh???")
       let endpoint = "/" + email + " " + password;
       e.preventDefault();
       try {
@@ -27,23 +26,27 @@ const Login = () => {
             userEmail: email,
             practicePassword: password
             });
-          // console.log(typeof response.data.data)
           console.log(response.data.data)
           if(response.data.data){
-            setLoggedIn(true);
+            onlineStatus(true);
+              if (response.data.data.role === undefined){
+              isRoleDoctor(true)
+              localStorage.setItem('userRole', response.data.data.role);
+              localStorage.setItem('userID', response.data.data.doctor_id);
+              }
+
+
+            else{
+              isRoleUser(true)
+              localStorage.setItem('userRole', response.data.data.role);
+              localStorage.setItem('userID', response.data.data.user_id);
+              }
           }
 
           else{
             //return error on screen/ incremented times attempted
           }
 
-            if (response.data.data.role === "User"){
-            setIsUser(true)
-            }
-
-            else{
-            setIsDoctor(true)
-            }
         }
        catch (err) {
         console.log(err)

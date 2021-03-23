@@ -20,7 +20,7 @@ router.get("/:id", async (req, res) =>{
           raw: true
         });
 
-        console.log(userResults);
+        console.log("here is the user id", userResults); 
         uniqueID = userResults.user_id
 
         const doctorResults = await doctorUser.findOne({
