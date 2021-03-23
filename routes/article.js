@@ -9,15 +9,19 @@ const article = require('../db/models/article.js');
 router.use(express.json());
 
 //Test route to get started and gets all test objects from test table in db
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
     try {
+        console.log(req.body.writer_id); // TODO - Why is this undefined???
         const testResults = await articles.findAll({
+            where: {
+                writer_id: req.body.writer_id
+            },
             raw: true
         });
-        console.log(testResults);
         res.status(200).json({
             status: "success",
-            data: testResults
+            data: testResults,
+            debug: req.body
         })
     }
     catch (err) {
@@ -101,7 +105,8 @@ router.post("/create", async (req, res) => {
                 summary: req.body.summary,
                 content: req.body.content,
                 image_data: req.body.image,
-                caption: req.body.caption
+                caption: req.body.caption,
+                writer_id: req.body.writer_id
             })
             console.log(article.dataValues)
             res.status(201).json({
@@ -114,7 +119,8 @@ router.post("/create", async (req, res) => {
                     content: article.dataValues.content,
                     publication_date: article.dataValues.publication_date,
                     image_data: article.dataValues.image_data,
-                    caption: article.dataValues.caption
+                    caption: article.dataValues.caption,
+                    writer_id: article.dataValues.writer_id
                 }
             })
         }

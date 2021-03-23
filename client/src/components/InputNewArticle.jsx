@@ -108,6 +108,8 @@ const InputNewArticle = (props) => {
             console.log(file);
             console.log(file.name);
             console.log(image);
+            console.log("WRITER ID");
+            console.log(props.id);
 
             const response = await ArticleAPI.post("/create", {
                 headline: headline,
@@ -115,7 +117,8 @@ const InputNewArticle = (props) => {
                 summary: summary,
                 content: content,
                 image: image,
-                caption: caption
+                caption: caption,
+                writer_id: props.id
                 // doctorID: props.doctorID
             })
             console.log(response.data.data)

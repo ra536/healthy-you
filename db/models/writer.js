@@ -5,7 +5,9 @@ const writer = db.define('writer', {
     
     writer_id: {
         type: DataTypes.UUID,
-        allowNull: false
+        defaultValue: Sequelize.UUIDV4,
+        allowNull: false,
+        primaryKey: true
     },
     email: {
         type: DataTypes.STRING,
@@ -25,15 +27,12 @@ const writer = db.define('writer', {
     },
     city: {
         type: DataTypes.STRING,
-        allowNull: false
     },
     state: {
         type: DataTypes.STRING,
-        allowNull: false
     },
     birthdate: {
         type: DataTypes.DATE,
-        allowNull: false
     },
     articles: {
         type: DataTypes.ARRAY(DataTypes.UUID)

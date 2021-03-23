@@ -42,6 +42,10 @@ const article = db.define('article', {
     },
     image_data: {
         type: DataTypes.TEXT,
+    },
+    writer_id: {
+        type: DataTypes.UUID,
+        allowNull: false
     }
 
 }, {underscored: true})

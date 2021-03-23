@@ -25,12 +25,12 @@ const WriterDashboard = (props) => {
     
     return(
         <div>
-            <h1>Article with id: {id}</h1>
+            <h1>Writer with id: {id}</h1>
             <br/>
 
-            <InputNewArticle />
+            <InputNewArticle id={id}/>
 
-            <ArticleList />
+            <ArticleList id={id}/>
         </div>
     )
 };

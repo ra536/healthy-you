@@ -10,12 +10,14 @@ const ArticleList = (props) => {
         // Define a function fetchData that calls APIs which is then called in useEffect
         const fetchData = async () => {
             try {
-                const response = await (ArticleAPI.get("/", {
-                    // doctorID: props.doctorID
+                console.log(props.id);
+                const response = await (ArticleAPI.post("/", {
+                    writer_id: props.id
                 }));
                 console.log("INCOMING ARTICLES");
                 console.log(response.data.data)
                 setArticles(response.data.data)
+                console.log(response.data.debug)
             }
             catch (err) {
                 console.log(err)
