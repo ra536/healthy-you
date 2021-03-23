@@ -6,7 +6,7 @@ import ArticleList from '../components/ArticleList';
 import file from './file.jpg';
 
 
-const Article = (props) => {
+const WriterDashboard = (props) => {
     let { id } = useParams();
     useEffect( () => {
         // Define a function fetchData that calls APIs which is then called in useEffect
@@ -35,4 +35,4 @@ const Article = (props) => {
     )
 };
 
-export default Article;
+export default WriterDashboard;

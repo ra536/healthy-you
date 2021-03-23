@@ -5,7 +5,7 @@ import Home from "./routes/Home";
 import DoctorDashboard from "./routes/DoctorDashboard";
 import Review from "./routes/Review";
 import Register from './routes/Register';
-import Article from './routes/Article';
+import WriterDashboard from './routes/WriterDashboard';
 
 const App = () => {
     return (
@@ -23,7 +23,7 @@ const App = () => {
                         <Route path="/leaveReview/:id">
                             <Review url={window.location.href}/>
                         </Route>
-                        <Route path="/article/:id" component = { Article }/>
+                        <Route path="/article/:id" component = { WriterDashboard }/>
                     </Switch>
                 </Router>
             </div>
