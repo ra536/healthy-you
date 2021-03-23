@@ -29,6 +29,26 @@ router.post("/", async (req, res) => {
     }
 });
 
+router.post("/find", async (req, res) => {
+    try {
+        console.log(req.body.article_id); // TODO - Why is this undefined???
+        const testResults = await articles.findAll({
+            where: {
+                article_id: req.body.article_id
+            },
+            raw: true
+        });
+        res.status(200).json({
+            status: "success",
+            data: testResults,
+            debug: req.body
+        })
+    }
+    catch (err) {
+        console.error(err.message);
+    }
+});
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, "./uploads/");
@@ -139,6 +159,29 @@ router.post("/delete", async (req, res) => {
                 }
             })
             console.log(article.dataValues)
+            res.status(201).json({
+                status: "success"
+            })
+        }
+    }
+    catch (err) {
+        console.log(err)
+    }
+});
+
+router.post("/update", async (req, res) => {
+    try {
+        if (req.body.headline != "") {
+            const article = await articles.findByPk(req.body.article_id);
+            console.log(req.body.headline);
+            console.log(article);
+            article.headline = req.body.headline;
+            article.category = req.body.category;
+            article.summary = req.body.summary;
+            article.content = req.body.content;
+            article.image_data = req.body.image;
+            article.caption = req.body.caption;
+            await article.save();
             res.status(201).json({
                 status: "success"
             })

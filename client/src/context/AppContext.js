@@ -34,6 +34,15 @@ export const AppContextProvider = props => {
 
     const [articleInsertShow, setArticleInsertShow] = useState(false);
 
+    const [articleUpdateID, setArticleUpdateID] = useState("");
+    const [articleUpdateShow, setArticleUpdateShow] = useState(false);
+    const [articleUpdateHeadline, setArticleUpdateHeadline] = useState("");
+    const [articleUpdateCategory, setArticleUpdateCategory] = useState("");
+    const [articleUpdateSummary, setArticleUpdateSummary] = useState("");
+    const [articleUpdateContent, setArticleUpdateContent] = useState("");
+    const [articleUpdateImage, setArticleUpdateImage] = useState("");
+    const [articleUpdateCaption, setArticleUpdateCaption] = useState("");
+
     return (
         <AppContext.Provider value={
             {
@@ -44,6 +53,15 @@ export const AppContextProvider = props => {
                 articleDeleteHeadline, setArticleDeleteHeadline,
                 articleDeleteID, setArticleDeleteID,
                 articleInsertShow, setArticleInsertShow,
+                articleUpdateID, setArticleUpdateID,
+                articleUpdateShow, setArticleUpdateShow,
+                articleUpdateHeadline, setArticleUpdateHeadline,
+                articleUpdateCategory, setArticleUpdateCategory,
+                articleUpdateSummary, setArticleUpdateSummary,
+                articleUpdateContent, setArticleUpdateContent,
+                articleUpdateImage, setArticleUpdateImage,
+                articleUpdateCaption, setArticleUpdateCaption,
+
             }}>
             { props.children }
         </AppContext.Provider>

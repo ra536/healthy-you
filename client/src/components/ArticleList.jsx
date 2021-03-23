@@ -3,6 +3,7 @@ import ArticleAPI from '../apis/ArticleAPI'
 import { AppContext } from '../context/AppContext';
 import { Button, Table } from 'react-bootstrap';
 import { DeleteArticleModal } from './DeleteArticleModal';
+import { UpdateArticleModal } from './UpdateArticleModal';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const ArticleList = (props) => {
@@ -61,7 +62,7 @@ const ArticleList = (props) => {
                                 <td> { articles.summary }</td>
                                 <td> { articles.category }</td>
                                 <td>
-                                    <Button variant="warning">Edit Article</Button>{' '}
+                                    <UpdateArticleModal object={articles}/>{' '}
                                     <DeleteArticleModal id={articles.article_id} name={articles.headline}/>
                                 </td>
                                 <td>
