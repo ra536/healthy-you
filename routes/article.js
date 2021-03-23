@@ -130,6 +130,25 @@ router.post("/create", async (req, res) => {
     }
 });
 
+router.post("/delete", async (req, res) => {
+    try {
+        if (req.body.headline != "") {
+            const article = await articles.destroy({
+                where: {
+                    article_id: req.body.article_id
+                }
+            })
+            console.log(article.dataValues)
+            res.status(201).json({
+                status: "success"
+            })
+        }
+    }
+    catch (err) {
+        console.log(err)
+    }
+});
+
 // Route to create a test object in DB
 // router.post("/", async (req, res) => {
 //     // Express JSON middleware allows for results to be in body

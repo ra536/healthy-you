@@ -24,6 +24,10 @@ export const AppContextProvider = props => {
         setArticles([...articles, article]);
     }
 
+    const removeArticle = (articleID) => {
+        setArticles(articles.filter(item => item.article_id !== articleID));
+    }
+
     const [articleDeleteShow, setArticleDeleteShow] = useState(false);
     const [articleDeleteHeadline, setArticleDeleteHeadline] = useState("");
     const [articleDeleteID, setArticleDeleteID] = useState("");
@@ -33,7 +37,7 @@ export const AppContextProvider = props => {
             {
                 tests, setTests, addTest,
                 practices, setPractices, addPractice,
-                articles, setArticles, addArticle,
+                articles, setArticles, addArticle, removeArticle,
                 articleDeleteShow, setArticleDeleteShow,
                 articleDeleteHeadline, setArticleDeleteHeadline,
                 articleDeleteID, setArticleDeleteID

@@ -5,7 +5,7 @@ import { Button, Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 export const DeleteArticleModal = (props) => {
-    const { articles, setArticles, articleDeleteShow, setArticleDeleteShow, articleDeleteHeadline, setArticleDeleteHeadline, articleDeleteID, setArticleDeleteID } = useContext(AppContext);
+    const { articles, setArticles, removeArticle, articleDeleteShow, setArticleDeleteShow, articleDeleteHeadline, setArticleDeleteHeadline, articleDeleteID, setArticleDeleteID } = useContext(AppContext);
 
     const handleClose = () => {
         setArticleDeleteShow(false);
@@ -15,9 +15,14 @@ export const DeleteArticleModal = (props) => {
         setArticleDeleteID(props.id);
         setArticleDeleteShow(true);
     }
-    const handleDelete = () => {
-        // Delete item from database
-        // handleClose
+    const handleDelete = async () => {
+        const response = await ArticleAPI.post("/delete", {
+            article_id: articleDeleteID
+        })
+        console.log("DELETE HERE");
+        console.log(articleDeleteID);
+        removeArticle(articleDeleteID);
+        setArticleDeleteShow(false);
     }
     //const [practices, setPractices] = useState([]);
 
@@ -51,7 +56,7 @@ export const DeleteArticleModal = (props) => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                 </Button>
-                    <Button variant="danger" onClick={handleClose}>
+                    <Button variant="danger" onClick={handleDelete}>
                         Delete
                 </Button>
                 </Modal.Footer>
