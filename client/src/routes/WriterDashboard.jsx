@@ -5,6 +5,7 @@ import InputNewArticle from '../components/InputNewArticle';
 import ArticleList from '../components/ArticleList';
 import file from './file.jpg';
 import { Container, Button } from 'react-bootstrap';
+import { InsertArticleModal } from '../components/InsertArticleModal';
 import 'bootstrap/dist/css/bootstrap.css';
 
 
@@ -32,9 +33,8 @@ const WriterDashboard = (props) => {
 
             
 
-            <InputNewArticle id={id}/>
-            <br />
-            <Button>[+] New Article</Button>
+
+            <InsertArticleModal id={id} />
             <br />
             <br />
 

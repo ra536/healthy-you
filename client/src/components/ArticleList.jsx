@@ -38,6 +38,7 @@ const ArticleList = (props) => {
                         <th>Summary</th>
                         <th>Category</th>
                         <th>Actions</th>
+                        <th>Preview</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,6 +63,9 @@ const ArticleList = (props) => {
                                 <td>
                                     <Button variant="warning">Edit Article</Button>{' '}
                                     <DeleteArticleModal id={articles.article_id} name={articles.headline}/>
+                                </td>
+                                <td>
+                                    <img src={articles.image_data} height="100px"/>
                                 </td>
                             </tr>
                         )

@@ -32,6 +32,8 @@ export const AppContextProvider = props => {
     const [articleDeleteHeadline, setArticleDeleteHeadline] = useState("");
     const [articleDeleteID, setArticleDeleteID] = useState("");
 
+    const [articleInsertShow, setArticleInsertShow] = useState(false);
+
     return (
         <AppContext.Provider value={
             {
@@ -40,7 +42,8 @@ export const AppContextProvider = props => {
                 articles, setArticles, addArticle, removeArticle,
                 articleDeleteShow, setArticleDeleteShow,
                 articleDeleteHeadline, setArticleDeleteHeadline,
-                articleDeleteID, setArticleDeleteID
+                articleDeleteID, setArticleDeleteID,
+                articleInsertShow, setArticleInsertShow,
             }}>
             { props.children }
         </AppContext.Provider>
