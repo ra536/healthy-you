@@ -16,7 +16,7 @@ const RegisterForm = () => {
 
       function validateForm() {
         return email.length > 0 && password.length > 0 && firstName.length > 0 && lastName.length > 0 && city.length > 0 && state.length > 0 && birthdate.length > 0;
-    }
+    } // TODO - 'Cosmetic' Specialty is picked in register.js, although it should be an option when setting up an account
 
     const handleSubmit = async (e) => {
         e.preventDefault()

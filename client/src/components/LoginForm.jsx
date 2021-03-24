@@ -10,7 +10,7 @@ import { LoginContext } from '../context/LoginPersistence';
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { loggedIn, isDoctor, isUser, onlineStatus, isRoleDoctor , isRoleUser } = useContext(LoginContext)
+    const { loggedIn, setLoggedIn, isDoctor, isUser, onlineStatus, isRoleDoctor , isRoleUser } = useContext(LoginContext)
     
 
     function validateForm() {
@@ -29,6 +29,7 @@ const Login = () => {
           console.log(response.data.data)
           if(response.data.data){
             onlineStatus(true);
+            setLoggedIn(true);
               if (response.data.data.role === undefined){
               isRoleDoctor(true)
               localStorage.setItem('userRole', response.data.data.role);

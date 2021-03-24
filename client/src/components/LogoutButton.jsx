@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { LoginContext } from '../context/LoginPersistence';
+import { Link } from 'react-router-dom';
 
 
 export function Logout() {
