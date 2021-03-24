@@ -4,13 +4,14 @@ import { Link } from 'react-router-dom';
 
 
 export function Logout() {
-    const { onlineStatus, isRoleDoctor , isRoleUser } = useContext(LoginContext)
+    const { onlineStatus, setUserID, isRoleDoctor , isRoleUser } = useContext(LoginContext)
 
 
 function handleSubmit(event) {
     onlineStatus(true);
     isRoleDoctor(false);
     isRoleUser(false);
+    setUserID("");
 }
 
     return (
