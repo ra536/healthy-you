@@ -28,11 +28,17 @@ export const AppContextProvider = props => {
         setSpecialties(specialties.filter(item => item !== specialty));
     }
 
+    const [results, setResults] = useState([]);
+    const addResult = (result) => {
+        setResults([...results, result]);
+    }
+
     return (
         <AppContext.Provider value={
             {
                 tests, setTests, addTest,
                 practices, setPractices, addPractice,
+                results, setResults, addResult,
                 specialties, setSpecialties, addSpecialty, removeSpecialty
             }}>
             { props.children }
