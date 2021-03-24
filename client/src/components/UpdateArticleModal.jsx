@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 // TODO - Update very similar to insert, just prepopulate fields and change route
 
 export const UpdateArticleModal = (props) => {
-    const { articles, setArticles, articleUpdateShow, setArticleUpdateShow, articleUpdateID, setArticleUpdateID, articleUpdateHeadline, setArticleUpdateHeadline, articleUpdateCategory, setArticleUpdateCategory,
+    const { articles, setArticles, removeArticle, addArticle, updateArticle, articleUpdateShow, setArticleUpdateShow, articleUpdateID, setArticleUpdateID, articleUpdateHeadline, setArticleUpdateHeadline, articleUpdateCategory, setArticleUpdateCategory,
         articleUpdateSummary, setArticleUpdateSummary,
         articleUpdateContent, setArticleUpdateContent,
         articleUpdateImage, setArticleUpdateImage,
@@ -77,12 +77,14 @@ export const UpdateArticleModal = (props) => {
                 // doctorID: props.doctorID
             })
             console.log(response.data.data)
-            // addArticle(response.data.data); // TODO updateArticle
+            updateArticle(response.data.data); // TODO updateArticle
+            // await removeArticle(response.data.data.article_id);
+            // await addArticle(response.data.data);
         }
         catch (err) {
             console.log(err)
         }
-
+    
         setArticleUpdateShow(false);
 
         console.log(document.getElementById("input-file").files[0]);

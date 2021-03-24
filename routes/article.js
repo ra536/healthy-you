@@ -183,7 +183,16 @@ router.post("/update", async (req, res) => {
             article.caption = req.body.caption;
             await article.save();
             res.status(201).json({
-                status: "success"
+                status: "success",
+                data: {
+                    headline: req.body.headline,
+                    category: req.body.category,
+                    summary: req.body.summary,
+                    content: req.body.content,
+                    image_data: req.body.image,
+                    caption: req.body.caption,
+                    writer_id: req.body.writer_id
+                }
             })
         }
     }

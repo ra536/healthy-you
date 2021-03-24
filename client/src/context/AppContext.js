@@ -28,6 +28,19 @@ export const AppContextProvider = props => {
         setArticles(articles.filter(item => item.article_id !== articleID));
     }
 
+    const updateArticle = (article) => {
+        // setArticles(articles.filter(item => item.article_id !== article.article_id));
+        // setArticles([...articles, article]);
+
+        // console.log("UPDATING");
+        // const idx = articles.find(item => item === article);
+        // const newArticles = [...articles];
+        // newArticles[idx] = article;
+        // console.log(newArticles[idx]);
+        // console.log(newArticles);
+        // setArticles(newArticles); // Data transferring, just array not mutable...
+    }
+
     const [articleDeleteShow, setArticleDeleteShow] = useState(false);
     const [articleDeleteHeadline, setArticleDeleteHeadline] = useState("");
     const [articleDeleteID, setArticleDeleteID] = useState("");
@@ -48,7 +61,7 @@ export const AppContextProvider = props => {
             {
                 tests, setTests, addTest,
                 practices, setPractices, addPractice,
-                articles, setArticles, addArticle, removeArticle,
+                articles, setArticles, addArticle, removeArticle, updateArticle,
                 articleDeleteShow, setArticleDeleteShow,
                 articleDeleteHeadline, setArticleDeleteHeadline,
                 articleDeleteID, setArticleDeleteID,
