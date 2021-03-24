@@ -1,9 +1,12 @@
 import React, { useContext, useState } from 'react'
 import PracticeAPI from '../apis/PracticeAPI'
+import { AppContext } from '../context/AppContext';
 
 
 //Lets user input a test object into backend db
 const InputNewPractice = (props) => {
+
+    const { practices, setPractices, addPractice } = useContext(AppContext);
 
     const [practiceName, setPractice] = useState("");
     const [website, setWebsite] = useState("");
@@ -24,7 +27,9 @@ const InputNewPractice = (props) => {
                 fax: fax,
                 doctorID: props.doctorID
             }) 
+            console.log(props.doctorID);
             console.log(response.data.data)
+            addPractice(response.data.data)
         }
         catch (err) {
             console.log(err)

@@ -17,6 +17,21 @@ export const AppContextProvider = props => {
     const addPractice = (practice) => {
         setPractices([...practices, practice]);
     }
+    
+    const [specialties, setSpecialties] = useState([]);
+
+    const addSpecialty = (specialty) => {
+        setSpecialties([...specialties, specialty])
+    }
+
+    const removeSpecialty = (specialty) => {
+        setSpecialties(specialties.filter(item => item !== specialty));
+    }
+
+    const [results, setResults] = useState([]);
+    const addResult = (result) => {
+        setResults([...results, result]);
+    }
 
     const [articles, setArticles] = useState([]);
 
@@ -74,7 +89,8 @@ export const AppContextProvider = props => {
                 articleUpdateContent, setArticleUpdateContent,
                 articleUpdateImage, setArticleUpdateImage,
                 articleUpdateCaption, setArticleUpdateCaption,
-
+                results, setResults, addResult,
+                specialties, setSpecialties, addSpecialty, removeSpecialty
             }}>
             { props.children }
         </AppContext.Provider>
