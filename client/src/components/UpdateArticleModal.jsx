@@ -100,7 +100,7 @@ export const UpdateArticleModal = (props) => {
         setArticleUpdateSummary(props.object.summary);
         setArticleUpdateContent(props.object.content);
         setArticleUpdateImage(props.object.image_data);
-        setArticleUpdateCaption(props.object.caption);
+        setArticleUpdateCaption(props.object.image_caption);
         setArticleUpdateShow(true);
     }
     const handleInsert = async () => {

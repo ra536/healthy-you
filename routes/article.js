@@ -125,7 +125,7 @@ router.post("/create", async (req, res) => {
                 summary: req.body.summary,
                 content: req.body.content,
                 image_data: req.body.image,
-                caption: req.body.caption,
+                image_caption: req.body.caption,
                 writer_id: req.body.writer_id
             })
             console.log(article.dataValues)
@@ -139,7 +139,7 @@ router.post("/create", async (req, res) => {
                     content: article.dataValues.content,
                     publication_date: article.dataValues.publication_date,
                     image_data: article.dataValues.image_data,
-                    caption: article.dataValues.caption,
+                    image_caption: article.dataValues.caption,
                     writer_id: article.dataValues.writer_id
                 }
             })
@@ -180,7 +180,7 @@ router.post("/update", async (req, res) => {
             article.summary = req.body.summary;
             article.content = req.body.content;
             article.image_data = req.body.image;
-            article.caption = req.body.caption;
+            article.image_caption = req.body.caption;
             await article.save();
             res.status(201).json({
                 status: "success",

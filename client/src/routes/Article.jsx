@@ -26,7 +26,7 @@ const Article = (props) => {
                 setSummary(response.data.data[0].summary);
                 setContent(response.data.data[0].content);
                 setImage(response.data.data[0].image_data);
-                setCaption(response.data.data[0].caption);
+                setCaption(response.data.data[0].image_caption);
             }
             catch (err) {
                 console.log(err)
