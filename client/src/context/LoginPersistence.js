@@ -6,6 +6,7 @@ export const LoginContextProvider = props => {
     const[loggedIn, setLoggedIn] = useState(false)
     const [isDoctor, setIsDoctor] = useState(false);
     const [isUser, setIsUser] = useState(false);
+    const [userID, setUserID] = useState("");
 
     const onlineStatus = (online) => {
         setLoggedIn(online)
@@ -29,7 +30,8 @@ export const LoginContextProvider = props => {
             {
                 loggedIn, setLoggedIn, onlineStatus,
                 isDoctor, setIsDoctor, isRoleDoctor,
-                isUser, isRoleUser, isRoleUser
+                isUser, isRoleUser, isRoleUser,
+                userID, setUserID,
             }}>
             { props.children }
         </LoginContext.Provider>

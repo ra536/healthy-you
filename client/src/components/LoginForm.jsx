@@ -10,7 +10,7 @@ import { LoginContext } from '../context/LoginPersistence';
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { loggedIn, setLoggedIn, isDoctor, isUser, onlineStatus, isRoleDoctor , isRoleUser } = useContext(LoginContext)
+    const { loggedIn, setLoggedIn, userID, setUserID, isDoctor, isUser, onlineStatus, isRoleDoctor , isRoleUser } = useContext(LoginContext)
     
 
     function validateForm() {
@@ -27,11 +27,13 @@ const Login = () => {
             practicePassword: password
             });
           console.log(response.data.data)
+          setUserID(response.data.data.doctor_id);
           if(response.data.data){
             onlineStatus(true);
             setLoggedIn(true);
               if (response.data.data.role === undefined){
               isRoleDoctor(true)
+              setUserID(response.data.data.doctor_id);
               localStorage.setItem('userRole', response.data.data.role);
               localStorage.setItem('userID', response.data.data.doctor_id);
               }
@@ -39,6 +41,7 @@ const Login = () => {
 
             else{
               isRoleUser(true)
+              setUserID(response.data.data.user_id);
               localStorage.setItem('userRole', response.data.data.role);
               localStorage.setItem('userID', response.data.data.user_id);
               }
@@ -58,7 +61,7 @@ const Login = () => {
   return loggedIn && isUser ? (
     <Redirect to='/' />
   ) : loggedIn && isDoctor ? (
-    <Redirect to={'/doctor-dashboard/' + localStorage.getItem('userID')} />
+    <Redirect to={'/doctor-dashboard/' + userID} />
   ) : (
     <div className="Login">
       <Form onSubmit={handleSubmit}>
