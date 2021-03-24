@@ -7,6 +7,8 @@ import DoctorDashboard from "./routes/DoctorDashboard";
 import Review from "./routes/Review";
 import Register from './routes/Register';
 import Login from "./routes/Login";
+import Search from './routes/Search'
+import SearchResults from './components/SearchResults'
 
 const App = () => {
     return (
@@ -18,6 +20,8 @@ const App = () => {
                             <Route exact path="/" component={ Home }/>
                             <Route exact path="/register" component = { Register }/>
                             <Route exact path="/login" component={ Login }/>
+                            <Route exact path="/search" component={ Search }/>
+                            <Route path="/results" component={ SearchResults }/>
                             <Route exact path="/doctor-dashboard/:doctorID" component = { DoctorDashboard }/>
                             <Route path="/leaveReview/:id">
                                 <Review url={window.location.href}/>
