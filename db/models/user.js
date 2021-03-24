@@ -9,7 +9,8 @@ const user = db.define('user', {
     },
     email: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     password: {
         type: DataTypes.STRING,
@@ -34,6 +35,11 @@ const user = db.define('user', {
     birthdate: {
         type: DataTypes.DATE,
         allowNull: false
+    },
+    role: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        default: 'User',
     }
 
 }, {underscored: true})

@@ -22,7 +22,8 @@ app.use("/api/v1/dashboard", require('./routes/dashboard'));
 app.use("/api/v1/doctor", require('./routes/doctor'));
 app.use("/api/v1/practice", require('./routes/practice'));
 app.use("/api/v1/specialty", require('./routes/specialty'));
-app.use("/api/v1/user", require('./routes/user'));
+app.use("/api/v1/register/", require('./routes/register'));
+app.use("/api/v1/login/", require('./routes/login'));
 
 // Test db connection
 db.authenticate()

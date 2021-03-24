@@ -2,9 +2,12 @@ import React, { useEffect, useContext } from 'react';
 import TestAPI from '../apis/TestAPI';
 import InputTest from '../components/InputTest';
 import { AppContext } from '../context/AppContext';
+import { LoginContext } from '../context/LoginPersistence';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap';
 import { Container, Card, Carousel } from 'react-bootstrap';
+import { Logout } from '../components/LogoutButton';
+import { Redirect, Link } from 'react-router-dom'
 
 // bootstrap styles library (gives automatic styling)
 import 'bootstrap/dist/css/bootstrap.css';
@@ -12,6 +15,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 const Home = () => {
     // Store the data retrieved from backend API into context
     const { tests, setTests } = useContext(AppContext);
+    const { loggedIn, isDoctor} = useContext(LoginContext)
 
     // Call our backend API to retrieve list of test objects from db
     useEffect( () => {
@@ -29,7 +33,12 @@ const Home = () => {
         fetchData();
     }, []);
 
-    return (
+    console.log("am i a doctor", isDoctor)
+    console.log("am I logged in?", loggedIn)
+
+    return loggedIn && isDoctor ? (
+        <Redirect to='/doctorid/doctor-dashboard' />
+      ) : (
         <div>
             <Navbar bg="primary" variant="dark" expand="lg">
                 <Navbar.Brand href="#home">
@@ -40,6 +49,16 @@ const Home = () => {
                     <Nav className="mr-auto">
                     <Nav.Link href="#home">Home</Nav.Link>
                     <Nav.Link href="#link">Link</Nav.Link>
+
+                    { loggedIn ? 
+                        <Logout/>
+                        :
+                        <>
+                            <Nav.Link href="/register">Register</Nav.Link>
+                            <Nav.Link href="/login">Login</Nav.Link>
+                        </>
+                    }
+
                     <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
