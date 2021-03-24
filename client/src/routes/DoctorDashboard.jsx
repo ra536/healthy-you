@@ -39,6 +39,11 @@ const DoctorDashboard = (props) => {
         }
         fetchData();
     }, []);
+    // if((localStorage.getItem('userRole') != "doctor") || localStorage.getItem('userID') != doctorID){
+    //     return (
+    //         <p>Authentication error: Unauthorized</p>
+    //     )
+    // };
 
     return (
         <Container>
