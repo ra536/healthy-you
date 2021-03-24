@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import ArticleAPI from '../apis/ArticleAPI'
 import { AppContext } from '../context/AppContext';
 import { Button, Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { DeleteArticleModal } from './DeleteArticleModal';
 import { UpdateArticleModal } from './UpdateArticleModal';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -61,9 +62,13 @@ const ArticleList = (props) => {
                                 <td>{ articles.headline }</td> 
                                 <td> { articles.summary }</td>
                                 <td> { articles.category }</td>
-                                <td>
+                                <td> 
+                                    <Link to={'/article/' + articles.article_id}>
+                                        <Button>View Article</Button>
+                                    </Link>{' '}
                                     <UpdateArticleModal object={articles}/>{' '}
                                     <DeleteArticleModal id={articles.article_id} name={articles.headline}/>
+                                    
                                 </td>
                                 <td>
                                     <img src={articles.image_data} height="100px"/>

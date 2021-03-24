@@ -6,6 +6,7 @@ import DoctorDashboard from "./routes/DoctorDashboard";
 import Review from "./routes/Review";
 import Register from './routes/Register';
 import WriterDashboard from './routes/WriterDashboard';
+import Article from './routes/Article';
 
 const App = () => {
     return (
@@ -24,6 +25,7 @@ const App = () => {
                             <Review url={window.location.href}/>
                         </Route>
                         <Route path="/writer-dashboard/:id" component = { WriterDashboard }/>
+                        <Route path="/article/:id" component = { Article } />
                     </Switch>
                 </Router>
             </div>
