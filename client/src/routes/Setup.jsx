@@ -6,7 +6,9 @@ import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-boots
 import doctorPhoto from './doctorPhoto.jpg';
 import { Card, Accordion, Carousel, ListGroup,ButtonGroup } from 'react-bootstrap';
 import ad_logo from'./ad_logo.jpeg';
-
+import adLong from './ad300.jpg';
+import mag from './magazine.jpg';
+import fit from './fitnesspic3.jpg'
 const Setup = () => {
         return (
             <div>
@@ -73,17 +75,23 @@ const Setup = () => {
                 <Card align = "center">
                     <Card.Body h1>Enter information about doctor dirrectory.</Card.Body>
                 </Card>
+                
                 <Container align = "center">
                     <Card>
-                        <Card.Body>DOCTOR FINDER</Card.Body>
+                        <Card.Body>
+                            <h3>
+                                Doctor Finder
+                            </h3>
+                        </Card.Body>
                     </Card>
                     <Form style ={{ width: '50%' }}>
                         <Form.Control type="email" placeholder="Search For Doctors" rounded align = "center" />
                     </Form>
                 </Container>
-
-
-                <Accordion>
+                
+                <div align = "center">
+                <Form style ={{ width: '50%' }}>
+                <Accordion align = "center">
                     <Card>
                         <Card.Header align = "center">
                             <Accordion.Toggle as={Button} variant="link" eventKey="0">
@@ -105,15 +113,20 @@ const Setup = () => {
                         </Accordion.Collapse>
                     </Card>
                 </Accordion>
+                </Form>
+                </div>
+
                 <Container fluid = "md"> 
                 <Row align = "left">
                     <Col align = "left">
-                    
-                    <Card>
-                        <h1>
-                            Featured Doctors
-                        </h1>
-                    </Card>
+                        <div align = "center">
+                        <br/>
+                            <Card>
+                                <h3>
+                                    Featured Doctors
+                                </h3>
+                            </Card>
+                        </div>
                                     <ListGroup.Item>
                                         <Container fluid = "md"> 
                                             <Row>
@@ -130,13 +143,14 @@ const Setup = () => {
                                                     Phone number
                                                     </Button>
                                                     <br/><br/><br/>
-                                                    <Button variant="primary" size="lg">
+                                                    <Button variant="info" size="lg">
                                                     Next Availabile Appoinentment
                                                     </Button>
                                             </Col>
                                             </Row>
                                         </Container>
                                     </ListGroup.Item>
+                                    <br/>
                                     <ListGroup.Item>
                                         <Container fluid = "md"> 
                                             <Row>
@@ -153,7 +167,75 @@ const Setup = () => {
                                                     Phone number
                                                     </Button>
                                                     <br/><br/><br/>
-                                                    <Button variant="primary" size="lg">
+                                                    <Button variant="info" size="lg">
+                                                    Next Availabile Appoinentment
+                                                    </Button>
+                                            </Col>
+                                            </Row>
+                                        </Container>
+                                    </ListGroup.Item> 
+                                    <br/>
+                                        <ListGroup.Item>
+                                        <Container fluid = "md"> 
+                                            <Row>
+                                            <Col>
+                                            <Card.Img variant="top" src={doctorPhoto}/>
+                                            </Col>
+                                            <Col>
+                                                
+                                                <Button variant="secondary" size="sm">
+                                                    Doctor Name
+                                                    </Button> 
+
+                                                    <Button variant="secondary" size="sm">
+                                                    Phone number
+                                                    </Button>
+                                                    <br/><br/><br/>
+                                                    <Button variant="info" size="lg">
+                                                    Next Availabile Appoinentment
+                                                    </Button>
+                                            </Col>
+                                            </Row>
+                                        </Container>
+                                    </ListGroup.Item>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <br/>
+                    <div align = "center">
+                        <Card>
+                            <h3>
+                                All Doctor Listings
+                            </h3>
+                        </Card>
+                    </div>
+                    <ListGroup.Item>
+                                        <Container fluid = "md"> 
+                                            <Row>
+                                            <Col>
+                                            <Card.Img variant="top" src={doctorPhoto}/>
+                                            </Col>
+                                            <Col>
+                                                
+                                                <Button variant="secondary" size="sm">
+                                                    Doctor Name
+                                                    </Button> 
+
+                                                    <Button variant="secondary" size="sm">
+                                                    Phone number
+                                                    </Button>
+                                                    <br/><br/><br/>
+                                                    <Button variant="info" size="lg">
                                                     Next Availabile Appoinentment
                                                     </Button>
                                             </Col>
@@ -175,207 +257,240 @@ const Setup = () => {
                                                     Phone number
                                                     </Button>
                                                     <br/><br/><br/>
-                                                    <Button variant="primary" size="lg">
+                                                    <Button variant="info" size="lg">
+                                                    Next Availabile Appoinentment
+                                                    </Button>
+                                            </Col>
+                                            </Row>
+                                        </Container>
+                                    </ListGroup.Item>                                    <ListGroup.Item>
+                                        <Container fluid = "md"> 
+                                            <Row>
+                                            <Col>
+                                            <Card.Img variant="top" src={doctorPhoto}/>
+                                            </Col>
+                                            <Col>
+                                                
+                                                <Button variant="secondary" size="sm">
+                                                    Doctor Name
+                                                    </Button> 
+
+                                                    <Button variant="secondary" size="sm">
+                                                    Phone number
+                                                    </Button>
+                                                    <br/><br/><br/>
+                                                    <Button variant="info" size="lg">
+                                                    Next Availabile Appoinentment
+                                                    </Button>
+                                            </Col>
+                                            </Row>
+                                        </Container>
+                                    </ListGroup.Item>                                    <ListGroup.Item>
+                                        <Container fluid = "md"> 
+                                            <Row>
+                                            <Col>
+                                            <Card.Img variant="top" src={doctorPhoto}/>
+                                            </Col>
+                                            <Col>
+                                                
+                                                <Button variant="secondary" size="sm">
+                                                    Doctor Name
+                                                    </Button> 
+
+                                                    <Button variant="secondary" size="sm">
+                                                    Phone number
+                                                    </Button>
+                                                    <br/><br/><br/>
+                                                    <Button variant="info" size="lg">
+                                                    Next Availabile Appoinentment
+                                                    </Button>
+                                            </Col>
+                                            </Row>
+                                        </Container>
+                                    </ListGroup.Item>                                    <ListGroup.Item>
+                                        <Container fluid = "md"> 
+                                            <Row>
+                                            <Col>
+                                            <Card.Img variant="top" src={doctorPhoto}/>
+                                            </Col>
+                                            <Col>
+                                                
+                                                <Button variant="secondary" size="sm">
+                                                    Doctor Name
+                                                    </Button> 
+
+                                                    <Button variant="secondary" size="sm">
+                                                    Phone number
+                                                    </Button>
+                                                    <br/><br/><br/>
+                                                    <Button variant="info" size="lg">
+                                                    Next Availabile Appoinentment
+                                                    </Button>
+                                            </Col>
+                                            </Row>
+                                        </Container>
+                                    </ListGroup.Item>                                    <ListGroup.Item>
+                                        <Container fluid = "md"> 
+                                            <Row>
+                                            <Col>
+                                            <Card.Img variant="top" src={doctorPhoto}/>
+                                            </Col>
+                                            <Col>
+                                                
+                                                <Button variant="secondary" size="sm">
+                                                    Doctor Name
+                                                    </Button> 
+
+                                                    <Button variant="secondary" size="sm">
+                                                    Phone number
+                                                    </Button>
+                                                    <br/><br/><br/>
+                                                    <Button variant="info" size="lg">
+                                                    Next Availabile Appoinentment
+                                                    </Button>
+                                            </Col>
+                                            </Row>
+                                        </Container>
+                                    </ListGroup.Item>                                    <ListGroup.Item>
+                                        <Container fluid = "md"> 
+                                            <Row>
+                                            <Col>
+                                            <Card.Img variant="top" src={doctorPhoto}/>
+                                            </Col>
+                                            <Col>
+                                                
+                                                <Button variant="secondary" size="sm">
+                                                    Doctor Name
+                                                    </Button> 
+
+                                                    <Button variant="secondary" size="sm">
+                                                    Phone number
+                                                    </Button>
+                                                    <br/><br/><br/>
+                                                    <Button variant="info" size="lg">
+                                                    Next Availabile Appoinentment
+                                                    </Button>
+                                            </Col>
+                                            </Row>
+                                        </Container>
+                                    </ListGroup.Item>                                    <ListGroup.Item>
+                                        <Container fluid = "md"> 
+                                            <Row>
+                                            <Col>
+                                            <Card.Img variant="top" src={doctorPhoto}/>
+                                            </Col>
+                                            <Col>
+                                                
+                                                <Button variant="secondary" size="sm">
+                                                    Doctor Name
+                                                    </Button> 
+
+                                                    <Button variant="secondary" size="sm">
+                                                    Phone number
+                                                    </Button>
+                                                    <br/><br/><br/>
+                                                    <Button variant="info" size="lg">
+                                                    Next Availabile Appoinentment
+                                                    </Button>
+                                            </Col>
+                                            </Row>
+                                        </Container>
+                                    </ListGroup.Item>                                    <ListGroup.Item>
+                                        <Container fluid = "md"> 
+                                            <Row>
+                                            <Col>
+                                            <Card.Img variant="top" src={doctorPhoto}/>
+                                            </Col>
+                                            <Col>
+                                                
+                                                <Button variant="secondary" size="sm">
+                                                    Doctor Name
+                                                    </Button> 
+
+                                                    <Button variant="secondary" size="sm">
+                                                    Phone number
+                                                    </Button>
+                                                    <br/><br/><br/>
+                                                    <Button variant="info" size="lg">
+                                                    Next Availabile Appoinentment
+                                                    </Button>
+                                            </Col>
+                                            </Row>
+                                        </Container>
+                                    </ListGroup.Item>                                    <ListGroup.Item>
+                                        <Container fluid = "md"> 
+                                            <Row>
+                                            <Col>
+                                            <Card.Img variant="top" src={doctorPhoto}/>
+                                            </Col>
+                                            <Col>
+                                                
+                                                <Button variant="secondary" size="sm">
+                                                    Doctor Name
+                                                    </Button> 
+
+                                                    <Button variant="secondary" size="sm">
+                                                    Phone number
+                                                    </Button>
+                                                    <br/><br/><br/>
+                                                    <Button variant="info" size="lg">
                                                     Next Availabile Appoinentment
                                                     </Button>
                                             </Col>
                                             </Row>
                                         </Container>
                                     </ListGroup.Item>
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    <br/><br/><br/>
-                    <Card>
-                        <h1>
-                            All Doctor Listings
-                        </h1>
-                    </Card>
-                    <ListGroup.Item>
-                                        <Container fluid = "md"> 
-                                            <Row>
-                                            <Col>
-                                            <Card.Img variant="top" src={doctorPhoto}/>
-                                            </Col>
-                                            <Col>
-                                                <h1>
-                                                    Doctor Name<br/><br/>Doctor Number<br/><br/>Specialty
-                                                </h1>
-                                            </Col>
-                                            </Row>
-                                        </Container>
-                                    </ListGroup.Item>
-                                    <ListGroup.Item>
-                                        <Container fluid = "md"> 
-                                            <Row>
-                                            <Col>
-                                            <Card.Img variant="top" src={doctorPhoto}/>
-                                            </Col>
-                                            <Col>
-                                                <h1>
-                                                    Doctor Name<br/><br/>Doctor Number<br/><br/>Specialty
-                                                </h1>
-                                            </Col>
-                                            </Row>
-                                        </Container>
-                                    </ListGroup.Item>
-                                    <ListGroup.Item>
-                                        <Container fluid = "md"> 
-                                            <Row>
-                                            <Col>
-                                            <Card.Img variant="top" src={doctorPhoto}/>
-                                            </Col>
-                                            <Col>
-                                                <h1>
-                                                    Doctor Name<br/><br/>Doctor Number<br/><br/>Specialty
-                                                </h1>
-                                            </Col>
-                                            </Row>
-                                        </Container>
-                                    </ListGroup.Item>
-                                    <ListGroup.Item>
-                                        <Container fluid = "md"> 
-                                            <Row>
-                                            <Col>
-                                            <Card.Img variant="top" src={doctorPhoto}/>
-                                            </Col>
-                                            <Col>
-                                                <h1>
-                                                    Doctor Name<br/><br/>Doctor Number<br/><br/>Specialty
-                                                </h1>
-                                            </Col>
-                                            </Row>
-                                        </Container>
-                                    </ListGroup.Item>
-                                    <ListGroup.Item>
-                                        <Container fluid = "md"> 
-                                            <Row>
-                                            <Col>
-                                            <Card.Img variant="top" src={doctorPhoto}/>
-                                            </Col>
-                                            <Col>
-                                                <h1>
-                                                    Doctor Name<br/><br/>Doctor Number<br/><br/>Specialty
-                                                </h1>
-                                            </Col>
-                                            </Row>
-                                        </Container>
-                                    </ListGroup.Item>
-                                    <ListGroup.Item>
-                                        <Container fluid = "md"> 
-                                            <Row>
-                                            <Col>
-                                            <Card.Img variant="top" src={doctorPhoto}/>
-                                            </Col>
-                                            <Col>
-                                                <h1>
-                                                    Doctor Name<br/><br/>Doctor Number<br/><br/>Specialty
-                                                </h1>
-                                            </Col>
-                                            </Row>
-                                        </Container>
-                                    </ListGroup.Item>
-                                    <ListGroup.Item>
-                                        <Container fluid = "md"> 
-                                            <Row>
-                                            <Col>
-                                            <Card.Img variant="top" src={doctorPhoto}/>
-                                            </Col>
-                                            <Col>
-                                                <h1>
-                                                    Doctor Name<br/><br/>Doctor Number<br/><br/>Specialty
-                                                </h1>
-                                            </Col>
-                                            </Row>
-                                        </Container>
-                                    </ListGroup.Item>
-                                    <ListGroup.Item>
-                                        <Container fluid = "md"> 
-                                            <Row>
-                                            <Col>
-                                            <Card.Img variant="top" src={doctorPhoto}/>
-                                            </Col>
-                                            <Col>
-                                                <h1>
-                                                    Doctor Name<br/><br/>Doctor Number<br/><br/>Specialty
-                                                </h1>
-                                            </Col>
-                                            </Row>
-                                        </Container>
-                                    </ListGroup.Item>
-                                    <ListGroup.Item>
-                                        <Container fluid = "md"> 
-                                            <Row>
-                                            <Col>
-                                            <Card.Img variant="top" src={doctorPhoto}/>
-                                            </Col>
-                                            <Col>
-                                                <h1>
-                                                    Doctor Name<br/><br/>Doctor Number<br/><br/>Specialty
-                                                </h1>
-                                            </Col>
-                                            </Row>
-                                        </Container>
-                                    </ListGroup.Item>
-                                    <ListGroup.Item>
-                                        <Container fluid = "md"> 
-                                            <Row>
-                                            <Col>
-                                            <Card.Img variant="top" src={doctorPhoto}/>
-                                            </Col>
-                                            <Col>
-                                                <h1>
-                                                    Doctor Name<br/><br/>Doctor Number<br/><br/>Specialty
-                                                </h1>
-                                            </Col>
-                                            </Row>
-                                        </Container>
-                                    </ListGroup.Item>
-                                    <ListGroup.Item>
-                                        <Container fluid = "md"> 
-                                            <Row>
-                                            <Col>
-                                            <Card.Img variant="top" src={doctorPhoto}/>
-                                            </Col>
-                                            <Col>
-                                                <h1>
-                                                    Doctor Name<br/><br/>Doctor Number<br/><br/>Specialty
-                                                </h1>
-                                            </Col>
-                                            </Row>
-                                        </Container>
-                                    </ListGroup.Item>                        
-                    
-              
-                    
                     </Col>
                     
 
                     
                     <Col align = "center">
+                        <br/><br/>
+                        <h3>
+                            Follow us on our social media
+                        </h3>
+                            <ButtonGroup aria-label="Basic example">
+                            <Button variant="secondary">Facebook</Button>
+                            <Button variant="secondary">Twitter</Button>
+                            <Button variant="secondary">Instagram</Button>
+                            </ButtonGroup>
+                            <br/><br/>
                         <br/>
-                        
-                        <h1>
-                            Featured Listing
-                        </h1>
+                        <Card.Img variant="top" src={adLong} style = {{width: '50%'}}/>
+                        <br/><br/>
+                        <Card.Img variant="top" src={mag} style = {{width: '50%'}}/>
+                        <br/><br/>
+                        <div align = "center" style = {{width: '50%'}}>
+                            <Card>
+                                <h3>
+                                    Featured Listings
+                                </h3>
+                            </Card>
+                        </div>
+
                         <Card.Img variant="top" src={doctorPhoto} style = {{width: '50%'}}/>
-                        <Card.Text>
-                            Doctor Information
-                            <br />
-                        </Card.Text>
+                        <div style = {{width: '50%'}}>
+                        <ListGroup.Item>
+                             <Container fluid = "md"> 
+                                                <Button variant="secondary" size="sm">
+                                                    Doctor Name
+                                                    </Button> 
+                                                    <h1> </h1>
+                                                    <Button variant="secondary" size="sm">
+                                                    Phone number
+                                                    </Button>
+                                                    <br/><br/>
+                                                    <Button variant="info" size="lg">
+                                                    Next Availabile Appoinentment
+                                                    </Button>
+
+                             </Container>
+                         </ListGroup.Item> 
+                         </div>
                         <Form style = {{width: '50%'}}>
                             <Form.Control type="email" placeholder="Search For Doctors" rounded/>
                         </Form>
+                        <div style = {{width: '50%'}}>
                         <Accordion>
                         <Card>
                             <Card.Header>
@@ -398,6 +513,10 @@ const Setup = () => {
                             </Accordion.Collapse>
                         </Card>
                         </Accordion>
+                        </div>
+                        <br/><br/>
+                        <Card.Img variant="top" src={fit} style = {{width: '90%'}}/>
+                        
                     </Col>
                 </Row>
                 </Container>
