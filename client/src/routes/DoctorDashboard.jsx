@@ -46,6 +46,7 @@ const DoctorDashboard = (props) => {
                 setSpecialties(response.data.data[0].specialty)
                 setBio(response.data.data[0].bio)
                 setPhone(response.data.data[0].phone)
+                setUpdatedBio(response.data.data[0].bio)
                 // setDoctorID(response.data.data[0].doctor_id)
             }
             catch (err) {
@@ -86,6 +87,7 @@ const DoctorDashboard = (props) => {
                 name: updatedName
             }));
             console.log(response.data.data);
+            setName(response.data.data.doctor_name)
         }
         catch(err){
             console.log(err);
@@ -101,6 +103,7 @@ const DoctorDashboard = (props) => {
                 phone: updatedPhone
             }));
             console.log(response.data.data);
+            setPhone(response.data.data.phone)
         }
         catch(err){
             console.log(err);
@@ -116,10 +119,17 @@ const DoctorDashboard = (props) => {
                 bio: updatedBio
             }));
             console.log(response.data.data);
+            setBio(response.data.data.bio)
         }
         catch(err){
             console.log(err);
         }
+    }
+
+    // Empty biography TextArea (does not delete/save changes)
+    const handleClearBio = async (e) => {
+            e.preventDefault();
+            setUpdatedBio("")
     }
 
     const handleSubmitProfilePic = async (e) => {
@@ -131,6 +141,7 @@ const DoctorDashboard = (props) => {
                 image: newImage
             }));
             console.log(response.data.data);
+            setProfilePicture(response.data.data.image)
         }
         catch(err){
             console.log(err);
@@ -225,11 +236,12 @@ const DoctorDashboard = (props) => {
                 <textarea rows="10" cols="75"
                     id="input-bio"
                     value={updatedBio}
-                    placeholder="Biography"
+                    //placeholder={bio}
                     onChange={e => setUpdatedBio(e.target.value)}
                 />
                 <br/>
-                <button type="submit" onClick={handleSubmitBio}>Save</button>
+                <button type="submit"  onClick={handleSubmitBio}>Save Changes</button>
+                <button type="submit" onClick={handleClearBio}>Clear</button>
             </form>
             
             <br /><br />
