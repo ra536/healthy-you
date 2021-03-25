@@ -31,7 +31,25 @@ const RegisterForm = () => {
                 birthdate: ""
             }}
             validationSchema={ schema }
-            onSubmit={(data) => console.log(data)}
+            onSubmit={ async (data, { setErrors }) => {
+                console.log(data);
+                try {
+                    const response = await UserAPI.post("/create", {
+                        password: data.password,
+                        email: data.email,
+                        firstName: data.firstName,
+                        lastName: data.lastName,
+                        city: data.city,
+                        state: data.state,
+                        birthdate: data.birthdate
+                    })
+                    setErrors({ email: response.data.status[0].message})
+                    console.log(response.data.status[0].message)
+                }
+                catch (err) {
+                    console.log(err)
+                }
+            }}
         >
             {({
                 handleSubmit,
@@ -40,7 +58,7 @@ const RegisterForm = () => {
                 values,
                 errors,
                 touched,
-                isInvalid
+                isInvalid,
             }) => {
                 return (
                     <Form onSubmit={ handleSubmit }>
