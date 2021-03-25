@@ -133,6 +133,7 @@ const Setup = () => {
                                 </h3>
                             </Card>
                         </div>
+                                    <a style={{ cursor: 'pointer' }}>
                                     <ListGroup.Item>
                                         <Container fluid = "md"> 
                                             <Row>
@@ -154,7 +155,9 @@ const Setup = () => {
                                             </Row>
                                         </Container>
                                     </ListGroup.Item>
+                                    </a>
                                     <br/>
+                                    <a style={{ cursor: 'pointer' }}>
                                     <ListGroup.Item>
                                         <Container fluid = "md"> 
                                             <Row>
@@ -176,7 +179,9 @@ const Setup = () => {
                                             </Row>
                                         </Container>
                                     </ListGroup.Item>
+                                    </a>
                                     <br/>
+                                    <a style={{ cursor: 'pointer' }}>
                                     <ListGroup.Item>
                                         <Container fluid = "md"> 
                                             <Row>
@@ -198,6 +203,7 @@ const Setup = () => {
                                             </Row>
                                         </Container>
                                     </ListGroup.Item>
+                                    </a>
 
 
 
@@ -223,27 +229,7 @@ const Setup = () => {
                             </h3>
                         </Card>
                     </div>
-                    <ListGroup.Item>
-                                        <Container fluid = "md"> 
-                                            <Row>
-                                            <Col>
-                                            <Card.Img variant="top" src={doctorPhoto}/>
-                                            </Col>
-                                            <Col>
-                                                
-                                                    <h4>Dr.Ian Johnson, CAO Ortho Maryland</h4>
-                                                    <h6>415 Day Lane, Suite 200, Newark, New Jersey</h6>
-                                                    <h6>292-893-9090</h6>
-                                                    <h6>Specialty|Orthopedic Surgery</h6>
-                                                    <h6>Location|Essex County</h6>
-                                                    
-                                                    <Button variant="info" size="sm">
-                                                    Schedule an appointment: March 23rd, 2021|April 12th, 2021
-                                                    </Button>
-                                            </Col>
-                                            </Row>
-                                        </Container>
-                                    </ListGroup.Item>
+                    <a style={{ cursor: 'pointer' }}>
                                     <ListGroup.Item>
                                         <Container fluid = "md"> 
                                             <Row>
@@ -265,6 +251,8 @@ const Setup = () => {
                                             </Row>
                                         </Container>
                                     </ListGroup.Item>
+                                    </a>
+                                    <a style={{ cursor: 'pointer' }}>
                                     <ListGroup.Item>
                                         <Container fluid = "md"> 
                                             <Row>
@@ -286,6 +274,8 @@ const Setup = () => {
                                             </Row>
                                         </Container>
                                     </ListGroup.Item>
+                                    </a>
+                                    <a style={{ cursor: 'pointer' }}>
                                     <ListGroup.Item>
                                         <Container fluid = "md"> 
                                             <Row>
@@ -307,6 +297,8 @@ const Setup = () => {
                                             </Row>
                                         </Container>
                                     </ListGroup.Item>
+                                    </a>
+                                    <a style={{ cursor: 'pointer' }}>
                                     <ListGroup.Item>
                                         <Container fluid = "md"> 
                                             <Row>
@@ -328,6 +320,8 @@ const Setup = () => {
                                             </Row>
                                         </Container>
                                     </ListGroup.Item>
+                                    </a>
+                                    <a style={{ cursor: 'pointer' }}>
                                     <ListGroup.Item>
                                         <Container fluid = "md"> 
                                             <Row>
@@ -349,6 +343,30 @@ const Setup = () => {
                                             </Row>
                                         </Container>
                                     </ListGroup.Item>
+                                    </a>
+                                    <a style={{ cursor: 'pointer' }}>
+                                    <ListGroup.Item>
+                                        <Container fluid = "md"> 
+                                            <Row>
+                                            <Col>
+                                            <Card.Img variant="top" src={doctorPhoto}/>
+                                            </Col>
+                                            <Col>
+                                                
+                                                    <h3>Dr.Ian Johnson, CAO Ortho Maryland</h3>
+                                                    <h6>415 Day Lane, Suite 200, Newark, New Jersey</h6>
+                                                    <h6>292-893-9090</h6>
+                                                    <h6>Specialty|Orthopedic Surgery</h6>
+                                                    <h6>Location|Essex County</h6>
+                                                    
+                                                    <Button variant="info" size="sm">
+                                                    Schedule an appointment: March 23rd, 2021|April 12th, 2021
+                                                    </Button>
+                                            </Col>
+                                            </Row>
+                                        </Container>
+                                    </ListGroup.Item>
+                                    </a>
 
 
 
@@ -374,7 +392,7 @@ const Setup = () => {
                         <SocialIcon url="https://www.linkedin.com/company/health-wellness-&-fitness"/>
 
 
-                            <br/><br/>
+                        <br/><br/>
                         <br/>
                         <div align = "center">
                             <h3>
