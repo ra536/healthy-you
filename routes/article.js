@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../db/index')
 const articles = require('../db/models/article.js')
 var multer = require('multer');
-const article = require('../db/models/article.js');
+// const article = require('../db/models/article.js');
 // var upload = multer({ dest: './uploads' })
 
 router.use(express.json());
@@ -222,5 +222,30 @@ router.post("/update", async (req, res) => {
 //         console.log(err)
 //     }
 // });
+
+router.get("/:id", async (req, res) => {
+    try {
+        const name = req.params.id
+
+        const articleResults = await articles.findOne({
+            where:{
+               category: name 
+            },
+            raw: true
+        });
+
+        console.log(articleResults)
+
+        res.status(200).json({
+
+            status: "success",
+            data: articleResults
+        })
+
+
+    } catch (error) {
+        console.log(error.message)
+    }
+});
 
 module.exports = router;
