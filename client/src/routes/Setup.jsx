@@ -8,7 +8,9 @@ import { Card, Accordion, Carousel, ListGroup,ButtonGroup } from 'react-bootstra
 import ad_logo from'./ad_logo.jpeg';
 import adLong from './ad300.jpg';
 import mag from './magazine.jpg';
-import fit from './fitnesspic3.jpg'
+import fit from './fitnesspic3.jpg';
+import ReactDOM from 'react-dom';
+import { SocialIcon } from 'react-social-icons';
 const Setup = () => {
         return (
             <div>
@@ -70,25 +72,29 @@ const Setup = () => {
             
             </Carousel.Item>
             </Carousel>
-
+            <br/>
+                <div align = "center">
                 <h1 align = "center"> Doctor Directory</h1>
-                <Card align = "center">
-                    <Card.Body h1>Enter information about doctor dirrectory.</Card.Body>
+                <Card align = "center" style ={{ width: '50%' }}>
+                    <Card.Body>
+                        A comprehensive resource guide including our annual Top Doctors list as well as other medical professionals in the Morris area.
+                    </Card.Body>
                 </Card>
-                
+                </div>
+                <div>
                 <Container align = "center">
-                    <Card>
+                    <Card style ={{ width: '50%' }} >
                         <Card.Body>
                             <h3>
                                 Doctor Finder
                             </h3>
                         </Card.Body>
                     </Card>
-                    <Form style ={{ width: '50%' }}>
-                        <Form.Control type="email" placeholder="Search For Doctors" rounded align = "center" />
+                    <Form style ={{ width: '25%' }}>
+                        <Form.Control type="email" placeholder="Search For Doctors" rounded align = "center"/>
                     </Form>
                 </Container>
-                
+                </div>
                 <div align = "center">
                 <Form style ={{ width: '50%' }}>
                 <Accordion align = "center">
@@ -109,13 +115,13 @@ const Setup = () => {
                             </Accordion.Toggle>
                         </Card.Header>
                         <Accordion.Collapse eventKey="1">
-                            <Card.Body align = "center">Inset information for the locations</Card.Body>
+                            <Card.Body align = "center">Insert information for the locations</Card.Body>
                         </Accordion.Collapse>
                     </Card>
                 </Accordion>
                 </Form>
                 </div>
-
+                <br/>
                 <Container fluid = "md"> 
                 <Row align = "left">
                     <Col align = "left">
@@ -135,16 +141,14 @@ const Setup = () => {
                                             </Col>
                                             <Col>
                                                 
-                                                <Button variant="secondary" size="sm">
-                                                    Doctor Name
-                                                    </Button> 
-
-                                                    <Button variant="secondary" size="sm">
-                                                    Phone number
-                                                    </Button>
-                                                    <br/><br/><br/>
-                                                    <Button variant="info" size="lg">
-                                                    Next Availabile Appoinentment
+                                                    <h3>Dr.Ian Johnson, CAO Ortho Maryland</h3>
+                                                    <h6>415 Day Lane, Suite 200, Newark, New Jersey</h6>
+                                                    <h6>292-893-9090</h6>
+                                                    <h6>Specialty|Orthopedic Surgery</h6>
+                                                    <h6>Location|Essex County</h6>
+                                                    
+                                                    <Button variant="info" size="sm">
+                                                    Schedule an appointment: March 23rd, 2021|April 12th, 2021
                                                     </Button>
                                             </Col>
                                             </Row>
@@ -159,23 +163,21 @@ const Setup = () => {
                                             </Col>
                                             <Col>
                                                 
-                                                <Button variant="secondary" size="sm">
-                                                    Doctor Name
-                                                    </Button> 
-
-                                                    <Button variant="secondary" size="sm">
-                                                    Phone number
-                                                    </Button>
-                                                    <br/><br/><br/>
-                                                    <Button variant="info" size="lg">
-                                                    Next Availabile Appoinentment
+                                                    <h3>Dr.Ian Johnson, CAO Ortho Maryland</h3>
+                                                    <h6>415 Day Lane, Suite 200, Newark, New Jersey</h6>
+                                                    <h6>292-893-9090</h6>
+                                                    <h6>Specialty|Orthopedic Surgery</h6>
+                                                    <h6>Location|Essex County</h6>
+                                                    
+                                                    <Button variant="info" size="sm">
+                                                    Schedule an appointment: March 23rd, 2021|April 12th, 2021
                                                     </Button>
                                             </Col>
                                             </Row>
                                         </Container>
-                                    </ListGroup.Item> 
+                                    </ListGroup.Item>
                                     <br/>
-                                        <ListGroup.Item>
+                                    <ListGroup.Item>
                                         <Container fluid = "md"> 
                                             <Row>
                                             <Col>
@@ -183,21 +185,23 @@ const Setup = () => {
                                             </Col>
                                             <Col>
                                                 
-                                                <Button variant="secondary" size="sm">
-                                                    Doctor Name
-                                                    </Button> 
-
-                                                    <Button variant="secondary" size="sm">
-                                                    Phone number
-                                                    </Button>
-                                                    <br/><br/><br/>
-                                                    <Button variant="info" size="lg">
-                                                    Next Availabile Appoinentment
+                                                    <h3>Dr.Ian Johnson, CAO Ortho Maryland</h3>
+                                                    <h6>415 Day Lane, Suite 200, Newark, New Jersey</h6>
+                                                    <h6>292-893-9090</h6>
+                                                    <h6>Specialty|Orthopedic Surgery</h6>
+                                                    <h6>Location|Essex County</h6>
+                                                    
+                                                    <Button variant="info" size="sm">
+                                                    Schedule an appointment: March 23rd, 2021|April 12th, 2021
                                                     </Button>
                                             </Col>
                                             </Row>
                                         </Container>
                                     </ListGroup.Item>
+
+
+
+                                    
 
 
 
@@ -227,219 +231,134 @@ const Setup = () => {
                                             </Col>
                                             <Col>
                                                 
-                                                <Button variant="secondary" size="sm">
-                                                    Doctor Name
-                                                    </Button> 
-
-                                                    <Button variant="secondary" size="sm">
-                                                    Phone number
-                                                    </Button>
-                                                    <br/><br/><br/>
-                                                    <Button variant="info" size="lg">
-                                                    Next Availabile Appoinentment
-                                                    </Button>
-                                            </Col>
-                                            </Row>
-                                        </Container>
-                                    </ListGroup.Item>                                    <ListGroup.Item>
-                                        <Container fluid = "md"> 
-                                            <Row>
-                                            <Col>
-                                            <Card.Img variant="top" src={doctorPhoto}/>
-                                            </Col>
-                                            <Col>
-                                                
-                                                <Button variant="secondary" size="sm">
-                                                    Doctor Name
-                                                    </Button> 
-
-                                                    <Button variant="secondary" size="sm">
-                                                    Phone number
-                                                    </Button>
-                                                    <br/><br/><br/>
-                                                    <Button variant="info" size="lg">
-                                                    Next Availabile Appoinentment
-                                                    </Button>
-                                            </Col>
-                                            </Row>
-                                        </Container>
-                                    </ListGroup.Item>                                    <ListGroup.Item>
-                                        <Container fluid = "md"> 
-                                            <Row>
-                                            <Col>
-                                            <Card.Img variant="top" src={doctorPhoto}/>
-                                            </Col>
-                                            <Col>
-                                                
-                                                <Button variant="secondary" size="sm">
-                                                    Doctor Name
-                                                    </Button> 
-
-                                                    <Button variant="secondary" size="sm">
-                                                    Phone number
-                                                    </Button>
-                                                    <br/><br/><br/>
-                                                    <Button variant="info" size="lg">
-                                                    Next Availabile Appoinentment
-                                                    </Button>
-                                            </Col>
-                                            </Row>
-                                        </Container>
-                                    </ListGroup.Item>                                    <ListGroup.Item>
-                                        <Container fluid = "md"> 
-                                            <Row>
-                                            <Col>
-                                            <Card.Img variant="top" src={doctorPhoto}/>
-                                            </Col>
-                                            <Col>
-                                                
-                                                <Button variant="secondary" size="sm">
-                                                    Doctor Name
-                                                    </Button> 
-
-                                                    <Button variant="secondary" size="sm">
-                                                    Phone number
-                                                    </Button>
-                                                    <br/><br/><br/>
-                                                    <Button variant="info" size="lg">
-                                                    Next Availabile Appoinentment
-                                                    </Button>
-                                            </Col>
-                                            </Row>
-                                        </Container>
-                                    </ListGroup.Item>                                    <ListGroup.Item>
-                                        <Container fluid = "md"> 
-                                            <Row>
-                                            <Col>
-                                            <Card.Img variant="top" src={doctorPhoto}/>
-                                            </Col>
-                                            <Col>
-                                                
-                                                <Button variant="secondary" size="sm">
-                                                    Doctor Name
-                                                    </Button> 
-
-                                                    <Button variant="secondary" size="sm">
-                                                    Phone number
-                                                    </Button>
-                                                    <br/><br/><br/>
-                                                    <Button variant="info" size="lg">
-                                                    Next Availabile Appoinentment
-                                                    </Button>
-                                            </Col>
-                                            </Row>
-                                        </Container>
-                                    </ListGroup.Item>                                    <ListGroup.Item>
-                                        <Container fluid = "md"> 
-                                            <Row>
-                                            <Col>
-                                            <Card.Img variant="top" src={doctorPhoto}/>
-                                            </Col>
-                                            <Col>
-                                                
-                                                <Button variant="secondary" size="sm">
-                                                    Doctor Name
-                                                    </Button> 
-
-                                                    <Button variant="secondary" size="sm">
-                                                    Phone number
-                                                    </Button>
-                                                    <br/><br/><br/>
-                                                    <Button variant="info" size="lg">
-                                                    Next Availabile Appoinentment
-                                                    </Button>
-                                            </Col>
-                                            </Row>
-                                        </Container>
-                                    </ListGroup.Item>                                    <ListGroup.Item>
-                                        <Container fluid = "md"> 
-                                            <Row>
-                                            <Col>
-                                            <Card.Img variant="top" src={doctorPhoto}/>
-                                            </Col>
-                                            <Col>
-                                                
-                                                <Button variant="secondary" size="sm">
-                                                    Doctor Name
-                                                    </Button> 
-
-                                                    <Button variant="secondary" size="sm">
-                                                    Phone number
-                                                    </Button>
-                                                    <br/><br/><br/>
-                                                    <Button variant="info" size="lg">
-                                                    Next Availabile Appoinentment
-                                                    </Button>
-                                            </Col>
-                                            </Row>
-                                        </Container>
-                                    </ListGroup.Item>                                    <ListGroup.Item>
-                                        <Container fluid = "md"> 
-                                            <Row>
-                                            <Col>
-                                            <Card.Img variant="top" src={doctorPhoto}/>
-                                            </Col>
-                                            <Col>
-                                                
-                                                <Button variant="secondary" size="sm">
-                                                    Doctor Name
-                                                    </Button> 
-
-                                                    <Button variant="secondary" size="sm">
-                                                    Phone number
-                                                    </Button>
-                                                    <br/><br/><br/>
-                                                    <Button variant="info" size="lg">
-                                                    Next Availabile Appoinentment
-                                                    </Button>
-                                            </Col>
-                                            </Row>
-                                        </Container>
-                                    </ListGroup.Item>                                    <ListGroup.Item>
-                                        <Container fluid = "md"> 
-                                            <Row>
-                                            <Col>
-                                            <Card.Img variant="top" src={doctorPhoto}/>
-                                            </Col>
-                                            <Col>
-                                                
-                                                <Button variant="secondary" size="sm">
-                                                    Doctor Name
-                                                    </Button> 
-
-                                                    <Button variant="secondary" size="sm">
-                                                    Phone number
-                                                    </Button>
-                                                    <br/><br/><br/>
-                                                    <Button variant="info" size="lg">
-                                                    Next Availabile Appoinentment
-                                                    </Button>
-                                            </Col>
-                                            </Row>
-                                        </Container>
-                                    </ListGroup.Item>                                    <ListGroup.Item>
-                                        <Container fluid = "md"> 
-                                            <Row>
-                                            <Col>
-                                            <Card.Img variant="top" src={doctorPhoto}/>
-                                            </Col>
-                                            <Col>
-                                                
-                                                <Button variant="secondary" size="sm">
-                                                    Doctor Name
-                                                    </Button> 
-
-                                                    <Button variant="secondary" size="sm">
-                                                    Phone number
-                                                    </Button>
-                                                    <br/><br/><br/>
-                                                    <Button variant="info" size="lg">
-                                                    Next Availabile Appoinentment
+                                                    <h4>Dr.Ian Johnson, CAO Ortho Maryland</h4>
+                                                    <h6>415 Day Lane, Suite 200, Newark, New Jersey</h6>
+                                                    <h6>292-893-9090</h6>
+                                                    <h6>Specialty|Orthopedic Surgery</h6>
+                                                    <h6>Location|Essex County</h6>
+                                                    
+                                                    <Button variant="info" size="sm">
+                                                    Schedule an appointment: March 23rd, 2021|April 12th, 2021
                                                     </Button>
                                             </Col>
                                             </Row>
                                         </Container>
                                     </ListGroup.Item>
+                                    <ListGroup.Item>
+                                        <Container fluid = "md"> 
+                                            <Row>
+                                            <Col>
+                                            <Card.Img variant="top" src={doctorPhoto}/>
+                                            </Col>
+                                            <Col>
+                                                
+                                                    <h3>Dr.Ian Johnson, CAO Ortho Maryland</h3>
+                                                    <h6>415 Day Lane, Suite 200, Newark, New Jersey</h6>
+                                                    <h6>292-893-9090</h6>
+                                                    <h6>Specialty|Orthopedic Surgery</h6>
+                                                    <h6>Location|Essex County</h6>
+                                                    
+                                                    <Button variant="info" size="sm">
+                                                    Schedule an appointment: March 23rd, 2021|April 12th, 2021
+                                                    </Button>
+                                            </Col>
+                                            </Row>
+                                        </Container>
+                                    </ListGroup.Item>
+                                    <ListGroup.Item>
+                                        <Container fluid = "md"> 
+                                            <Row>
+                                            <Col>
+                                            <Card.Img variant="top" src={doctorPhoto}/>
+                                            </Col>
+                                            <Col>
+                                                
+                                                    <h3>Dr.Ian Johnson, CAO Ortho Maryland</h3>
+                                                    <h6>415 Day Lane, Suite 200, Newark, New Jersey</h6>
+                                                    <h6>292-893-9090</h6>
+                                                    <h6>Specialty|Orthopedic Surgery</h6>
+                                                    <h6>Location|Essex County</h6>
+                                                    
+                                                    <Button variant="info" size="sm">
+                                                    Schedule an appointment: March 23rd, 2021|April 12th, 2021
+                                                    </Button>
+                                            </Col>
+                                            </Row>
+                                        </Container>
+                                    </ListGroup.Item>
+                                    <ListGroup.Item>
+                                        <Container fluid = "md"> 
+                                            <Row>
+                                            <Col>
+                                            <Card.Img variant="top" src={doctorPhoto}/>
+                                            </Col>
+                                            <Col>
+                                                
+                                                    <h3>Dr.Ian Johnson, CAO Ortho Maryland</h3>
+                                                    <h6>415 Day Lane, Suite 200, Newark, New Jersey</h6>
+                                                    <h6>292-893-9090</h6>
+                                                    <h6>Specialty|Orthopedic Surgery</h6>
+                                                    <h6>Location|Essex County</h6>
+                                                    
+                                                    <Button variant="info" size="sm">
+                                                    Schedule an appointment: March 23rd, 2021|April 12th, 2021
+                                                    </Button>
+                                            </Col>
+                                            </Row>
+                                        </Container>
+                                    </ListGroup.Item>
+                                    <ListGroup.Item>
+                                        <Container fluid = "md"> 
+                                            <Row>
+                                            <Col>
+                                            <Card.Img variant="top" src={doctorPhoto}/>
+                                            </Col>
+                                            <Col>
+                                                
+                                                    <h3>Dr.Ian Johnson, CAO Ortho Maryland</h3>
+                                                    <h6>415 Day Lane, Suite 200, Newark, New Jersey</h6>
+                                                    <h6>292-893-9090</h6>
+                                                    <h6>Specialty|Orthopedic Surgery</h6>
+                                                    <h6>Location|Essex County</h6>
+                                                    
+                                                    <Button variant="info" size="sm">
+                                                    Schedule an appointment: March 23rd, 2021|April 12th, 2021
+                                                    </Button>
+                                            </Col>
+                                            </Row>
+                                        </Container>
+                                    </ListGroup.Item>
+                                    <ListGroup.Item>
+                                        <Container fluid = "md"> 
+                                            <Row>
+                                            <Col>
+                                            <Card.Img variant="top" src={doctorPhoto}/>
+                                            </Col>
+                                            <Col>
+                                                
+                                                    <h3>Dr.Ian Johnson, CAO Ortho Maryland</h3>
+                                                    <h6>415 Day Lane, Suite 200, Newark, New Jersey</h6>
+                                                    <h6>292-893-9090</h6>
+                                                    <h6>Specialty|Orthopedic Surgery</h6>
+                                                    <h6>Location|Essex County</h6>
+                                                    
+                                                    <Button variant="info" size="sm">
+                                                    Schedule an appointment: March 23rd, 2021|April 12th, 2021
+                                                    </Button>
+                                            </Col>
+                                            </Row>
+                                        </Container>
+                                    </ListGroup.Item>
+
+
+
+
+
+
+
+
+
+
                     </Col>
                     
 
@@ -449,16 +368,41 @@ const Setup = () => {
                         <h3>
                             Follow us on our social media
                         </h3>
-                            <ButtonGroup aria-label="Basic example">
-                            <Button variant="secondary">Facebook</Button>
-                            <Button variant="secondary">Twitter</Button>
-                            <Button variant="secondary">Instagram</Button>
-                            </ButtonGroup>
+                        <SocialIcon url="https://www.facebook.com/hwfmg/"/>{' '}
+                        <SocialIcon url="https://twitter.com/HWFMagazine1/"/>{' '}
+                        <SocialIcon url="https://www.instagram.com/healthwellnessfitnessmag/"/>{' '}
+                        <SocialIcon url="https://www.linkedin.com/company/health-wellness-&-fitness"/>
+
+
                             <br/><br/>
+                        <br/>
+                        <div align = "center">
+                            <h3>
+                                Magazine
+                            </h3>
+                           </div>
+                        <div align = "center" style = {{width: '50%'}} >
+                        <Card>
+                            <ButtonGroup vertical>
+
+                            
+                            <Card.Img variant="top" src={mag}/>
+                            <br/>
+                            <Button>Subscribe</Button>
+                            <Button>Gifts</Button>
+                            <Button>Digital Subscription</Button>
+                            <Button>Manage Account</Button>
+                            <Button>Table of Contents</Button>
+                            
+                            
+                            </ButtonGroup>
+                        </Card>
+
+                        </div>
                         <br/>
                         <Card.Img variant="top" src={adLong} style = {{width: '50%'}}/>
                         <br/><br/>
-                        <Card.Img variant="top" src={mag} style = {{width: '50%'}}/>
+
                         <br/><br/>
                         <div align = "center" style = {{width: '50%'}}>
                             <Card>
@@ -471,21 +415,24 @@ const Setup = () => {
                         <Card.Img variant="top" src={doctorPhoto} style = {{width: '50%'}}/>
                         <div style = {{width: '50%'}}>
                         <ListGroup.Item>
-                             <Container fluid = "md"> 
-                                                <Button variant="secondary" size="sm">
-                                                    Doctor Name
-                                                    </Button> 
-                                                    <h1> </h1>
-                                                    <Button variant="secondary" size="sm">
-                                                    Phone number
-                                                    </Button>
-                                                    <br/><br/>
-                                                    <Button variant="info" size="lg">
-                                                    Next Availabile Appoinentment
-                                                    </Button>
+                                        <Container fluid = "md"> 
+                                            <Row>
 
-                             </Container>
-                         </ListGroup.Item> 
+                                            <Col>
+                                                
+                                                    <h3>Dr.Ian Johnson, CAO Ortho Maryland</h3>
+                                                    <h6>415 Day Lane, Suite 200, Newark, New Jersey</h6>
+                                                    <h6>292-893-9090</h6>
+                                                    <h6>Specialty|Orthopedic Surgery</h6>
+                                                    <h6>Location|Essex County</h6>
+                                                    
+                                                    <Button variant="info" size="sm">
+                                                    Schedule an appointment: March 23rd, 2021|April 12th, 2021
+                                                    </Button>
+                                            </Col>
+                                            </Row>
+                                        </Container>
+                                    </ListGroup.Item>
                          </div>
                         <Form style = {{width: '50%'}}>
                             <Form.Control type="email" placeholder="Search For Doctors" rounded/>
@@ -499,7 +446,7 @@ const Setup = () => {
                                 </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="0">
-                                <Card.Body>Insert information for doctor specialty </Card.Body>
+                                <Card.Body></Card.Body>
                             </Accordion.Collapse>
                         </Card>
                         <Card>
@@ -509,13 +456,13 @@ const Setup = () => {
                                 </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="1">
-                                <Card.Body>Inset information for the locations</Card.Body>
+                                <Card.Body></Card.Body>
                             </Accordion.Collapse>
                         </Card>
                         </Accordion>
                         </div>
                         <br/><br/>
-                        <Card.Img variant="top" src={fit} style = {{width: '90%'}}/>
+                        <Card.Img variant="top" src={fit} style = {{width: '75%'}}/>
                         
                     </Col>
                 </Row>
