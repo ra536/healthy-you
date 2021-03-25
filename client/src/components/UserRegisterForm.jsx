@@ -30,28 +30,35 @@ const RegisterForm = () => {
                 state: "",
                 birthdate: ""
             }}
+            validationSchema={ schema }
             onSubmit={(data) => console.log(data)}
         >
             {({
                 handleSubmit,
                 handleChange,
                 handleBlur,
-                values
+                values,
+                errors,
+                touched,
+                isInvalid
             }) => {
+                console.log(errors)
                 return (
                     <Form onSubmit={ handleSubmit }>
                         <Form.Group controlId="formEmail">
-                        <Form.Label> Email </Form.Label>
-                        <Form.Control
-                            type="text"
-                            name="email"
-                            values={ values.email }
-                            onChange={ handleChange }
-                            onBlue={ handleBlur }
-                            placeholder="Enter your email!"
-                        />
-                        <Form.Control.Feedback>
-                        </Form.Control.Feedback>
+                            <Form.Label> Email </Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="email"
+                                values={ values.email }
+                                onChange={ handleChange }
+                                onBlur={ handleBlur }
+                                placeholder="Enter your email!"
+                                isInvalid={ !!(errors.email && touched.email) }
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                { errors.email }
+                            </Form.Control.Feedback>
                         </Form.Group>
                         <Button type="submit">
                             Submit
