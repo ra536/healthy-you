@@ -43,8 +43,12 @@ const RegisterForm = () => {
                         state: data.state,
                         birthdate: data.birthdate
                     })
-                    setErrors({ email: response.data.status[0].message})
-                    console.log(response.data.status[0].message)
+                    if (response.data.status == "success") {
+                        alert("Account successfully created!")
+                    } else {
+                        setErrors({ email: response.data.status[0].message})
+                        console.log(response.data.status[0].message)
+                    }
                 }
                 catch (err) {
                     console.log(err)
