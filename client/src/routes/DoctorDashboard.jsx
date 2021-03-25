@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react';
 import DoctorAPI from '../apis/DoctorAPI'
 import InputNewPractice from '../components/InputNewPractice';
+import RemovePractice from '../components/RemovePractice';
 import PracticeList from '../components/PracticeList';
 import AddSpecialty from '../components/AddSpecialty'
 import RemoveSpecialty from '../components/RemoveSpecialty';
@@ -279,6 +280,9 @@ const DoctorDashboard = (props) => {
                 doctorID={doctorID}
             />
             <InputNewPractice
+                doctorID={doctorID}
+            />
+            <RemovePractice
                 doctorID={doctorID}
             />
             <br />
