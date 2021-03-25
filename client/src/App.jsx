@@ -4,6 +4,7 @@ import { TestContextProvider } from './context/TestContext';
 import Home from "./routes/Home";
 import Review from "./routes/Review";
 import Blog from "./routes/Blog";
+import Setup from './routes/Setup';
 
 const App = () => {
     return (
@@ -16,6 +17,7 @@ const App = () => {
                             <Review url={window.location.href}/>
                         </Route>
                         <Route exact path="/blog" component={ Blog }/>
+                        <Route exact path="/doc" component={Setup}/>
                     </Switch>
                 </Router>
             </div>
