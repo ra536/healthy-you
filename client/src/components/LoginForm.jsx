@@ -4,7 +4,6 @@ import { Formik } from 'formik';
 import { Form, Button } from 'react-bootstrap'
 import LoginAPI from '../apis/LoginAPI'
 import { AuthContext } from '../context/AuthContext';
-import { Route, Redirect } from 'react-router-dom';
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -13,8 +12,7 @@ const schema = yup.object().shape({
 })
 
 const LoginForm = () => {
-  const { role, setRole, status, setStatus } = useContext(AuthContext);
-
+  const { role, setRole, loggedIn, setLoggedIn } = useContext(AuthContext);
   return (
     <Formik
         initialValues={{
@@ -33,11 +31,10 @@ const LoginForm = () => {
                 })
                 console.log(response.data)
                 if (response.data.status == "success") {
-                  setStatus(true)
+                  alert("You have successfully logged in!" + data.role)
+                  setLoggedIn(true)
                   setRole(data.role)
-                  //alert("You have successfully logged in!" + role + status)
                   console.log(role)
-                  console.log(status)
                 } else {
                   if (response.data.target == "email") {
                     setErrors({ email: response.data.status})

@@ -3,30 +3,22 @@ import { Route, Redirect } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext'
 
 const ProtectedRoute = ({ component: Component, requiredRole: requiredRole, ...rest }) => {
-    const { role, status } = useContext(AuthContext);
+    const { role, loggedIn } = useContext(AuthContext);
 
     return (
         <Route
             {...rest}
             render={props => {
-                // if (status == false) {
-                //     return <Redirect to="/login" />
-                // } else {
-                //     if (requiredRole) {
-                //         if (role == requiredRole) {
-                //             return <Component {...props} />
-                //         } else {
-                //             return <Redirect to="/" />
-                //         }
-                //     }
-                //     else {
-                //         return <Component {...props} />
-                //     }
-                // }
-                if (!status) {
+                if (!loggedIn) {
                     return <Redirect to="/login" />
                 } else {
-                    return <Redirect to="/" />
+                    if (requiredRole) {
+                        if (role == requiredRole) {
+                            return <Component {...props} />
+                        } else {
+                            return <Redirect to="/" />
+                        }
+                    }
                 }
             }}
         >

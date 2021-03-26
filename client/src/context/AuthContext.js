@@ -4,7 +4,7 @@ export const AuthContext = createContext();
 
 export const AuthContextProvider = props => {
     const [role, setRole] = useState("");
-    const [status, setStatus] = useState(false)
+    const [loggedIn, setLoggedIn] = useState(false)
     // const [isDoctor, setIsDoctor] = useState(false);
     // const [isUser, setIsUser] = useState(false);
     // const [userID, setUserID] = useState("");
@@ -30,7 +30,7 @@ export const AuthContextProvider = props => {
         <AuthContext.Provider value={
             {
                 role, setRole,
-                status, setStatus
+                loggedIn, setLoggedIn
             }}>
             { props.children }
         </AuthContext.Provider>
