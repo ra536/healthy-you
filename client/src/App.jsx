@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { AppContextProvider } from './context/AppContext';
-import { AuthContextProvider } from './context/AuthContext';
+import { AuthContextProvider, AuthContext } from './context/AuthContext';
 import Home from "./routes/Home";
 import DoctorDashboard from "./routes/DoctorDashboard";
 import Review from "./routes/Review";
@@ -14,6 +14,8 @@ import SearchResults from './components/SearchResults'
 import ProtectedRoute from './components/ProtectedRoute'
 
 const App = () => {
+    //const { status } = useContext(AuthContext);
+    //const [loggedIn, setLoggedIn] = useState(false);
     return (
         <AppContextProvider>
             <AuthContextProvider>
