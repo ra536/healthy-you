@@ -1,8 +1,8 @@
 import React, { useState, createContext } from 'react';
 
-export const LoginContext = createContext();
+export const AuthContext = createContext();
 
-export const LoginContextProvider = props => {
+export const AuthContextProvider = props => {
     const [role, setRole] = useState("");
     // const[loggedIn, setLoggedIn] = useState(false)
     // const [isDoctor, setIsDoctor] = useState(false);
@@ -26,15 +26,12 @@ export const LoginContextProvider = props => {
     //     // console.log("what is it now?", regularUser)
     // }
 
-    // return (
-    //     <LoginContext.Provider value={
-    //         {
-    //             loggedIn, setLoggedIn, onlineStatus,
-    //             isDoctor, setIsDoctor, isRoleDoctor,
-    //             isUser, isRoleUser, isRoleUser,
-    //             userID, setUserID,
-    //         }}>
-    //         { props.children }
-    //     </LoginContext.Provider>
-    // )
+    return (
+        <AuthContext.Provider value={
+            {
+                role, setRole
+            }}>
+            { props.children }
+        </AuthContext.Provider>
+    )
 }

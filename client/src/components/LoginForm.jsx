@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import { Form, Button } from 'react-bootstrap'
@@ -33,6 +33,7 @@ const LoginForm = () => {
                 if (response.data.status == "success") {
                   alert("You have successfully logged in!")
                   setRole(data.role)
+                  console.log(role)
                 } else {
                   if (response.data.target == "email") {
                     setErrors({ email: response.data.status})
