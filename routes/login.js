@@ -3,8 +3,10 @@ const router = express.Router();
 const db = require('../db/index')
 const user = require('../db/models/user');
 const doctor = require('../db/models/doctor');
-const writer = require('../db/models/writer')
-const bcrypt = require('bcrypt')
+const writer = require('../db/models/writer');
+const bcrypt = require('bcrypt');
+const cookieParser = require('cookie-parser');
+const { createUserToken, createDoctorToken, createWriterToken } = require('../JWT');
 
 router.use(express.json());
 
@@ -32,6 +34,10 @@ router.post("/", async (req, res) => {
           status: "Password is incorrect!"
         })
       } else {
+          const accessToken = createUserToken(userResult)
+          res.cookie("user-access-token", accessToken, {
+            maxAge: 60 * 60 * 24 * 30 * 1000
+          })
           res.status(200).json({
           status: "success",
         })

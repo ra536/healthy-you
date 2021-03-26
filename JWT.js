@@ -25,4 +25,29 @@ const createWriterToken = (writer) => {
     return accessToken
 };
 
-modules.exports = { createUserToken, createDoctorToken, createWriterToken }
+const validateUserToken = (req, res, next) => {
+    const accessToken = req.cookies["user-access-token"]
+    if (!accessToken) {
+        return (
+            res.json({
+                status: "User is not authenticated!"
+            })
+        )
+    }
+    try {
+        const validToken = verify(accessToken, process.env.JWTSECRET)
+        if (validToken) {
+            req.authenticated = true
+            return next();
+        }
+    }
+    catch(err) {
+        return (
+            res.json({
+                status: err
+            })
+        )
+    }
+}
+
+module.exports = { createUserToken, createDoctorToken, createWriterToken, validateUserToken }
