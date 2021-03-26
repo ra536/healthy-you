@@ -43,6 +43,7 @@ const UserRegistrationForm = () => {
                         state: data.state,
                         birthdate: data.birthdate
                     })
+                    console.log(response.data)
                     if (response.data.status == "success") {
                         alert("Account successfully created!")
                     } else {

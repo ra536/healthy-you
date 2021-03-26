@@ -13,6 +13,10 @@ router.post("/create", async (req, res) => {
             lastName: req.body.lastName,
             city: req.body.city,
             state: req.body.state,
+            birthdate: req.body.birthdate
+        })
+        res.status(201).json({
+            status: "success",
         })
     }
     catch (err) {
@@ -22,4 +26,5 @@ router.post("/create", async (req, res) => {
         })
     }
 });
+
 module.exports = router;
