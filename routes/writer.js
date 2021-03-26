@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db/index')
-const user = require('../db/models/user')
+const writers = require('../db/models/writer.js')
 
 router.use(express.json());
 

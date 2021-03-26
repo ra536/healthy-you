@@ -1,9 +1,9 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../index');
 
-const user = db.define('user', {
+const writer = db.define('writer', {
     
-    user_id: {
+    writer_id: {
         type: DataTypes.UUID,
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
@@ -11,11 +11,7 @@ const user = db.define('user', {
     },
     email: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: {
-            args: true,
-            msg: 'Email address already in use.'
-        }
+        allowNull: false
     },
     password: {
         type: DataTypes.STRING,
@@ -31,22 +27,17 @@ const user = db.define('user', {
     },
     city: {
         type: DataTypes.STRING,
-        allowNull: false
     },
     state: {
         type: DataTypes.STRING,
-        allowNull: false
     },
     birthdate: {
         type: DataTypes.DATE,
-        allowNull: false
     },
-    role: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        default: 'User',
+    articles: {
+        type: DataTypes.ARRAY(DataTypes.UUID)
     }
 
 }, {underscored: true})
 
-module.exports = user;
+module.exports = writer;

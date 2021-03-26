@@ -1,52 +1,53 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../index');
 
-const user = db.define('user', {
+const article = db.define('article', {
     
-    user_id: {
+    article_id: {
         type: DataTypes.UUID,
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
         primaryKey: true
     },
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: {
-            args: true,
-            msg: 'Email address already in use.'
-        }
-    },
-    password: {
+    headline: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    firstName: {
+    category: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }, // enum, instead ??
+    summary: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    lastName: {
+    content: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    city: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    state: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    birthdate: {
+    publication_date: {
         type: DataTypes.DATE,
-        allowNull: false
     },
-    role: {
+    image_link: {
         type: DataTypes.STRING,
-        allowNull: false,
-        default: 'User',
+    },
+    image_caption: {
+        type: DataTypes.STRING,
+    },
+    image_type: {
+        type: DataTypes.STRING,
+    },
+    image_name: {
+        type: DataTypes.STRING,
+    },
+    image_data: {
+        type: DataTypes.TEXT,
+    },
+    writer_id: {
+        type: DataTypes.UUID,
+        allowNull: false
     }
 
 }, {underscored: true})
 
-module.exports = user;
+module.exports = article;
