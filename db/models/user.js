@@ -5,12 +5,17 @@ const user = db.define('user', {
     
     user_id: {
         type: DataTypes.UUID,
-        allowNull: false
+        defaultValue: Sequelize.UUIDV4,
+        allowNull: false,
+        primaryKey: true
     },
     email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        unique: {
+            args: true,
+            msg: 'Email address already in use.'
+        }
     },
     password: {
         type: DataTypes.STRING,
@@ -39,7 +44,7 @@ const user = db.define('user', {
     role: {
         type: DataTypes.STRING,
         allowNull: false,
-        default: 'User',
+        defaultValue: 'User',
     }
 
 }, {underscored: true})

@@ -35,7 +35,7 @@ app.use("/api/v1/dashboard", require('./routes/dashboard'));
 app.use("/api/v1/doctor", require('./routes/doctor'));
 app.use("/api/v1/practice", require('./routes/practice'));
 app.use("/api/v1/specialty", require('./routes/specialty'));
-// app.use("/api/v1/user", require('./routes/user'));
+app.use("/api/v1/user", require('./routes/user'));
 app.use("/api/v1/article", require('./routes/article'));
 app.use("/api/v1/writer", require('./routes/writer'));
 app.use("/api/v1/search", require('./routes/search'));
