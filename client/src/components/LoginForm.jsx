@@ -3,6 +3,7 @@ import * as yup from 'yup';
 import { Formik } from 'formik';
 import { Form, Button } from 'react-bootstrap'
 import LoginAPI from '../apis/LoginAPI'
+import { AuthContext } from '../context/AuthContext';
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -11,6 +12,7 @@ const schema = yup.object().shape({
 })
 
 const LoginForm = () => {
+  const { role, setRole } = useContext(AuthContext);
   return (
     <Formik
         initialValues={{
@@ -30,6 +32,7 @@ const LoginForm = () => {
                 console.log(response.data)
                 if (response.data.status == "success") {
                   alert("You have successfully logged in!")
+                  setRole(data.role)
                 } else {
                   if (response.data.target == "email") {
                     setErrors({ email: response.data.status})
