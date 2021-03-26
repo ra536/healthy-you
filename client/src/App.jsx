@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { AppContextProvider } from './context/AppContext';
-import { LoginContextProvider } from './context/LoginPersistence';
+import { AuthContextProvider } from './context/AuthContext';
 import Home from "./routes/Home";
 import DoctorDashboard from "./routes/DoctorDashboard";
 import Review from "./routes/Review";
@@ -15,7 +15,7 @@ import SearchResults from './components/SearchResults'
 const App = () => {
     return (
         <AppContextProvider>
-            <LoginContextProvider>
+            <AuthContextProvider>
                 <div>
                     <Router>
                         <Switch>
@@ -33,7 +33,7 @@ const App = () => {
                         </Switch>
                     </Router>
                 </div>
-            </LoginContextProvider>
+            </AuthContextProvider>
         </AppContextProvider>
     )
 };

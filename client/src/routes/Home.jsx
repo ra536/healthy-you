@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import TestAPI from '../apis/TestAPI';
 import InputTest from '../components/InputTest';
 import { AppContext } from '../context/AppContext';
-import { LoginContext } from '../context/LoginPersistence';
+import { LoginContext } from '../context/AuthContext';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap';
 import { Container, Card, Carousel } from 'react-bootstrap';
