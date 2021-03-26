@@ -17,7 +17,7 @@ const schema = yup.object().shape({
 
 
 //Lets user input a test object into backend db
-const RegisterForm = () => {
+const UserRegistrationForm = () => {
     return (
         <Formik
             initialValues={{
@@ -196,6 +196,6 @@ const RegisterForm = () => {
     )
 }
 
-export default RegisterForm;
+export default UserRegistrationForm;
 
 

@@ -1,12 +1,12 @@
 import React, { useEffect, useContext } from 'react';
-import UserRegisterForm from '../components/UserRegisterForm'
+import UserRegistrationForm from '../components/UserRegistrationForm'
 
 const Register = () => {
 
     return (
         <div>
             <h1>Register</h1>
-            <UserRegisterForm />
+            <UserRegistrationForm />
         </div>
     )
 }
