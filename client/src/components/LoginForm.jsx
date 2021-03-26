@@ -19,7 +19,7 @@ const LoginForm = () => {
             role: "",
         }}
         validationSchema={ schema }
-        onSubmit={ async (data) => {
+        onSubmit={ async (data, { setErrors }) => {
             console.log(data);
             try {
                 const response = await LoginAPI.post("/", {
@@ -28,6 +28,15 @@ const LoginForm = () => {
                     role: data.role
                 })
                 console.log(response.data)
+                if (response.data.status == "success") {
+                  alert("You have successfully logged in!")
+                } else {
+                  if (response.data.target == "email") {
+                    setErrors({ email: response.data.status})
+                  } else {
+                    setErrors({ password: response.data.status})
+                  }
+                }
             }
             catch (err) {
                 console.log(err)
