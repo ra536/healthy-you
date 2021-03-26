@@ -12,7 +12,7 @@ const schema = yup.object().shape({
 })
 
 const LoginForm = () => {
-  const { role, setRole } = useContext(AuthContext);
+  const { role, setRole, loggedIn, setLoggedIn } = useContext(AuthContext);
   return (
     <Formik
         initialValues={{
@@ -31,7 +31,8 @@ const LoginForm = () => {
                 })
                 console.log(response.data)
                 if (response.data.status == "success") {
-                  alert("You have successfully logged in!")
+                  alert("You have successfully logged in!" + data.role)
+                  setLoggedIn(true)
                   setRole(data.role)
                   console.log(role)
                 } else {
@@ -56,7 +57,6 @@ const LoginForm = () => {
             touched,
             isInvalid,
         }) => {
-            console.log(values)
             return (
                 <Form onSubmit={ handleSubmit }>
                     <Form.Group controlId="formEmail">

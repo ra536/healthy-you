@@ -11,6 +11,7 @@ import Article from './routes/Article';
 import Login from "./routes/Login";
 import Search from './routes/Search'
 import SearchResults from './components/SearchResults'
+import ProtectedRoute from './components/ProtectedRoute'
 
 const App = () => {
     return (
@@ -24,7 +25,7 @@ const App = () => {
                             <Route exact path="/login" component={ Login }/>
                             <Route exact path="/search" component={ Search }/>
                             <Route path="/results" component={ SearchResults }/>
-                            <Route exact path="/doctor-dashboard/:doctorID" component = { DoctorDashboard }/>
+                            <ProtectedRoute exact path="/doctor-dashboard/:doctorID" component = { DoctorDashboard } requiredRole="Doctor" />
                             <Route path="/leaveReview/:id">
                                 <Review url={window.location.href}/>
                             </Route>
