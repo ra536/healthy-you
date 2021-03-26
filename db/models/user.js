@@ -44,7 +44,7 @@ const user = db.define('user', {
     role: {
         type: DataTypes.STRING,
         allowNull: false,
-        default: 'User',
+        defaultValue: 'User',
     }
 
 }, {underscored: true})
