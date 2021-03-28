@@ -51,14 +51,35 @@ const App = () => {
             console.log(err)
         }
     }
-
-    return (
+    return loggedIn == true ?
+    (
         <AppContextProvider>
             <div>
                 <Button onClick={ handleClick }>
                     Logout
                 </Button>
             </div>
+            <div>
+                <Router>
+                    <Switch>
+                        <Route exact path="/" component={ Home }/>
+                        <Route exact path="/register" component = { UserRegistrationForm } />
+                        <Route exact path="/login" component={ Login } loggedIn={ loggedIn }/>
+                        <Route exact path="/search" component={ Search }/>
+                        <Route path="/results" component={ SearchResults }/>
+                        <ProtectedRoute path="/doctor-dashboard/:doctorID" component = { DoctorDashboard } requiredRole="Doctor" />
+                        <Route path="/leaveReview/:id">
+                            <Review url={window.location.href}/>
+                        </Route>
+                        <ProtectedRoute path="/writer-dashboard/:id" component = { WriterDashboard } requiredRole="Writer" />                            <Route path="/article/:id" component = { Article } />
+                    </Switch>
+                </Router>
+            </div>
+        </AppContextProvider>
+    )
+    :
+    (
+        <AppContextProvider>
             <div>
                 <Router>
                     <Switch>
