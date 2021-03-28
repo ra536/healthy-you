@@ -1,7 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { AppContextProvider } from './context/AppContext';
-import { AuthContextProvider } from './context/AuthContext';
 import Home from "./routes/Home";
 import DoctorDashboard from "./routes/DoctorDashboard";
 import Review from "./routes/Review";
@@ -16,9 +15,7 @@ import { AuthContext } from './context/AuthContext'
 import LoginAPI from './apis/LoginAPI'
 
 const App = () => {
-    //const { loggedIn, setLoggedIn } = useContext(AuthContext);
-    const [loggedIn, setLoggedIn] = useState(false)
-    const [role, setRole] = useState("")
+    const { loggedIn, setLoggedIn, role, setRole } = useContext(AuthContext);
 
     useEffect(() => {
         // Define a function fetchData that calls APIs which is then called in useEffect
@@ -41,7 +38,6 @@ const App = () => {
     }, []);
 
     return (
-        <AuthContextProvider>
             <AppContextProvider>
                 <div>
                     <Router>
@@ -61,7 +57,6 @@ const App = () => {
                     </Router>
                 </div>
             </AppContextProvider>
-        </AuthContextProvider>
     )
 };
 
