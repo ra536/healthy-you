@@ -16,12 +16,12 @@ require('dotenv').config();
 const app = express();
 
 // Allows for two different domains to interact
-// const corsOptions ={
-//   origin:'http://localhost:3000', 
-//   credentials:true,
-//   optionSuccessStatus:200
-// }
-app.use(cors());
+const corsOptions ={
+  origin:'http://localhost:3000', 
+  credentials:true,
+  optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
 
 if(process.env.NODE_ENV === "production"){
   // server static content
@@ -43,20 +43,8 @@ app.use(express.json({
 // Database
 const db = require('./db/index')
 
-// Session Setup
-app.use(session({
-  secret: process.env.SECRET,
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    maxAge: 1000 * 60 * 60 * 24
-  }
-}));
-
 // Passport Config
 app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
 passport.use(new LocalStrategy(
   {usernameField:"email"},
   function(username, password, done) {
@@ -113,6 +101,8 @@ passport.use(new LocalStrategy(
       }
     })
   }
+
+  
   // function(email, password, role, done) {
   //   if (role == "User") {
   //       user.findOne({ where: { email: email } }, function (err, user) {
@@ -179,6 +169,16 @@ passport.deserializeUser(function(user, done) {
   // })
   done(null, user)
 })
+
+// Session Setup
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true,
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // routes
 app.use("/api/v1/test", require('./routes/test'));

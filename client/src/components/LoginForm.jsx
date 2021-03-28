@@ -28,6 +28,8 @@ const LoginForm = () => {
                     email: data.email,
                     password: data.password,
                     role: data.role
+                }, {
+                    withCredentials: true
                 })
                 console.log(response.data)
                 if (response.data.status == "success") {

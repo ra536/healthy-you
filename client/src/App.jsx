@@ -22,7 +22,7 @@ const App = () => {
                         <Switch>
                             <Route exact path="/" component={ Home }/>
                             <Route exact path="/register" component = { UserRegistrationForm }/>
-                            <Route exact path="/login" component={ Login }/>
+                            <ProtectedRoute exact path="/login" component={ Login }/>
                             <Route exact path="/search" component={ Search }/>
                             <Route path="/results" component={ SearchResults }/>
                             <ProtectedRoute exact path="/doctor-dashboard/:doctorID" component = { DoctorDashboard } requiredRole="Doctor" />

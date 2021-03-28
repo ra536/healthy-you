@@ -11,14 +11,6 @@ const { createUserToken, createDoctorToken, createWriterToken } = require('../JW
 
 router.use(express.json());
 
-// router.post("/", passport.authenticate("local", (err, user, options) => {
-//   console.log(options.target)
-//   res.json({
-//     target: options.target,
-//     status: options.message
-//   })
-// }));
-
 router.post('/', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     console.log(info)
@@ -29,18 +21,24 @@ router.post('/', function(req, res, next) {
         status: info.message
       })
     } else {
-      res.json({
-        status: info.message
-      })
+      // res.json({
+      //   status: info.message
+      // })
+      //console.log(user)
+      req.login(user, function(err) {
+        if (err) {
+          return next(err);
+        }
+        console.log(user.user_id)
+        return res.json({ status: "success" })
+      });
     }
   })(req, res, next);
 });
 
 router.get("/user", (req, res) => {
-  res.json({
-    status: "Authenticated",
-    user: req.user
-  })
+  console.log(req.user)
+  res.send(req.user);
 })
 
 // router.post("/", async (req, res) => {
