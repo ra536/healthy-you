@@ -55,7 +55,7 @@ const App = () => {
                             <Route path="/leaveReview/:id">
                                 <Review url={window.location.href}/>
                             </Route>
-                            <Route path="/writer-dashboard/:id" component = { WriterDashboard }/>
+                            <ProtectedRoute path="/writer-dashboard/:id" component = { WriterDashboard } requiredRole="Writer" role={ role } />
                             <Route path="/article/:id" component = { Article } />
                         </Switch>
                     </Router>
