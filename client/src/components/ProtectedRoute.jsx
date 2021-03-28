@@ -10,7 +10,7 @@ const ProtectedRoute = ({ component: Component, requiredRole: requiredRole, logg
                 if (loggedIn) {
                     return <Redirect to="/login" />
                 } else {
-                    if (role == requiredRole) {
+                    if (requiredRole && (role == requiredRole)) {
                         return <Component { ...rest } />
                     } else {
                         return <Redirect to="/" />
