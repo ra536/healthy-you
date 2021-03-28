@@ -11,11 +11,29 @@ const { createUserToken, createDoctorToken, createWriterToken } = require('../JW
 
 router.use(express.json());
 
-router.post("/", passport.authenticate('local'), (req, res, next) => {
-  console.log(req.body)
-  res.status(200).json({
-    status: "success"
-  })
+// router.post("/", passport.authenticate("local", (err, user, options) => {
+//   console.log(options.target)
+//   res.json({
+//     target: options.target,
+//     status: options.message
+//   })
+// }));
+
+router.post('/', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    console.log(info)
+    //console.log(user)
+    if (!user) {
+      res.json({
+        target: info.target,
+        status: info.message
+      })
+    } else {
+      res.json({
+        status: info.message
+      })
+    }
+  })(req, res, next);
 });
 
 router.get("/user", (req, res) => {
@@ -44,10 +62,10 @@ router.get("/user", (req, res) => {
     // const dbPassword = userResult.password
     // bcrypt.compare(password, dbPassword).then((match) => {
     //   if (!match) {
-    //     res.json({
-    //       target: "password",
-    //       status: "Password is incorrect!"
-    //     })
+        // res.json({
+        //   target: "password",
+        //   status: "Password is incorrect!"
+        // })
 //       } else {
 //           const accessToken = createUserToken(userResult)
 //           res.cookie("user-access-token", accessToken, {

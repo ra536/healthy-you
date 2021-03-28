@@ -10,6 +10,7 @@ const user = require('./db/models/user');
 const doctor = require('./db/models/doctor');
 const writer = require('./db/models/writer');
 const bcrypt = require('bcrypt');
+const flash = require('express-flash')
 require('dotenv').config();
 
 const app = express();
@@ -53,6 +54,7 @@ app.use(session({
 }));
 
 // Passport Config
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(
@@ -66,7 +68,7 @@ passport.use(new LocalStrategy(
       if (!user) {
         doctor.findOne({
           where: {
-            email: username
+            doctor_name: username
           }
         }).then(function (doctor) {
           if (!doctor) {
@@ -76,14 +78,14 @@ passport.use(new LocalStrategy(
               }
             }).then(function (writer) {
               if (!writer) {
-                return done(null, false, { message: "Email does not exist!" })
+                return done(null, false, { target: "email", message: "Email does not exist!" })
               } else {
                 const dbPassword = doctor.password
                 bcrypt.compare(password, dbPassword).then((match) => {
                   if (!match) {
                     return done(null, false, { message: "Password is incorrect!" })
                   } else {
-                    return done(null, doctor)
+                    return done(null, doctor, { message: "success" })
                   }
                 })
               }
@@ -94,7 +96,7 @@ passport.use(new LocalStrategy(
               if (!match) {
                 return done(null, false, { message: "Password is incorrect!" })
               } else {
-                return done(null, writer)
+                return done(null, writer, { message: "success" })
               }
             })
           }
@@ -103,9 +105,9 @@ passport.use(new LocalStrategy(
         const dbPassword = user.password
         bcrypt.compare(password, dbPassword).then((match) => {
           if (!match) {
-            return done(null, false, { message: "Password is incorrect!" })
+            return done(null, false, { target: "password", message: "Password is incorrect!" })
           } else {
-            return done(null, user)
+            return done(null, user, { message: "success" })
           }
         })
       }
@@ -159,21 +161,23 @@ passport.use(new LocalStrategy(
 ));
 
 passport.serializeUser(function(user, done) {
-  done(null, user.user_id)
+  // done(null, user.user_id)
+  done(null, user)
 })
 
-passport.deserializeUser(function(id, done) {
-  user.findOne({
-    where: {
-      'id': id
-    }
-  }).then(function (user) {
-    if (user == null) {
-      done(new Error('Wrong user id.'))
-    }
+passport.deserializeUser(function(user, done) {
+  // user.findOne({
+  //   where: {
+  //     'id': id
+  //   }
+  // }).then(function (user) {
+  //   if (user == null) {
+  //     done(new Error('Wrong user id.'))
+  //   }
     
-    done(null, user)
-  })
+  //   done(null, user)
+  // })
+  done(null, user)
 })
 
 // routes
