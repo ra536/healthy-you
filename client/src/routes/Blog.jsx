@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import hwf_logo from'./hwf_logo.png';
 import placeholder from './placeholder.jpg';
 import ad300 from './ad300.jpg';
+import { SocialIcon } from 'react-social-icons';
+
 
 const Blog = () => {
     // Store the data retrieved from backend API into context
@@ -87,7 +89,13 @@ const Blog = () => {
                             As Small Businesses Close, Gym Owners and Fitness Profressionals Open the Door to New Methods of Excercise and Advocacy
                             </Card.Text>
                             <Card.Link href="#">Read More...</Card.Link>
-                            <Card.Link href="#">Share article...</Card.Link>
+                           
+                            <div align = 'right'> 
+                            <SocialIcon url="https://www.facebook.com/hwfmg/"/>{' '}
+                            <SocialIcon url="https://twitter.com/HWFMagazine1/"/>{' '}
+                            <SocialIcon url="https://www.instagram.com/healthwellnessfitnessmag/"/>{' '}
+                            <SocialIcon url="https://www.linkedin.com/company/health-wellness-&-fitness"/>
+                            </div>
                         </Card.Body>
                         <Card.Footer>
                          <small className="text-muted">Author Name | March 12, 2021</small>
@@ -104,7 +112,13 @@ const Blog = () => {
                             As Small Businesses Close, Gym Owners and Fitness Profressionals Open the Door to New Methods of Excercise and Advocacy
                             </Card.Text>
                             <Card.Link href="#">Read More...</Card.Link>
-                            <Card.Link href="#">Share article...</Card.Link>
+                            <div align = 'right'> 
+                            <SocialIcon url="https://www.facebook.com/hwfmg/"/>{' '}
+                            <SocialIcon url="https://twitter.com/HWFMagazine1/"/>{' '}
+                            <SocialIcon url="https://www.instagram.com/healthwellnessfitnessmag/"/>{' '}
+                            <SocialIcon url="https://www.linkedin.com/company/health-wellness-&-fitness"/>
+                            </div>
+
                         </Card.Body>
                         <Card.Footer>
                          <small className="text-muted">Author Name | March 12, 2021</small>
@@ -121,7 +135,13 @@ const Blog = () => {
                             As Small Businesses Close, Gym Owners and Fitness Profressionals Open the Door to New Methods of Excercise and Advocacy
                             </Card.Text>
                             <Card.Link href="#">Read More...</Card.Link>
-                            <Card.Link href="#">Share article...</Card.Link>
+                            
+                            <div align = 'right'> 
+                            <SocialIcon url="https://www.facebook.com/hwfmg/"/>{' '}
+                            <SocialIcon url="https://twitter.com/HWFMagazine1/"/>{' '}
+                            <SocialIcon url="https://www.instagram.com/healthwellnessfitnessmag/"/>{' '}
+                            <SocialIcon url="https://www.linkedin.com/company/health-wellness-&-fitness"/>
+                            </div>
                         </Card.Body>
                         <Card.Footer>
                          <small className="text-muted">Author Name | March 12, 2021</small>
@@ -138,7 +158,14 @@ const Blog = () => {
                             As Small Businesses Close, Gym Owners and Fitness Profressionals Open the Door to New Methods of Excercise and Advocacy
                             </Card.Text>
                             <Card.Link href="#">Read More...</Card.Link>
-                            <Card.Link href="#">Share article...</Card.Link>
+                            
+                            <div align = 'right'> 
+                            <SocialIcon url="https://www.facebook.com/hwfmg/"/>{' '}
+                            <SocialIcon url="https://twitter.com/HWFMagazine1/"/>{' '}
+                            <SocialIcon url="https://www.instagram.com/healthwellnessfitnessmag/"/>{' '}
+                            <SocialIcon url="https://www.linkedin.com/company/health-wellness-&-fitness"/>
+                            </div>
+
                         </Card.Body>
                         <Card.Footer>
                          <small className="text-muted">Author Name | March 12, 2021</small>
@@ -155,7 +182,13 @@ const Blog = () => {
                             As Small Businesses Close, Gym Owners and Fitness Profressionals Open the Door to New Methods of Excercise and Advocacy
                             </Card.Text>
                             <Card.Link href="#">Read More...</Card.Link>
-                            <Card.Link href="#">Share article...</Card.Link>
+                            
+                            <div align = 'right'> 
+                            <SocialIcon url="https://www.facebook.com/hwfmg/"/>{' '}
+                            <SocialIcon url="https://twitter.com/HWFMagazine1/"/>{' '}
+                            <SocialIcon url="https://www.instagram.com/healthwellnessfitnessmag/"/>{' '}
+                            <SocialIcon url="https://www.linkedin.com/company/health-wellness-&-fitness"/>
+                            </div>
                         </Card.Body>
                         <Card.Footer>
                          <small className="text-muted">Author Name | March 12, 2021</small>
