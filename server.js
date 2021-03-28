@@ -45,62 +45,127 @@ const db = require('./db/index')
 
 // Passport Config
 app.use(flash());
-passport.use(new LocalStrategy(
-  {usernameField:"email"},
-  function(username, password, done) {
-    user.findOne({
-      where: {
-        email: username
-      }
-    }).then(function (user) {
-      if (!user) {
-        doctor.findOne({
-          where: {
-            doctor_name: username
-          }
-        }).then(function (doctor) {
-          if (!doctor) {
-            writer.findOne({
-              where: {
-                email: username
-              }
-            }).then(function (writer) {
-              if (!writer) {
-                return done(null, false, { target: "email", message: "Email does not exist!" })
-              } else {
-                const dbPassword = doctor.password
-                bcrypt.compare(password, dbPassword).then((match) => {
-                  if (!match) {
-                    return done(null, false, { message: "Password is incorrect!" })
-                  } else {
-                    return done(null, doctor, { message: "success" })
-                  }
-                })
-              }
-            })
-          } else {
-            const dbPassword = writer.password
-            bcrypt.compare(password, dbPassword).then((match) => {
-              if (!match) {
-                return done(null, false, { message: "Password is incorrect!" })
-              } else {
+passport.use(new LocalStrategy({
+  usernameField: 'email',
+  passReqToCallback: true
+  },
+  function(req, username, password, done) {
+    if (req.body.role == "User") {
+      user.findOne({
+        where: {
+          email: username
+        }
+      }).then(function (user) {
+        if (!user) {
+          return done(null, false, { target: "email", message: "Email does not exist!" })
+        } else {
+          const dbPassword = user.password
+          bcrypt.compare(password, dbPassword).then((match) => {
+            if (!match) {
+              return done(null, false, { message: "Password is incorrect!" })
+            } else {
+                return done(null, user, { message: "success" })
+            }
+          })
+        }
+      })
+    }
+    else if (req.body.role == "Doctor") {
+      doctor.findOne({
+        where: {
+          email: username
+        }
+      }).then(function (doctor) {
+        if (!doctor) {
+          return done(null, false, { target: "email", message: "Email does not exist!" })
+        } else {
+          const dbPassword = doctor.password
+          bcrypt.compare(password, dbPassword).then((match) => {
+            if (!match) {
+              return done(null, false, { message: "Password is incorrect!" })
+            } else {
+                return done(null, doctor, { message: "success" })
+            }
+          })
+        }
+      })
+    }
+    else {
+      writer.findOne({
+        where: {
+          email: username
+        }
+      }).then(function (writer) {
+        if (!writer) {
+          return done(null, false, { target: "email", message: "Email does not exist!" })
+        } else {
+          const dbPassword = writer.password
+          bcrypt.compare(password, dbPassword).then((match) => {
+            if (!match) {
+              return done(null, false, { message: "Password is incorrect!" })
+            } else {
                 return done(null, writer, { message: "success" })
-              }
-            })
-          }
-        })
-      } else {
-        const dbPassword = user.password
-        bcrypt.compare(password, dbPassword).then((match) => {
-          if (!match) {
-            return done(null, false, { target: "password", message: "Password is incorrect!" })
-          } else {
-            return done(null, user, { message: "success" })
-          }
-        })
-      }
-    })
+            }
+          })
+        }
+      })
+    }
   }
+));
+  // function(username, password, done) {
+  //   user.findOne({
+  //     where: {
+  //       email: username
+  //     }
+  //   }).then(function (user) {
+  //     if (!user) {
+  //       doctor.findOne({
+  //         where: {
+  //           doctor_name: username
+  //         }
+  //       }).then(function (doctor) {
+  //         if (!doctor) {
+  //           writer.findOne({
+  //             where: {
+  //               email: username
+  //             }
+  //           }).then(function (writer) {
+  //             if (!writer) {
+  //               return done(null, false, { target: "email", message: "Email does not exist!" })
+  //             } else {
+                // const dbPassword = doctor.password
+                // bcrypt.compare(password, dbPassword).then((match) => {
+                //   if (!match) {
+                //     return done(null, false, { message: "Password is incorrect!" })
+                //   } else {
+                //     return done(null, doctor, { message: "success" })
+                //   }
+                // })
+  //             }
+  //           })
+  //         } else {
+  //           const dbPassword = writer.password
+  //           bcrypt.compare(password, dbPassword).then((match) => {
+  //             if (!match) {
+  //               return done(null, false, { message: "Password is incorrect!" })
+  //             } else {
+  //               return done(null, writer, { message: "success" })
+  //             }
+  //           })
+  //         }
+  //       })
+  //     } else {
+        // const dbPassword = user.password
+        // bcrypt.compare(password, dbPassword).then((match) => {
+        //   if (!match) {
+        //     return done(null, false, { target: "password", message: "Password is incorrect!" })
+        //   } else {
+        //     return done(null, user, { message: "success" })
+        //   }
+  //       })
+  //     }
+  //   })
+  // }
 
   
   // function(email, password, role, done) {
@@ -148,7 +213,6 @@ passport.use(new LocalStrategy(
   //           });
   //   }
   // }
-));
 
 passport.serializeUser(function(user, done) {
   // done(null, user.user_id)
