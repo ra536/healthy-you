@@ -4,7 +4,7 @@ import { AppContextProvider } from './context/AppContext';
 import Home from "./routes/Home";
 import DoctorDashboard from "./routes/DoctorDashboard";
 import Review from "./routes/Review";
-import UserRegistrationForm from './routes/UserRegistration'
+import Registration from './routes/Registration'
 import WriterDashboard from './routes/WriterDashboard';
 import Article from './routes/Article';
 import Login from "./routes/Login";
@@ -63,7 +63,7 @@ const App = () => {
                 <Router>
                     <Switch>
                         <Route exact path="/" component={ Home }/>
-                        <Route exact path="/register" component = { UserRegistrationForm } />
+                        <Route exact path="/register" component = { Registration } />
                         <Route exact path="/login" component={ Login } loggedIn={ loggedIn }/>
                         <Route exact path="/search" component={ Search }/>
                         <Route path="/results" component={ SearchResults }/>
@@ -84,7 +84,7 @@ const App = () => {
                 <Router>
                     <Switch>
                         <Route exact path="/" component={ Home }/>
-                        <Route exact path="/register" component = { UserRegistrationForm } />
+                        <Route exact path="/register" component = { Registration } />
                         <Route exact path="/login" component={ Login } loggedIn={ loggedIn }/>
                         <Route exact path="/search" component={ Search }/>
                         <Route path="/results" component={ SearchResults }/>
