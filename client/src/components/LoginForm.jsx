@@ -29,19 +29,19 @@ const LoginForm = () => {
                     password: data.password,
                     role: data.role
                 })
-                console.log(response.data)
-                if (response.data.status == "success") {
-                  alert("You have successfully logged in!" + data.role)
-                  setLoggedIn(true)
-                  setRole(data.role)
-                  console.log(role)
-                } else {
-                  if (response.data.target == "email") {
-                    setErrors({ email: response.data.status})
-                  } else {
-                    setErrors({ password: response.data.status})
-                  }
-                }
+                console.log(response)
+                // if (response.data.status == "success") {
+                //   alert("You have successfully logged in!" + data.role)
+                //   setLoggedIn(true)
+                //   setRole(data.role)
+                //   console.log(role)
+                // } else {
+                //   if (response.data.target == "email") {
+                //     setErrors({ email: response.data.status})
+                //   } else {
+                //     setErrors({ password: response.data.status})
+                //   }
+                // }
             }
             catch (err) {
                 console.log(err)

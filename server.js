@@ -15,6 +15,11 @@ require('dotenv').config();
 const app = express();
 
 // Allows for two different domains to interact
+// const corsOptions ={
+//   origin:'http://localhost:3000', 
+//   credentials:true,
+//   optionSuccessStatus:200
+// }
 app.use(cors());
 
 if(process.env.NODE_ENV === "production"){
@@ -51,72 +56,125 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(
-  function(email, password, role, done) {
-    if (role == "User") {
-        user.findOne({ where: { email: email } }, function (err, user) {
-        if (err) { return done(err); }
-        if (!user) {
-            return done(null, false, { target: "email", status: 'Incorrect username.' });
-        }
-        bcrypt.compare(password, user.password).then((match) => {
-            if (!match) {
-                return done(null, false, { target: "password", status: "Password is incorrect!" });
-            }
+  {usernameField:"email"},
+  function(username, password, done) {
+    user.findOne({
+      where: {
+        email: username
+      }
+    }).then(function (user) {
+      if (!user) {
+        doctor.findOne({
+          where: {
+            email: username
+          }
+        }).then(function (doctor) {
+          if (!doctor) {
+            writer.findOne({
+              where: {
+                email: username
+              }
+            }).then(function (writer) {
+              if (!writer) {
+                return done(null, false, { message: "Email does not exist!" })
+              } else {
+                const dbPassword = doctor.password
+                bcrypt.compare(password, dbPassword).then((match) => {
+                  if (!match) {
+                    return done(null, false, { message: "Password is incorrect!" })
+                  } else {
+                    return done(null, doctor)
+                  }
+                })
+              }
+            })
+          } else {
+            const dbPassword = writer.password
+            bcrypt.compare(password, dbPassword).then((match) => {
+              if (!match) {
+                return done(null, false, { message: "Password is incorrect!" })
+              } else {
+                return done(null, writer)
+              }
+            })
+          }
         })
-        // if (!user.validPassword(password)) {
-        //     return done(null, false, { target: "password", status: "Password is incorrect!" });
-        // }
-        return done(null, user);
-        });
-    } else if (role == "Doctor") {
-        doctor.findOne({ where: { email: email } }, function (err, doctor) {
-            if (err) { return done(err); }
-            if (!doctor) {
-                return done(null, false, { target: "email", status: 'Incorrect username.' });
-            }
-            bcrypt.compare(password, doctor.password).then((match) => {
-                if (!match) {
-                    return done(null, false, { target: "password", status: "Password is incorrect!" });
-                }
-            })
-            return done(null, doctor);
-            });
-    } else {
-        writer.findOne({ where: { email: email } }, function (err, writer) {
-            if (err) { return done(err); }
-            if (!writer) {
-                return done(null, false, { target: "email", status: 'Incorrect username.' });
-            }
-            bcrypt.compare(password, writer.password).then((match) => {
-                if (!match) {
-                    return done(null, false, { target: "password", status: "Password is incorrect!" });
-                }
-            })
-            return done(null, writer);
-            });
-    }
+      } else {
+        const dbPassword = user.password
+        bcrypt.compare(password, dbPassword).then((match) => {
+          if (!match) {
+            return done(null, false, { message: "Password is incorrect!" })
+          } else {
+            return done(null, user)
+          }
+        })
+      }
+    })
   }
+  // function(email, password, role, done) {
+  //   if (role == "User") {
+  //       user.findOne({ where: { email: email } }, function (err, user) {
+  //       if (err) { return done(err); }
+  //       if (!user) {
+  //           return done(null, false, { target: "email", status: 'Incorrect username.' });
+  //       }
+  //       bcrypt.compare(password, user.password).then((match) => {
+  //           if (!match) {
+  //               return done(null, false, { target: "password", status: "Password is incorrect!" });
+  //           }
+  //       })
+  //       // if (!user.validPassword(password)) {
+  //       //     return done(null, false, { target: "password", status: "Password is incorrect!" });
+  //       // }
+  //       return done(null, user);
+  //       });
+  //   } else if (role == "Doctor") {
+  //       doctor.findOne({ where: { email: email } }, function (err, doctor) {
+  //           if (err) { return done(err); }
+  //           if (!doctor) {
+  //               return done(null, false, { target: "email", status: 'Incorrect username.' });
+  //           }
+  //           bcrypt.compare(password, doctor.password).then((match) => {
+  //               if (!match) {
+  //                   return done(null, false, { target: "password", status: "Password is incorrect!" });
+  //               }
+  //           })
+  //           return done(null, doctor);
+  //           });
+  //   } else {
+  //       writer.findOne({ where: { email: email } }, function (err, writer) {
+  //           if (err) { return done(err); }
+  //           if (!writer) {
+  //               return done(null, false, { target: "email", status: 'Incorrect username.' });
+  //           }
+  //           bcrypt.compare(password, writer.password).then((match) => {
+  //               if (!match) {
+  //                   return done(null, false, { target: "password", status: "Password is incorrect!" });
+  //               }
+  //           })
+  //           return done(null, writer);
+  //           });
+  //   }
+  // }
 ));
 
 passport.serializeUser(function(user, done) {
-  done(null, user.id, user.role);
-});
+  done(null, user.user_id)
+})
 
-passport.deserializeUser(function(id, role, done) {
-  if (role == "User") {
-    user.findOne({ where: { id: id } }, function(err, user) {
-      done(err, user);
-    });
-  } else if (role == "Doctor") {
-    doctor.findOne({ where: { id: id } }, function(err, doctor) {
-      done(err, doctor);
-    });
-  } else {
-    writer.findOne({ where: { id: id } }, function(err, writer) {
-      done(err, user);
-    });
-  }
-});
+passport.deserializeUser(function(id, done) {
+  user.findOne({
+    where: {
+      'id': id
+    }
+  }).then(function (user) {
+    if (user == null) {
+      done(new Error('Wrong user id.'))
+    }
+    
+    done(null, user)
+  })
+})
 
 // routes
 app.use("/api/v1/test", require('./routes/test'));
