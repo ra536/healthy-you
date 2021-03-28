@@ -6,6 +6,7 @@ import Card from 'react-bootstrap/Card'
 import drfarhad from './drfarhad.jpg';
 import fivestar from './fivestar.jpg';
 import Accordion from 'react-bootstrap/Accordion'
+import ListGroup from 'react-bootstrap/ListGroup'
 
 
 const DoctorReview = () => {
@@ -15,6 +16,7 @@ const DoctorReview = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="m-auto">
+
 						<Nav.Link href="#link">Home</Nav.Link>
 						<Nav.Link href="#home">Food</Nav.Link>
 						<Nav.Link href="#link">Nutrition</Nav.Link>
@@ -29,68 +31,96 @@ const DoctorReview = () => {
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
-	 <Row>
-                    <Col>
-                    <Image src={drfarhad} className="mx-auto d-block" style={{ width: '50%' }} fluid roundedCircle />
+	<Row>
+                <Col md>
+                    <Image src={drfarhad} className="mx-auto d-block" style={{ width: '50%' }} roundedCircle />
                 </Col>
 
                 <Col>
-                    <Card style={{ width: '23rem' }}>
+                    <Card style={{ width: '30rem' }}>
                     <Card.Body>
                         <Card.Title>Dr. Farhad Rafizadeh, MD</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">Morristown, NJ</Card.Subtitle>
                         <Card.Text>
-                        Dr. Farhad Rafizadeh is a board certified plastic surgeon and a member of the American Society of Aesthetic Plastic Surgery. Dr. Rafizadeh has been performing plastic and reconstructive surgery since 1984.
+							Dr. Farhad Rafizadeh is a board certified plastic surgeon and a member of the American Society of Aesthetic Plastic Surgery. Dr. Rafizadeh has been performing plastic and reconstructive surgery since 1984.
                         </Card.Text>
-                        
+						<ListGroup>
+							<ListGroup.Item>Bedside Manner:<Image src={fivestar} className="mx-auto d-block" style={{ width: '45%' }} /></ListGroup.Item>
+							<ListGroup.Item>Average wait time:<Image src={fivestar} className="mx-auto d-block" style={{ width: '45%' }} /></ListGroup.Item>
+							<ListGroup.Item>Availability:<Image src={fivestar} className="mx-auto d-block" style={{ width: '45%' }} /></ListGroup.Item>
+						</ListGroup>
+						<br>
+						</br>
+						<Card.Title>Contact Information: </Card.Title>
+
+						<ListGroup.Item> <Card.Text className="mx-auto d-block" style={{ width: '75%' }}>        
+							Phone:111-111-1111 
+							
+							<br>
+							</br>
+							Fax: 222-222-2222
+							<br>
+							</br>
+							Email: Farhad@gmail.com
+							<br>
+							</br>
+							Locations: Morristown, Newark, Harrison
+                        </Card.Text>
+						</ListGroup.Item>
                     </Card.Body>
                     
                     </Card>
-                </Col>
-				
-                </Row>
-				<Card>
-				
-	<h3>
+                </Col>	
 
+    </Row>
+<br>
+</br>
+	
+<Row>
+<Col>
+<Card>				
+	<h3>
 	<br>
 	</br>
 	<div align="center">
-	Overall Rating: 5.0
-	</div>
+	Overall Rating:
 	<br>
 	</br>
-	<Image src={fivestar} className="mx-auto d-block" style={{ width: '25%' }} />
+	5.0
+	</div>
+	<Image src={fivestar} className="mx-auto d-block" style={{ width: '15%' }} />
 	</h3>
-	
+
+
+</Card>
+
+<Card>
   <Card.Body>
-    <blockquote className="blockquote mb-0">
+    <blockquote className="blockquote mb-0 text-center">
       <p>
         {' '}
-        Doctor Farhad really helped me to achieve a natural look after my surgery. I would highly reccomend him for anyone that is interested in plastic surgery.{' '}
+        Doctor Farhad really helped me to achieve a natural look after my surgery. I would highly recommend him for anyone that is interested in plastic surgery.{' '}
       </p>
       <footer className="blockquote-footer">
         Karen K. <cite title="Source Title"></cite>
       </footer>
     </blockquote>
   </Card.Body>
-</Card>
-<Row>
 <Accordion>
-  <Card>
-    <Card.Header>
-      <Accordion.Toggle as={Button} variant="link" eventKey="0">
+  <Card>  
+    <Card.Header className="text-center">
+      <Accordion.Toggle as={Button} variant="link" eventKey="0" >
         More Reviews
       </Accordion.Toggle>
     </Card.Header>
     <Accordion.Collapse eventKey="0">
       <Card.Body> 
-	  <blockquote className="blockquote mb-0">
+	  <blockquote className="blockquote mb-0 text-center">
       <p>
         {' '}
         Doctor Farhad really helped me to regain my beauty after my surgery. He was really understanding and catered to me. The staff was also very friendly.{' '}
       </p>
-      <footer className="blockquote-footer">
+      <footer className="blockquote-footer text-center">
         Cynthia C. <cite title="Source Title"></cite>
       </footer>
     </blockquote> 
@@ -98,12 +128,12 @@ const DoctorReview = () => {
 	</br>
 	<br>
 	</br>
-	<blockquote className="blockquote mb-0">
+	<blockquote className="blockquote mb-0 text-center">
       <p>
         {' '}
         I needed to find a reliable doctor for my cosmetic surgery, my friends recommended Dr. Farhad, and I can not recommend him enough! Procedure was swift and my appointment was quick.{' '}
       </p>
-      <footer className="blockquote-footer">
+      <footer className="blockquote-footer text-center">
         Jessica J.<cite title="Source Title"></cite>
       </footer>
     </blockquote>
@@ -111,15 +141,16 @@ const DoctorReview = () => {
     </Accordion.Collapse>
   </Card>
 
-
 </Accordion>
+</Card>
+</Col>
 </Row>
 	<Row>
 	<br>
 	</br>
 	<Col>
 	<div align="center">
-	<Button variant="primary" size="lg">Book Appointment Now</Button>
+	<Button variant="primary" size="lg" block>Book Appointment Now</Button>
 	</div>
 	</Col>
 	</Row>

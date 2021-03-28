@@ -226,7 +226,7 @@ const Home = () => {
 
             <br />
                  <Row>
-                     <Col>
+                    <Col>
                         <img src={strech} alt="strech"width={330} height={210} mode='fit' /> 
                     </Col>
              
