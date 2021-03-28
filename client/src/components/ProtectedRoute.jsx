@@ -1,31 +1,15 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Route, Redirect } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext'
-import LoginAPI from '../apis/LoginAPI'
 
-const ProtectedRoute = ({ component: Component, requiredRole: requiredRole, ...rest }) => {
-    const { role, loggedIn } = useContext(AuthContext);
-
-    useEffect(() => {
-        // Define a function fetchData that calls APIs which is then called in useEffect
-        const fetchData = async () => {
-            try {
-                const response = await (LoginAPI.get("/user", {
-                    withCredentials: true
-                }));
-                console.log(response)
-            }
-            catch (err) {
-                console.log(err)
-            }
-        }
-        fetchData();
-    }, []);
+const ProtectedRoute = ({ component: Component, requiredRole: requiredRole, loggedIn: loggedIn, ...rest }) => {
 
     return (
         <Route
             {...rest}
             render={props => {
+                if (loggedIn) {
+                    <Redirect to="/login" />
+                }
                 return <Component {...props} />
             }}
         >
