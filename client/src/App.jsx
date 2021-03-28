@@ -38,25 +38,24 @@ const App = () => {
     }, []);
 
     return (
-            <AppContextProvider>
-                <div>
-                    <Router>
-                        <Switch>
-                            <Route exact path="/" component={ Home }/>
-                            <ProtectedRoute exact path="/register" component = { UserRegistrationForm } role={ role }/>
-                            <Route exact path="/login" component={ Login } loggedIn={ loggedIn }/>
-                            <Route exact path="/search" component={ Search }/>
-                            <Route path="/results" component={ SearchResults }/>
-                            <ProtectedRoute exact path="/doctor-dashboard/:doctorID" component = { DoctorDashboard } requiredRole="Doctor" role={ role } />
-                            <Route path="/leaveReview/:id">
-                                <Review url={window.location.href}/>
-                            </Route>
-                            <ProtectedRoute path="/writer-dashboard/:id" component = { WriterDashboard } requiredRole="Writer" role={ role } />
-                            <Route path="/article/:id" component = { Article } />
-                        </Switch>
-                    </Router>
-                </div>
-            </AppContextProvider>
+        <AppContextProvider>
+            <div>
+                <Router>
+                    <Switch>
+                        <Route exact path="/" component={ Home }/>
+                        <ProtectedRoute exact path="/register" component = { UserRegistrationForm } role={ role }/>
+                        <Route exact path="/login" component={ Login } loggedIn={ loggedIn }/>
+                        <Route exact path="/search" component={ Search }/>
+                        <Route path="/results" component={ SearchResults }/>
+                        <ProtectedRoute exact path="/doctor-dashboard/:doctorID" component = { DoctorDashboard } requiredRole="Doctor" role={ role } />
+                        <Route path="/leaveReview/:id">
+                            <Review url={window.location.href}/>
+                        </Route>
+                        <ProtectedRoute path="/writer-dashboard/:id" component = { WriterDashboard } requiredRole="Writer" role={ role } />                            <Route path="/article/:id" component = { Article } />
+                    </Switch>
+                </Router>
+            </div>
+        </AppContextProvider>
     )
 };
 
