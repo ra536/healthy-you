@@ -13,6 +13,7 @@ import SearchResults from './components/SearchResults'
 import ProtectedRoute from './components/ProtectedRoute'
 import { AuthContext } from './context/AuthContext'
 import LoginAPI from './apis/LoginAPI'
+import { Button } from 'react-bootstrap'
 
 const App = () => {
     const { loggedIn, setLoggedIn, role, setRole } = useContext(AuthContext);
@@ -37,21 +38,40 @@ const App = () => {
         fetchData();
     }, []);
 
+    const handleClick = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await LoginAPI.get("/logout", {
+                withCredentials: true
+            });
+            console.log(response);
+            setLoggedIn(false);
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
     return (
         <AppContextProvider>
+            <div>
+                <Button onClick={ handleClick }>
+                    Logout
+                </Button>
+            </div>
             <div>
                 <Router>
                     <Switch>
                         <Route exact path="/" component={ Home }/>
-                        <ProtectedRoute exact path="/register" component = { UserRegistrationForm } role={ role }/>
+                        <Route exact path="/register" component = { UserRegistrationForm } />
                         <Route exact path="/login" component={ Login } loggedIn={ loggedIn }/>
                         <Route exact path="/search" component={ Search }/>
                         <Route path="/results" component={ SearchResults }/>
-                        <ProtectedRoute exact path="/doctor-dashboard/:doctorID" component = { DoctorDashboard } requiredRole="Doctor" role={ role } />
+                        <ProtectedRoute path="/doctor-dashboard/:doctorID" component = { DoctorDashboard } requiredRole="Doctor" />
                         <Route path="/leaveReview/:id">
                             <Review url={window.location.href}/>
                         </Route>
-                        <ProtectedRoute path="/writer-dashboard/:id" component = { WriterDashboard } requiredRole="Writer" role={ role } />                            <Route path="/article/:id" component = { Article } />
+                        <ProtectedRoute path="/writer-dashboard/:id" component = { WriterDashboard } requiredRole="Writer" />                            <Route path="/article/:id" component = { Article } />
                     </Switch>
                 </Router>
             </div>

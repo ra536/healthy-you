@@ -41,6 +41,11 @@ router.get("/user", (req, res) => {
   res.send(req.user);
 })
 
+router.get('/logout', function(req, res){
+  req.logout();
+  res.send("Successfully logged out!")
+});
+
 // router.post("/", async (req, res) => {
 //   // destructing properties from req.body
 //   const { email, password, role } = req.body;

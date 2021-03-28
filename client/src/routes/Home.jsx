@@ -5,9 +5,8 @@ import { AppContext } from '../context/AppContext';
 import { AuthContext } from '../context/AuthContext';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap';
-import { Container, Card, Carousel } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { Logout } from '../components/LogoutButton';
-import { Redirect, Link } from 'react-router-dom'
 
 // bootstrap styles library (gives automatic styling)
 import 'bootstrap/dist/css/bootstrap.css';
@@ -33,12 +32,9 @@ const Home = () => {
         fetchData();
     }, []);
 
-    console.log("am i a doctor", isDoctor)
     console.log("am I logged in?", loggedIn)
 
-    return loggedIn && isDoctor ? (
-        <Redirect to='/doctorid/doctor-dashboard' />
-      ) : (
+    return (
         <div>
             <Navbar bg="primary" variant="dark" expand="lg">
                 <Navbar.Brand href="#home">
