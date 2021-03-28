@@ -13,9 +13,46 @@ const doctor = db.define('doctor', {
     //     type: DataTypes.UUID,
     //     allowNull: false
     // },
-    doctor_name: {
+    // doctor_name: {
+    //     type: DataTypes.STRING,
+    //     allowNull: false
+    // },
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: {
+            args: true,
+            msg: 'Email address already in use.'
+        }
+    },
+    password: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    firstName: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    lastName: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    city: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    state: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    birthdate: {
+        type: DataTypes.DATE,
+        allowNull: false
+    },
+    role: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'Doctor',
     },
     rating: {
         type: DataTypes.DECIMAL

@@ -34,6 +34,11 @@ const writer = db.define('writer', {
     birthdate: {
         type: DataTypes.DATE,
     },
+    role: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'Writer',
+    },
     articles: {
         type: DataTypes.ARRAY(DataTypes.UUID)
     }
