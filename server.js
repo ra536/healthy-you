@@ -1,14 +1,16 @@
 const express = require('express');
 const cors = require("cors");
 const path = require('path');
-const fileUpload = require('express-fileupload')
+const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
-const passport = require('passport')
+const session = require('express-session');
+const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const user = require('./db/models/user')
+const user = require('./db/models/user');
 const doctor = require('./db/models/doctor');
 const writer = require('./db/models/writer');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+require('dotenv').config();
 
 const app = express();
 
@@ -35,7 +37,19 @@ app.use(express.json({
 // Database
 const db = require('./db/index')
 
+// Session Setup
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24
+  }
+}));
+
 // Passport Config
+app.use(passport.initialize());
+app.use(passport.session());
 passport.use(new LocalStrategy(
   function(email, password, role, done) {
     if (role == "User") {
