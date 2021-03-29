@@ -9,12 +9,12 @@ import { useParams } from 'react-router-dom';
 import { Container, Table } from 'react-bootstrap';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import { Logout } from '../components/LogoutButton';
-import { LoginContext } from '../context/LoginPersistence';
+import { AuthContext } from '../context/AuthContext';
 
 
 const DoctorDashboard = (props) => {
     let { doctorID } = useParams();
-    const { loggedIn, isDoctor} = useContext(LoginContext);
+    const { loggedIn, isDoctor} = useContext(AuthContext);
     console.log(doctorID);
     const [rating, setRating] = useState();
     const [name, setName] = useState();

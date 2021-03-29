@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import { LoginContext } from '../context/LoginPersistence';
+import { AuthContext } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
 
 
 export function Logout() {
-    const { onlineStatus, setUserID, isRoleDoctor , isRoleUser } = useContext(LoginContext)
+    const { onlineStatus, setUserID, isRoleDoctor , isRoleUser } = useContext(AuthContext)
 
 
 function handleSubmit(event) {
