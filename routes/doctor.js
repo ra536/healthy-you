@@ -4,6 +4,7 @@ const db = require('../db/index');
 const doctor = require('../db/models/doctor');
 const { Sequelize } = require('sequelize');
 const { validateDoctorToken } = require('../JWT')
+const { isAuthAndAdmin, isAuthAndDoctor } = require('../server')
 
 
 router.use(express.json());
@@ -14,7 +15,7 @@ router.use(express.json());
 // UPDATE bio and maybe appointments, profile pictures
 // DELETE specialties, practices, appointments,
 
-router.post("/findDoctor", validateDoctorToken, async (req, res) => {
+router.post("/findDoctor", isAuthAndAdmin, isAuthAndDoctor, async (req, res) => {
     try {
         const doctorResult = await doctor.findAll({
             where: {
@@ -33,7 +34,7 @@ router.post("/findDoctor", validateDoctorToken, async (req, res) => {
     }
 });
 
-router.post("/addSpecialty", validateDoctorToken, async (req, res) => {
+router.post("/addSpecialty", isAuthAndAdmin, isAuthAndDoctor, async (req, res) => {
     try {
         const specialty = await doctor.update(
             {
@@ -57,7 +58,7 @@ router.post("/addSpecialty", validateDoctorToken, async (req, res) => {
     }
 });
 
-router.post("/removeSpecialty", validateDoctorToken, async (req, res) => {
+router.post("/removeSpecialty", isAuthAndAdmin, isAuthAndDoctor, async (req, res) => {
     try {
         const specialty = await doctor.update(
             {
