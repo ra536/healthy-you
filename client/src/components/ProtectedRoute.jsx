@@ -36,7 +36,7 @@ const ProtectedRoute = ({ requiredRoles, component: Component, ...rest }) => {
                   if (role === null) {
                     return "Loading..."
                   } else {
-                    if (requiredRoles.includes(role)) {
+                    if ((requiredRoles.length > 0) && (requiredRoles.includes(role))) {
                       return <Component { ...props } />
                     } else {
                       return <Redirect to="/" />
