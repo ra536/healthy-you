@@ -5,7 +5,7 @@ import { LoginContextProvider } from './context/LoginPersistence';
 import Home from "./routes/Home";
 import DoctorDashboard from "./routes/DoctorDashboard";
 import Review from "./routes/Review";
-import Register from './routes/Register';
+import UserRegistrationForm from './routes/UserRegistration'
 import WriterDashboard from './routes/WriterDashboard';
 import Article from './routes/Article';
 import Login from "./routes/Login";
@@ -20,7 +20,7 @@ const App = () => {
                     <Router>
                         <Switch>
                             <Route exact path="/" component={ Home }/>
-                            <Route exact path="/register" component = { Register }/>
+                            <Route exact path="/register" component = { UserRegistrationForm }/>
                             <Route exact path="/login" component={ Login }/>
                             <Route exact path="/search" component={ Search }/>
                             <Route path="/results" component={ SearchResults }/>
