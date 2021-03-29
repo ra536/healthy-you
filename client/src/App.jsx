@@ -31,6 +31,7 @@ const App = () => {
                     setRole(response.data.role)
                 } else {
                     setLoggedIn(false);
+                    setRole("None")
                 }
             }
             catch (err) {
@@ -69,11 +70,11 @@ const App = () => {
                         <Route exact path="/login" component={ Login } loggedIn={ loggedIn }/>
                         <Route exact path="/search" component={ Search }/>
                         <Route path="/results" component={ SearchResults }/>
-                        <ProtectedRoute path="/doctor-dashboard/:doctorID" component = { DoctorDashboard } requiredRole="Doctor" />
+                        <ProtectedRoute path="/doctor-dashboard/:doctorID" component = { DoctorDashboard } requiredRoles={["Doctor"]} />
                         <Route path="/leaveReview/:id">
                             <Review url={window.location.href}/>
                         </Route>
-                        <ProtectedRoute path="/writer-dashboard/:id" component = { WriterDashboard } requiredRole="Writer" />                            <Route path="/article/:id" component = { Article } />
+                        <ProtectedRoute path="/writer-dashboard/:id" component = { WriterDashboard } requiredRoles={["Writer"]} />                            <Route path="/article/:id" component = { Article } />
                     </Switch>
                 </Router>
             </div>
@@ -90,11 +91,11 @@ const App = () => {
                         <Route exact path="/login" component={ Login } loggedIn={ loggedIn }/>
                         <Route exact path="/search" component={ Search }/>
                         <Route path="/results" component={ SearchResults }/>
-                        <ProtectedRoute path="/doctor-dashboard/:doctorID" component = { DoctorDashboard } requiredRole="Doctor" />
+                        <ProtectedRoute path="/doctor-dashboard/:doctorID" component = { DoctorDashboard } requiredRoles={["Doctor"]} />
                         <Route path="/leaveReview/:id">
                             <Review url={window.location.href}/>
                         </Route>
-                        <ProtectedRoute path="/writer-dashboard/:id" component = { WriterDashboard } requiredRole="Writer" />                            <Route path="/article/:id" component = { Article } />
+                        <ProtectedRoute path="/writer-dashboard/:id" component = { WriterDashboard } requiredRoles={["Writer"]} />                            <Route path="/article/:id" component = { Article } />
                     </Switch>
                 </Router>
             </div>

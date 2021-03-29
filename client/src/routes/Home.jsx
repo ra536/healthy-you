@@ -14,7 +14,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 const Home = () => {
     // Store the data retrieved from backend API into context
     const { tests, setTests } = useContext(AppContext);
-    const { loggedIn, isDoctor} = useContext(AuthContext)
+    const { loggedIn, role} = useContext(AuthContext)
 
     // Call our backend API to retrieve list of test objects from db
     useEffect( () => {
@@ -33,6 +33,7 @@ const Home = () => {
     }, []);
 
     console.log("am I logged in?", loggedIn)
+    console.log("what's my role?", role)
 
     return (
         <div>

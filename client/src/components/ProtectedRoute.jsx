@@ -2,8 +2,8 @@ import React, { useContext } from 'react'
 import { Route, Redirect } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
-const ProtectedRoute = ({ component: Component, ...rest }) => {
-    const { loggedIn } = useContext(AuthContext);
+const ProtectedRoute = ({ requiredRoles, component: Component, ...rest }) => {
+    const { loggedIn, role } = useContext(AuthContext);
 
     return (
         <Route
@@ -33,7 +33,15 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
                 return "Loading..."
               } else {
                 if (loggedIn) {
-                  return <Component />
+                  if (role === null) {
+                    return "Loading..."
+                  } else {
+                    if (requiredRoles.includes(role)) {
+                      return <Component { ...props } />
+                    } else {
+                      return <Redirect to="/" />
+                    }
+                  }
                 } else {
                   return <Redirect to="/login" />
                 }
