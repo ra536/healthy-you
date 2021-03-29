@@ -14,7 +14,7 @@ router.use(express.json());
 // UPDATE bio and maybe appointments, profile pictures
 // DELETE specialties, practices, appointments,
 
-router.post("/findDoctor", isAuthAndAdmin, async (req, res) => {
+router.post("/findDoctor", isAuthAndAdmin, isAuthAndDoctor, async (req, res) => {
     try {
         const doctorResult = await doctor.findAll({
             where: {
@@ -33,7 +33,7 @@ router.post("/findDoctor", isAuthAndAdmin, async (req, res) => {
     }
 });
 
-router.post("/addSpecialty", async (req, res) => {
+router.post("/addSpecialty", isAuthAndAdmin, isAuthAndDoctor, async (req, res) => {
     try {
         const specialty = await doctor.update(
             {
@@ -57,7 +57,7 @@ router.post("/addSpecialty", async (req, res) => {
     }
 });
 
-router.post("/removeSpecialty", async (req, res) => {
+router.post("/removeSpecialty", isAuthAndAdmin, isAuthAndDoctor, async (req, res) => {
     try {
         const specialty = await doctor.update(
             {
