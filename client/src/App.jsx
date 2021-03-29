@@ -70,7 +70,7 @@ const App = () => {
                         <Route exact path="/login" component={ Login } loggedIn={ loggedIn }/>
                         <Route exact path="/search" component={ Search }/>
                         <Route path="/results" component={ SearchResults }/>
-                        <ProtectedRoute path="/doctor-dashboard/:doctorID" component = { DoctorDashboard } requiredRoles={["Doctor"]} />
+                        <ProtectedRoute path="/doctor-dashboard/:doctorID" component = { DoctorDashboard } /* requiredRoles={["Doctor"]} */ />
                         <Route path="/leaveReview/:id">
                             <Review url={window.location.href}/>
                         </Route>
@@ -91,7 +91,7 @@ const App = () => {
                         <Route exact path="/login" component={ Login } loggedIn={ loggedIn }/>
                         <Route exact path="/search" component={ Search }/>
                         <Route path="/results" component={ SearchResults }/>
-                        <ProtectedRoute path="/doctor-dashboard/:doctorID" component = { DoctorDashboard } requiredRoles={["Doctor"]} />
+                        <ProtectedRoute path="/doctor-dashboard/:doctorID" component = { DoctorDashboard } /* requiredRoles={["Doctor"]} */ />
                         <Route path="/leaveReview/:id">
                             <Review url={window.location.href}/>
                         </Route>
