@@ -29,6 +29,8 @@ const App = () => {
                 if (Object.keys(response.data).length > 0) {
                     setLoggedIn(true);
                     setRole(response.data.role)
+                } else {
+                    setLoggedIn(false);
                 }
             }
             catch (err) {
@@ -51,7 +53,7 @@ const App = () => {
             console.log(err)
         }
     }
-    return loggedIn == true ?
+    return loggedIn ?
     (
         <AppContextProvider>
             <div>
