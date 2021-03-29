@@ -71,9 +71,11 @@ const Home = () => {
             </Navbar>
             <br />
             <Container>
-
+            
             </Container>
-
+            <div align="center">
+            <iframe allowfullscreen height='200' scrolling='no' frameborder='0' style={{border: 'none'}} src='https://www.wevideo.com/api/4/media/1921444596/embed' allowfullscreen></iframe>
+            </div>
             <Container>
                 <h1>Home</h1>
                 <InputTest />

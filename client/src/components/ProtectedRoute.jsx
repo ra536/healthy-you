@@ -12,12 +12,12 @@ const ProtectedRoute = ({ component: Component, requiredRole: requiredRole, logg
                 if (loggedIn == false) {
                     return <Redirect to="/login" />
                 } else {
-                    // if (requiredRole && (role == requiredRole)) {
-                    //     return <Component { ...rest } />
-                    // } else {
-                    //     return <Redirect to="/" />
-                    // }
-                    // return <Component { ...rest } />
+                    if (requiredRole && (role == requiredRole)) {
+                        return <Component { ...rest } />
+                    } else {
+                        return <Redirect to="/" />
+                    }
+                    return <Component { ...rest } />
                     if (requiredRole) {
                         if (requiredRole == role) {
                             return <Component { ...rest } />

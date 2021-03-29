@@ -36,8 +36,6 @@ const practice = db.define('practice', {
     },
     doctor_id: {
         type: DataTypes.UUID,
-        defaultValue: Sequelize.UUIDV4,
-        allowNull: false,
         foreignKey: true
     },
 });
