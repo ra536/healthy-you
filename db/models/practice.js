@@ -42,10 +42,10 @@ const practice = db.define('practice', {
     },
 });
 
-practice.belongsTo(doctor, {
-    targetKey: 'doctor_id',
-    foreignKey: 'doctor_id'
-});
+// practice.belongsTo(doctor, {
+//     targetKey: 'doctor_id',
+//     foreignKey: 'doctor_id'
+// });
 
 // practice.create({practice_id:'d41ba10b-bb8b-4ff2-8c7f-7ef7c818b484', name:'PRACTICE CLINIC', location:'HERE', sum_rating:5.0, website:"WEBSITE.COM", social_media:"@SOCIALMEDIA", fax:'fax', phone:'555-555-5555'});
 // practice.create({practice_id:'48711630-63dd-4fab-9dfd-0beed48e2026', name:'DENTISTRY', location:'THERE', sum_rating:5.0, website:"WEBSITE.COM", social_media:"@SOCIALMEDIA", fax:'fax', phone:'777 777 7777'});
