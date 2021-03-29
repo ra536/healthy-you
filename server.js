@@ -234,6 +234,39 @@ passport.deserializeUser(function(user, done) {
   done(null, user)
 })
 
+//Passport Authentication functions
+function isAuthAndAdmin(req, res, next) {
+  if (req.isAuthenticated() && (req.user.role === "Admin")) {
+    return next();
+  } else {
+    return res.json({status: "You are not authenticated!"});
+  }
+}
+
+function isAuthAndUser(req, res, next) {
+  if (req.isAuthenticated() && ((req.user.role === "Admin") || (req.user.role === "User"))) {
+    return next();
+  } else {
+    return res.json({status: "You are not authenticated!"});
+  }
+}
+
+function isAuthAndDoctor(req, res, next) {
+  if (req.isAuthenticated() && ((req.user.role === "Admin") || (req.user.role === "Doctor"))) {
+    return next();
+  } else {
+    return res.json({status: "You are not authenticated!"});
+  }
+}
+
+function isAuthAndWriter(req, res, next) {
+  if (req.isAuthenticated() && ((req.user.role === "Admin") || (req.user.role === "Writer"))) {
+    return next();
+  } else {
+    return res.json({status: "You are not authenticated!"});
+  }
+}
+
 // Session Setup
 app.use(session({
   secret: process.env.SECRET,
@@ -300,3 +333,5 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
+
+module.exports = { isAuthAndAdmin, isAuthAndDoctor, isAuthAndUser, isAuthAndWriter }
