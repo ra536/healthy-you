@@ -76,4 +76,16 @@ const validateDoctorToken = (req, res, next) => {
     }
 }
 
-module.exports = { createUserToken, createDoctorToken, createWriterToken, validateUserToken, validateDoctorToken }
+const isAuthAndAdmin = (req, res, next) => {
+    if (req.isAuthenticated() && (req.user.role === "Admin")) {
+      return next();
+    } else {
+      return (
+        res.json({
+          status: "You are not authenticated!"
+        })
+      )
+    }
+  }
+
+module.exports = { isAuthAndAdmin, createUserToken, createDoctorToken, createWriterToken, validateUserToken, validateDoctorToken }
