@@ -243,7 +243,7 @@ const DoctorDashboard = (props) => {
             <form>
                 <textarea rows="10" cols="75"
                     id="input-bio"
-                    value={updatedBio}
+                    value={"" + updatedBio }
                     //placeholder={bio}
                     onChange={e => setUpdatedBio(e.target.value)}
                 />
