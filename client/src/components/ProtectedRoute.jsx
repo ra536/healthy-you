@@ -36,10 +36,14 @@ const ProtectedRoute = ({ requiredRoles, component: Component, ...rest }) => {
                   if (role === null) {
                     return "Loading..."
                   } else {
-                    if (requiredRoles.includes(role)) {
-                      return <Component { ...props } />
+                    if (typeof requiredRoles != "undefined") {
+                      if (requiredRoles.includes(role)) {
+                        return <Component { ...props } />
+                      } else {
+                        return <Redirect to="/" />
+                      }
                     } else {
-                      return <Redirect to="/" />
+                      return <Component { ...props } />
                     }
                   }
                 } else {

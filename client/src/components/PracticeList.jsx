@@ -11,9 +11,14 @@ const PracticeList = (props) => {
         // Define a function fetchData that calls APIs which is then called in useEffect
         const fetchData = async () => {
             try {
-                const response = await (PracticeAPI.post("/findAll", {
+                const response = await PracticeAPI.post("/findAll",
+                {
                     doctor_id: props.doctorID
-                }));
+                },
+                {
+                    withCredentials: true
+                }
+                );
                 console.log(response.data.data)
                 setPractices(response.data.data)
                 console.log(practices)

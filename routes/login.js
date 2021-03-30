@@ -7,7 +7,6 @@ const writer = require('../db/models/writer');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
-const { createUserToken, createDoctorToken, createWriterToken } = require('../JWT');
 
 router.use(express.json());
 
