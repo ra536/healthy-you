@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import ArticleAPI from '../apis/ArticleAPI';
+import { Container } from 'react-bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -38,17 +39,19 @@ const Article = (props) => {
 
     return (
         // Return different webpage, depending on the validity of the ID provided
-        <div white-space="pre-wrap">
+        <Container>
             {console.log(content)}
-            <h1>HEADLINE: {headline}</h1>
-            <p>CATEGORY: {category}</p>
-            <p>SUMMARY: {summary}</p>
-            <p>CONTENT: {content.split("\n").map((i,key) => {
+            <h1>{headline}</h1>
+            <a href="/">{category}</a>
+            <br />
+            <br/><img src={image}/>
+            <br /><br />
+            <p>{content.split("\n").map((i,key) => {
             return <p key={key}>{i}</p>;
         })}</p>
-            IMAGE:<br/><img src={image}/>
+            
             <p>CAPTION: {caption}</p>
-        </div>
+        </Container>
     )
 }
 
