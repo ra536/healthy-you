@@ -1,6 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import DashboardAPI from "../apis/DashboardAPI";
-import { TestContext } from "../context/TestContext";
 
 // Insert new doctor for a practice
 const InputNewDoc = () => {

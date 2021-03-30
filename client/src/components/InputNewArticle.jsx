@@ -163,7 +163,7 @@ const InputNewArticle = (props) => {
       <button type="submit" onClick={handleSubmit}>
         Insert New Article
       </button>
-      <img src={image} width="200px" id="preview"></img>
+      <img src={image} alt="" width="200px" id="preview"></img>
     </form>
   );
 };
