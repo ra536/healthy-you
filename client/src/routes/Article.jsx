@@ -42,7 +42,7 @@ const Article = (props) => {
             <p>CATEGORY: {category}</p>
             <p>SUMMARY: {summary}</p>
             <p>CONTENT: {content}</p>
-            IMAGE:<br/><img src={image}/>
+            IMAGE:<br/><img src={image} alt=""/>
             <p>CAPTION: {caption}</p>
         </div>
     )

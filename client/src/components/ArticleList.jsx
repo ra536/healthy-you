@@ -70,7 +70,7 @@ const ArticleList = (props) => {
                                     
                                 </td>
                                 <td>
-                                    <img src={articles.image_data} height="100px"/>
+                                    <img src={articles.image_data} alt="" height="100px"/>
                                 </td>
                             </tr>
                         )

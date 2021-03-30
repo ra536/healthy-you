@@ -145,7 +145,7 @@ export const InsertArticleModal = (props) => {
                             onChange={e => setCaption(e.target.value)}
                         />
                         
-                        <img src={image} width="200px" id="preview">
+                        <img src={image} alt="" width="200px" id="preview">
                         </img>
                     </form>
                 </Modal.Body>

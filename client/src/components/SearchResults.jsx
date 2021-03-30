@@ -59,7 +59,7 @@ const SearchResults = (props) => {
                     {results.map((results, index) => {
                         return (
                             <ul key={index} type="none">
-                                <img src={results.doctor.profile_picture} width="100" height="100" />
+                                <img src={results.doctor.profile_picture} alt="" width="100" height="100" />
                                 <li>{"Name: " + results.doctor.doctor_name}</li>
                                 <li>{"Specialty: " + results.doctor.specialty}</li>
                                 <li>{"Rating: " + results.doctor.rating}</li>

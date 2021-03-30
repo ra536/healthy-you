@@ -161,7 +161,7 @@ export const UpdateArticleModal = (props) => {
                                 onChange={e => setArticleUpdateCaption(e.target.value)}
                             />
 
-                            <img src={articleUpdateImage} width="200px" id="preview">
+                            <img src={articleUpdateImage} alt="" width="200px" id="preview">
                             </img>
                         </form>
                     </div>

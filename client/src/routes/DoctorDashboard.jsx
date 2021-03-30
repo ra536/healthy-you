@@ -204,7 +204,7 @@ const DoctorDashboard = (props) => {
             
             <br /><br />
             <h1>Profile Picture</h1>
-            <img src={profilePicture} width="200px" id="preview"></img>
+            <img src={profilePicture} alt="" width="200px" id="preview"></img>
             <form>
                 <input
                     id="input-file"
@@ -215,7 +215,7 @@ const DoctorDashboard = (props) => {
                 <br/>
                 <button type="submit" onClick={handleSubmitProfilePic}>Save</button>
             </form>
-            <img src={newImage} width="200px" id="preview"></img>
+            <img src={newImage} alt="" width="200px" id="preview"></img>
             <br /><br />
             <h1>Phone Number</h1>
             {phone}
