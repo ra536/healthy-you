@@ -4,10 +4,11 @@ const db = require('../db/index')
 const practice = require('../db/models/practice')
 const location = require('../db/models/location');
 const doctor = require('../db/models/doctor');
+const { isAuthAndDoctor } = require('../passport')
 
 router.use(express.json());
 
-router.post("/create", async (req, res) => {
+router.post("/create", isAuthAndDoctor, async (req, res) => {
     try {
         if(req.body.practiceName != ""){
             const practices = await practice.create({
@@ -41,7 +42,7 @@ router.post("/create", async (req, res) => {
     }
 });
 
-router.post("/remove", async (req, res) => {
+router.post("/remove", isAuthAndDoctor, async (req, res) => {
     try {
         if(req.body.practiceName != ""){
             const practices = practice.findAll({
@@ -71,7 +72,7 @@ router.post("/remove", async (req, res) => {
     }
 });
 
-router.post("/findAll", async (req, res) => {
+router.post("/findAll", isAuthAndDoctor, async (req, res) => {
     try {
         const practiceResult = await practice.findAll({
             where: {

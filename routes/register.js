@@ -23,7 +23,8 @@ router.post("/", async (req, res) => {
                     lastName: lastName,
                     city: city,
                     state: state,
-                    birthdate: birthdate
+                    birthdate: birthdate,
+                    phone: "(111) 111-1111"
                 })
                 .then(() => {
                     res.status(201).json({

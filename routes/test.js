@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
         const testResults = await test.findAll({
             raw: true
         });
-        console.log(testResults);
+        //console.log(testResults);
         res.status(200).json({
           status: "success",
           data: testResults

@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../db/index');
 const doctor = require('../db/models/doctor');
 const { Sequelize } = require('sequelize');
-const { validateDoctorToken } = require('../JWT')
+const { isAuthAndDoctor } = require('../passport')
 
 
 router.use(express.json());
@@ -14,7 +14,7 @@ router.use(express.json());
 // UPDATE bio and maybe appointments, profile pictures
 // DELETE specialties, practices, appointments,
 
-router.post("/findDoctor", async (req, res) => { // validateDoctorToken, async (req, res) => {
+router.post("/findDoctor", isAuthAndDoctor, async (req, res) => {
     try {
         const doctorResult = await doctor.findAll({
             where: {
@@ -22,18 +22,21 @@ router.post("/findDoctor", async (req, res) => { // validateDoctorToken, async (
             },
             raw: true
         })
-        //console.log(req.body)
+        console.log(req.user.role)
         res.status(200).json({
             status: "success",
-            data: doctorResult
+            data: doctorResult,
+            user: req.user
         })
     }
     catch (err) {
-      console.log(err)
+      console.log(req.body)
+      //console.log(err)
+      console.log("THERE IS AN ERROR!")
     }
 });
 
-router.post("/addSpecialty", async (req, res) => { // validateDoctorToken, async (req, res) => {
+router.post("/addSpecialty", isAuthAndDoctor, async (req, res) => {
     try {
         const specialty = await doctor.update(
             {
@@ -57,7 +60,7 @@ router.post("/addSpecialty", async (req, res) => { // validateDoctorToken, async
     }
 });
 
-router.post("/removeSpecialty", async (req, res) => { // validateDoctorToken, async (req, res) => {
+router.post("/removeSpecialty", isAuthAndDoctor, async (req, res) => {
     try {
         const specialty = await doctor.update(
             {
@@ -80,7 +83,7 @@ router.post("/removeSpecialty", async (req, res) => { // validateDoctorToken, as
     }
 });
 
-router.post("/updateName", async (req, res) => {
+router.post("/updateName", isAuthAndDoctor, async (req, res) => {
     try {
         const n = await doctor.update(
             { doctor_name: req.body.name },
@@ -100,7 +103,7 @@ router.post("/updateName", async (req, res) => {
     }
 });
 
-router.post("/updatePhone", async (req, res) => {
+router.post("/updatePhone", isAuthAndDoctor, async (req, res) => {
     try {
         const p = await doctor.update(
             { phone: req.body.phone },
@@ -120,7 +123,7 @@ router.post("/updatePhone", async (req, res) => {
     }
 });
 
-router.post("/updateBio", async (req, res) => {
+router.post("/updateBio", isAuthAndDoctor, async (req, res) => {
     try {
         const b = await doctor.update(
             { bio: req.body.bio },
@@ -140,7 +143,7 @@ router.post("/updateBio", async (req, res) => {
     }
 });
 
-router.post("/updateProfilePic", async (req, res) => {
+router.post("/updateProfilePic", isAuthAndDoctor, async (req, res) => {
     try {
         const b = await doctor.update(
             { profile_picture: req.body.image },
