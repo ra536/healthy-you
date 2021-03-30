@@ -1,14 +1,13 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const db = require('../db/index')
-const practice = require('../db/models/practice')
-const location = require('../db/models/location');
-const doctor = require('../db/models/doctor');
-const appointment = require('../db/models/appointment');
+const db = require("../db/index");
+const practice = require("../db/models/practice");
+const location = require("../db/models/location");
+const doctor = require("../db/models/doctor");
+const appointment = require("../db/models/appointment");
 const { Op } = require("sequelize");
 
 router.use(express.json());
-
 
 // doctor.belongsTo(practice, {
 //     foreignKey: 'practice_id',
@@ -30,23 +29,19 @@ router.use(express.json());
 //     sourceKey: 'practice_id'
 // });
 
-
 router.get("/", async (req, res) => {
-    try {
-        const practiceResults = await practice.findAll({
-            include: [
-                { model: doctor}
-            ]
-        });
-        console.log(practiceResults);
-        res.status(200).json({
-          status: "success",
-          data: practiceResults
-        })
-    } 
-    catch (err) {
-        console.error(err.message);
-    }
+  try {
+    const practiceResults = await practice.findAll({
+      include: [{ model: doctor }],
+    });
+    console.log(practiceResults);
+    res.status(200).json({
+      status: "success",
+      data: practiceResults,
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
 });
 
 // (Location merged with practice table)
@@ -80,41 +75,36 @@ router.get("/", async (req, res) => {
 // });
 
 router.post("/query", async (req, res) => {
-    try {
-        var whereClause = {};
-        if(req.body.practice != ""){
-            whereClause['name']=req.body.practice;
-            const pid = await practice.findOne({
-                where: {name: req.body.practice}
-            });
-            const results = await practice.findAll({
-                include: [
-                    { model: doctor, where:{ practice_id: pid.practice_id} }
-            ],
-                where: {name: req.body.practice}
-            });
-            console.log(results);
-            res.status(200).json({
-                status: "success",
-                data: results
-            })
-        }else{ // Returns all results if no input
-            const results = await practice.findAll({
-                include: [
-                    { model: doctor }
-                ]
-            });
-            console.log(results);
-            res.status(200).json({
-                status: "success",
-                data: results
-            })
-        }
-    } 
-    catch (err) {
-        console.error(err.message);
+  try {
+    var whereClause = {};
+    if (req.body.practice != "") {
+      whereClause["name"] = req.body.practice;
+      const pid = await practice.findOne({
+        where: { name: req.body.practice },
+      });
+      const results = await practice.findAll({
+        include: [{ model: doctor, where: { practice_id: pid.practice_id } }],
+        where: { name: req.body.practice },
+      });
+      console.log(results);
+      res.status(200).json({
+        status: "success",
+        data: results,
+      });
+    } else {
+      // Returns all results if no input
+      const results = await practice.findAll({
+        include: [{ model: doctor }],
+      });
+      console.log(results);
+      res.status(200).json({
+        status: "success",
+        data: results,
+      });
     }
+  } catch (err) {
+    console.error(err.message);
+  }
 });
-
 
 module.exports = router;

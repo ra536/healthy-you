@@ -1,12 +1,12 @@
-'use strict';
+"use strict";
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    queryInterface.addColumn('users', 'role', {
+    queryInterface.addColumn("users", "role", {
       type: Sequelize.STRING,
       allowNull: false,
-      defaultValue: 'User',
-    })
+      defaultValue: "User",
+    });
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -16,5 +16,5 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-  }
+  },
 };
