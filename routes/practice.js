@@ -42,7 +42,7 @@ router.post("/create", isAuthAndDoctor, async (req, res) => {
     }
 });
 
-router.post("/remove", async (req, res) => {
+router.post("/remove", isAuthAndDoctor, async (req, res) => {
     try {
         if(req.body.practiceName != ""){
             const practices = practice.findAll({
@@ -72,7 +72,7 @@ router.post("/remove", async (req, res) => {
     }
 });
 
-router.post("/findAll", async (req, res) => {
+router.post("/findAll", isAuthAndDoctor, async (req, res) => {
     try {
         const practiceResult = await practice.findAll({
             where: {

@@ -83,7 +83,7 @@ router.post("/removeSpecialty", isAuthAndDoctor, async (req, res) => {
     }
 });
 
-router.post("/updateName", async (req, res) => {
+router.post("/updateName", isAuthAndDoctor, async (req, res) => {
     try {
         const n = await doctor.update(
             { doctor_name: req.body.name },
@@ -103,7 +103,7 @@ router.post("/updateName", async (req, res) => {
     }
 });
 
-router.post("/updatePhone", async (req, res) => {
+router.post("/updatePhone", isAuthAndDoctor, async (req, res) => {
     try {
         const p = await doctor.update(
             { phone: req.body.phone },
@@ -123,7 +123,7 @@ router.post("/updatePhone", async (req, res) => {
     }
 });
 
-router.post("/updateBio", async (req, res) => {
+router.post("/updateBio", isAuthAndDoctor, async (req, res) => {
     try {
         const b = await doctor.update(
             { bio: req.body.bio },
@@ -143,7 +143,7 @@ router.post("/updateBio", async (req, res) => {
     }
 });
 
-router.post("/updateProfilePic", async (req, res) => {
+router.post("/updateProfilePic", isAuthAndDoctor, async (req, res) => {
     try {
         const b = await doctor.update(
             { profile_picture: req.body.image },

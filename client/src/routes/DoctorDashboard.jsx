@@ -89,10 +89,15 @@ const DoctorDashboard = (props) => {
         e.preventDefault();
         console.log(updatedName);
         try{
-            const response = await (DoctorAPI.post("/updateName", {
+            const response = await (DoctorAPI.post("/updateName",
+            {
                 doctor_id: doctorID,
                 name: updatedName
-            }));
+            },
+            {
+                withCredentials: true
+            }
+            ));
             console.log(response.data.data);
             setName(response.data.data.doctor_name)
         }
@@ -105,10 +110,15 @@ const DoctorDashboard = (props) => {
         e.preventDefault();
         console.log(updatedPhone);
         try{
-            const response = await (DoctorAPI.post("/updatePhone", {
+            const response = await (DoctorAPI.post("/updatePhone",
+            {
                 doctor_id: doctorID,
                 phone: updatedPhone
-            }));
+            },
+            {
+                withCredentials: true
+            }
+            ));
             console.log(response.data.data);
             setPhone(response.data.data.phone)
         }
@@ -121,10 +131,15 @@ const DoctorDashboard = (props) => {
         e.preventDefault();
         console.log(updatedBio);
         try{
-            const response = await (DoctorAPI.post("/updateBio", {
+            const response = await (DoctorAPI.post("/updateBio",
+            {
                 doctor_id: doctorID,
                 bio: updatedBio
-            }));
+            },
+            {
+                withCredentials: true
+            }
+            ));
             console.log(response.data.data);
             setBio(response.data.data.bio)
         }
@@ -143,10 +158,15 @@ const DoctorDashboard = (props) => {
         e.preventDefault();
         console.log(newImage);
         try{
-            const response = await (DoctorAPI.post("/updateProfilePic", {
+            const response = await (DoctorAPI.post("/updateProfilePic",
+            {
                 doctor_id: doctorID,
                 image: newImage
-            }));
+            },
+            {
+                withCredentials: true
+            }
+            ));
             console.log(response.data.data);
             setProfilePicture(response.data.data.image)
         }

@@ -11,11 +11,16 @@ const RemovePractice = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await PracticeAPI.post("/remove", {
+            const response = await PracticeAPI.post("/remove",
+            {
                 practiceName: practiceName,
                 location: location,
                 doctorID: props.doctorID
-            }) 
+            },
+            {
+                withCredentials: true
+            }
+            ) 
             console.log(props.doctorID);
             console.log(response.data.data)
         }

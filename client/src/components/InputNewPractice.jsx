@@ -18,7 +18,8 @@ const InputNewPractice = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await PracticeAPI.post("/create", {
+            const response = await PracticeAPI.post("/create",
+            {
                 practiceName: practiceName,
                 website: website,
                 socialMedia: socialMedia,
@@ -26,7 +27,11 @@ const InputNewPractice = (props) => {
                 phone: phone,
                 fax: fax,
                 doctorID: props.doctorID
-            }) 
+            },
+            {
+                withCredentials: true
+            }
+            ) 
             console.log(props.doctorID);
             console.log(response.data.data)
             addPractice(response.data.data)
