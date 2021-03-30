@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import UserRegistrationForm from '../components/UserRegistrationForm'
+import RegistrationForm from '../components/RegistrationForm'
 import { Redirect } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
-const Register = () => {
+const Registration = () => {
     const { loggedIn } = useContext(AuthContext);
     return loggedIn == true ?
         (
@@ -13,9 +13,9 @@ const Register = () => {
         (
             <div>
                 <h1>Login</h1>
-                <UserRegistrationForm />
+                <RegistrationForm />
             </div>
         )
 }
 
-export default Register;
+export default Registration;
