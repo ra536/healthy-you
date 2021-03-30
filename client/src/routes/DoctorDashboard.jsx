@@ -27,12 +27,17 @@ const DoctorDashboard = (props) => {
         // Define a function fetchData that calls APIs which is then called in useEffect
         const fetchData = async () => {
             try {
-                const response = await (DoctorAPI.post("/findDoctor", {
+                const response = await (DoctorAPI.post("/findDoctor",
+                {
                     doctor_id: doctorID
-                }));
-                console.log(response.data.data[0])
+                },
+                {
+                    withCredentials: true
+                }
+                ));
+                console.log(response.data)
                 setRating(response.data.data[0].rating)
-                setName(response.data.data[0].doctor_name)
+                setName(response.data.data[0].firstName + response.data.data[0].lastName)
                 setProfilePicture(response.data.data[0].profile_picture)
                 setSpecialties(response.data.data[0].specialty)
                 // setDoctorID(response.data.data[0].doctor_id)

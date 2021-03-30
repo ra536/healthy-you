@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../db/index');
 const doctor = require('../db/models/doctor');
 const { Sequelize } = require('sequelize');
-const { isAuthAndAdmin, isAuthAndDoctor } = require('../passport')
+const { isAuthAndDoctor } = require('../passport')
 
 
 router.use(express.json());
@@ -14,7 +14,7 @@ router.use(express.json());
 // UPDATE bio and maybe appointments, profile pictures
 // DELETE specialties, practices, appointments,
 
-router.post("/findDoctor", isAuthAndAdmin, isAuthAndDoctor, async (req, res) => {
+router.post("/findDoctor", isAuthAndDoctor, async (req, res) => {
     try {
         const doctorResult = await doctor.findAll({
             where: {
@@ -22,18 +22,21 @@ router.post("/findDoctor", isAuthAndAdmin, isAuthAndDoctor, async (req, res) => 
             },
             raw: true
         })
-        //console.log(req.body)
+        console.log(req.user.role)
         res.status(200).json({
             status: "success",
-            data: doctorResult
+            data: doctorResult,
+            user: req.user
         })
     }
     catch (err) {
-      console.log(err)
+      console.log(req.body)
+      //console.log(err)
+      console.log("THERE IS AN ERROR!")
     }
 });
 
-router.post("/addSpecialty", isAuthAndAdmin, isAuthAndDoctor, async (req, res) => {
+router.post("/addSpecialty", async (req, res) => {
     try {
         const specialty = await doctor.update(
             {
@@ -57,7 +60,7 @@ router.post("/addSpecialty", isAuthAndAdmin, isAuthAndDoctor, async (req, res) =
     }
 });
 
-router.post("/removeSpecialty", isAuthAndAdmin, isAuthAndDoctor, async (req, res) => {
+router.post("/removeSpecialty", async (req, res) => {
     try {
         const specialty = await doctor.update(
             {
