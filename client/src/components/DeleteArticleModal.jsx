@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import ArticleAPI from '../apis/ArticleAPI'
 import { AppContext } from '../context/AppContext';
 import { Button, Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 export const DeleteArticleModal = (props) => {
-    const { articles, setArticles, removeArticle, articleDeleteShow, setArticleDeleteShow, articleDeleteHeadline, setArticleDeleteHeadline, articleDeleteID, setArticleDeleteID } = useContext(AppContext);
+    const { removeArticle, articleDeleteShow, setArticleDeleteShow, articleDeleteHeadline, setArticleDeleteHeadline, articleDeleteID, setArticleDeleteID } = useContext(AppContext);
 
     const handleClose = () => {
         setArticleDeleteShow(false);
@@ -21,10 +21,10 @@ export const DeleteArticleModal = (props) => {
         })
         console.log("DELETE HERE");
         console.log(articleDeleteID);
+        console.log(response)
         removeArticle(articleDeleteID);
         setArticleDeleteShow(false);
     }
-    //const [practices, setPractices] = useState([]);
 
     useEffect(() => {
         // Define a function fetchData that calls APIs which is then called in useEffect

@@ -9,29 +9,19 @@ import { AppContext } from '../context/AppContext';
 import { useParams } from 'react-router-dom';
 import { Container, Table } from 'react-bootstrap';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
-import { Logout } from '../components/LogoutButton';
-import { AuthContext } from '../context/AuthContext';
-
-import axios from 'axios';
 
 const DoctorDashboard = (props) => {
     let { doctorID } = useParams();
-    const { loggedIn, isDoctor} = useContext(AuthContext);
-    console.log(doctorID);
     const [rating, setRating] = useState();
     const [name, setName] = useState();
     const [profilePicture, setProfilePicture] = useState();
     const [bio, setBio] = useState("");
     const [phone, setPhone] = useState("");
-
     const [newImage, setNewImage] = useState(""); // image link
     const [updatedName, setUpdatedName] = useState("");
     const [updatedPhone, setUpdatedPhone] = useState("");
     const [updatedBio, setUpdatedBio] = useState("");
 
-
-    // const [specialties, setSpecialties] = useState();
-    // const [doctorID, setDoctorID] = useState("");
     const { specialties, setSpecialties } = useContext(AppContext);
 
     useEffect(() => {
@@ -62,11 +52,6 @@ const DoctorDashboard = (props) => {
         }
         fetchData();
     }, []);
-    // if((localStorage.getItem('userRole') != "doctor") || localStorage.getItem('userID') != doctorID){
-    //     return (
-    //         <p>Authentication error: Unauthorized</p>
-    //     )
-    // };
 
     const previewImage = async (e) => {
         var reader = new FileReader();
@@ -186,16 +171,6 @@ const DoctorDashboard = (props) => {
                 <Nav className="mr-auto">
                 <Nav.Link href="#home">Home</Nav.Link>
                 <Nav.Link href="#link">Link</Nav.Link>
-
-                { loggedIn ? 
-                    <Logout/>
-                    :
-                    <>
-                        <Nav.Link href="/register">Register</Nav.Link>
-                        <Nav.Link href="/login">Login</Nav.Link>
-                    </>
-                }
-
                 <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>

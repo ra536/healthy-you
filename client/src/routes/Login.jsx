@@ -1,11 +1,11 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import LoginForm from '../components/LoginForm'
 import { Redirect } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
     const { loggedIn } = useContext(AuthContext);
-    return loggedIn == true ?
+    return loggedIn === true ?
         (
             <Redirect to="/" />
         )

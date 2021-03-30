@@ -6,7 +6,6 @@ import { AuthContext } from '../context/AuthContext';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
-import { Logout } from '../components/LogoutButton';
 
 // bootstrap styles library (gives automatic styling)
 import 'bootstrap/dist/css/bootstrap.css';

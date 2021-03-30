@@ -1,5 +1,5 @@
-import React, { useEffect, useContext, useState } from 'react';
-import SearchAPI from '../apis/SearchAPI'
+import React, { useEffect, useState } from 'react';
+//import SearchAPI from '../apis/SearchAPI'
 import { useHistory } from 'react-router-dom';
 import SpecialtyAPI from '../apis/SpecialtyAPI'
 

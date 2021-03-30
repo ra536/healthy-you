@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import ArticleAPI from '../apis/ArticleAPI'
 import { AppContext } from '../context/AppContext';
 import { Button, Modal } from 'react-bootstrap';
@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 // TODO - Update very similar to insert, just prepopulate fields and change route
 
 export const UpdateArticleModal = (props) => {
-    const { articles, setArticles, removeArticle, addArticle, updateArticle, articleUpdateShow, setArticleUpdateShow, articleUpdateID, setArticleUpdateID, articleUpdateHeadline, setArticleUpdateHeadline, articleUpdateCategory, setArticleUpdateCategory,
+    const { updateArticle, articleUpdateShow, setArticleUpdateShow, articleUpdateID, setArticleUpdateID, articleUpdateHeadline, setArticleUpdateHeadline, articleUpdateCategory, setArticleUpdateCategory,
         articleUpdateSummary, setArticleUpdateSummary,
         articleUpdateContent, setArticleUpdateContent,
         articleUpdateImage, setArticleUpdateImage,
@@ -74,7 +74,6 @@ export const UpdateArticleModal = (props) => {
                 image: articleUpdateImage,
                 caption: articleUpdateCaption,
                 article_id: articleUpdateID
-                // doctorID: props.doctorID
             })
             console.log(response.data.data)
             updateArticle(response.data.data); // TODO updateArticle
@@ -103,13 +102,13 @@ export const UpdateArticleModal = (props) => {
         setArticleUpdateCaption(props.object.image_caption);
         setArticleUpdateShow(true);
     }
-    const handleInsert = async () => {
+    // const handleInsert = async () => {
         // const response = await ArticleAPI.post("/delete", {
         //     article_id: articleDeleteID
         // })
 
 
-    }
+    // }
     //const [practices, setPractices] = useState([]);
 
     return (

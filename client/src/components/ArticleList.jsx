@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import ArticleAPI from '../apis/ArticleAPI'
 import { AppContext } from '../context/AppContext';
 import { Button, Table } from 'react-bootstrap';
@@ -8,8 +8,7 @@ import { UpdateArticleModal } from './UpdateArticleModal';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const ArticleList = (props) => {
-    const { articles, setArticles, setArticleDeleteShow } = useContext(AppContext);
-    //const [practices, setPractices] = useState([]);
+    const { articles, setArticles } = useContext(AppContext);
 
     useEffect( () => {
         // Define a function fetchData that calls APIs which is then called in useEffect
