@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from 'react';
 import SearchAPI from '../apis/SearchAPI'
 import { useHistory } from 'react-router-dom';
 import SpecialtyAPI from '../apis/SpecialtyAPI'
+import TopNavBar from '../components/TopNavBar';
 
 const Search = () => {
     const [practice, setPractice] = useState("");
@@ -50,6 +51,7 @@ const Search = () => {
 
     return(
         <div>
+            <TopNavBar />
             <h1>Search</h1>
             <form>
                 <input 
