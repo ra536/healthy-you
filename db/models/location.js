@@ -25,7 +25,4 @@ const location = db.define('location', {
     }
 }, {underscored: true})
 
-//location.create({practice_id: '48711630-63dd-4fab-9dfd-0beed48e2026', address: "HERE", phone:"777-777-7777"});
-//location.create({practice_id:'d41ba10b-bb8b-4ff2-8c7f-7ef7c818b484', address:'THERE', phone:'525-252-5225'});
-
 module.exports = location;

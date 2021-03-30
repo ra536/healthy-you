@@ -9,14 +9,6 @@ const doctor = db.define('doctor', {
         allowNull: false,
         primaryKey: true
     },
-    // practice_id: {
-    //     type: DataTypes.UUID,
-    //     allowNull: false
-    // },
-    // doctor_name: {
-    //     type: DataTypes.STRING,
-    //     allowNull: false
-    // },
     email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -80,8 +72,5 @@ const doctor = db.define('doctor', {
 //     sourceKey: 'doctor_id',
 //     foreignKey: 'doctor_id'
 // });
-
-// doctor.create({practice_id:'d41ba10b-bb8b-4ff2-8c7f-7ef7c818b484', doctor_name:'Bobby', rating: 5.0, bio: 'bobby the dentist', specialty: ['dentist', 'skin doctor']});
-// doctor.create({practice_id:'48711630-63dd-4fab-9dfd-0beed48e2026', doctor_name:'Billy', rating: 1.0, bio: 'billy doctor', specialty: ['eye doctor']});
 
 module.exports = doctor;
