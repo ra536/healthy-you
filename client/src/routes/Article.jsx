@@ -34,14 +34,18 @@ const Article = (props) => {
         }
         fetchData();
     }, []);
+    // font-size="inherit" color="inherit" border="initial" padding="initial" font-family="inherit"
 
     return (
         // Return different webpage, depending on the validity of the ID provided
-        <div>
+        <div white-space="pre-wrap">
+            {console.log(content)}
             <h1>HEADLINE: {headline}</h1>
             <p>CATEGORY: {category}</p>
             <p>SUMMARY: {summary}</p>
-            <p>CONTENT: {content}</p>
+            <p>CONTENT: {content.split("\n").map((i,key) => {
+            return <p key={key}>{i}</p>;
+        })}</p>
             IMAGE:<br/><img src={image}/>
             <p>CAPTION: {caption}</p>
         </div>

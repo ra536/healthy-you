@@ -143,7 +143,8 @@ export const UpdateArticleModal = (props) => {
                                 placeholder="Summary"
                                 onChange={e => setArticleUpdateSummary(e.target.value)}
                             />
-                            <input
+                            <br />
+                            <textarea
                                 id="input-content"
                                 value={articleUpdateContent}
                                 placeholder="Content"

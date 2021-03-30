@@ -18,11 +18,11 @@ const article = db.define('article', {
         allowNull: false
     }, // enum, instead ??
     summary: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false
     },
     content: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false
     },
     publication_date: {
