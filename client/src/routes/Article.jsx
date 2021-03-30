@@ -33,7 +33,7 @@ const Article = (props) => {
             }
         }
         fetchData();
-    }, []);
+    }, [id]);
 
     return (
         // Return different webpage, depending on the validity of the ID provided

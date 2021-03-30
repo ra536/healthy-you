@@ -30,7 +30,7 @@ const RemoveSpecialty = (props) => {
             }
         }
         fetchData();
-    }, []);
+    }, [props.doctor_id, setSpecialties]);
 
     const handleChange = (e) => {
         setSpecialty(e.target.value);

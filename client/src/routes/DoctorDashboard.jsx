@@ -51,7 +51,7 @@ const DoctorDashboard = (props) => {
             }
         }
         fetchData();
-    }, []);
+    }, [doctorID, setSpecialties]);
 
     const previewImage = async (e) => {
         var reader = new FileReader();

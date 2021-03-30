@@ -49,7 +49,7 @@ const SearchResults = (props) => {
             }
         }
         fetchData();
-    }, []);
+    }, [props.location.search, setResults]);
 
     return(
         <div>

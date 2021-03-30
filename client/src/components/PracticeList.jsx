@@ -21,14 +21,13 @@ const PracticeList = (props) => {
                 );
                 console.log(response.data.data)
                 setPractices(response.data.data)
-                console.log(practices)
             }
             catch (err) {
                 console.log(err)
             }
         }
         fetchData();
-    }, []);
+    }, [props.doctorID, setPractices]);
 
     return (
         <div>

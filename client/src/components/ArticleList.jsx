@@ -28,7 +28,7 @@ const ArticleList = (props) => {
             }
         }
         fetchData();
-    }, []);
+    }, [props.id, setArticles]);
 
     return (
         <div>

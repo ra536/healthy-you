@@ -29,7 +29,7 @@ const Home = () => {
             }
         }
         fetchData();
-    }, []);
+    }, [setTests]);
 
     console.log("am I logged in?", loggedIn)
     console.log("what's my role?", role)

@@ -39,7 +39,7 @@ const App = () => {
             }
         }
         fetchData();
-    }, []);
+    }, [setLoggedIn, setRole]);
 
     const handleClick = async (e) => {
         e.preventDefault();
