@@ -34,10 +34,15 @@ const AddSpecialty = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await DoctorAPI.post("/addSpecialty", {
+            const response = await DoctorAPI.post("/addSpecialty",
+            {
                 specialty: specialty,
                 doctor_id: props.doctorID
-            })
+            },
+            {
+                withCredentials: true
+            }
+            )
             //addTest(response.data.data)
             console.log("SPECIALTY");
             console.log(response.data.data)

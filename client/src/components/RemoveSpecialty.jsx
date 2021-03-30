@@ -13,9 +13,14 @@ const RemoveSpecialty = (props) => {
         // Define a function fetchData that calls APIs which is then called in useEffect
         const fetchData = async () => {
             try {
-                const response = await (DoctorAPI.post("/findDoctor", {
+                const response = await DoctorAPI.post("/findDoctor",
+                {
                     doctor_id: props.doctor_id
-                }));
+                },
+                {
+                    withCredentials: true
+                }
+                );
                 //console.log(response.data.data[0].specialty[0])
                 setSpecialties(response.data.data[0].specialty)
                 setSpecialty(response.data.data[0].specialty[0])
@@ -36,10 +41,15 @@ const RemoveSpecialty = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await DoctorAPI.post("/removeSpecialty", {
+            const response = await DoctorAPI.post("/removeSpecialty",
+            {
                 specialty: specialty,
                 doctor_id: props.doctorID
-            })
+            },
+            {
+                withCredentials: true
+            }
+            )
             //addTest(response.data.data)
             console.log(response.data.status);
             removeSpecialty(response.data.data.specialty);
