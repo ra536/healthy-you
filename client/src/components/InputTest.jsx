@@ -34,7 +34,7 @@ const InputTest = () => {
     return (
         <Form>
             <div>
-                <Form.Group controlId="formTestID">
+                <Form.Group>
                     <Form.Label>TestID</Form.Label>
                     <Form.Control
                         type="text"
@@ -47,7 +47,7 @@ const InputTest = () => {
                     Choose a unique number
                     </Form.Text>
                 </Form.Group>
-                <Form.Group controlId="formContent">
+                <Form.Group>
                     <Form.Label>Content</Form.Label>
                     <Form.Control
                         type="text"
