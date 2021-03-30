@@ -5,7 +5,6 @@ import { Table } from 'react-bootstrap';
 
 const PracticeList = (props) => {
     const { practices, setPractices } = useContext(AppContext);
-    //const [practices, setPractices] = useState([]);
 
     useEffect(() => {
         // Define a function fetchData that calls APIs which is then called in useEffect
@@ -62,5 +61,3 @@ const PracticeList = (props) => {
 }
 
 export default PracticeList;
-
-
