@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import SearchAPI from '../apis/SearchAPI'
 import Search from '../routes/Search';
 import { AppContext } from '../context/AppContext';
@@ -49,7 +49,7 @@ const SearchResults = (props) => {
             }
         }
         fetchData();
-    }, []);
+    }, [props.location.search, setResults]);
 
     return(
         <div>
@@ -59,7 +59,7 @@ const SearchResults = (props) => {
                     {results.map((results, index) => {
                         return (
                             <ul key={index} type="none">
-                                <img src={results.doctor.profile_picture} width="100" height="100" />
+                                <img src={results.doctor.profile_picture} alt="" width="100" height="100" />
                                 <li>{"Name: " + results.doctor.doctor_name}</li>
                                 <li>{"Specialty: " + results.doctor.specialty}</li>
                                 <li>{"Rating: " + results.doctor.rating}</li>

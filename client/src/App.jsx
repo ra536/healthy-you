@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { AppContextProvider } from './context/AppContext';
 import Home from "./routes/Home";
@@ -16,7 +16,7 @@ import LoginAPI from './apis/LoginAPI'
 import { Button } from 'react-bootstrap'
 
 const App = () => {
-    const { loggedIn, setLoggedIn, role, setRole } = useContext(AuthContext);
+    const { loggedIn, setLoggedIn, setRole } = useContext(AuthContext);
 
     useEffect(() => {
         // Define a function fetchData that calls APIs which is then called in useEffect
@@ -39,7 +39,7 @@ const App = () => {
             }
         }
         fetchData();
-    }, []);
+    }, [setLoggedIn, setRole]);
 
     const handleClick = async (e) => {
         e.preventDefault();

@@ -6,7 +6,6 @@ import { AuthContext } from '../context/AuthContext';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
-import { Logout } from '../components/LogoutButton';
 
 // bootstrap styles library (gives automatic styling)
 import 'bootstrap/dist/css/bootstrap.css';
@@ -30,7 +29,7 @@ const Home = () => {
             }
         }
         fetchData();
-    }, []);
+    }, [setTests]);
 
     console.log("am I logged in?", loggedIn)
     console.log("what's my role?", role)
@@ -46,16 +45,6 @@ const Home = () => {
                     <Nav className="mr-auto">
                     <Nav.Link href="#home">Home</Nav.Link>
                     <Nav.Link href="#link">Link</Nav.Link>
-
-                    {/* { loggedIn ? 
-                        <Logout/>
-                        :
-                        <>
-                            <Nav.Link href="/register">Register</Nav.Link>
-                            <Nav.Link href="/login">Login</Nav.Link>
-                        </>
-                    } */}
-
                     <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -75,7 +64,7 @@ const Home = () => {
             
             </Container>
             <div align="center">
-            <iframe allowfullscreen height='200' scrolling='no' frameborder='0' style={{border: 'none'}} src='https://www.wevideo.com/api/4/media/1921444596/embed' allowfullscreen></iframe>
+            <iframe title="Title" allowFullScreen height='200' scrolling='no' frameBorder='0' style={{border: 'none'}} src='https://www.wevideo.com/api/4/media/1921444596/embed' > </iframe>
             </div>
             <Container>
                 <h1>Home</h1>

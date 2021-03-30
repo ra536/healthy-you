@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ArticleAPI from '../apis/ArticleAPI';
 
@@ -33,7 +33,7 @@ const Article = (props) => {
             }
         }
         fetchData();
-    }, []);
+    }, [id]);
 
     return (
         // Return different webpage, depending on the validity of the ID provided
@@ -42,7 +42,7 @@ const Article = (props) => {
             <p>CATEGORY: {category}</p>
             <p>SUMMARY: {summary}</p>
             <p>CONTENT: {content}</p>
-            IMAGE:<br/><img src={image}/>
+            IMAGE:<br/><img src={image} alt=""/>
             <p>CAPTION: {caption}</p>
         </div>
     )
