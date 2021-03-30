@@ -3,13 +3,6 @@ import React, { useState, createContext } from 'react';
 export const AppContext = createContext();
 
 export const AppContextProvider = props => {
-    const [tests, setTests] = useState([])
-
-    //updates state with new array when adding a test object
-    //this is to have the client render a new test object automatically without having to refresh page
-    const addTest = (test) => {
-        setTests([...tests, test]);
-    }
 
     // Practice List context
     const [practices, setPractices] = useState([]);
@@ -74,7 +67,6 @@ export const AppContextProvider = props => {
     return (
         <AppContext.Provider value={
             {
-                tests, setTests, addTest,
                 practices, setPractices, addPractice,
                 articles, setArticles, addArticle, removeArticle, updateArticle,
                 articleDeleteShow, setArticleDeleteShow,

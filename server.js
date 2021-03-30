@@ -245,7 +245,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // routes
-app.use("/api/v1/test", require('./routes/test'));
 app.use("/api/v1/dashboard", require('./routes/dashboard'));
 app.use("/api/v1/doctor", require('./routes/doctor'));
 app.use("/api/v1/practice", require('./routes/practice'));

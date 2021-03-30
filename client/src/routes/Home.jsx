@@ -1,6 +1,4 @@
 import React, { useEffect, useContext } from 'react';
-import TestAPI from '../apis/TestAPI';
-import InputTest from '../components/InputTest';
 import { AppContext } from '../context/AppContext';
 import { AuthContext } from '../context/AuthContext';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
@@ -13,24 +11,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 const Home = () => {
     // Store the data retrieved from backend API into context
-    const { tests, setTests } = useContext(AppContext);
     const { loggedIn, role} = useContext(AuthContext)
-
-    // Call our backend API to retrieve list of test objects from db
-    useEffect( () => {
-        // Define a function fetchData that calls APIs which is then called in useEffect
-        const fetchData = async () => {
-            try {
-                const response = await (TestAPI.get("/"));
-                console.log(response.data.data)
-                setTests(response.data.data);
-            }
-            catch (err) {
-                console.log(err)
-            }
-        }
-        fetchData();
-    }, []);
 
     console.log("am I logged in?", loggedIn)
     console.log("what's my role?", role)
@@ -78,24 +59,7 @@ const Home = () => {
             <iframe allowfullscreen height='200' scrolling='no' frameborder='0' style={{border: 'none'}} src='https://www.wevideo.com/api/4/media/1921444596/embed' allowfullscreen></iframe>
             </div>
             <Container>
-                <h1>Home</h1>
-                <InputTest />
-                <br />
-                <br />
-                <h2>Results:</h2>
-                <div>
-                    {tests && tests.map(tests => {
-                        return (
-                            <ListGroup key={tests.test_id}>
-                                <ListGroup.Item>
-                                    { tests.test_id }
-                                    <br/>
-                                    { tests.content }
-                                </ListGroup.Item>
-                            </ListGroup>
-                        )
-                    })}
-                </div>
+                
             </Container>
             
         </div>

@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react'
 import ArticleAPI from '../apis/ArticleAPI'
 import { AppContext } from '../context/AppContext';
-import InputTest from './InputTest';
 import axios from 'axios';
 
 
