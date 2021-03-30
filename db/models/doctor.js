@@ -9,6 +9,10 @@ const doctor = db.define('doctor', {
         allowNull: false,
         primaryKey: true
     },
+    doctor_name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -68,9 +72,9 @@ const doctor = db.define('doctor', {
     },
 }, {underscored: true});
 
-// doctor.hasMany(practice, {
-//     sourceKey: 'doctor_id',
-//     foreignKey: 'doctor_id'
-// });
+doctor.hasMany(practice, {
+    sourceKey: 'doctor_id',
+    foreignKey: 'doctor_id'
+});
 
 module.exports = doctor;
