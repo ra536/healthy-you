@@ -36,12 +36,17 @@ const DoctorDashboard = (props) => {
                     withCredentials: true
                 }
                 ));
-                console.log(response.data)
+                console.log(response.data.data)
+                if (response.data.data[0].specialty === null) {
+                    setSpecialties(["Please add a specialty!"]);
+                } else {
+                    setSpecialties(response.data.data[0].specialty);
+                }
                 setRating(response.data.data[0].rating)
                 // setName(response.data.data[0].firstName + response.data.data[0].lastName)
                 setName(response.data.data[0].doctor_name)
                 setProfilePicture(response.data.data[0].profile_picture)
-                setSpecialties(response.data.data[0].specialty)
+                //setSpecialties(response.data.data[0].specialty)
                 setBio(response.data.data[0].bio)
                 setPhone(response.data.data[0].phone)
                 setUpdatedBio(response.data.data[0].bio)
