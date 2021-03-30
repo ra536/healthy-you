@@ -75,7 +75,7 @@ const Home = () => {
             
             </Container>
             <div align="center">
-            <iframe allowfullscreen height='200' scrolling='no' frameborder='0' style={{border: 'none'}} src='https://www.wevideo.com/api/4/media/1921444596/embed' allowfullscreen></iframe>
+            <iframe allowFullScreen height='200' scrolling='no' frameborder='0' style={{border: 'none'}} src='https://www.wevideo.com/api/4/media/1921444596/embed' allowFullScreen></iframe>
             </div>
             <Container>
                 <h1>Home</h1>
