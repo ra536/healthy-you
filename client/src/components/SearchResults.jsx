@@ -3,6 +3,7 @@ import SearchAPI from '../apis/SearchAPI'
 import Search from '../routes/Search';
 import { AppContext } from '../context/AppContext';
 import queryString from 'query-string';
+import { Container } from 'react-bootstrap';
 
 const SearchResults = (props) => {
     const { results, setResults } = useContext(AppContext);
@@ -54,6 +55,7 @@ const SearchResults = (props) => {
     return(
         <div>
             <Search/>
+            <Container>
             <h1>Results</h1>
                 <div>
                     {results.map((results, index) => {
@@ -71,6 +73,7 @@ const SearchResults = (props) => {
                         )
                     })}
                 </div>
+                </Container>
         </div>
     )
 };

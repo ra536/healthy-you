@@ -3,6 +3,7 @@ import SearchAPI from '../apis/SearchAPI'
 import { useHistory } from 'react-router-dom';
 import SpecialtyAPI from '../apis/SpecialtyAPI'
 import TopNavBar from '../components/TopNavBar';
+import { Container } from 'react-bootstrap';
 
 const Search = () => {
     const [practice, setPractice] = useState("");
@@ -52,6 +53,7 @@ const Search = () => {
     return(
         <div>
             <TopNavBar />
+            <Container>
             <h1>Search</h1>
             <form>
                 <input 
@@ -94,6 +96,7 @@ const Search = () => {
                 </button>
             </form>
             <br/>
+            </Container>
         </div>
     )
 };

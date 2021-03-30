@@ -74,8 +74,6 @@ const TopNavBar = () => {
             </Navbar>
             <br />
             <br />
-            <br />
-            <br />
             </div>
         </>
     )

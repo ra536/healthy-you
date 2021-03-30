@@ -4,6 +4,7 @@ import ArticleAPI from '../apis/ArticleAPI';
 import { Container } from 'react-bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.css';
+import TopNavBar from '../components/TopNavBar';
 
 const Article = (props) => {
     let { id } = useParams();
@@ -39,19 +40,22 @@ const Article = (props) => {
 
     return (
         // Return different webpage, depending on the validity of the ID provided
+        <>
+        <TopNavBar />
         <Container>
             {console.log(content)}
             <h1>{headline}</h1>
             <a href="/">{category}</a>
             <br />
-            <br/><img src={image}/>
-            <br /><br />
+            <br/><img src={image}/><p><i>Above: {caption}</i></p>
+            <br />
             <p>{content.split("\n").map((i,key) => {
             return <p key={key}>{i}</p>;
         })}</p>
             
-            <p>CAPTION: {caption}</p>
+            
         </Container>
+        </>
     )
 }
 
