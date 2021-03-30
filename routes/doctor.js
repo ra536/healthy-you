@@ -36,7 +36,7 @@ router.post("/findDoctor", isAuthAndDoctor, async (req, res) => {
     }
 });
 
-router.post("/addSpecialty", async (req, res) => {
+router.post("/addSpecialty", isAuthAndDoctor, async (req, res) => {
     try {
         const specialty = await doctor.update(
             {
@@ -60,7 +60,7 @@ router.post("/addSpecialty", async (req, res) => {
     }
 });
 
-router.post("/removeSpecialty", async (req, res) => {
+router.post("/removeSpecialty", isAuthAndDoctor, async (req, res) => {
     try {
         const specialty = await doctor.update(
             {
