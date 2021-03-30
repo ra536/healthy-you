@@ -21,10 +21,11 @@ router.post("/", async (req, res) => {
                     password: hash,
                     firstName: firstName,
                     lastName: lastName,
+                    doctor_name: firstName + " " + lastName,
                     city: city,
                     state: state,
                     birthdate: birthdate,
-                    phone: "(111) 111-1111"
+                    phone: '(609)240-7061'
                 })
                 .then(() => {
                     res.status(201).json({

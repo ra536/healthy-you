@@ -48,7 +48,7 @@ const DoctorDashboard = (props) => {
                 ));
                 console.log(response.data)
                 setRating(response.data.data[0].rating)
-                setName(response.data.data[0].firstName + response.data.data[0].lastName)
+                setName(response.data.data[0].doctor_name)
                 setProfilePicture(response.data.data[0].profile_picture)
                 setSpecialties(response.data.data[0].specialty)
                 setBio(response.data.data[0].bio)
