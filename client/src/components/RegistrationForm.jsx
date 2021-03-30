@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import { Form, Button } from 'react-bootstrap'
-import UserAPI from '../apis/UserAPI'
+import RegisterAPI from '../apis/RegisterAPI'
 
 const schema = yup.object().shape({
     email: yup.string().email().required(),
@@ -17,7 +17,7 @@ const schema = yup.object().shape({
 
 
 //Lets user input a test object into backend db
-const UserRegistrationForm = () => {
+const RegistrationForm = () => {
     return (
         <Formik
             initialValues={{
@@ -28,27 +28,34 @@ const UserRegistrationForm = () => {
                 lastName: "",
                 city: "",
                 state: "",
-                birthdate: ""
+                birthdate: "",
+                inviteCode: "",
             }}
             validationSchema={ schema }
             onSubmit={ async (data, { setErrors }) => {
                 console.log(data);
                 try {
-                    const response = await UserAPI.post("/create", {
+                    const response = await RegisterAPI.post("/", {
                         password: data.password,
                         email: data.email,
                         firstName: data.firstName,
                         lastName: data.lastName,
                         city: data.city,
                         state: data.state,
-                        birthdate: data.birthdate
+                        birthdate: data.birthdate,
+                        inviteCode: data.inviteCode
                     })
-                    console.log(response.data.status[0].message)
+                    console.log(response.data.target)
                     if (response.data.status == "success") {
                         alert("Account successfully created!")
                     } else {
-                        setErrors({ email: response.data.status[0].message})
-                        console.log(response.data.status[0].message)
+                        if (response.data.target == "email") {
+                            setErrors({ email: response.data.status[0].message})
+                            console.log(response.data.status[0].message)
+                        } else {
+                            setErrors({ inviteCode: response.data.status})
+                            console.log(response.data.target)
+                        }
                     }
                 }
                 catch (err) {
@@ -187,6 +194,21 @@ const UserRegistrationForm = () => {
                                 { errors.birthdate }
                             </Form.Control.Feedback>
                         </Form.Group>
+                        <Form.Group controlId="formInviteCode">
+                            <Form.Label> Invite Code (Optional) </Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="inviteCode"
+                                values={ values.inviteCode }
+                                onChange={ handleChange }
+                                onBlur={ handleBlur }
+                                placeholder="Invite Code"
+                                isInvalid={ !!(errors.inviteCode && touched.inviteCode) }
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                { errors.inviteCode }
+                            </Form.Control.Feedback>
+                        </Form.Group>
                         <Button type="submit">
                             Submit
                         </Button>
@@ -197,6 +219,6 @@ const UserRegistrationForm = () => {
     )
 }
 
-export default UserRegistrationForm;
+export default RegistrationForm;
 
 
