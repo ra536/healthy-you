@@ -16,6 +16,8 @@ import ArticleComponent from '../components/ArticleComponent';
 import HealthGuide from '../components/HealthGuide';
 import HomeSideBar from '../components/HomeSideBar';
 import TopFeaturedAds from '../components/TopFeaturedAds';
+import AdBreak from '../components/AdBreak';
+import CategoryCarousel from '../components/CategoryCarousel';
 
 const Home = () => {
     // Store the data retrieved from backend API into context
@@ -116,9 +118,8 @@ const Home = () => {
                 <Row>
                     <ArticleComponent article={featuredArticle} writer={featuredAuthor} type="horizontal"/>
                 </Row>
-
                 <br />
-
+                
                 
 
             </Container>
@@ -126,7 +127,17 @@ const Home = () => {
             <Container id="Right Sidebar" style={{ width: "35%", display: "inline-block" }}>
                 <HomeSideBar />
             </Container>
+            
+            
+            <AdBreak />
+        
+            <br />
+            <CategoryCarousel article={featuredArticle} writer={featuredAuthor} category="Health"/>
+            <CategoryCarousel article={featuredArticle} writer={featuredAuthor} category="Wellness"/>
+            <CategoryCarousel article={featuredArticle} writer={featuredAuthor} category="Fitness"/>
+            <CategoryCarousel article={featuredArticle} writer={featuredAuthor} category="Food"/>
 
+            <AdBreak />
             <div align="center">
                 <iframe allowfullscreen height='200' scrolling='no' frameborder='0' style={{ border: 'none' }} src='https://www.wevideo.com/api/4/media/1921444596/embed' allowfullscreen></iframe>
             </div>

@@ -66,6 +66,20 @@ const ArticleComponent = (props) => {
 
         );
     }
+    if (componentType === "carousel") {
+        return (
+            <>
+            <Link to={"/article/" + articleInfo.article_id} style={{ textDecoration: "none", color: "black" }}>
+            <Image rounded src={articleInfo.image_data} alt="healthpic2" width={250} mode='fit' />
+                    <br /><span style={{ color: "blue" }}>{articleInfo.category}</span>
+                    <h4>
+                        {articleInfo.headline}
+                    </h4>
+                    <p>{articleInfo.summary}</p>
+            </Link>
+            </>
+        );  
+    }
     return (
         <>
         </>
