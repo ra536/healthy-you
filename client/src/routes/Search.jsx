@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 //import SearchAPI from '../apis/SearchAPI'
 import { useHistory } from 'react-router-dom';
 import SpecialtyAPI from '../apis/SpecialtyAPI'
@@ -6,49 +6,57 @@ import TopNavBar from '../components/TopNavBar';
 import { Container } from 'react-bootstrap';
 
 const Search = () => {
-    const [practice, setPractice] = useState("");
-    const [location, setLocation] = useState("");
-    const [doctor_name, setDoctor] = useState("");
-    const [specialty, setSpecialty] = useState("");
-    const [rating, setRating] = useState("");
-    const [ allSpecialties, setAllSpecialties ] = useState([""]);
+  const [practice, setPractice] = useState("");
+  const [location, setLocation] = useState("");
+  const [doctor_name, setDoctor] = useState("");
+  const [specialty, setSpecialty] = useState("");
+  const [rating, setRating] = useState("");
+  const [allSpecialties, setAllSpecialties] = useState([""]);
 
-    const history = useHistory();
+  const history = useHistory();
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await (SpecialtyAPI.get("/findAll"));
-                console.log(response)
-                setAllSpecialties(response.data.data)
-                setSpecialty(response.data.data[0].specialty)
-            }
-            catch (err) {
-                console.log(err)
-            }
-        }
-        fetchData();
-    }, []);
-
-    const handleChange = (e) => {
-        setSpecialty(e.target.value);
-        console.log(e.target.value);
-        e.preventDefault();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await SpecialtyAPI.get("/findAll");
+        console.log(response);
+        setAllSpecialties(response.data.data);
+        setSpecialty(response.data.data[0].specialty);
+      } catch (err) {
+        console.log(err);
+      }
     };
+    fetchData();
+  }, []);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        try {
-            history.push({
-                pathname: '/results/',
-                search: 'practice=' + practice +"&doctor="+doctor_name+"&specialty="+specialty+"&location="+location+"&rating="+rating
-            });
-            window.location.reload();
-        }
-        catch (err) {
-            console.log(err)
-        }
+  const handleChange = (e) => {
+    setSpecialty(e.target.value);
+    console.log(e.target.value);
+    e.preventDefault();
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      history.push({
+        pathname: "/results/",
+        search:
+          "practice=" +
+          practice +
+          "&doctor=" +
+          doctor_name +
+          "&specialty=" +
+          specialty +
+          "&location=" +
+          location +
+          "&rating=" +
+          rating,
+      });
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
     }
+  };
 
     return(
         <div>

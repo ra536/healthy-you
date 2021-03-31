@@ -42,10 +42,11 @@ const Home = () => {
         fetchData();
     }, []);
 
-    console.log("am I logged in?", loggedIn)
-    console.log("what's my role?", role)
+  console.log("am I logged in?", loggedIn);
+  console.log("what's my role?", role);
 
-    return (
+  return (
+    <div>
         <div>
             {/* { loggedIn ? 
                         <Logout/>
@@ -151,7 +152,8 @@ const Home = () => {
             </Container>
 
         </div>
-    )
-}
+    </div>
+  );
+};
 
 export default Home;

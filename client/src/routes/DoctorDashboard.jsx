@@ -1,170 +1,182 @@
-import React, { useEffect, useContext, useState } from 'react';
-import DoctorAPI from '../apis/DoctorAPI'
-import InputNewPractice from '../components/InputNewPractice';
-import RemovePractice from '../components/RemovePractice';
-import PracticeList from '../components/PracticeList';
-import AddSpecialty from '../components/AddSpecialty'
-import RemoveSpecialty from '../components/RemoveSpecialty';
-import { AppContext } from '../context/AppContext';
-import { useParams } from 'react-router-dom';
-import { Container, Table } from 'react-bootstrap';
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
-// import { Logout } from '../components/LogoutButton';
-import { AuthContext } from '../context/AuthContext';
-
-import axios from 'axios';
+import React, { useEffect, useContext, useState } from "react";
+import DoctorAPI from "../apis/DoctorAPI";
+import InputNewPractice from "../components/InputNewPractice";
+import RemovePractice from "../components/RemovePractice";
+import PracticeList from "../components/PracticeList";
+import AddSpecialty from "../components/AddSpecialty";
+import RemoveSpecialty from "../components/RemoveSpecialty";
+import { AppContext } from "../context/AppContext";
+import { useParams } from "react-router-dom";
+import { Container, Table } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button,
+} from "react-bootstrap";
 import TopNavBar from '../components/TopNavBar';
 
 const DoctorDashboard = (props) => {
-    let { doctorID } = useParams();
-    const [rating, setRating] = useState();
-    const [name, setName] = useState();
-    const [profilePicture, setProfilePicture] = useState();
-    const [bio, setBio] = useState("");
-    const [phone, setPhone] = useState("");
-    const [newImage, setNewImage] = useState(""); // image link
-    const [updatedName, setUpdatedName] = useState("");
-    const [updatedPhone, setUpdatedPhone] = useState("");
-    const [updatedBio, setUpdatedBio] = useState("");
+  let { doctorID } = useParams();
+  const [rating, setRating] = useState();
+  const [name, setName] = useState();
+  const [profilePicture, setProfilePicture] = useState();
+  const [bio, setBio] = useState("");
+  const [phone, setPhone] = useState("");
+  const [newImage, setNewImage] = useState(""); // image link
+  const [updatedName, setUpdatedName] = useState("");
+  const [updatedPhone, setUpdatedPhone] = useState("");
+  const [updatedBio, setUpdatedBio] = useState("");
 
-    const { specialties, setSpecialties } = useContext(AppContext);
+  const { specialties, setSpecialties } = useContext(AppContext);
 
-    useEffect(() => {
-        // Define a function fetchData that calls APIs which is then called in useEffect
-        const fetchData = async () => {
-            try {
-                const response = await (DoctorAPI.post("/findDoctor",
-                {
-                    doctor_id: doctorID
-                },
-                {
-                    withCredentials: true
-                }
-                ));
-                console.log(response.data)
-                setRating(response.data.data[0].rating)
-                // setName(response.data.data[0].firstName + response.data.data[0].lastName)
-                setName(response.data.data[0].doctor_name)
-                setProfilePicture(response.data.data[0].profile_picture)
-                setSpecialties(response.data.data[0].specialty)
-                setBio(response.data.data[0].bio)
-                setPhone(response.data.data[0].phone)
-                setUpdatedBio(response.data.data[0].bio)
-                // setDoctorID(response.data.data[0].doctor_id)
-            }
-            catch (err) {
-                console.log(err)
-            }
+  useEffect(() => {
+    // Define a function fetchData that calls APIs which is then called in useEffect
+    const fetchData = async () => {
+      try {
+        const response = await DoctorAPI.post(
+          "/findDoctor",
+          {
+            doctor_id: doctorID,
+          },
+          {
+            withCredentials: true,
+          }
+        );
+        console.log(response.data.data);
+        if (response.data.data[0].specialty === null) {
+          setSpecialties(["Please add a specialty!"]);
+        } else {
+          setSpecialties(response.data.data[0].specialty);
         }
-        fetchData();
-    }, [doctorID, setSpecialties]);
+        setRating(response.data.data[0].rating);
+        // setName(response.data.data[0].firstName + response.data.data[0].lastName)
+        setName(response.data.data[0].doctor_name);
+        setProfilePicture(response.data.data[0].profile_picture);
+        //setSpecialties(response.data.data[0].specialty)
+        setBio(response.data.data[0].bio);
+        setPhone(response.data.data[0].phone);
+        setUpdatedBio(response.data.data[0].bio);
+        // setDoctorID(response.data.data[0].doctor_id)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, [doctorID, setSpecialties]);
 
-    const previewImage = async (e) => {
-        var reader = new FileReader();
-        
-        reader.addEventListener("load", function() {
-            var image = new Image();
-            image.height = 100;
-            image.title = "Name";
-            image.src = this.result;
-            document.getElementById('input-file').appendChild(image);
-            setNewImage(this.result);
-            console.log(this.result);
-            console.log(typeof this.result);
-        }, false);
+  const previewImage = async (e) => {
+    var reader = new FileReader();
 
-        reader.readAsDataURL(e.target.files[0]);
+    reader.addEventListener(
+      "load",
+      function () {
+        var image = new Image();
+        image.height = 100;
+        image.title = "Name";
+        image.src = this.result;
+        document.getElementById("input-file").appendChild(image);
+        setNewImage(this.result);
+        console.log(this.result);
+        console.log(typeof this.result);
+      },
+      false
+    );
+
+    reader.readAsDataURL(e.target.files[0]);
+  };
+
+  const handleSubmitName = async (e) => {
+    e.preventDefault();
+    console.log(updatedName);
+    try {
+      const response = await DoctorAPI.post(
+        "/updateName",
+        {
+          doctor_id: doctorID,
+          name: updatedName,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(response.data.data);
+      setName(response.data.data.doctor_name);
+    } catch (err) {
+      console.log(err);
     }
+  };
 
-    const handleSubmitName = async (e) => {
-        e.preventDefault();
-        console.log(updatedName);
-        try{
-            const response = await (DoctorAPI.post("/updateName",
-            {
-                doctor_id: doctorID,
-                name: updatedName
-            },
-            {
-                withCredentials: true
-            }
-            ));
-            console.log(response.data.data);
-            setName(response.data.data.doctor_name)
+  const handleSubmitPhone = async (e) => {
+    e.preventDefault();
+    console.log(updatedPhone);
+    try {
+      const response = await DoctorAPI.post(
+        "/updatePhone",
+        {
+          doctor_id: doctorID,
+          phone: updatedPhone,
+        },
+        {
+          withCredentials: true,
         }
-        catch(err){
-            console.log(err);
-        }
+      );
+      console.log(response.data.data);
+      setPhone(response.data.data.phone);
+    } catch (err) {
+      console.log(err);
     }
+  };
 
-    const handleSubmitPhone = async (e) => {
-        e.preventDefault();
-        console.log(updatedPhone);
-        try{
-            const response = await (DoctorAPI.post("/updatePhone",
-            {
-                doctor_id: doctorID,
-                phone: updatedPhone
-            },
-            {
-                withCredentials: true
-            }
-            ));
-            console.log(response.data.data);
-            setPhone(response.data.data.phone)
+  const handleSubmitBio = async (e) => {
+    e.preventDefault();
+    console.log(updatedBio);
+    try {
+      const response = await DoctorAPI.post(
+        "/updateBio",
+        {
+          doctor_id: doctorID,
+          bio: updatedBio,
+        },
+        {
+          withCredentials: true,
         }
-        catch(err){
-            console.log(err);
-        }
+      );
+      console.log(response.data.data);
+      setBio(response.data.data.bio);
+    } catch (err) {
+      console.log(err);
     }
+  };
 
-    const handleSubmitBio = async (e) => {
-        e.preventDefault();
-        console.log(updatedBio);
-        try{
-            const response = await (DoctorAPI.post("/updateBio",
-            {
-                doctor_id: doctorID,
-                bio: updatedBio
-            },
-            {
-                withCredentials: true
-            }
-            ));
-            console.log(response.data.data);
-            setBio(response.data.data.bio)
-        }
-        catch(err){
-            console.log(err);
-        }
-    }
+  // Empty biography TextArea (does not delete/save changes)
+  const handleClearBio = async (e) => {
+    e.preventDefault();
+    setUpdatedBio("");
+  };
 
-    // Empty biography TextArea (does not delete/save changes)
-    const handleClearBio = async (e) => {
-            e.preventDefault();
-            setUpdatedBio("")
-    }
-
-    const handleSubmitProfilePic = async (e) => {
-        e.preventDefault();
-        console.log(newImage);
-        try{
-            const response = await (DoctorAPI.post("/updateProfilePic",
-            {
-                doctor_id: doctorID,
-                image: newImage
-            },
-            {
-                withCredentials: true
-            }
-            ));
-            console.log(response.data.data);
-            setProfilePicture(response.data.data.image)
+  const handleSubmitProfilePic = async (e) => {
+    e.preventDefault();
+    console.log(newImage);
+    try {
+      const response = await DoctorAPI.post(
+        "/updateProfilePic",
+        {
+          doctor_id: doctorID,
+          image: newImage,
+        },
+        {
+          withCredentials: true,
         }
-        catch(err){
-            console.log(err);
-        }
+      );
+      console.log(response.data.data);
+      setProfilePicture(response.data.data.image);
+    } catch (err) {
+      console.log(err);
     }
+  };
 
     return (
         <>

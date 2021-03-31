@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import ArticleAPI from '../apis/ArticleAPI';
-import { Container } from 'react-bootstrap';
-import Moment from 'react-moment';
-import 'moment-timezone';
-
-import 'bootstrap/dist/css/bootstrap.css';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import ArticleAPI from "../apis/ArticleAPI";
+import { Container } from "react-bootstrap";
+import Moment from "react-moment";
+import "moment-timezone";
 import TopNavBar from '../components/TopNavBar';
+import "bootstrap/dist/css/bootstrap.css";
 
 const Article = (props) => {
-    let { id } = useParams();
+  let { id } = useParams();
 
     const [headline, setHeadline] = useState("");
     const [category, setCategory] = useState("");

@@ -1,17 +1,31 @@
-import React, { useState, useContext } from 'react'
-import ArticleAPI from '../apis/ArticleAPI'
-import { AppContext } from '../context/AppContext';
-import { Button, Modal } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
+import React, { useState, useContext } from "react";
+import ArticleAPI from "../apis/ArticleAPI";
+import { AppContext } from "../context/AppContext";
+import { Button, Modal } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.css";
 
 // TODO - Update very similar to insert, just prepopulate fields and change route
 
 export const UpdateArticleModal = (props) => {
-    const { updateArticle, articleUpdateShow, setArticleUpdateShow, articleUpdateID, setArticleUpdateID, articleUpdateHeadline, setArticleUpdateHeadline, articleUpdateCategory, setArticleUpdateCategory,
-        articleUpdateSummary, setArticleUpdateSummary,
-        articleUpdateContent, setArticleUpdateContent,
-        articleUpdateImage, setArticleUpdateImage,
-        articleUpdateCaption, setArticleUpdateCaption } = useContext(AppContext);
+    const {
+        updateArticle,
+        articleUpdateShow,
+        setArticleUpdateShow,
+        articleUpdateID,
+        setArticleUpdateID,
+        articleUpdateHeadline,
+        setArticleUpdateHeadline,
+        articleUpdateCategory,
+        setArticleUpdateCategory,
+        articleUpdateSummary,
+        setArticleUpdateSummary,
+        articleUpdateContent,
+        setArticleUpdateContent,
+        articleUpdateImage,
+        setArticleUpdateImage,
+        articleUpdateCaption,
+        setArticleUpdateCaption,
+    } = useContext(AppContext);
 
     const [file, setFile] = useState("");
 
@@ -45,20 +59,25 @@ export const UpdateArticleModal = (props) => {
     const previewImage = async (e) => {
         var reader = new FileReader();
 
-        reader.addEventListener("load", function () {
-            var image = new Image();
-            image.height = 100;
-            image.title = "Name";
-            image.src = this.result;
-            document.getElementById('input-file').appendChild(image);
-            setArticleUpdateImage(this.result);
-            console.log(this.result);
-            console.log(typeof this.result);
-        }, false);
+        reader.addEventListener(
+            "load",
+            function () {
+                var image = new Image();
+                image.height = 100;
+                image.title = "Name";
+                image.src = this.result;
+                document.getElementById("input-file").appendChild(image);
+                setArticleUpdateImage(this.result);
+                console.log(this.result);
+                console.log(typeof this.result);
+            },
+            false
+        );
 
         setFile(e.target.files[0]);
+        console.log(file);
         reader.readAsDataURL(e.target.files[0]);
-    }
+    };
 
     const handleUpdate = async (e) => {
         e.preventDefault()
@@ -83,7 +102,7 @@ export const UpdateArticleModal = (props) => {
         catch (err) {
             console.log(err)
         }
-    
+
         setArticleUpdateShow(false);
 
         console.log(document.getElementById("input-file").files[0]);
@@ -103,9 +122,9 @@ export const UpdateArticleModal = (props) => {
         setArticleUpdateShow(true);
     }
     // const handleInsert = async () => {
-        // const response = await ArticleAPI.post("/delete", {
-        //     article_id: articleDeleteID
-        // })
+    // const response = await ArticleAPI.post("/delete", {
+    //     article_id: articleDeleteID
+    // })
 
 
     // }

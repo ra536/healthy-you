@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 // import ArticleAPI from '../apis/ArticleAPI';
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 // import InputNewArticle from '../components/InputNewArticle';
-import ArticleList from '../components/ArticleList';
+import ArticleList from "../components/ArticleList";
 // import file from './file.jpg';
 import { Container } from 'react-bootstrap';
 import { InsertArticleModal } from '../components/InsertArticleModal';
@@ -26,20 +26,19 @@ const WriterDashboard = (props) => {
         }
         fetchData();
     }, [id]);
-    
-    return(
-        <>
-        <TopNavBar />
-        <Container>
-            <h1>Writer Dashboard</h1>
-            <br/>
 
             
 
+  return (
+      <>
+    <TopNavBar />
+    <Container>
+    <h1>Writer Dashboard</h1>
+            <br/>
 
-            <InsertArticleModal id={id} />
-            <br />
-            <br />
+      <InsertArticleModal id={id} />
+      <br />
+      <br />
 
             <ArticleList id={id}/>
         </Container>

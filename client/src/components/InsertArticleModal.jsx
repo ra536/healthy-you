@@ -1,11 +1,13 @@
-import React, { useEffect, useState, useContext } from 'react'
-import ArticleAPI from '../apis/ArticleAPI'
-import { AppContext } from '../context/AppContext';
-import { Button, Modal } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
+import React, { useEffect, useState, useContext } from "react";
+import ArticleAPI from "../apis/ArticleAPI";
+import { AppContext } from "../context/AppContext";
+import { Button, Modal } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.css";
 
 export const InsertArticleModal = (props) => {
-    const { addArticle, articleInsertShow, setArticleInsertShow } = useContext(AppContext);
+    const { addArticle, articleInsertShow, setArticleInsertShow } = useContext(
+        AppContext
+    );
 
     const [headline, setHeadline] = useState("");
     const [category, setCategory] = useState("");
@@ -19,20 +21,25 @@ export const InsertArticleModal = (props) => {
     const previewImage = async (e) => {
         var reader = new FileReader();
 
-        reader.addEventListener("load", function () {
-            var image = new Image();
-            image.height = 100;
-            image.title = "Name";
-            image.src = this.result;
-            document.getElementById('input-file').appendChild(image);
-            setImage(this.result);
-            console.log(this.result);
-            console.log(typeof this.result);
-        }, false);
+        reader.addEventListener(
+            "load",
+            function () {
+                var image = new Image();
+                image.height = 100;
+                image.title = "Name";
+                image.src = this.result;
+                document.getElementById("input-file").appendChild(image);
+                setImage(this.result);
+                console.log(this.result);
+                console.log(typeof this.result);
+            },
+            false
+        );
 
         setFile(e.target.files[0]);
         reader.readAsDataURL(e.target.files[0]);
-    }
+    };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -83,7 +90,7 @@ export const InsertArticleModal = (props) => {
     //     //     article_id: articleDeleteID
     //     // })
 
-        
+
     // }
     //const [practices, setPractices] = useState([]);
 
@@ -146,7 +153,7 @@ export const InsertArticleModal = (props) => {
                             placeholder="Caption"
                             onChange={e => setCaption(e.target.value)}
                         />
-                        
+
                         <img src={image} alt="" width="200px" id="preview">
                         </img>
                     </form>
@@ -161,5 +168,6 @@ export const InsertArticleModal = (props) => {
                 </Modal.Footer>
             </Modal>
         </>
-    )
+    );
 }
+
