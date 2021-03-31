@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 //import SearchAPI from '../apis/SearchAPI'
-import { useHistory } from 'react-router-dom';
-import SpecialtyAPI from '../apis/SpecialtyAPI'
-import TopNavBar from '../components/TopNavBar';
-import { Container } from 'react-bootstrap';
+import { useHistory } from "react-router-dom";
+import SpecialtyAPI from "../apis/SpecialtyAPI";
+import TopNavBar from "../components/TopNavBar";
+import { Container } from "react-bootstrap";
 
 const Search = () => {
   const [practice, setPractice] = useState("");
@@ -58,55 +58,59 @@ const Search = () => {
     }
   };
 
-    return(
-        <div>
-            <TopNavBar />
-            <Container>
-            <h1>Search</h1>
-            <form>
-                <input 
-                    id="search-practice" 
-                    value={practice} 
-                    placeholder="Practice" 
-                    onChange={e => setPractice(e.target.value)} 
-                />
-                <select value={specialty} onChange={handleChange}>
-                    <option value="" selected="selected"> </option>
-                    {allSpecialties.map(specialties => {
-                        return (
-                            <option key={specialties.specialty} value={specialties.specialty}>
-                                { specialties.specialty}
-                            </option>
-                        )
-                    })
-                    }
-                </select>
-                <input 
-                    id="search-doctor" 
-                    value={doctor_name} 
-                    placeholder="Doctor" 
-                    onChange={e => setDoctor(e.target.value)} 
-                />
-                <input 
-                    id="search-rating" 
-                    value={rating} 
-                    placeholder="Rating" 
-                    onChange={e => setRating(e.target.value)} 
-                />
-                <input 
-                    id="search-location" 
-                    value={location} 
-                    placeholder="Location" 
-                    onChange={e => setLocation(e.target.value)} 
-                />
-                <button type="submit" onClick={handleSubmit}>
-                    Search
-                </button>
-            </form>
-            <br/>
-            </Container>
-        </div>
-    )
+  return (
+    <div>
+      <TopNavBar />
+      <Container>
+        <h1>Search</h1>
+        <form>
+          <input
+            id="search-practice"
+            value={practice}
+            placeholder="Practice"
+            onChange={(e) => setPractice(e.target.value)}
+          />
+          <select value={specialty} onChange={handleChange}>
+            <option value="" selected="selected">
+              {" "}
+            </option>
+            {allSpecialties.map((specialties) => {
+              return (
+                <option
+                  key={specialties.specialty}
+                  value={specialties.specialty}
+                >
+                  {specialties.specialty}
+                </option>
+              );
+            })}
+          </select>
+          <input
+            id="search-doctor"
+            value={doctor_name}
+            placeholder="Doctor"
+            onChange={(e) => setDoctor(e.target.value)}
+          />
+          <input
+            id="search-rating"
+            value={rating}
+            placeholder="Rating"
+            onChange={(e) => setRating(e.target.value)}
+          />
+          <input
+            id="search-location"
+            value={location}
+            placeholder="Location"
+            onChange={(e) => setLocation(e.target.value)}
+          />
+          <button type="submit" onClick={handleSubmit}>
+            Search
+          </button>
+        </form>
+        <br />
+      </Container>
+    </div>
+  );
 };
 
 export default Search;

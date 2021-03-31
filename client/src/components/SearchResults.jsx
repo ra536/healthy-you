@@ -72,28 +72,28 @@ const SearchResults = (props) => {
     <div>
       <Search />
       <Container>
-      <h1>Results</h1>
-      <div>
-        {results.map((results, index) => {
-          return (
-            <ul key={index} type="none">
-              <img
-                src={results.doctor.profile_picture}
-                alt=""
-                width="100"
-                height="100"
-              />
-              <li>{"Name: " + results.doctor.doctor_name}</li>
-              <li>{"Specialty: " + results.doctor.specialty}</li>
-              <li>{"Rating: " + results.doctor.rating}</li>
-              <li>{"Bio: " + results.doctor.bio}</li>
-              <li>{"Practice: " + results.name}</li>
-              <li>{"Address: " + results.location}</li>
-              <br />
-            </ul>
-          );
-        })}
-      </div>
+        <h1>Results</h1>
+        <div>
+          {results.map((results, index) => {
+            return (
+              <ul key={index} type="none">
+                <img
+                  src={results.doctor.profile_picture}
+                  alt=""
+                  width="100"
+                  height="100"
+                />
+                <li>{"Name: " + results.doctor.doctor_name}</li>
+                <li>{"Specialty: " + results.doctor.specialty}</li>
+                <li>{"Rating: " + results.doctor.rating}</li>
+                <li>{"Bio: " + results.doctor.bio}</li>
+                <li>{"Practice: " + results.name}</li>
+                <li>{"Address: " + results.location}</li>
+                <br />
+              </ul>
+            );
+          })}
+        </div>
       </Container>
     </div>
   );
