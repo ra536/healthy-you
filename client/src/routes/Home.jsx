@@ -14,6 +14,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import TopNavBar from '../components/TopNavBar';
 import ArticleComponent from '../components/ArticleComponent';
 import HealthGuide from '../components/HealthGuide';
+import HomeSideBar from '../components/HomeSideBar';
 
 const Home = () => {
     // Store the data retrieved from backend API into context
@@ -79,14 +80,19 @@ const Home = () => {
             <br />
             
             <HealthGuide />
-
+            
             <Container id="Latest Articles" style={{ width: "65%", display: "inline-block" }}>
                 <br />
                 <div align="left">
                     <h2>The Latest</h2>
                 </div>
 
-                <br />
+                <Row>
+                    <ArticleComponent article={featuredArticle} writer={featuredAuthor} type="horizontal"/>
+                </Row>
+
+                <hr />
+
                 <Row>
                     <ArticleComponent article={featuredArticle} writer={featuredAuthor} type="horizontal"/>
                 </Row>
@@ -114,9 +120,11 @@ const Home = () => {
                 
 
             </Container>
-            
-            
-            <br/><br/>
+
+            <Container id="Right Sidebar" style={{ width: "35%", display: "inline-block" }}>
+                <HomeSideBar />
+            </Container>
+
             <div align="center">
                 <iframe allowfullscreen height='200' scrolling='no' frameborder='0' style={{ border: 'none' }} src='https://www.wevideo.com/api/4/media/1921444596/embed' allowfullscreen></iframe>
             </div>
