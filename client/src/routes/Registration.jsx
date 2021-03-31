@@ -7,7 +7,7 @@ import { Container } from 'react-bootstrap';
 
 const Registration = () => {
     const { loggedIn } = useContext(AuthContext);
-    return loggedIn == true ?
+    return loggedIn === true ?
         (
             <Redirect to="/" />
         )

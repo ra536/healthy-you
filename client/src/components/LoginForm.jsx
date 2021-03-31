@@ -12,7 +12,7 @@ const schema = yup.object().shape({
 })
 
 const LoginForm = () => {
-  const { role, setRole, loggedIn, setLoggedIn } = useContext(AuthContext);
+  const { role, setRole, setLoggedIn } = useContext(AuthContext);
   return (
     <Formik
         initialValues={{
@@ -32,13 +32,13 @@ const LoginForm = () => {
                     withCredentials: true
                 })
                 console.log(response.data)
-                if (response.data.status == "success") {
+                if (response.data.status === "success") {
                   alert("You have successfully logged in!" + data.role)
                   setLoggedIn(true)
                   setRole(data.role)
                   console.log(role)
                 } else {
-                  if (response.data.target == "email") {
+                  if (response.data.target === "email") {
                     setErrors({ email: response.data.status})
                   } else {
                     setErrors({ password: response.data.status})
@@ -121,101 +121,3 @@ const LoginForm = () => {
 }
 
 export default LoginForm;
-// import React, { useContext, useState } from "react";
-// import LoginAPI from '../apis/LoginAPI';
-// import Form from "react-bootstrap/Form";
-// import Button from "react-bootstrap/Button";
-// import { Redirect, Link } from 'react-router-dom'
-// import { LoginContext } from '../context/LoginPersistence';
-
-
-
-// const Login = () => {
-//     const [email, setEmail] = useState("");
-//     const [password, setPassword] = useState("");
-//     const { loggedIn, setLoggedIn, userID, setUserID, isDoctor, isUser, onlineStatus, isRoleDoctor , isRoleUser } = useContext(LoginContext)
-    
-
-//     function validateForm() {
-//         return email.length > 0 && password.length > 0;
-//     }
-
-//     const handleSubmit = async (e, value) => {
-
-//       let endpoint = "/" + email + " " + password;
-//       e.preventDefault();
-//       try {
-//           const response = await LoginAPI.get(endpoint, {
-//             userEmail: email,
-//             practicePassword: password
-//             });
-//           console.log(response.data.data)
-//           setUserID(response.data.data.doctor_id);
-//           if(response.data.data){
-//             onlineStatus(true);
-//             setLoggedIn(true);
-//               if (response.data.data.role === undefined){
-//               isRoleDoctor(true)
-//               setUserID(response.data.data.doctor_id);
-//               localStorage.setItem('userRole', response.data.data.role);
-//               localStorage.setItem('userID', response.data.data.doctor_id);
-//               }
-
-
-//             else{
-//               isRoleUser(true)
-//               setUserID(response.data.data.user_id);
-//               localStorage.setItem('userRole', response.data.data.role);
-//               localStorage.setItem('userID', response.data.data.user_id);
-//               }
-//           }
-
-//           else{
-//             //return error on screen/ incremented times attempted
-//           }
-
-//         }
-//        catch (err) {
-//         console.log(err)
-//     }
-//     setPassword("");
-//   };
-
-//   return loggedIn && isUser ? (
-//     <Redirect to='/' />
-//   ) : loggedIn && isDoctor ? (
-//     <Redirect to={'/doctor-dashboard/' + userID} />
-//   ) : (
-//     <div className="Login">
-//       <Form onSubmit={handleSubmit}>
-//         <Form.Group size="lg">
-//           <Form.Label>Email</Form.Label>
-//           <Form.Control
-//             placeholder="Enter email"
-//             autoFocus
-//             type="email"
-//             value={email}
-//             onChange={e => setEmail(e.target.value)}
-//           />
-//         </Form.Group>
-//         <Form.Group size="lg" controlId="password">
-//           <Form.Label>Password</Form.Label>
-//           <Form.Control
-//             placeholder="Enter password"
-//             type="password"
-//             value={password}
-//             onChange={e => setPassword(e.target.value)}
-//           />
-//         </Form.Group>
-//         <Button block size="lg" type="submit" disabled={!validateForm()}>
-//           Login
-//         </Button>
-//         <p>
-//             New Account? <a href="/register">Register here</a>
-//         </p>
-//       </Form>
-//     </div>
-//   );
-// }
-
-// export default Login;

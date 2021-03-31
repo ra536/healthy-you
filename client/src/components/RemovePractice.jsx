@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import PracticeAPI from '../apis/PracticeAPI'
-import { AppContext } from '../context/AppContext';
 
 
 const RemovePractice = (props) => {

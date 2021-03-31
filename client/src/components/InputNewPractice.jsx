@@ -6,7 +6,7 @@ import { AppContext } from '../context/AppContext';
 //Lets user input a test object into backend db
 const InputNewPractice = (props) => {
 
-    const { practices, setPractices, addPractice } = useContext(AppContext);
+    const { addPractice } = useContext(AppContext);
 
     const [practiceName, setPractice] = useState("");
     const [website, setWebsite] = useState("");

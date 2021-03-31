@@ -5,7 +5,7 @@ import { Button, Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 export const InsertArticleModal = (props) => {
-    const { articles, setArticles, addArticle, articleInsertShow, setArticleInsertShow } = useContext(AppContext);
+    const { addArticle, articleInsertShow, setArticleInsertShow } = useContext(AppContext);
 
     const [headline, setHeadline] = useState("");
     const [category, setCategory] = useState("");
@@ -78,13 +78,13 @@ export const InsertArticleModal = (props) => {
     const handleShow = () => {
         setArticleInsertShow(true);
     }
-    const handleInsert = async () => {
-        // const response = await ArticleAPI.post("/delete", {
-        //     article_id: articleDeleteID
-        // })
+    // const handleInsert = async () => {
+    //     // const response = await ArticleAPI.post("/delete", {
+    //     //     article_id: articleDeleteID
+    //     // })
 
         
-    }
+    // }
     //const [practices, setPractices] = useState([]);
 
     useEffect(() => {
@@ -147,7 +147,7 @@ export const InsertArticleModal = (props) => {
                             onChange={e => setCaption(e.target.value)}
                         />
                         
-                        <img src={image} width="200px" id="preview">
+                        <img src={image} alt="" width="200px" id="preview">
                         </img>
                     </form>
                 </Modal.Body>

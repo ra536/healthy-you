@@ -1,10 +1,10 @@
-import React, { useEffect, useContext, useState } from 'react';
-import ArticleAPI from '../apis/ArticleAPI';
+import React, { useEffect } from 'react';
+// import ArticleAPI from '../apis/ArticleAPI';
 import { useParams } from 'react-router-dom';
-import InputNewArticle from '../components/InputNewArticle';
+// import InputNewArticle from '../components/InputNewArticle';
 import ArticleList from '../components/ArticleList';
-import file from './file.jpg';
-import { Container, Button } from 'react-bootstrap';
+// import file from './file.jpg';
+import { Container } from 'react-bootstrap';
 import { InsertArticleModal } from '../components/InsertArticleModal';
 import 'bootstrap/dist/css/bootstrap.css';
 import TopNavBar from '../components/TopNavBar';
@@ -25,7 +25,7 @@ const WriterDashboard = (props) => {
             }
         }
         fetchData();
-    }, []);
+    }, [id]);
     
     return(
         <>

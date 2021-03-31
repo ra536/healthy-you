@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ArticleAPI from '../apis/ArticleAPI';
 import { Container } from 'react-bootstrap';
@@ -42,30 +42,31 @@ const Article = (props) => {
             }
         }
         fetchData();
-    }, []);
-    // font-size="inherit" color="inherit" border="initial" padding="initial" font-family="inherit"
+    }, [id]);
 
     return (
         // Return different webpage, depending on the validity of the ID provided
         <>
-        <TopNavBar />
-        <Container>
-            {console.log(content)}
-            <h1>{headline}</h1>
+            <TopNavBar />
+            <Container>
+                {console.log(content)}
+                <h1>{headline}</h1>
             Categories: <a href="/">{category}</a>
-            <br/>
-            <br/>
-            <a href="/">{author}</a> | <Moment format="dddd MMMM Do, YYYY [at] h:mm A">{publishDate}</Moment>
-            <br />
-            
-            <br/><img src={image}/><p><i>Above: {caption}</i></p>
-            <br />
-            <p>{content.split("\n").map((i,key) => {
-            return <p key={key}>{i}</p>;
-        })}</p>
-            
-            
-        </Container>
+                <br />
+                <br />
+                <a href="/">{author}</a> | <Moment format="dddd MMMM Do, YYYY [at] h:mm A">{publishDate}</Moment>
+                <br />
+
+                <br /><img src={image} /><p><i>Above: {caption}</i></p>
+                <br />
+                <p>{content.split("\n").map((i, key) => {
+                    return <p key={key}>{i}</p>;
+                })}</p>
+                <br />
+                <br />
+                <br />
+
+            </Container>
         </>
     )
 }

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React from 'react'
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import { Form, Button } from 'react-bootstrap'
@@ -46,10 +46,10 @@ const RegistrationForm = () => {
                         inviteCode: data.inviteCode
                     })
                     console.log(response.data.target)
-                    if (response.data.status == "success") {
+                    if (response.data.status === "success") {
                         alert("Account successfully created!")
                     } else {
-                        if (response.data.target == "email") {
+                        if (response.data.target === "email") {
                             setErrors({ email: response.data.status[0].message})
                             console.log(response.data.status[0].message)
                         } else {
@@ -220,5 +220,3 @@ const RegistrationForm = () => {
 }
 
 export default RegistrationForm;
-
-

@@ -9,7 +9,7 @@ import { AppContext } from '../context/AppContext';
 import { useParams } from 'react-router-dom';
 import { Container, Table } from 'react-bootstrap';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
-import { Logout } from '../components/LogoutButton';
+// import { Logout } from '../components/LogoutButton';
 import { AuthContext } from '../context/AuthContext';
 
 import axios from 'axios';
@@ -17,22 +17,16 @@ import TopNavBar from '../components/TopNavBar';
 
 const DoctorDashboard = (props) => {
     let { doctorID } = useParams();
-    const { loggedIn, isDoctor} = useContext(AuthContext);
-    console.log(doctorID);
     const [rating, setRating] = useState();
     const [name, setName] = useState();
     const [profilePicture, setProfilePicture] = useState();
     const [bio, setBio] = useState("");
     const [phone, setPhone] = useState("");
-
     const [newImage, setNewImage] = useState(""); // image link
     const [updatedName, setUpdatedName] = useState("");
     const [updatedPhone, setUpdatedPhone] = useState("");
     const [updatedBio, setUpdatedBio] = useState("");
 
-
-    // const [specialties, setSpecialties] = useState();
-    // const [doctorID, setDoctorID] = useState("");
     const { specialties, setSpecialties } = useContext(AppContext);
 
     useEffect(() => {
@@ -49,6 +43,7 @@ const DoctorDashboard = (props) => {
                 ));
                 console.log(response.data)
                 setRating(response.data.data[0].rating)
+                // setName(response.data.data[0].firstName + response.data.data[0].lastName)
                 setName(response.data.data[0].doctor_name)
                 setProfilePicture(response.data.data[0].profile_picture)
                 setSpecialties(response.data.data[0].specialty)
@@ -62,12 +57,7 @@ const DoctorDashboard = (props) => {
             }
         }
         fetchData();
-    }, []);
-    // if((localStorage.getItem('userRole') != "doctor") || localStorage.getItem('userID') != doctorID){
-    //     return (
-    //         <p>Authentication error: Unauthorized</p>
-    //     )
-    // };
+    }, [doctorID, setSpecialties]);
 
     const previewImage = async (e) => {
         var reader = new FileReader();
@@ -198,7 +188,7 @@ const DoctorDashboard = (props) => {
             
             <br /><br />
             <h1>Profile Picture</h1>
-            <img src={profilePicture} width="200px" id="preview"></img>
+            <img src={profilePicture} alt="" width="200px" id="preview"></img>
             <form>
                 <input
                     id="input-file"
@@ -209,7 +199,7 @@ const DoctorDashboard = (props) => {
                 <br/>
                 <button type="submit" onClick={handleSubmitProfilePic}>Save</button>
             </form>
-            <img src={newImage} width="200px" id="preview"></img>
+            <img src={newImage} alt="" width="200px" id="preview"></img>
             <br /><br />
             <h1>Phone Number</h1>
             {phone}

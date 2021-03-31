@@ -4,7 +4,7 @@ import { AuthContext } from '../context/AuthContext';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap';
 import { Container, Row, Col, Image, Card } from 'react-bootstrap';
-import { Logout } from '../components/LogoutButton';
+//import { Logout } from '../components/LogoutButton';
 import { ArticleContext } from '../context/ArticleContext';
 import ArticleAPI from '../apis/ArticleAPI'
 import { Link } from 'react-router-dom';
@@ -144,7 +144,7 @@ const Home = () => {
 
             <AdBreak />
             <div align="center">
-                <iframe allowfullscreen height='200' scrolling='no' frameborder='0' style={{ border: 'none' }} src='https://www.wevideo.com/api/4/media/1921444596/embed' allowfullscreen></iframe>
+            <iframe title="Title" allowFullScreen height='200' scrolling='no' frameBorder='0' style={{border: 'none'}} src='https://www.wevideo.com/api/4/media/1921444596/embed' > </iframe>
             </div>
             <Container>
 
