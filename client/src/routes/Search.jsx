@@ -21,7 +21,7 @@ const Search = () => {
         const response = await SpecialtyAPI.get("/findAll");
         console.log(response);
         setAllSpecialties(response.data.data);
-        setSpecialty(response.data.data[0].specialty);
+        setSpecialty("");
       } catch (err) {
         console.log(err);
       }
