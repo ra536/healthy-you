@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 // bootstrap styles library (gives automatic styling)
 import 'bootstrap/dist/css/bootstrap.css';
 import TopNavBar from '../components/TopNavBar';
+import ArticleComponent from '../components/ArticleComponent';
 
 const Home = () => {
     // Store the data retrieved from backend API into context
@@ -55,47 +56,22 @@ const Home = () => {
 
                 <Row>
                     <Col>
-                    <Link to={"/article/" + featuredArticle.article_id}>
-                        <div align="center">
-                            <Image src={featuredArticle.image_data} className="mx-auto d-block" style={{ width: '70%' }} fluid rounded />
-                            <h2>
-                                {featuredArticle.headline}
-                                <p>
-                                    {featuredAuthor}
-                                </p>
-                            </h2>
-                        </div>
-                        </Link>
+                        <ArticleComponent article={featuredArticle} writer={featuredAuthor} type="featured-large"/>
                     </Col>
                 </Row>
-                <br />
                 <br />
                 <br />
 
                 <Row>
                     <Col>
-                        <div align="center">
-                            <Image src={featuredArticle.image_data} fluid rounded />
-                            <h4>
-                            {featuredArticle.headline}
-					</h4>
-                        </div>
+                        <ArticleComponent article={featuredArticle} writer={featuredAuthor} type="featured-small"/>
+                    </Col>
+
+                    <Col>
+                        <ArticleComponent article={featuredArticle} writer={featuredAuthor} type="featured-small"/>
                     </Col>
                     <Col>
-                        <div align="center">
-                            <Image src={featuredArticle.image_data} fluid rounded />
-                            <h4>
-                            {featuredArticle.headline}
-					</h4>
-                        </div>
-                    </Col>
-                    <Col>
-                        <div align="center">
-                            <Image src={featuredArticle.image_data} fluid rounded />
-                            <h4>
-                            {featuredArticle.headline}
-					</h4>
-                        </div>
+                        <ArticleComponent article={featuredArticle} writer={featuredAuthor} type="featured-small"/>
                     </Col>
                 </Row>
             </Container>
