@@ -32,8 +32,12 @@ const DoctorReview = () => {
                 </Navbar.Collapse>
             </Navbar>
 	<Row>
-                <Col md>
-                    <Image src={drfarhad} className="mx-auto d-block" style={{ width: '50%' }} roundedCircle />
+                <Col>
+				<br>
+				</br>
+                    <Image src={drfarhad} className="mx-auto d-block" roundedCircle />
+				<br>
+				</br>
                 </Col>
 
                 <Col>
