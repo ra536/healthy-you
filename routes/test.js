@@ -1,23 +1,24 @@
 const express = require("express");
+
 const router = express.Router();
-const db = require("../db/index");
+// const db = require("../db/index");
 const test = require("../db/models/test");
 
 router.use(express.json());
 
-//Test route to get started and gets all test objects from test table in db
+// Test route to get started and gets all test objects from test table in db
 router.get("/", async (req, res) => {
   try {
     const testResults = await test.findAll({
       raw: true,
     });
-    //console.log(testResults);
+    // console.log(testResults);
     res.status(200).json({
       status: "success",
       data: testResults,
     });
   } catch (err) {
-    console.error(err.message);
+    // console.error(err.message);
   }
 });
 
@@ -29,7 +30,7 @@ router.post("/", async (req, res) => {
       test_id: req.body.test_id,
       content: req.body.content,
     });
-    console.log(tests.dataValues);
+    // console.log(tests.dataValues);
     res.status(201).json({
       status: "success",
       data: {
@@ -38,7 +39,7 @@ router.post("/", async (req, res) => {
       },
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 });
 

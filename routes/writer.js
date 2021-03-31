@@ -1,13 +1,13 @@
 const express = require("express");
+
 const router = express.Router();
-const db = require("../db/index");
 const writers = require("../db/models/writer.js");
 
 router.use(express.json());
 
 router.post("/create", async (req, res) => {
   try {
-    const users = await user.create({
+    const writerResult = await writers.create({
       password: req.body.password,
       email: req.body.email,
       firstName: req.body.firstName,
@@ -18,9 +18,10 @@ router.post("/create", async (req, res) => {
     });
     res.status(201).json({
       status: "success",
+      data: writerResult.email,
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.json({
       status: err.errors,
     });

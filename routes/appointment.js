@@ -1,6 +1,6 @@
 const express = require("express");
+
 const router = express.Router();
-const db = require("../db/index");
 const appointment = require("../db/models/appointment");
 
 router.use(express.json());
@@ -10,13 +10,13 @@ router.get("/", async (req, res) => {
     const appointmentResults = await appointment.findAll({
       raw: true,
     });
-    console.log(appointmentResults);
+    // console.log(appointmentResults);
     res.status(200).json({
       status: "success",
       data: appointmentResults,
     });
   } catch (err) {
-    console.error(err.message);
+    // console.error(err.message);
   }
 });
 
@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
       time: req.body.time,
       status: 1,
     });
-    console.log(appointments.dataValues);
+    // console.log(appointments.dataValues);
     res.status(201).json({
       status: "success",
       data: {
@@ -37,7 +37,7 @@ router.post("/", async (req, res) => {
       },
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 });
 

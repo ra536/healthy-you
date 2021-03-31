@@ -1,8 +1,9 @@
 const express = require("express");
+
 const router = express.Router();
-const db = require("../db/index");
-const user = require("../db/models/user");
 const bcrypt = require("bcrypt");
+const user = require("../db/models/user");
+
 router.use(express.json());
 
 router.post("/create", async (req, res) => {
@@ -15,16 +16,16 @@ router.post("/create", async (req, res) => {
     state,
     birthdate,
   } = req.body;
-  bcrypt.hash(req.body.password, 10).then((hash) => {
+  bcrypt.hash(password, 10).then((hash) => {
     user
       .create({
-        email: email,
+        email,
         password: hash,
-        firstName: firstName,
-        lastName: lastName,
-        city: city,
-        state: state,
-        birthdate: birthdate,
+        firstName,
+        lastName,
+        city,
+        state,
+        birthdate,
       })
       .then(() => {
         res.status(201).json({
@@ -32,7 +33,7 @@ router.post("/create", async (req, res) => {
         });
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         res.json({
           status: err.errors,
         });

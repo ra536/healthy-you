@@ -1,10 +1,10 @@
 const express = require("express");
+
 const router = express.Router();
-const db = require("../db/index");
+const bcrypt = require("bcrypt");
 const user = require("../db/models/user");
 const doctor = require("../db/models/doctor");
 const writer = require("../db/models/writer");
-const bcrypt = require("bcrypt");
 
 router.use(express.json());
 
@@ -22,18 +22,18 @@ router.post("/", async (req, res) => {
     birthdate,
   } = req.body;
   if (req.body.inviteCode) {
-    if (req.body.inviteCode == doctorCode) {
+    if (req.body.inviteCode === doctorCode) {
       bcrypt.hash(password, 10).then((hash) => {
         doctor
           .create({
-            email: email,
+            email,
             password: hash,
-            firstName: firstName,
-            lastName: lastName,
-            doctor_name: firstName + " " + lastName,
-            city: city,
-            state: state,
-            birthdate: birthdate,
+            firstName,
+            lastName,
+            doctor_name: `${firstName} ${lastName}`,
+            city,
+            state,
+            birthdate,
             phone: "(609)222-2222",
           })
           .then(() => {
@@ -42,24 +42,24 @@ router.post("/", async (req, res) => {
             });
           })
           .catch((err) => {
-            console.log(err);
+            // console.log(err);
             res.json({
               target: "email",
               status: err.errors,
             });
           });
       });
-    } else if (req.body.inviteCode == writerCode) {
+    } else if (req.body.inviteCode === writerCode) {
       bcrypt.hash(password, 10).then((hash) => {
         writer
           .create({
-            email: email,
+            email,
             password: hash,
-            firstName: firstName,
-            lastName: lastName,
-            city: city,
-            state: state,
-            birthdate: birthdate,
+            firstName,
+            lastName,
+            city,
+            state,
+            birthdate,
           })
           .then(() => {
             res.status(201).json({
@@ -67,7 +67,7 @@ router.post("/", async (req, res) => {
             });
           })
           .catch((err) => {
-            console.log(err);
+            // console.log(err);
             res.json({
               target: "email",
               status: err.errors,
@@ -84,13 +84,13 @@ router.post("/", async (req, res) => {
     bcrypt.hash(password, 10).then((hash) => {
       user
         .create({
-          email: email,
+          email,
           password: hash,
-          firstName: firstName,
-          lastName: lastName,
-          city: city,
-          state: state,
-          birthdate: birthdate,
+          firstName,
+          lastName,
+          city,
+          state,
+          birthdate,
         })
         .then(() => {
           res.status(201).json({
@@ -98,7 +98,7 @@ router.post("/", async (req, res) => {
           });
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
           res.json({
             target: "email",
             status: err.errors,

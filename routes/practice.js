@@ -1,6 +1,6 @@
 const express = require("express");
+
 const router = express.Router();
-const db = require("../db/index");
 const practice = require("../db/models/practice");
 const doctor = require("../db/models/doctor");
 const { isAuthAndDoctor } = require("../passport");
@@ -9,7 +9,7 @@ router.use(express.json());
 
 router.post("/create", isAuthAndDoctor, async (req, res) => {
   try {
-    if (req.body.practiceName != "") {
+    if (req.body.practiceName !== "") {
       const practices = await practice.create({
         name: req.body.practiceName,
         location: req.body.location,
@@ -20,7 +20,7 @@ router.post("/create", isAuthAndDoctor, async (req, res) => {
         fax: req.body.fax,
         doctor_id: req.body.doctorID,
       });
-      console.log(practices.dataValues);
+      // console.log(practices.dataValues);
       res.status(201).json({
         status: "success",
         data: {
@@ -36,14 +36,14 @@ router.post("/create", isAuthAndDoctor, async (req, res) => {
       });
     }
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 });
 
 router.post("/remove", isAuthAndDoctor, async (req, res) => {
   try {
-    if (req.body.practiceName != "") {
-      const practices = practice
+    if (req.body.practiceName !== "") {
+      practice
         .findAll({
           where: {
             doctor_id: req.body.doctorID,
@@ -51,8 +51,8 @@ router.post("/remove", isAuthAndDoctor, async (req, res) => {
             name: req.body.practiceName,
           },
         })
-        .then((result) => {
-          return practice
+        .then(() =>
+          practice
             .destroy({
               where: {
                 doctor_id: req.body.doctorID,
@@ -60,15 +60,15 @@ router.post("/remove", isAuthAndDoctor, async (req, res) => {
                 name: req.body.practiceName,
               },
             })
-            .then((u) => {
+            .then(() => {
               res.status(201).json({
                 status: "success",
               });
-            });
-        });
+            })
+        );
     }
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 });
 
@@ -80,13 +80,13 @@ router.post("/findAll", isAuthAndDoctor, async (req, res) => {
       },
       raw: true,
     });
-    console.log("This is the body of the request!: " + req.body.doctor_id);
+    // console.log(`This is the body of the request!: ${req.body.doctor_id}`);
     res.status(200).json({
       status: "success",
       data: practiceResult,
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 });
 

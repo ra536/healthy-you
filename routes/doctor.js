@@ -1,8 +1,8 @@
 const express = require("express");
+
 const router = express.Router();
-const db = require("../db/index");
-const doctor = require("../db/models/doctor");
 const { Sequelize } = require("sequelize");
+const doctor = require("../db/models/doctor");
 const { isAuthAndDoctor } = require("../passport");
 
 router.use(express.json());
@@ -21,22 +21,20 @@ router.post("/findDoctor", isAuthAndDoctor, async (req, res) => {
       },
       raw: true,
     });
-    console.log(req.user.role);
     res.status(200).json({
       status: "success",
       data: doctorResult,
       user: req.user,
     });
   } catch (err) {
-    console.log(req.body);
-    //console.log(err)
-    console.log("THERE IS AN ERROR!");
+    // console.log(err)
+    // console.log("THERE IS AN ERROR!");
   }
 });
 
 router.post("/addSpecialty", isAuthAndDoctor, async (req, res) => {
   try {
-    const specialty = await doctor.update(
+    await doctor.update(
       {
         specialty: Sequelize.fn(
           "array_append",
@@ -48,7 +46,7 @@ router.post("/addSpecialty", isAuthAndDoctor, async (req, res) => {
         where: { doctor_id: req.body.doctor_id },
       }
     );
-    console.log(req.body);
+    // console.log(req.body);
     res.status(200).json({
       status: "success",
       data: {
@@ -57,13 +55,13 @@ router.post("/addSpecialty", isAuthAndDoctor, async (req, res) => {
       },
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 });
 
 router.post("/removeSpecialty", isAuthAndDoctor, async (req, res) => {
   try {
-    const specialty = await doctor.update(
+    await doctor.update(
       {
         specialty: Sequelize.fn(
           "array_remove",
@@ -75,7 +73,6 @@ router.post("/removeSpecialty", isAuthAndDoctor, async (req, res) => {
         where: { doctor_id: req.body.doctor_id },
       }
     );
-    console.log(req.body);
     res.status(200).json({
       status: "success",
       data: {
@@ -83,17 +80,17 @@ router.post("/removeSpecialty", isAuthAndDoctor, async (req, res) => {
       },
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 });
 
 router.post("/updateName", isAuthAndDoctor, async (req, res) => {
   try {
-    const n = await doctor.update(
+    await doctor.update(
       { doctor_name: req.body.name },
       { where: { doctor_id: req.body.doctor_id } }
     );
-    console.log(req.body);
+    // console.log(req.body);
     res.status(200).json({
       status: "success",
       data: {
@@ -102,17 +99,17 @@ router.post("/updateName", isAuthAndDoctor, async (req, res) => {
       },
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 });
 
 router.post("/updatePhone", isAuthAndDoctor, async (req, res) => {
   try {
-    const p = await doctor.update(
+    await doctor.update(
       { phone: req.body.phone },
       { where: { doctor_id: req.body.doctor_id } }
     );
-    console.log(req.body);
+    // console.log(req.body);
     res.status(200).json({
       status: "success",
       data: {
@@ -121,17 +118,17 @@ router.post("/updatePhone", isAuthAndDoctor, async (req, res) => {
       },
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 });
 
 router.post("/updateBio", isAuthAndDoctor, async (req, res) => {
   try {
-    const b = await doctor.update(
+    await doctor.update(
       { bio: req.body.bio },
       { where: { doctor_id: req.body.doctor_id } }
     );
-    console.log(req.body);
+    // console.log(req.body);
     res.status(200).json({
       status: "success",
       data: {
@@ -140,17 +137,17 @@ router.post("/updateBio", isAuthAndDoctor, async (req, res) => {
       },
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 });
 
 router.post("/updateProfilePic", isAuthAndDoctor, async (req, res) => {
   try {
-    const b = await doctor.update(
+    await doctor.update(
       { profile_picture: req.body.image },
       { where: { doctor_id: req.body.doctor_id } }
     );
-    //console.log(req.body)
+    // console.log(req.body)
     res.status(200).json({
       status: "success",
       data: {
@@ -159,7 +156,7 @@ router.post("/updateProfilePic", isAuthAndDoctor, async (req, res) => {
       },
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 });
 
