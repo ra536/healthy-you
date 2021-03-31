@@ -48,6 +48,8 @@ const Article = (props) => {
     fetchData();
   }, [id]);
 
+  console.log(summary); // Make use of unused summary variable
+
   return (
     // Return different webpage, depending on the validity of the ID provided
     <>
@@ -65,7 +67,7 @@ const Article = (props) => {
         <SocialShareButtons link={link} />
         <br />
         <br />
-        <img src={image} />
+        <img src={image} alt="" />
         <p>
           <i>Above: {caption}</i>
         </p>

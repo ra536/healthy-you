@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import ArticleAPI from "../apis/ArticleAPI";
 import { AppContext } from "../context/AppContext";
-import axios from "axios";
+// import axios from "axios";
 
 //Lets user input a test object into backend db
 const InputNewArticle = (props) => {
@@ -163,7 +163,7 @@ const InputNewArticle = (props) => {
       <button type="submit" onClick={handleSubmit}>
         Insert New Article
       </button>
-      <img src={image} width="200px" id="preview"></img>
+      <img src={image} alt="" width="200px" id="preview"></img>
     </form>
   );
 };

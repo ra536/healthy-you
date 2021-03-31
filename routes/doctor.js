@@ -27,9 +27,9 @@ router.post("/findDoctor", async (req, res) => {
       user: req.user,
     });
   } catch (err) {
-    console.log(req.body);
-    //console.log(err)
-    console.log("THERE IS AN ERROR!");
+    // console.log(req.body);
+    // console.log(err)
+    // console.log("THERE IS AN ERROR!");
   }
 });
 

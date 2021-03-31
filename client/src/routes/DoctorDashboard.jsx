@@ -8,15 +8,7 @@ import RemoveSpecialty from "../components/RemoveSpecialty";
 import { AppContext } from "../context/AppContext";
 import { useParams } from "react-router-dom";
 import { Container, Table } from "react-bootstrap";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button,
-} from "react-bootstrap";
-import TopNavBar from '../components/TopNavBar';
+import TopNavBar from "../components/TopNavBar";
 
 const DoctorDashboard = (props) => {
   let { doctorID } = useParams();
@@ -178,116 +170,121 @@ const DoctorDashboard = (props) => {
     }
   };
 
-    return (
-        <>
-        <TopNavBar />
-        <Container>
+  return (
+    <>
+      <TopNavBar />
+      <Container>
+        <h1>Doctor Dashboard</h1>
+        <br />
+        <h1>Name</h1>
+        {name}
+        <br />
+        <form>
+          <input
+            id="input-new-name"
+            value={updatedName}
+            placeholder="Name"
+            onChange={(e) => setUpdatedName(e.target.value)}
+          />
+          <button type="submit" onClick={handleSubmitName}>
+            Save
+          </button>
+        </form>
 
-            <h1>Doctor Dashboard</h1>
-            <br />
-            <h1>Name</h1>
-            { name}
-            <br/>
-            <form>
-                <input
-                id="input-new-name"
-                value={updatedName}
-                placeholder="Name"
-                onChange={e => setUpdatedName(e.target.value)}
-                />
-                <button type="submit" onClick={handleSubmitName}>Save</button>
-            </form>
-            
-            <br /><br />
-            <h1>Profile Picture</h1>
-            <img src={profilePicture} alt="" width="200px" id="preview"></img>
-            <form>
-                <input
-                    id="input-file"
-                    name="article-image"
-                    type="file"
-                    onChange={e => previewImage(e)}
-                />
-                <br/>
-                <button type="submit" onClick={handleSubmitProfilePic}>Save</button>
-            </form>
-            <img src={newImage} alt="" width="200px" id="preview"></img>
-            <br /><br />
-            <h1>Phone Number</h1>
-            {phone}
-            <br />
-            <form>
-                <input
-                    id="input-new-phone"
-                    value={updatedPhone}
-                    placeholder="Phone Number"
-                    onChange={e => setUpdatedPhone(e.target.value)}
-                />
-                <button type="submit" onClick={handleSubmitPhone}>Save</button>
-            </form>
-            
-            <br /><br />
-            <h1>Biography</h1>
-            {bio}
-            <br />
-            <form>
-                <textarea rows="10" cols="75"
-                    id="input-bio"
-                    value={updatedBio}
-                    //placeholder={bio}
-                    onChange={e => setUpdatedBio(e.target.value)}
-                />
-                <br/>
-                <button type="submit"  onClick={handleSubmitBio}>Save Changes</button>
-                <button type="submit" onClick={handleClearBio}>Clear</button>
-            </form>
-            
-            <br /><br />
-            <h1>Specialties</h1>
-            <Table striped bordered hover>
-                <thead>
-                    <tr>
-                        <th>Specialty Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {specialties.map((specialties,index) => {
-                        return (
-                            <tr key={index}>
-                                <td>{specialties}</td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </Table>
-            <AddSpecialty
-                doctorID={doctorID}
-            />
-            <RemoveSpecialty
-                doctorID={doctorID}
-            />
-            <br />
-            <h1>Rating</h1>
-            { rating}
-            <br />
-            <h1>Reviews</h1>
-            <br />
-            <h1>Practices</h1>
-            <PracticeList
-                doctorID={doctorID}
-            />
-            <InputNewPractice
-                doctorID={doctorID}
-            />
-            <RemovePractice
-                doctorID={doctorID}
-            />
-            <br />
-            <h1>Appointments</h1>
-            <br />
-        </Container>
-        </>
-    )
+        <br />
+        <br />
+        <h1>Profile Picture</h1>
+        <img src={profilePicture} alt="" width="200px" id="preview"></img>
+        <form>
+          <input
+            id="input-file"
+            name="article-image"
+            type="file"
+            onChange={(e) => previewImage(e)}
+          />
+          <br />
+          <button type="submit" onClick={handleSubmitProfilePic}>
+            Save
+          </button>
+        </form>
+        <img src={newImage} alt="" width="200px" id="preview"></img>
+        <br />
+        <br />
+        <h1>Phone Number</h1>
+        {phone}
+        <br />
+        <form>
+          <input
+            id="input-new-phone"
+            value={updatedPhone}
+            placeholder="Phone Number"
+            onChange={(e) => setUpdatedPhone(e.target.value)}
+          />
+          <button type="submit" onClick={handleSubmitPhone}>
+            Save
+          </button>
+        </form>
+
+        <br />
+        <br />
+        <h1>Biography</h1>
+        {bio}
+        <br />
+        <form>
+          <textarea
+            rows="10"
+            cols="75"
+            id="input-bio"
+            value={updatedBio}
+            //placeholder={bio}
+            onChange={(e) => setUpdatedBio(e.target.value)}
+          />
+          <br />
+          <button type="submit" onClick={handleSubmitBio}>
+            Save Changes
+          </button>
+          <button type="submit" onClick={handleClearBio}>
+            Clear
+          </button>
+        </form>
+
+        <br />
+        <br />
+        <h1>Specialties</h1>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Specialty Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {specialties.map((specialties, index) => {
+              return (
+                <tr key={index}>
+                  <td>{specialties}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </Table>
+        <AddSpecialty doctorID={doctorID} />
+        <RemoveSpecialty doctorID={doctorID} />
+        <br />
+        <h1>Rating</h1>
+        {rating}
+        <br />
+        <h1>Reviews</h1>
+        <br />
+        <h1>Practices</h1>
+        <PracticeList doctorID={doctorID} />
+        <InputNewPractice doctorID={doctorID} />
+        <RemovePractice doctorID={doctorID} />
+        <br />
+        <h1>Appointments</h1>
+        <br />
+      </Container>
+    </>
+  );
 };
 
 export default DoctorDashboard;

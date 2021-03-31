@@ -1,15 +1,14 @@
 const express = require("express");
+
 const router = express.Router();
-const db = require('../db/index')
-const articles = require('../db/models/article.js')
-const writer = require('../db/models/writer.js')
-var multer = require('multer');
-const article = require('../db/models/article.js');
+const multer = require("multer");
+const articles = require("../db/models/article.js");
+const writer = require("../db/models/writer.js");
 // var upload = multer({ dest: './uploads' })
 
 router.use(express.json());
 
-//Test route to get started and gets all test objects from test table in db
+// Test route to get started and gets all test objects from test table in db
 router.post("/", async (req, res) => {
   try {
     console.log(req.body.writer_id); // TODO - Why is this undefined???
@@ -30,45 +29,43 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/random", async (req, res) => {
-    try {
-        const randomResults = await articles.findOne({
-            raw: true
-        });
-        const writerResult = await writer.findByPk(randomResults.writer_id);
-        console.log(randomResults)
-        console.log(writerResult);
-        res.status(200).json({
-            status: "success",
-            data: randomResults,
-            writer: writerResult
-        });
-    }
-    catch (err){
-        console.error(err.message);
-    }
-})
+  try {
+    const randomResults = await articles.findOne({
+      raw: true,
+    });
+    const writerResult = await writer.findByPk(randomResults.writer_id);
+    console.log(randomResults);
+    console.log(writerResult);
+    res.status(200).json({
+      status: "success",
+      data: randomResults,
+      writer: writerResult,
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
 router.post("/find", async (req, res) => {
-    try {
-        console.log(req.body.article_id); // TODO - Why is this undefined???
-        const testResults = await articles.findAll({
-            where: {
-                article_id: req.body.article_id
-            },
-            raw: true
-        });
-        const writerResult = await writer.findByPk(testResults[0].writer_id);
-        console.log(writerResult);
-        res.status(200).json({
-            status: "success",
-            data: testResults,
-            writer: writerResult,
-            debug: req.body
-        })
-    }
-    catch (err) {
-        console.error(err.message);
-    }
+  try {
+    console.log(req.body.article_id); // TODO - Why is this undefined???
+    const testResults = await articles.findAll({
+      where: {
+        article_id: req.body.article_id,
+      },
+      raw: true,
+    });
+    const writerResult = await writer.findByPk(testResults[0].writer_id);
+    console.log(writerResult);
+    res.status(200).json({
+      status: "success",
+      data: testResults,
+      writer: writerResult,
+      debug: req.body,
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
 });
 
 const storage = multer.diskStorage({
@@ -89,7 +86,7 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-const upload = multer({ storage: storage, fileFilter: fileFilter });
+const upload = multer({ storage, fileFilter });
 
 router.post("/upload", upload.single("input-file"), (req, res) => {
   try {
@@ -219,27 +216,5 @@ router.post("/update", async (req, res) => {
     console.log(err);
   }
 });
-
-// Route to create a test object in DB
-// router.post("/", async (req, res) => {
-//     // Express JSON middleware allows for results to be in body
-//     try {
-//         const tests = await test.create({
-//             test_id: req.body.test_id,
-//             content: req.body.content,
-//         })
-//         console.log(tests.dataValues)
-//         res.status(201).json({
-//             status: "success",
-//             data: {
-//                 test_id: tests.dataValues.test_id,
-//                 content: tests.dataValues.content
-//             }
-//         })
-//     }
-//     catch (err) {
-//         console.log(err)
-//     }
-// });
 
 module.exports = router;
