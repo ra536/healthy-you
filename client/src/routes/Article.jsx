@@ -55,7 +55,7 @@ const Article = (props) => {
             Categories: <a href="/">{category}</a>
             <br/>
             <br/>
-            <a href="/">{author}</a> | <Moment format="dddd, MMMM Do YYYY [at] h:mm A">{publishDate}</Moment>
+            <a href="/">{author}</a> | <Moment format="dddd MMMM Do, YYYY [at] h:mm A">{publishDate}</Moment>
             <br />
             
             <br/><img src={image}/><p><i>Above: {caption}</i></p>

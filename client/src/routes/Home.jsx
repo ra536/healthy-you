@@ -3,7 +3,7 @@ import { AppContext } from '../context/AppContext';
 import { AuthContext } from '../context/AuthContext';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap';
-import { Container, Row, Col, Image } from 'react-bootstrap';
+import { Container, Row, Col, Image, Card } from 'react-bootstrap';
 import { Logout } from '../components/LogoutButton';
 import { ArticleContext } from '../context/ArticleContext';
 import ArticleAPI from '../apis/ArticleAPI'
@@ -79,6 +79,41 @@ const Home = () => {
             <br />
             
             <HealthGuide />
+
+            <Container id="Latest Articles" style={{ width: "65%", display: "inline-block" }}>
+                <br />
+                <div align="left">
+                    <h2>The Latest</h2>
+                </div>
+
+                <br />
+                <Row>
+                    <ArticleComponent article={featuredArticle} writer={featuredAuthor} type="horizontal"/>
+                </Row>
+
+                <hr />
+
+                <Row>
+                    <ArticleComponent article={featuredArticle} writer={featuredAuthor} type="horizontal"/>
+                </Row>
+
+                <hr />
+
+                <Row>
+                    <ArticleComponent article={featuredArticle} writer={featuredAuthor} type="horizontal"/>
+                </Row>
+
+                <hr />
+
+                <Row>
+                    <ArticleComponent article={featuredArticle} writer={featuredAuthor} type="horizontal"/>
+                </Row>
+
+                <br />
+
+                
+
+            </Container>
             
             
             <br/><br/>

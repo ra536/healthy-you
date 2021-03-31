@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom';
 import { Image, Button } from 'react-bootstrap';
+import { Col, Card } from 'react-bootstrap';
+import Moment from 'react-moment';
+import 'moment-timezone';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const ArticleComponent = (props) => {
@@ -36,6 +39,31 @@ const ArticleComponent = (props) => {
                     <p>{articleInfo.summary}</p>
                 </span>
             </Link>
+        );
+    }
+    if (componentType === "horizontal") {
+        return (
+            <>
+                <Col md="auto">
+                    <Link to={"/article/" + articleInfo.article_id} style={{ textDecoration: "none", color: "black" }}>
+                        <Image src={articleInfo.image_data} alt="strech" width={330} height={210} mode='fit' rounded />
+                    </Link>
+                </Col>
+
+                <Col>
+                    <Link to={"/article/" + articleInfo.article_id} style={{ textDecoration: "none", color: "black" }}>
+                        <a href="/">{articleInfo.category}</a>
+                        <h4>{articleInfo.headline}</h4>
+
+
+                        {articleInfo.summary}
+
+                        <br />
+                        <small className="text-muted">{writerInfo} | <Moment format="dddd MMMM Do, YYYY">{articleInfo.createdAt}</Moment></small>
+                    </Link>
+                </Col>
+            </>
+
         );
     }
     return (
