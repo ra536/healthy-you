@@ -105,7 +105,28 @@ const Setup = () => {
                             </Accordion.Toggle>
                         </Card.Header>
                         <Accordion.Collapse eventKey="0" >
-                            <Card.Body align = "center">Insert information for doctor specialty </Card.Body>
+                            <Card.Body align = "center">
+                                Allergy and immunology |
+                                Anesthesiology |
+                                Dermatology |
+                                Diagnostic radiology |
+                                Emergency medicine |
+                                Family medicine |
+                                Internal medicine |
+                                Medical genetics |
+                                Neurology |
+                                Nuclear medicine |
+                                Obstetrics and gynecology |
+                                Ophthalmology |
+                                Pathology |
+                                Pediatrics |
+                                Physical medicine and rehabilitation |
+                                Preventive medicine |
+                                Psychiatry |
+                                Radiation oncology |
+                                Surgery|
+                                Urology    
+                            </Card.Body>
                         </Accordion.Collapse>
                     </Card>
                     <Card>
@@ -115,7 +136,23 @@ const Setup = () => {
                             </Accordion.Toggle>
                         </Card.Header>
                         <Accordion.Collapse eventKey="1">
-                            <Card.Body align = "center">Insert information for the locations</Card.Body>
+                            <Card.Body align = "center">
+                                Harrison, NJ |
+                                Kearny, NJ |
+                                East Orange, NJ |
+                                Irvington, NJ |
+                                Hillside, NJ |
+                                Orange, NJ |
+                                North Arlington, NJ |
+                                Belleville, NJ |
+                                South Orange, NJ |
+                                Bloomfield, NJ |
+                                Jersey City, NJ |
+                                Maplewood, NJ |
+                                Elizabeth, NJ |
+                                Union, NJ |
+                                Bayonne, NJ
+                            </Card.Body>
                         </Accordion.Collapse>
                     </Card>
                 </Accordion>
@@ -322,13 +359,13 @@ const Setup = () => {
                                     </ListGroup.Item>
                                     </a>
                                     <a style={{ cursor: 'pointer' }}>
-                                    <ListGroup.Item>
+                                    <ListGroup.Item >
                                         <Container fluid = "md"> 
                                             <Row>
                                             <Col>
                                             <Card.Img variant="top" src={doctorPhoto}/>
                                             </Col>
-                                            <Col>
+                                            <Col >
                                                 
                                                     <h3>Dr.Ian Johnson, CAO Ortho Maryland</h3>
                                                     <h6>415 Day Lane, Suite 200, Newark, New Jersey</h6>
@@ -381,7 +418,7 @@ const Setup = () => {
                     
 
                     
-                    <Col align = "center">
+                    <Col align = "center" >
                         <br/><br/>
                         <h3>
                             Follow us on our social media
@@ -400,21 +437,25 @@ const Setup = () => {
                             </h3>
                            </div>
                         <div align = "center" style = {{width: '50%'}} >
-                        <Card>
+                        
                             <ButtonGroup vertical>
 
                             
                             <Card.Img variant="top" src={mag}/>
-                            <br/>
-                            <Button>Subscribe</Button>
-                            <Button>Gifts</Button>
-                            <Button>Digital Subscription</Button>
-                            <Button>Manage Account</Button>
-                            <Button>Table of Contents</Button>
+                            
+                            <Button variant="outline-info" size="sm">Subscribe</Button>
+                            
+                            <Button variant="outline-info" size="sm">Gifts</Button>
+                            
+                            <Button variant="outline-info" size="sm">Digital Subscription</Button>
+                            
+                            <Button variant="outline-info" size="sm">Manage Account</Button>
+                            
+                            <Button variant="outline-info" size="sm">Table of Contents</Button>
                             
                             
                             </ButtonGroup>
-                        </Card>
+                        
 
                         </div>
                         <br/>
@@ -464,7 +505,28 @@ const Setup = () => {
                                 </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="0">
-                                <Card.Body></Card.Body>
+                                <Card.Body>
+                                Allergy and immunology |
+                                Anesthesiology |
+                                Dermatology |
+                                Diagnostic radiology |
+                                Emergency medicine |
+                                Family medicine |
+                                Internal medicine |
+                                Medical genetics |
+                                Neurology |
+                                Nuclear medicine |
+                                Obstetrics and gynecology |
+                                Ophthalmology |
+                                Pathology |
+                                Pediatrics |
+                                Physical medicine and rehabilitation |
+                                Preventive medicine |
+                                Psychiatry |
+                                Radiation oncology |
+                                Surgery|
+                                Urology  
+                                </Card.Body>
                             </Accordion.Collapse>
                         </Card>
                         <Card>
@@ -474,7 +536,23 @@ const Setup = () => {
                                 </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="1">
-                                <Card.Body></Card.Body>
+                                <Card.Body>
+                                Harrison, NJ |
+                                Kearny, NJ |
+                                East Orange, NJ |
+                                Irvington, NJ |
+                                Hillside, NJ |
+                                Orange, NJ |
+                                North Arlington, NJ |
+                                Belleville, NJ |
+                                South Orange, NJ |
+                                Bloomfield, NJ |
+                                Jersey City, NJ |
+                                Maplewood, NJ |
+                                Elizabeth, NJ |
+                                Union, NJ |
+                                Bayonne, NJ
+                                </Card.Body>
                             </Accordion.Collapse>
                         </Card>
                         </Accordion>
@@ -488,11 +566,11 @@ const Setup = () => {
                 <br/><br/>
                 <div align = "center">
                 <ButtonGroup aria-label="Basic example">
-                    <Button variant="secondary">1</Button>
-                    <Button variant="secondary">2</Button>
-                    <Button variant="secondary">3</Button>
-                    <Button variant= "secondary">...</Button>
-                    <Button variant= "secondary">More</Button>
+                    <Button variant="outline-info">1</Button>
+                    <Button variant="outline-info">2</Button>
+                    <Button variant="outline-info">3</Button>
+                    <Button variant="outline-info">...</Button>
+                    <Button variant="outline-info">More</Button>
                 </ButtonGroup>
                 </div>
             
