@@ -118,6 +118,7 @@ const Home = () => {
                 <Row>
                     <ArticleComponent article={featuredArticle} writer={featuredAuthor} type="horizontal"/>
                 </Row>
+                
                 <br />
                 
                 
@@ -126,6 +127,13 @@ const Home = () => {
 
             <Container id="Right Sidebar" style={{ width: "35%", display: "inline-block" }}>
                 <HomeSideBar />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
             </Container>
             
             

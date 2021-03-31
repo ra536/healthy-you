@@ -2,16 +2,17 @@ import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom';
 import { Image, Button } from 'react-bootstrap';
 import { Col, Card } from 'react-bootstrap';
-import { FacebookShareButton, FacebookIcon, TwitterShareButton, LinkedinShareButton, EmailShareButton } from "react-share";
 import Moment from 'react-moment';
 import 'moment-timezone';
 import 'bootstrap/dist/css/bootstrap.css';
+import SocialShareButtons from './SocialShareButtons';
 require("dotenv").config();
 
 const ArticleComponent = (props) => {
     const componentType = props.type;
     const articleInfo = props.article;
     const writerInfo = props.writer;
+    const link = "https://healthy-you-project.herokuapp.com/article/87918716-f71f-4548-aea3-ad0496d44c9a";
 
     if (componentType === "featured-large") {
         return (
@@ -24,9 +25,7 @@ const ArticleComponent = (props) => {
                         {articleInfo.headline}
                     </h2>
                     <p>{articleInfo.summary}</p>
-                    <FacebookShareButton url={process.env.REACT_APP_HOME_URL + "/article/" + articleInfo.article_id}>
-                        <FacebookIcon size={32} round />
-                    </FacebookShareButton>
+                    <SocialShareButtons link={link}/>
                 </span>
             </Link>
         );
@@ -42,6 +41,7 @@ const ArticleComponent = (props) => {
 
                     </h4>
                     <p>{articleInfo.summary}</p>
+                    <SocialShareButtons link={link}/>
                 </span>
             </Link>
         );
@@ -65,6 +65,8 @@ const ArticleComponent = (props) => {
 
                         <br />
                         <small className="text-muted">{writerInfo} | <Moment format="dddd MMMM Do, YYYY">{articleInfo.createdAt}</Moment></small>
+                        <br />
+                        <SocialShareButtons link={link}/>
                     </Link>
                 </Col>
             </>
