@@ -1,49 +1,49 @@
-'use strict';
+"use strict";
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    queryInterface.addColumn('writers', 'role', {
+    queryInterface.addColumn("writers", "role", {
       type: Sequelize.STRING,
       allowNull: false,
-      defaultValue: 'Writer',
+      defaultValue: "Writer",
     });
-    queryInterface.removeColumn('doctors', 'doctor_name');
-    queryInterface.addColumn('doctors', 'email', {
+    queryInterface.removeColumn("doctors", "doctor_name");
+    queryInterface.addColumn("doctors", "email", {
       type: Sequelize.STRING,
       allowNull: false,
       unique: {
         args: true,
-        msg: 'Email address already in use.'
-      }
+        msg: "Email address already in use.",
+      },
     });
-    queryInterface.addColumn('doctors', 'password', {
+    queryInterface.addColumn("doctors", "password", {
       type: Sequelize.STRING,
       allowNull: false,
     });
-    queryInterface.addColumn('doctors', 'firstName', {
+    queryInterface.addColumn("doctors", "firstName", {
       type: Sequelize.STRING,
       allowNull: false,
     });
-    queryInterface.addColumn('doctors', 'lastName', {
+    queryInterface.addColumn("doctors", "lastName", {
       type: Sequelize.STRING,
       allowNull: false,
     });
-    queryInterface.addColumn('doctors', 'city', {
+    queryInterface.addColumn("doctors", "city", {
       type: Sequelize.STRING,
       allowNull: false,
     });
-    queryInterface.addColumn('doctors', 'state', {
+    queryInterface.addColumn("doctors", "state", {
       type: Sequelize.STRING,
       allowNull: false,
     });
-    queryInterface.addColumn('doctors', 'birthdate', {
+    queryInterface.addColumn("doctors", "birthdate", {
       type: Sequelize.DATE,
       allowNull: false,
     });
-    queryInterface.addColumn('doctors', 'role', {
+    queryInterface.addColumn("doctors", "role", {
       type: Sequelize.STRING,
       allowNull: false,
-      defaultValue: 'Doctor',
+      defaultValue: "Doctor",
     });
   },
 
@@ -54,5 +54,5 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-  }
+  },
 };
