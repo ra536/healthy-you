@@ -15,6 +15,7 @@ import TopNavBar from '../components/TopNavBar';
 import ArticleComponent from '../components/ArticleComponent';
 import HealthGuide from '../components/HealthGuide';
 import HomeSideBar from '../components/HomeSideBar';
+import TopFeaturedAds from '../components/TopFeaturedAds';
 
 const Home = () => {
     // Store the data retrieved from backend API into context
@@ -53,6 +54,7 @@ const Home = () => {
                         </>
                     } */ }
             <TopNavBar />
+            <TopFeaturedAds />
             <br />
             <Container id="article-highlights">
 
