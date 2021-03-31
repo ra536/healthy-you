@@ -2,9 +2,11 @@ import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom';
 import { Image, Button } from 'react-bootstrap';
 import { Col, Card } from 'react-bootstrap';
+import { FacebookShareButton, FacebookIcon, TwitterShareButton, LinkedinShareButton, EmailShareButton } from "react-share";
 import Moment from 'react-moment';
 import 'moment-timezone';
 import 'bootstrap/dist/css/bootstrap.css';
+require("dotenv").config();
 
 const ArticleComponent = (props) => {
     const componentType = props.type;
@@ -22,6 +24,9 @@ const ArticleComponent = (props) => {
                         {articleInfo.headline}
                     </h2>
                     <p>{articleInfo.summary}</p>
+                    <FacebookShareButton url={process.env.REACT_APP_HOME_URL + "/article/" + articleInfo.article_id}>
+                        <FacebookIcon size={32} round />
+                    </FacebookShareButton>
                 </span>
             </Link>
         );
@@ -69,16 +74,16 @@ const ArticleComponent = (props) => {
     if (componentType === "carousel") {
         return (
             <>
-            <Link to={"/article/" + articleInfo.article_id} style={{ textDecoration: "none", color: "black" }}>
-            <Image rounded src={articleInfo.image_data} alt="healthpic2" width={250} mode='fit' />
+                <Link to={"/article/" + articleInfo.article_id} style={{ textDecoration: "none", color: "black" }}>
+                    <Image rounded src={articleInfo.image_data} alt="healthpic2" width={250} mode='fit' />
                     <br /><span style={{ color: "blue" }}>{articleInfo.category}</span>
                     <h4>
                         {articleInfo.headline}
                     </h4>
                     <p>{articleInfo.summary}</p>
-            </Link>
+                </Link>
             </>
-        );  
+        );
     }
     return (
         <>
