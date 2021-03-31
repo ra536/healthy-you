@@ -27,7 +27,8 @@ const doctor = db.define('doctor', {
         type: DataTypes.STRING
     },
     specialty: {
-        type: DataTypes.ARRAY(DataTypes.STRING)
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        defaultValue: []
     }
 }, {underscored: true});
 
