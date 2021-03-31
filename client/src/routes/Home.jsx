@@ -132,10 +132,15 @@ const Home = () => {
             <AdBreak />
         
             <br />
+            <div style={{ backgroundColor: "#F8F8F8" }}>
             <CategoryCarousel article={featuredArticle} writer={featuredAuthor} category="Health"/>
+            <hr />
             <CategoryCarousel article={featuredArticle} writer={featuredAuthor} category="Wellness"/>
+            <hr />
             <CategoryCarousel article={featuredArticle} writer={featuredAuthor} category="Fitness"/>
+            <hr />
             <CategoryCarousel article={featuredArticle} writer={featuredAuthor} category="Food"/>
+            </div>
 
             <AdBreak />
             <div align="center">

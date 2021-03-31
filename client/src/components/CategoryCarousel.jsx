@@ -10,7 +10,7 @@ const CategoryCarousel = (props) => {
     const category = props.category;
 
     return (
-        <div style={{ backgroundColor: "#F8F8F8" }}>
+        
         <Container id="health">
             <br />
             <div align="center">
@@ -35,7 +35,6 @@ const CategoryCarousel = (props) => {
 
 
         </Container>
-        </div>
     );
 }
 
