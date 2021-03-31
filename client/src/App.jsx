@@ -68,7 +68,7 @@ const App = () => {
             <ProtectedRoute
               path="/doctor-dashboard/:doctorID"
               component={DoctorDashboard}
-              requiredRoles={["Doctor"]}
+              // requiredRoles={["Doctor"]}
             />
             <Route path="/leaveReview/:id">
               <Review url={window.location.href} />
@@ -96,7 +96,7 @@ const App = () => {
             <ProtectedRoute
               path="/doctor-dashboard/:doctorID"
               component={DoctorDashboard}
-              requiredRoles={["Doctor"]}
+              // requiredRoles={["Doctor"]}
             />
             <Route path="/leaveReview/:id">
               <Review url={window.location.href} />
