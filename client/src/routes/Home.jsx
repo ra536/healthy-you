@@ -75,6 +75,56 @@ const Home = () => {
                     </Col>
                 </Row>
             </Container>
+            <br />
+            <div style={{backgroundColor:"#F8F8F8"}}>
+            <Container id="health-guide">
+                <br />
+                <div align="center">
+                    <h2>Health Guide</h2>
+                    <br />
+                </div>
+
+                <Container>
+                    <Row>
+                        <Col>
+                            <Button
+                                variant="outline-dark" size="sm" block
+                            >
+                                Doctor
+                        </Button>
+                        </Col>
+                        <Col>
+                            <Button
+                                variant="outline-dark" size="sm" block
+                            >
+                                Dentist
+                         </Button>
+                        </Col>
+                    </Row>
+                    <br />
+                    <Row>
+                        <Col>
+                            <Button
+                                variant="outline-dark" size="sm" block
+                            >
+                                Chiropractor
+                        </Button>
+                        </Col>
+                        <Col>
+                            <Button
+                                variant="outline-dark" size="sm" block
+                            >
+                                More...
+                    </Button></Col>
+                    </Row>
+
+                </Container>
+            </Container>
+            
+            <br />
+            <br />
+            </div>
+            <br/><br/>
             <div align="center">
                 <iframe allowfullscreen height='200' scrolling='no' frameborder='0' style={{ border: 'none' }} src='https://www.wevideo.com/api/4/media/1921444596/embed' allowfullscreen></iframe>
             </div>

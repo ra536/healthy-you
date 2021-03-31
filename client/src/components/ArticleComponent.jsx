@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom';
-import { Image } from 'react-bootstrap';
+import { Image, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
 const ArticleComponent = (props) => {
@@ -11,7 +11,8 @@ const ArticleComponent = (props) => {
     if (componentType === "featured-large") {
         return (
             <Link to={"/article/" + articleInfo.article_id} style={{ textDecoration: "none", color: "black" }}>
-                <span align="center">
+                <span textAlign="left">
+                    <br />
                     <Image src={articleInfo.image_data} className="mx-auto d-block" style={{ width: '70%' }} fluid rounded />
                     <span style={{ color: "blue" }}>{articleInfo.category}</span>
                     <h2>
