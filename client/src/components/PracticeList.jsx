@@ -42,9 +42,9 @@ const PracticeList = (props) => {
           </tr>
         </thead>
         <tbody>
-          {practices.map((practices) => {
+          {practices.map((practices, index) => {
             return (
-              <tr>
+              <tr key={index}>
                 <td>{practices.name}</td>
                 <td>{practices.website}</td>
                 <td>{practices.social_media}</td>
