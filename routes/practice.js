@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db/index");
 const practice = require("../db/models/practice");
-const location = require("../db/models/location");
 const doctor = require("../db/models/doctor");
 const { isAuthAndDoctor } = require("../passport");
 
