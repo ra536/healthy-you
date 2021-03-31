@@ -1,6 +1,5 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const db = require("../index");
-const doctor = require("./doctor");
 
 const practice = db.define("practice", {
   practice_id: {
