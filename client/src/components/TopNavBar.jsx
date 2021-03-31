@@ -8,7 +8,7 @@ import hwf_logo_small from'./img/hwf_logo_small.png';
 const TopNavBar = () => {
     return (
         <>
-        <div style={{ position:"sticky", top:"0"}}>
+        <div style={{ position:"sticky", top:"0", zIndex:"1"}}>
             <Navbar bg="light" variant="light" expand="lg">
                 <Navbar.Brand>
                     <Nav.Link href="/">
