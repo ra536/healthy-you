@@ -7,6 +7,7 @@ import ArticleList from '../components/ArticleList';
 import { Container } from 'react-bootstrap';
 import { InsertArticleModal } from '../components/InsertArticleModal';
 import 'bootstrap/dist/css/bootstrap.css';
+import TopNavBar from '../components/TopNavBar';
 
 
 const WriterDashboard = (props) => {
@@ -27,8 +28,10 @@ const WriterDashboard = (props) => {
     }, [id]);
     
     return(
+        <>
+        <TopNavBar />
         <Container>
-            <h1>Writer with id: {id}</h1>
+            <h1>Writer Dashboard</h1>
             <br/>
 
             
@@ -40,6 +43,7 @@ const WriterDashboard = (props) => {
 
             <ArticleList id={id}/>
         </Container>
+        </>
     )
 };
 

@@ -1,92 +1,155 @@
-import React, { useEffect, useContext } from 'react';
-import TestAPI from '../apis/TestAPI';
-import InputTest from '../components/InputTest';
+import React, { useEffect, useState, useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 import { AuthContext } from '../context/AuthContext';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col, Image, Card } from 'react-bootstrap';
+//import { Logout } from '../components/LogoutButton';
+import { ArticleContext } from '../context/ArticleContext';
+import ArticleAPI from '../apis/ArticleAPI'
+import { Link } from 'react-router-dom';
 
 // bootstrap styles library (gives automatic styling)
 import 'bootstrap/dist/css/bootstrap.css';
+import TopNavBar from '../components/TopNavBar';
+import ArticleComponent from '../components/ArticleComponent';
+import HealthGuide from '../components/HealthGuide';
+import HomeSideBar from '../components/HomeSideBar';
+import TopFeaturedAds from '../components/TopFeaturedAds';
+import AdBreak from '../components/AdBreak';
+import CategoryCarousel from '../components/CategoryCarousel';
 
 const Home = () => {
     // Store the data retrieved from backend API into context
-    const { tests, setTests } = useContext(AppContext);
-    const { loggedIn, role} = useContext(AuthContext)
+    const { loggedIn, role } = useContext(AuthContext);
+    //const { featuredArticles, setFeaturedArticles } = useContext(ArticleContext);
+    const [featuredArticle, setFeaturedArticle] = useState("");
+    const [featuredAuthor, setFeaturedAuthor] = useState("");
 
-    // Call our backend API to retrieve list of test objects from db
-    useEffect( () => {
+    useEffect(() => {
         // Define a function fetchData that calls APIs which is then called in useEffect
         const fetchData = async () => {
             try {
-                const response = await (TestAPI.get("/"));
+                const response = await ArticleAPI.get("/random");
                 console.log(response.data.data)
-                setTests(response.data.data);
+                setFeaturedArticle(response.data.data)
+                setFeaturedAuthor(response.data.writer.firstName + " " + response.data.writer.lastName);
             }
             catch (err) {
                 console.log(err)
             }
         }
         fetchData();
-    }, [setTests]);
+    }, []);
 
     console.log("am I logged in?", loggedIn)
     console.log("what's my role?", role)
 
     return (
         <div>
-            <Navbar bg="primary" variant="dark" expand="lg">
-                <Navbar.Brand href="#home">
-                    React-Bootstrap
-                </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#link">Link</Nav.Link>
-                    <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                    </NavDropdown>
-                    </Nav>
-                    <Form inline>
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                    <Button variant="outline-success">Search</Button>
-                    </Form>
-                </Navbar.Collapse>
-            </Navbar>
+            {/* { loggedIn ? 
+                        <Logout/>
+                        :
+                        <>
+                            <Nav.Link href="/register">Register</Nav.Link>
+                            <Nav.Link href="/login">Login</Nav.Link>
+                        </>
+                    } */ }
+            <TopNavBar />
+            <TopFeaturedAds />
             <br />
-            <Container>
-            
+            <Container id="article-highlights">
+
+                <Row>
+                    <Col>
+                        <ArticleComponent article={featuredArticle} writer={featuredAuthor} type="featured-large"/>
+                    </Col>
+                </Row>
+                <br />
+                <br />
+
+                <Row>
+                    <Col>
+                        <ArticleComponent article={featuredArticle} writer={featuredAuthor} type="featured-small"/>
+                    </Col>
+
+                    <Col>
+                        <ArticleComponent article={featuredArticle} writer={featuredAuthor} type="featured-small"/>
+                    </Col>
+                    <Col>
+                        <ArticleComponent article={featuredArticle} writer={featuredAuthor} type="featured-small"/>
+                    </Col>
+                </Row>
             </Container>
+            <br />
+            
+            <HealthGuide />
+            
+            <Container id="Latest Articles" style={{ width: "65%", display: "inline-block" }}>
+                <br />
+                <div align="left">
+                    <h2>The Latest</h2>
+                </div>
+
+                <Row>
+                    <ArticleComponent article={featuredArticle} writer={featuredAuthor} type="horizontal"/>
+                </Row>
+
+                <hr />
+
+                <Row>
+                    <ArticleComponent article={featuredArticle} writer={featuredAuthor} type="horizontal"/>
+                </Row>
+
+                <hr />
+
+                <Row>
+                    <ArticleComponent article={featuredArticle} writer={featuredAuthor} type="horizontal"/>
+                </Row>
+
+                <hr />
+
+                <Row>
+                    <ArticleComponent article={featuredArticle} writer={featuredAuthor} type="horizontal"/>
+                </Row>
+
+                <hr />
+
+                <Row>
+                    <ArticleComponent article={featuredArticle} writer={featuredAuthor} type="horizontal"/>
+                </Row>
+                <br />
+                
+                
+
+            </Container>
+
+            <Container id="Right Sidebar" style={{ width: "35%", display: "inline-block" }}>
+                <HomeSideBar />
+            </Container>
+            
+            
+            <AdBreak />
+        
+            <br />
+            <div style={{ backgroundColor: "#F8F8F8" }}>
+            <CategoryCarousel article={featuredArticle} writer={featuredAuthor} category="Health"/>
+            <hr />
+            <CategoryCarousel article={featuredArticle} writer={featuredAuthor} category="Wellness"/>
+            <hr />
+            <CategoryCarousel article={featuredArticle} writer={featuredAuthor} category="Fitness"/>
+            <hr />
+            <CategoryCarousel article={featuredArticle} writer={featuredAuthor} category="Food"/>
+            </div>
+
+            <AdBreak />
             <div align="center">
             <iframe title="Title" allowFullScreen height='200' scrolling='no' frameBorder='0' style={{border: 'none'}} src='https://www.wevideo.com/api/4/media/1921444596/embed' > </iframe>
             </div>
             <Container>
-                <h1>Home</h1>
-                <InputTest />
-                <br />
-                <br />
-                <h2>Results:</h2>
-                <div>
-                    {tests && tests.map(tests => {
-                        return (
-                            <ListGroup key={tests.test_id}>
-                                <ListGroup.Item>
-                                    { tests.test_id }
-                                    <br/>
-                                    { tests.content }
-                                </ListGroup.Item>
-                            </ListGroup>
-                        )
-                    })}
-                </div>
+
             </Container>
-            
+
         </div>
     )
 }

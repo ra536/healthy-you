@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
                     city: city,
                     state: state,
                     birthdate: birthdate,
-                    phone: "(609)222-2222"
+                    phone: '(609)240-7061'
                 })
                 .then(() => {
                     res.status(201).json({

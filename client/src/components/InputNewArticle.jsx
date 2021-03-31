@@ -1,7 +1,11 @@
 import React, { useContext, useState } from 'react'
 import ArticleAPI from '../apis/ArticleAPI'
 import { AppContext } from '../context/AppContext';
+<<<<<<< HEAD
+import axios from 'axios';
+=======
 //import axios from 'axios';
+>>>>>>> dc462a2de83cf2fb17bf561471f72eb53dd3b668
 
 
 //Lets user input a test object into backend db

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db/index')
 const articles = require('../db/models/article.js')
+const writer = require('../db/models/writer.js')
 var multer = require('multer');
 const article = require('../db/models/article.js');
 // var upload = multer({ dest: './uploads' })
@@ -29,6 +30,25 @@ router.post("/", async (req, res) => {
     }
 });
 
+router.get("/random", async (req, res) => {
+    try {
+        const randomResults = await articles.findOne({
+            raw: true
+        });
+        const writerResult = await writer.findByPk(randomResults.writer_id);
+        console.log(randomResults)
+        console.log(writerResult);
+        res.status(200).json({
+            status: "success",
+            data: randomResults,
+            writer: writerResult
+        });
+    }
+    catch (err){
+        console.error(err.message);
+    }
+})
+
 router.post("/find", async (req, res) => {
     try {
         console.log(req.body.article_id); // TODO - Why is this undefined???
@@ -38,9 +58,12 @@ router.post("/find", async (req, res) => {
             },
             raw: true
         });
+        const writerResult = await writer.findByPk(testResults[0].writer_id);
+        console.log(writerResult);
         res.status(200).json({
             status: "success",
             data: testResults,
+            writer: writerResult,
             debug: req.body
         })
     }

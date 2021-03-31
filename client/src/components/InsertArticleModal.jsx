@@ -126,8 +126,10 @@ export const InsertArticleModal = (props) => {
                             placeholder="Summary"
                             onChange={e => setSummary(e.target.value)}
                         />
-                        <input
+                        <br />
+                        <textarea
                             id="input-content"
+                            width="100%"
                             value={content}
                             placeholder="Content"
                             onChange={e => setContent(e.target.value)}
