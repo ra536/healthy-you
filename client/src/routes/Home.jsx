@@ -7,6 +7,7 @@ import { Container, Row, Col, Image } from 'react-bootstrap';
 import { Logout } from '../components/LogoutButton';
 import { ArticleContext } from '../context/ArticleContext';
 import ArticleAPI from '../apis/ArticleAPI'
+import { Link } from 'react-router-dom';
 
 // bootstrap styles library (gives automatic styling)
 import 'bootstrap/dist/css/bootstrap.css';
@@ -54,6 +55,7 @@ const Home = () => {
 
                 <Row>
                     <Col>
+                    <Link to={"/article/" + featuredArticle.article_id}>
                         <div align="center">
                             <Image src={featuredArticle.image_data} className="mx-auto d-block" style={{ width: '70%' }} fluid rounded />
                             <h2>
@@ -63,6 +65,7 @@ const Home = () => {
                                 </p>
                             </h2>
                         </div>
+                        </Link>
                     </Col>
                 </Row>
                 <br />
