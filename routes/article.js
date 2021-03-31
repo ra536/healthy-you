@@ -58,9 +58,12 @@ router.post("/find", async (req, res) => {
             },
             raw: true
         });
+        const writerResult = await writer.findByPk(testResults[0].writer_id);
+        console.log(writerResult);
         res.status(200).json({
             status: "success",
             data: testResults,
+            writer: writerResult,
             debug: req.body
         })
     }
