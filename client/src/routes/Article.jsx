@@ -7,6 +7,7 @@ import 'moment-timezone';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import TopNavBar from '../components/TopNavBar';
+import SocialShareButtons from '../components/SocialShareButtons';
 
 const Article = (props) => {
     let { id } = useParams();
@@ -19,6 +20,8 @@ const Article = (props) => {
     const [caption, setCaption] = useState("");
     const [publishDate, setPublishDate] = useState("");
     const [author, setAuthor] = useState("");
+
+    const link = "https://healthy-you-project.herokuapp.com/article/87918716-f71f-4548-aea3-ad0496d44c9a";
 
     useEffect(() => {
         // Define a function fetchData that calls APIs which is then called in useEffect
@@ -55,6 +58,8 @@ const Article = (props) => {
                 <br />
                 <br />
                 <a href="/">{author}</a> | <Moment format="dddd MMMM Do, YYYY [at] h:mm A">{publishDate}</Moment>
+                <br /><br />
+                <SocialShareButtons link={link} />
                 <br />
 
                 <br /><img src={image} /><p><i>Above: {caption}</i></p>
