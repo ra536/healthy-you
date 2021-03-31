@@ -65,7 +65,7 @@ const DoctorProfile = (props) => {
                 <Col>
                     <br>
                     </br>
-                    <Image src={profilePicture} className="mx-auto d-block" roundedCircle />
+                    <Image src={profilePicture} className="mx-auto d-block" style={{ width: '50%' }} roundedCircle />
                     <br>
                     </br>
                 </Col>
