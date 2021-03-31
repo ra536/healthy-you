@@ -11,6 +11,7 @@ import Login from "./routes/Login";
 import Search from './routes/Search'
 import SearchResults from './components/SearchResults'
 import ProtectedRoute from './components/ProtectedRoute'
+import DoctorProfile from './routes/DoctorProfile';
 import { AuthContext } from './context/AuthContext'
 import LoginAPI from './apis/LoginAPI'
 import { Button } from 'react-bootstrap'
@@ -70,6 +71,7 @@ const App = () => {
                         <Route exact path="/login" component={ Login } loggedIn={ loggedIn }/>
                         <Route exact path="/search" component={ Search }/>
                         <Route path="/results" component={ SearchResults }/>
+                        <Route path="/doctor-profile/:doctorID" component = { DoctorProfile } />
                         <ProtectedRoute path="/doctor-dashboard/:doctorID" component = { DoctorDashboard } requiredRoles={["Doctor"]} />
                         <Route path="/leaveReview/:id">
                             <Review url={window.location.href}/>
@@ -91,6 +93,7 @@ const App = () => {
                         <Route exact path="/login" component={ Login } loggedIn={ loggedIn }/>
                         <Route exact path="/search" component={ Search }/>
                         <Route path="/results" component={ SearchResults }/>
+                        <Route path="/doctor-profile/:doctorID" component = { DoctorProfile } />
                         <ProtectedRoute path="/doctor-dashboard/:doctorID" component = { DoctorDashboard } requiredRoles={["Doctor"]} />
                         <Route path="/leaveReview/:id">
                             <Review url={window.location.href}/>

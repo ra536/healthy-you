@@ -14,7 +14,7 @@ router.use(express.json());
 // UPDATE bio and maybe appointments, profile pictures
 // DELETE specialties, practices, appointments,
 
-router.post("/findDoctor", isAuthAndDoctor, async (req, res) => {
+router.post("/findDoctor", async (req, res) => {
     try {
         const doctorResult = await doctor.findAll({
             where: {
@@ -22,7 +22,6 @@ router.post("/findDoctor", isAuthAndDoctor, async (req, res) => {
             },
             raw: true
         })
-        console.log(req.user.role)
         res.status(200).json({
             status: "success",
             data: doctorResult,
