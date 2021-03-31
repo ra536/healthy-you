@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import TopNavBar from '../components/TopNavBar';
 import ArticleComponent from '../components/ArticleComponent';
+import HealthGuide from '../components/HealthGuide';
 
 const Home = () => {
     // Store the data retrieved from backend API into context
@@ -76,54 +77,10 @@ const Home = () => {
                 </Row>
             </Container>
             <br />
-            <div style={{backgroundColor:"#F8F8F8"}}>
-            <Container id="health-guide">
-                <br />
-                <div align="center">
-                    <h2>Health Guide</h2>
-                    <br />
-                </div>
-
-                <Container>
-                    <Row>
-                        <Col>
-                            <Button
-                                variant="outline-dark" size="sm" block
-                            >
-                                Doctor
-                        </Button>
-                        </Col>
-                        <Col>
-                            <Button
-                                variant="outline-dark" size="sm" block
-                            >
-                                Dentist
-                         </Button>
-                        </Col>
-                    </Row>
-                    <br />
-                    <Row>
-                        <Col>
-                            <Button
-                                variant="outline-dark" size="sm" block
-                            >
-                                Chiropractor
-                        </Button>
-                        </Col>
-                        <Col>
-                            <Button
-                                variant="outline-dark" size="sm" block
-                            >
-                                More...
-                    </Button></Col>
-                    </Row>
-
-                </Container>
-            </Container>
             
-            <br />
-            <br />
-            </div>
+            <HealthGuide />
+            
+            
             <br/><br/>
             <div align="center">
                 <iframe allowfullscreen height='200' scrolling='no' frameborder='0' style={{ border: 'none' }} src='https://www.wevideo.com/api/4/media/1921444596/embed' allowfullscreen></iframe>
