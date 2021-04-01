@@ -11,6 +11,7 @@ import Article from './routes/Article';
 import Login from "./routes/Login";
 import Search from './routes/Search'
 import SearchResults from './components/SearchResults'
+import ArticleCategory from './routes/Category'
 
 const App = () => {
     return (
@@ -30,6 +31,7 @@ const App = () => {
                             </Route>
                             <Route path="/writer-dashboard/:id" component = { WriterDashboard }/>
                             <Route path="/article/:id" component = { Article } />
+                            <Route path="/category/:id" component = { ArticleCategory } />
                         </Switch>
                     </Router>
                 </div>

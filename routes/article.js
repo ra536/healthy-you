@@ -227,7 +227,7 @@ router.get("/:id", async (req, res) => {
     try {
         const name = req.params.id
 
-        const articleResults = await articles.findOne({
+        const articleResults = await articles.findAll({
             where:{
                category: name 
             },
