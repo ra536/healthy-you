@@ -28,6 +28,20 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.post("/findWriter", async (req, res) => {
+  try {
+    const writerResult = await writer.findByPk(req.body.writer_id);
+    res.status(201).json({
+      status: "success",
+      data: writerResult,
+    });
+  } catch (err) {
+    res.json({
+      status: err.errors,
+    });
+  }
+})
+
 router.get("/random", async (req, res) => {
   try {
     const randomResults = await articles.findOne({

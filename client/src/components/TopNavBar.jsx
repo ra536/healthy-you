@@ -44,13 +44,13 @@ const TopNavBar = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="m-auto">
-              <Nav.Link href="#food">Food</Nav.Link>
-              <Nav.Link href="#nutrition">Nutrition</Nav.Link>
-              <Nav.Link href="#health">Health</Nav.Link>
-              <Nav.Link href="#language">Language</Nav.Link>
-              <Nav.Link href="#covid-19">Covid-19</Nav.Link>
-              <Nav.Link href="#news">News</Nav.Link>
-              <Nav.Link href="#exercise">Exercise</Nav.Link>
+              <Nav.Link href="/category/Food">Food</Nav.Link>
+              <Nav.Link href="/category/Nutrition">Nutrition</Nav.Link>
+              <Nav.Link href="/category/Health">Health</Nav.Link>
+              <Nav.Link href="/category/Language">Language</Nav.Link>
+              <Nav.Link href="/category/Covid-19">Covid-19</Nav.Link>
+              <Nav.Link href="/category/News">News</Nav.Link>
+              <Nav.Link href="/category/Exercise">Exercise</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

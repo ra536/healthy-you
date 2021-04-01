@@ -42,6 +42,22 @@ const ArticleCategory = (props) => {
         fetchData();
     }, []);
 
+    // const getAuthorName = async (writer_id) => {
+    //     console.log("RUNNING AUTHOR");
+    //     console.log(writer_id)
+    //     try {
+    //         const response = await ArticleAPI.post("/find", {
+    //             writer_id: writer_id
+    //         })
+
+    //         console.log("response:", response.data.data)
+    //         setArticles(response.data.data)
+
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // };
+
     return (
         <>
         <TopNavBar />
@@ -58,7 +74,8 @@ const ArticleCategory = (props) => {
                     <>
                     <hr />
                     <Row>
-                        <ArticleComponent article={article} type="horizontal" />
+                        <ArticleComponent article={article} writer="Anonymous Writer" type="horizontal" />
+                        {/* {getAuthorName(article.writer_id)} */}
                     </Row>
                     </>
                 )
