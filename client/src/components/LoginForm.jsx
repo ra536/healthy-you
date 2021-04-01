@@ -14,7 +14,7 @@ const schema = yup.object().shape({
 
 const LoginForm = () => {
   let history = useHistory();
-  const { role, setRole, setLoggedIn } = useContext(AuthContext);
+  const { setRole, setLoggedIn } = useContext(AuthContext);
   return (
     <Formik
       initialValues={{
