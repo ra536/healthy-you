@@ -15,7 +15,7 @@ router.use(express.json());
 
 router.post("/findDoctor", async (req, res) => {
   try {
-    const doctorResult = await doctor.findAll({
+    const doctorResult = await doctor.findOne({
       where: {
         doctor_id: req.body.doctor_id,
       },
@@ -23,8 +23,21 @@ router.post("/findDoctor", async (req, res) => {
     });
     res.status(200).json({
       status: "success",
-      data: doctorResult,
-      user: req.user,
+      data: {
+        bio: doctorResult.bio,
+        birthdate: doctorResult.birthdate,
+        city: doctorResult.city,
+        doctor_id: doctorResult.doctor_id,
+        doctor_name: doctorResult.doctor_name,
+        email: doctorResult.email,
+        firstName: doctorResult.firstName,
+        lastName: doctorResult.lastName,
+        phone: doctorResult.phone,
+        profile_picture: doctorResult.profile_picture,
+        rating: doctorResult.rating,
+        specialty: doctorResult.specialty,
+        state: doctorResult.state,
+      },
     });
   } catch (err) {
     // console.log(req.body);
