@@ -160,10 +160,8 @@ const Home = () => {
           id="Right Sidebar"
           style={{ width: "35%", display: "inline-block" }}
         >
+          <br />
           <HomeSideBar />
-          <br />
-          <br />
-          <br />
           <br />
           <br />
           <br />
