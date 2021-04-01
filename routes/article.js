@@ -28,6 +28,20 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.post("/findWriter", async (req, res) => {
+  try {
+    const writerResult = await writer.findByPk(req.body.writer_id);
+    res.status(201).json({
+      status: "success",
+      data: writerResult,
+    });
+  } catch (err) {
+    res.json({
+      status: err.errors,
+    });
+  }
+})
+
 router.get("/random", async (req, res) => {
   try {
     const randomResults = await articles.findOne({
@@ -215,6 +229,54 @@ router.post("/update", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
+});
+
+// Route to create a test object in DB
+// router.post("/", async (req, res) => {
+//     // Express JSON middleware allows for results to be in body
+//     try {
+//         const tests = await test.create({
+//             test_id: req.body.test_id,
+//             content: req.body.content,
+//         })
+//         console.log(tests.dataValues)
+//         res.status(201).json({
+//             status: "success",
+//             data: {
+//                 test_id: tests.dataValues.test_id,
+//                 content: tests.dataValues.content
+//             }
+//         })
+//     }
+//     catch (err) {
+//         console.log(err)
+//     }
+// });
+
+router.post("/category", async (req, res) => {
+    try {
+        const name = req.body.category;
+        console.log(req.body);
+
+        const articleResults = await articles.findAll({
+            where:{
+               category: name 
+            },
+            raw: true
+        });
+
+        console.log(articleResults)
+
+        res.status(200).json({
+
+            status: "success",
+            data: articleResults
+        })
+
+
+    } catch (error) {
+        console.log(error.message)
+    }
 });
 
 module.exports = router;

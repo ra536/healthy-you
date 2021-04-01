@@ -57,7 +57,7 @@ const Article = (props) => {
       <Container>
         {console.log(content)}
         <h1>{headline}</h1>
-        Categories: <a href="/">{category}</a>
+        Category: <a href={"/category/" + category}>{category}</a>
         <br />
         <br />
         <a href="/">{author}</a> |{" "}
