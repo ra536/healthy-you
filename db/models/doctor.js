@@ -63,7 +63,7 @@ const doctor = db.define(
     },
     specialty: {
       type: DataTypes.ARRAY(DataTypes.STRING),
-      defaultValue: []
+      defaultValue: [],
     },
     phone: {
       type: DataTypes.STRING,
