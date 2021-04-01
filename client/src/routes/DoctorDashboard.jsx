@@ -38,20 +38,17 @@ const DoctorDashboard = (props) => {
           }
         );
         console.log(response.data.data);
-        if (response.data.data[0].specialty === null) {
+        if (response.data.data.specialty === null) {
           setSpecialties(["Please add a specialty!"]);
         } else {
-          setSpecialties(response.data.data[0].specialty);
+          setSpecialties(response.data.data.specialty);
         }
-        setRating(response.data.data[0].rating);
-        // setName(response.data.data[0].firstName + response.data.data[0].lastName)
-        setName(response.data.data[0].doctor_name);
-        setProfilePicture(response.data.data[0].profile_picture);
-        //setSpecialties(response.data.data[0].specialty)
-        setBio(response.data.data[0].bio);
-        setPhone(response.data.data[0].phone);
-        setUpdatedBio(response.data.data[0].bio);
-        // setDoctorID(response.data.data[0].doctor_id)
+        setRating(response.data.data.rating);
+        setName(response.data.data.doctor_name);
+        setProfilePicture(response.data.data.profile_picture);
+        setBio(response.data.data.bio);
+        setPhone(response.data.data.phone);
+        setUpdatedBio(response.data.data.bio);
       } catch (err) {
         console.log(err);
       }
