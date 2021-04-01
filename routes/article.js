@@ -40,7 +40,7 @@ router.post("/findWriter", async (req, res) => {
       status: err.errors,
     });
   }
-})
+});
 
 router.get("/random", async (req, res) => {
   try {
@@ -254,29 +254,26 @@ router.post("/update", async (req, res) => {
 // });
 
 router.post("/category", async (req, res) => {
-    try {
-        const name = req.body.category;
-        console.log(req.body);
+  try {
+    const name = req.body.category;
+    console.log(req.body);
 
-        const articleResults = await articles.findAll({
-            where:{
-               category: name 
-            },
-            raw: true
-        });
+    const articleResults = await articles.findAll({
+      where: {
+        category: name,
+      },
+      raw: true,
+    });
 
-        console.log(articleResults)
+    console.log(articleResults);
 
-        res.status(200).json({
-
-            status: "success",
-            data: articleResults
-        })
-
-
-    } catch (error) {
-        console.log(error.message)
-    }
+    res.status(200).json({
+      status: "success",
+      data: articleResults,
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
 });
 
 module.exports = router;
