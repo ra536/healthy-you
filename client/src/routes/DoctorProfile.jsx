@@ -113,7 +113,7 @@ const DoctorProfile = (props) => {
               <Card.Text>Morristown, Newark, Harrison</Card.Text>
               <br />
               <Card.Title>Appointments: </Card.Title>
-              <Button size="lg" block>
+              <Button size="lg" block href="/book-appointment">
                 Book now
               </Button>
               <br />
@@ -230,7 +230,7 @@ const DoctorProfile = (props) => {
         <Col>
           <div align="center">
             <br />
-            <Button variant="primary" size="lg">
+            <Button variant="primary" size="lg" href="/book-appointment">
               Book Appointment Now
             </Button>
             <br />

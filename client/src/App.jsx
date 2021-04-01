@@ -15,6 +15,7 @@ import DoctorProfile from "./routes/DoctorProfile";
 import { AuthContext } from "./context/AuthContext";
 import LoginAPI from "./apis/LoginAPI";
 import { Button } from "react-bootstrap";
+import Appointment from "./routes/Appointment";
 
 const App = () => {
   const { loggedIn, setLoggedIn, setRole } = useContext(AuthContext);
@@ -81,6 +82,7 @@ const App = () => {
               requiredRoles={["Writer"]}
             />{" "}
             <Route path="/article/:id" component={Article} />
+            <Route path="/book-appointment" component={Appointment} />
           </Switch>
         </Router>
       </div>
@@ -110,6 +112,7 @@ const App = () => {
               requiredRoles={["Writer"]}
             />{" "}
             <Route path="/article/:id" component={Article} />
+            <Route path="/book-appointment" component={Appointment} />
           </Switch>
         </Router>
       </div>
