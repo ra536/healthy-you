@@ -42,7 +42,7 @@ const LoginForm = () => {
             alert("You have successfully logged in!");
             if (response.data.user.role === "Doctor") {
               setLoggedIn(true);
-              setRole(data.role);
+              setRole(response.data.user.role);
               history.push("/doctor-dashboard/" + response.data.user.doctor_id);
             } else if (response.data.user.role === "Writer") {
               setLoggedIn(true);
