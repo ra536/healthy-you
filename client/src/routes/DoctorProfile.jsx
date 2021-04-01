@@ -117,7 +117,7 @@ const DoctorProfile = (props) => {
                 Book now
               </Button>
               <br />
-              <div align="center">Next availability: April 3rd, 2021</div>
+              <div align="center">Next availability: Thursday, April 8</div>
             </Card.Body>
           </Card>
         </Col>
