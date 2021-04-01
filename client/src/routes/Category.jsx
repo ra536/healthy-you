@@ -1,16 +1,20 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import ArticleAPI from '../apis/ArticleAPI';
-import { ListGroup } from 'react-bootstrap';
+import { ListGroup, Container, Row } from 'react-bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.css';
+import ArticleComponent from '../components/ArticleComponent';
+import TopNavBar from '../components/TopNavBar';
 
-const ArticleCategory = (props) =>{
+const ArticleCategory = (props) => {
     let { id } = useParams();
 
-    const [headlineList, setHeadlineList] = useState([]);
-    const [categoryList, setCategoryList] = useState([]);
-    const [summaryList, setSummaryList] = useState("");
+    const [articles, setArticles] = useState([]);
+
+    // const [headlineList, setHeadlineList] = useState([]);
+    // const [categoryList, setCategoryList] = useState([]);
+    // const [summaryList, setSummaryList] = useState("");
 
 
     useEffect(() => {
@@ -21,14 +25,15 @@ const ArticleCategory = (props) =>{
                 })
 
                 console.log("response:", response.data.data)
-                const articleJson = response.data.data;
-                const jsonLength = Object.keys(articleJson).length;
+                // const articleJson = response.data.data;
+                // const jsonLength = Object.keys(articleJson).length;
 
-                for(var i = 0; i < jsonLength; i++){
-                    setHeadlineList( prevArray => [...prevArray, articleJson[i].headline])
-                    setCategoryList( prevArray => [...prevArray, articleJson[i].category]) 
-                    setSummaryList( prevArray => [...prevArray, articleJson[i].summary]) 
-                }
+                // for(var i = 0; i < jsonLength; i++){
+                //     setHeadlineList( prevArray => [...prevArray, articleJson[i].headline])
+                //     setCategoryList( prevArray => [...prevArray, articleJson[i].category]) 
+                //     setSummaryList( prevArray => [...prevArray, articleJson[i].summary]) 
+                // }
+                setArticles(response.data.data)
 
             } catch (error) {
                 console.log(error)
@@ -38,28 +43,30 @@ const ArticleCategory = (props) =>{
     }, []);
 
     return (
-        <div>
-            <h1>Article Category: {id} </h1>
-
-            <div>
-                {headlineList.map((headline, index) => {
-
-                    return(
-                        <ListGroup>
-                            <ListGroup.Item>
-                                {headline}
-                                <br/>
-                                {categoryList[index]}
-                                <br/>
-                                {summaryList[index]}
-                            </ListGroup.Item>
-                        </ListGroup>
-                    )
-
-                })}
+        <>
+        <TopNavBar />
+        <Container>
+            <div align="center">
+                <h1>{id} </h1>
             </div>
+            <br />
 
-        </div>
+
+            {articles.map((article) => {
+
+                return (
+                    <>
+                    <hr />
+                    <Row>
+                        <ArticleComponent article={article} type="horizontal" />
+                    </Row>
+                    </>
+                )
+
+            })}
+
+        </Container>
+        </>
     )
 }
 
