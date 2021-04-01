@@ -4,6 +4,7 @@ import { Formik } from "formik";
 import { Form, Button } from "react-bootstrap";
 import LoginAPI from "../apis/LoginAPI";
 import { AuthContext } from "../context/AuthContext";
+import { useHistory } from "react-router-dom";
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -12,6 +13,7 @@ const schema = yup.object().shape({
 });
 
 const LoginForm = () => {
+  let history = useHistory();
   const { role, setRole, setLoggedIn } = useContext(AuthContext);
   return (
     <Formik
@@ -37,10 +39,20 @@ const LoginForm = () => {
           );
           console.log(response.data);
           if (response.data.status === "success") {
-            alert("You have successfully logged in!" + data.role);
-            setLoggedIn(true);
-            setRole(data.role);
-            console.log(role);
+            alert("You have successfully logged in!");
+            if (response.data.user.role === "Doctor") {
+              setLoggedIn(true);
+              setRole(data.role);
+              history.push("/doctor-dashboard/" + response.data.user.doctor_id);
+            } else if (response.data.user.role === "Writer") {
+              setLoggedIn(true);
+              setRole(response.data.user.role);
+              history.push("/writer-dashboard/" + response.data.user.writer_id);
+            } else {
+              setLoggedIn(true);
+              setRole(response.data.user.role);
+              history.push("/");
+            }
           } else {
             if (response.data.target === "email") {
               setErrors({ email: response.data.status });
