@@ -49,6 +49,7 @@ const App = () => {
       });
       console.log(response);
       setLoggedIn(false);
+      setRole(null);
     } catch (err) {
       console.log(err);
     }
