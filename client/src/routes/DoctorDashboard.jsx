@@ -29,7 +29,7 @@ const DoctorDashboard = (props) => {
     const fetchData = async () => {
       try {
         const response = await DoctorAPI.post(
-          "/findDoctor",
+          "/findOne",
           {
             doctor_id: doctorID,
           },
