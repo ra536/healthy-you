@@ -1,5 +1,6 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import SearchAPI from "../apis/SearchAPI";
+import DoctorAPI from "../apis/DoctorAPI";
 import Search from "../routes/Search";
 import { AppContext } from "../context/AppContext";
 import queryString from "query-string";
@@ -13,6 +14,8 @@ import adLong from '../components/ads/ad300.jpg';
 
 const SearchResults = (props) => {
   const { results, setResults } = useContext(AppContext);
+
+  const [featuredDoctor, setFeaturedDoctor ] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -70,6 +73,23 @@ const SearchResults = (props) => {
       } catch (err) {
         console.log(err);
       }
+
+      try {
+        const response = await DoctorAPI.get(
+          "/random"
+          // {
+          //     practice: params.practice,
+          //     doctor_name: params.doctor,
+          //     location: params.location,
+          //     rating: params.rating,
+          //     specialty: params.specialty
+          // }
+        );
+        setFeaturedDoctor(response.data.data);
+        console.log(response.data.data);
+      } catch (err) {
+        console.log(err);
+      }
     };
     fetchData();
   }, [props.location.search, setResults]);
@@ -88,20 +108,21 @@ const SearchResults = (props) => {
                 </h3>
 
             </div>
-            <a style={{ cursor: 'pointer' }}>
+            <Link to={"/doctor-profile/" + featuredDoctor.doctor_id} style={{ textDecoration: "none", color: "black" }}>
               <ListGroup.Item>
                 <Container fluid="md">
                   <Row>
                     <Col>
-                      <Card.Img variant="top" src={doctorPhoto} />
+                      <Card.Img variant="top" src={featuredDoctor.profile_picture} />
                     </Col>
                     <Col>
 
-                      <h3>Dr.Ian Johnson, CAO Ortho Maryland</h3>
-                      <h6>415 Day Lane, Suite 200, Newark, New Jersey</h6>
-                      <h6>292-893-9090</h6>
-                      <h6>Specialty|Orthopedic Surgery</h6>
-                      <h6>Location|Essex County</h6>
+                      <h3>{featuredDoctor.doctor_name}</h3>
+                      <h6>Morristown, NJ</h6>
+                      <h6>{featuredDoctor.phone}</h6>
+                      <br />
+                      <h6>Specialty: {featuredDoctor.specialty}</h6>
+                      <h6>Location: Morris County</h6>
 
                       <Button variant="info" size="md" href="/book-appointment">
                         Available starting April 8
@@ -110,7 +131,7 @@ const SearchResults = (props) => {
                   </Row>
                 </Container>
               </ListGroup.Item>
-            </a>
+            </Link>
 
             <br />
             <div align="left">
@@ -128,7 +149,6 @@ const SearchResults = (props) => {
                             <Card.Img variant="top" src={results.doctor.profile_picture} />
                           </Col>
                           <Col>
-
                             <h3>{results.doctor.doctor_name}</h3>
                             <h6>Morristown, NJ</h6>
                             <h6>{results.doctor.phone}</h6>
@@ -266,27 +286,29 @@ const SearchResults = (props) => {
                 </h3>
             </div>
 
-            <Card.Img variant="top" src={doctorPhoto} style={{ width: '50%' }} />
+            <Card.Img variant="top" src={featuredDoctor.profile_picture} style={{ width: '50%' }} />
             <div style={{ width: '50%' }}>
+            <Link to={"/doctor-profile/" + featuredDoctor.doctor_id} style={{ textDecoration: "none", color: "black" }}>
               <ListGroup.Item>
                 <Container fluid="md">
                   <Row>
-
                     <Col>
 
-                      <h3>Dr.Ian Johnson, CAO Ortho Maryland</h3>
-                      <h6>415 Day Lane, Suite 200, Newark, New Jersey</h6>
-                      <h6>292-893-9090</h6>
-                      <h6>Specialty|Orthopedic Surgery</h6>
-                      <h6>Location|Essex County</h6>
+                      <h3>{featuredDoctor.doctor_name}</h3>
+                      <h6>Morristown, NJ</h6>
+                      <h6>{featuredDoctor.phone}</h6>
+                      <br />
+                      <h6>Specialty: {featuredDoctor.specialty}</h6>
+                      <h6>Location: Morris County</h6>
 
-                      <Button variant="info" size="md" href="/book-appointment">
-                      Available starting April 8
+                      <Button variant="info" size="lg" href="/book-appointment">
+                        Book now
                       </Button>
                     </Col>
                   </Row>
                 </Container>
               </ListGroup.Item>
+            </Link>
             </div>
             <br />
             
