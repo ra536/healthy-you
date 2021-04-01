@@ -4,6 +4,7 @@ import Search from "../routes/Search";
 import { AppContext } from "../context/AppContext";
 import queryString from "query-string";
 import { Container } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 
 const SearchResults = (props) => {
   const { results, setResults } = useContext(AppContext);
@@ -76,6 +77,7 @@ const SearchResults = (props) => {
         <div>
           {results.map((results, index) => {
             return (
+              <Link to={"/doctor-profile/" + results.doctor.doctor_id} style={{ textDecoration: "none", color: "black" }}>
               <ul key={index} type="none">
                 <img
                   src={results.doctor.profile_picture}
@@ -91,6 +93,7 @@ const SearchResults = (props) => {
                 <li>{"Address: " + results.location}</li>
                 <br />
               </ul>
+              </Link>
             );
           })}
         </div>
