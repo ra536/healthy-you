@@ -17,6 +17,7 @@ import LoginAPI from "./apis/LoginAPI";
 import { Button } from "react-bootstrap";
 import Appointment from "./routes/Appointment";
 import ArticleCategory from './routes/Category';
+import Blog from './routes/Blog';
 
 const App = () => {
   const { loggedIn, setLoggedIn, setRole } = useContext(AuthContext);
@@ -84,7 +85,9 @@ const App = () => {
             />{" "}
             <Route path="/article/:id" component={Article} />
             <Route path="/book-appointment" component={Appointment} />
+            <Route exact path="/category/Blog" component = { Blog } />
             <Route path="/category/:id" component = { ArticleCategory } />
+            
           </Switch>
         </Router>
       </div>
@@ -115,6 +118,7 @@ const App = () => {
             />{" "}
             <Route path="/article/:id" component={Article} />
             <Route path="/book-appointment" component={Appointment} />
+            <Route exact path="/category/Blog" component = { Blog } />
             <Route path="/category/:id" component = { ArticleCategory } />
           </Switch>
         </Router>
