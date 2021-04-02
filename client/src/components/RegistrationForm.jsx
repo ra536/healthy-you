@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import * as yup from "yup";
 import { Formik } from "formik";
 import { Form, Button } from "react-bootstrap";
 import RegisterAPI from "../apis/RegisterAPI";
+import LoginAPI from "../apis/LoginAPI";
+import { AuthContext } from "../context/AuthContext";
+import { useHistory } from "react-router-dom";
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -20,6 +23,8 @@ const schema = yup.object().shape({
 
 //Lets user input a test object into backend db
 const RegistrationForm = () => {
+  let history = useHistory();
+  const { setRole, setLoggedIn } = useContext(AuthContext);
   return (
     <Formik
       initialValues={{
@@ -35,7 +40,7 @@ const RegistrationForm = () => {
       }}
       validationSchema={schema}
       onSubmit={async (data, { setErrors }) => {
-        console.log(data);
+        // console.log(data);
         try {
           const response = await RegisterAPI.post("/", {
             password: data.password,
@@ -47,9 +52,47 @@ const RegistrationForm = () => {
             birthdate: data.birthdate,
             inviteCode: data.inviteCode,
           });
-          console.log(response.data.target);
+          console.log(response.data);
           if (response.data.status === "success") {
             alert("Account successfully created!");
+            try {
+              console.log(
+                "This is the role I'm logging in with: " + response.data.role
+              );
+              const loginResponse = await LoginAPI.post(
+                "/",
+                {
+                  email: data.email,
+                  password: data.password,
+                  role: response.data.role,
+                },
+                {
+                  withCredentials: true,
+                }
+              );
+              if (loginResponse.data.status === "success") {
+                // alert("You have successfully logged in!");
+                if (loginResponse.data.user.role === "Doctor") {
+                  setLoggedIn(true);
+                  setRole(loginResponse.data.user.role);
+                  history.push(
+                    "/doctor-dashboard/" + loginResponse.data.user.doctor_id
+                  );
+                } else if (loginResponse.data.user.role === "Writer") {
+                  setLoggedIn(true);
+                  setRole(loginResponse.data.user.role);
+                  history.push(
+                    "/writer-dashboard/" + loginResponse.data.user.writer_id
+                  );
+                } else {
+                  setLoggedIn(true);
+                  setRole(loginResponse.data.user.role);
+                  history.push("/");
+                }
+              }
+            } catch (err) {
+              console.log(err);
+            }
           } else {
             if (response.data.target === "email") {
               setErrors({ email: response.data.status[0].message });

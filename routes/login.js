@@ -20,7 +20,7 @@ router.post("/", (req, res, next) => {
           return next(error);
         }
         // console.log(user.user_id);
-        return res.json({ status: "success" });
+        return res.json({ status: "success", user });
       });
     }
   })(req, res, next);

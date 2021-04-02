@@ -39,6 +39,9 @@ router.post("/", async (req, res) => {
           .then(() => {
             res.status(201).json({
               status: "success",
+              role: "Doctor",
+              email: "hello",
+              hash,
             });
           })
           .catch((err) => {
@@ -64,6 +67,7 @@ router.post("/", async (req, res) => {
           .then(() => {
             res.status(201).json({
               status: "success",
+              role: "Writer",
             });
           })
           .catch((err) => {
@@ -95,6 +99,7 @@ router.post("/", async (req, res) => {
         .then(() => {
           res.status(201).json({
             status: "success",
+            role: "User",
           });
         })
         .catch((err) => {

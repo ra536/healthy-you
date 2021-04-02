@@ -34,19 +34,19 @@ router.post("/findDoctor", async (req, res) => {
 });
 
 router.get("/random", async (req, res) => {
-    try {
-      const randomResults = await doctor.findOne({
-        raw: true,
-      });
-      console.log(randomResults);
-      res.status(200).json({
-        status: "success",
-        data: randomResults,
-      });
-    } catch (err) {
-      console.error(err.message);
-    }
-  });
+  try {
+    const randomResults = await doctor.findOne({
+      raw: true,
+    });
+    console.log(randomResults);
+    res.status(200).json({
+      status: "success",
+      data: randomResults,
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
 router.post("/addSpecialty", isAuthAndDoctor, async (req, res) => {
   try {

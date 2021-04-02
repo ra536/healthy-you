@@ -5,25 +5,16 @@ import { AppContext } from "../context/AppContext";
 import { useParams } from "react-router-dom";
 import {
   Container,
-  Table,
   Image,
   Row,
   Col,
   Card,
-  ListGroup,
-} from "react-bootstrap";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
   Button,
   Accordion,
 } from "react-bootstrap";
 import fivestar from "./fivestar.png";
 
-import axios from "axios";
+// import axios from "axios";
 import TopNavBar from "../components/TopNavBar";
 
 const DoctorProfile = (props) => {
@@ -33,13 +24,13 @@ const DoctorProfile = (props) => {
   const [profilePicture, setProfilePicture] = useState();
   const [bio, setBio] = useState("");
   const [phone, setPhone] = useState("");
-  const [newImage, setNewImage] = useState(""); // image link
-  const [updatedName, setUpdatedName] = useState("");
-  const [updatedPhone, setUpdatedPhone] = useState("");
-  const [updatedBio, setUpdatedBio] = useState("");
+  // const [newImage, setNewImage] = useState(""); // image link
+  // const [updatedName, setUpdatedName] = useState("");
+  // const [updatedPhone, setUpdatedPhone] = useState("");
+  // const [updatedBio, setUpdatedBio] = useState("");
   const [email, setEmail] = useState("");
 
-  const { specialties, setSpecialties } = useContext(AppContext);
+  const { setSpecialties } = useContext(AppContext);
 
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
@@ -58,20 +49,20 @@ const DoctorProfile = (props) => {
         setRating(response.data.data[0].rating);
         // setName(response.data.data[0].firstName + response.data.data[0].lastName)
         setName(response.data.data[0].doctor_name);
-        setUpdatedName(response.data.data[0].doctor_name);
+        // setUpdatedName(response.data.data[0].doctor_name);
         setProfilePicture(response.data.data[0].profile_picture);
         setSpecialties(response.data.data[0].specialty);
         setBio(response.data.data[0].bio);
         setEmail(response.data.data[0].email);
         setPhone(response.data.data[0].phone);
-        setUpdatedBio(response.data.data[0].bio);
+        // setUpdatedBio(response.data.data[0].bio);
         // setDoctorID(response.data.data[0].doctor_id)
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
-  }, []);
+  }, [doctorID, setSpecialties]);
 
   return (
     <>

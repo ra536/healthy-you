@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { AppContextProvider } from "./context/AppContext";
 import Home from "./routes/Home";
 import DoctorDashboard from "./routes/DoctorDashboard";
@@ -16,7 +16,7 @@ import { AuthContext } from "./context/AuthContext";
 import LoginAPI from "./apis/LoginAPI";
 import { Button } from "react-bootstrap";
 import Appointment from "./routes/Appointment";
-import ArticleCategory from './routes/Category';
+import ArticleCategory from "./routes/Category";
 
 const App = () => {
   const { loggedIn, setLoggedIn, setRole } = useContext(AuthContext);
@@ -51,6 +51,7 @@ const App = () => {
       });
       console.log(response);
       setLoggedIn(false);
+      setRole(null);
     } catch (err) {
       console.log(err);
     }
@@ -61,63 +62,59 @@ const App = () => {
         <Button onClick={handleClick}>Logout</Button>
       </div>
       <div>
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/register" component={Registration} />
-            <Route exact path="/login" component={Login} loggedIn={loggedIn} />
-            <Route exact path="/search" component={Search} />
-            <Route path="/results" component={SearchResults} />
-            <Route path="/doctor-profile/:doctorID" component={DoctorProfile} />
-            <ProtectedRoute
-              path="/doctor-dashboard/:doctorID"
-              component={DoctorDashboard}
-              requiredRoles={["Doctor"]}
-            />
-            <Route path="/leaveReview/:id">
-              <Review url={window.location.href} />
-            </Route>
-            <ProtectedRoute
-              path="/writer-dashboard/:id"
-              component={WriterDashboard}
-              requiredRoles={["Writer"]}
-            />{" "}
-            <Route path="/article/:id" component={Article} />
-            <Route path="/book-appointment" component={Appointment} />
-            <Route path="/category/:id" component = { ArticleCategory } />
-          </Switch>
-        </Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/register" component={Registration} />
+          <Route exact path="/login" component={Login} loggedIn={loggedIn} />
+          <Route exact path="/search" component={Search} />
+          <Route path="/results" component={SearchResults} />
+          <Route path="/doctor-profile/:doctorID" component={DoctorProfile} />
+          <ProtectedRoute
+            path="/doctor-dashboard/:doctorID"
+            component={DoctorDashboard}
+            requiredRoles={["Doctor"]}
+          />
+          <Route path="/leaveReview/:id">
+            <Review url={window.location.href} />
+          </Route>
+          <ProtectedRoute
+            path="/writer-dashboard/:id"
+            component={WriterDashboard}
+            requiredRoles={["Writer"]}
+          />{" "}
+          <Route path="/article/:id" component={Article} />
+          <Route path="/book-appointment" component={Appointment} />
+          <Route path="/category/:id" component={ArticleCategory} />
+        </Switch>
       </div>
     </AppContextProvider>
   ) : (
     <AppContextProvider>
       <div>
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/register" component={Registration} />
-            <Route exact path="/login" component={Login} loggedIn={loggedIn} />
-            <Route exact path="/search" component={Search} />
-            <Route path="/results" component={SearchResults} />
-            <Route path="/doctor-profile/:doctorID" component={DoctorProfile} />
-            <ProtectedRoute
-              path="/doctor-dashboard/:doctorID"
-              component={DoctorDashboard}
-              requiredRoles={["Doctor"]}
-            />
-            <Route path="/leaveReview/:id">
-              <Review url={window.location.href} />
-            </Route>
-            <ProtectedRoute
-              path="/writer-dashboard/:id"
-              component={WriterDashboard}
-              requiredRoles={["Writer"]}
-            />{" "}
-            <Route path="/article/:id" component={Article} />
-            <Route path="/book-appointment" component={Appointment} />
-            <Route path="/category/:id" component = { ArticleCategory } />
-          </Switch>
-        </Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/register" component={Registration} />
+          <Route exact path="/login" component={Login} loggedIn={loggedIn} />
+          <Route exact path="/search" component={Search} />
+          <Route path="/results" component={SearchResults} />
+          <Route path="/doctor-profile/:doctorID" component={DoctorProfile} />
+          <ProtectedRoute
+            path="/doctor-dashboard/:doctorID"
+            component={DoctorDashboard}
+            requiredRoles={["Doctor"]}
+          />
+          <Route path="/leaveReview/:id">
+            <Review url={window.location.href} />
+          </Route>
+          <ProtectedRoute
+            path="/writer-dashboard/:id"
+            component={WriterDashboard}
+            requiredRoles={["Writer"]}
+          />{" "}
+          <Route path="/article/:id" component={Article} />
+          <Route path="/book-appointment" component={Appointment} />
+          <Route path="/category/:id" component={ArticleCategory} />
+        </Switch>
       </div>
     </AppContextProvider>
   );
