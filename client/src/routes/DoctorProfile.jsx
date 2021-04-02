@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import DoctorAPI from "../apis/DoctorAPI";
+import PracticeAPI from "../apis/PracticeAPI";
 
 import { AppContext } from "../context/AppContext";
 import { useParams } from "react-router-dom";
@@ -11,6 +12,7 @@ import {
   Card,
   Button,
   Accordion,
+  ListGroup,
 } from "react-bootstrap";
 import fivestar from "./fivestar.png";
 
@@ -23,6 +25,7 @@ const DoctorProfile = (props) => {
   const [cityState, setCityState] = useState();
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [locations, setLocations] = useState([]);
   const [profilePicture, setProfilePicture] = useState();
   const [rating, setRating] = useState("");
   const [bio, setBio] = useState("");
@@ -42,7 +45,7 @@ const DoctorProfile = (props) => {
             withCredentials: false,
           }
         );
-        console.log(response.data.data);
+        // console.log(response.data.data);
         setName(response.data.data.doctor_name);
         setCityState(response.data.data.city + ", " + response.data.data.state);
         setPhone(response.data.data.phone);
@@ -53,10 +56,24 @@ const DoctorProfile = (props) => {
       } catch (err) {
         console.log(err);
       }
+      try {
+        const practiceResponse = await PracticeAPI.post(
+          "/findAll",
+          {
+            doctor_id: doctorID,
+          },
+          {
+            withCredentials: false,
+          }
+        );
+        console.log(practiceResponse.data.data);
+        setLocations(practiceResponse.data.data);
+      } catch (err) {
+        console.log(err);
+      }
     };
     fetchData();
-  }, [doctorID, setSpecialties]);
-
+  }, []);
   return (
     <>
       <TopNavBar />
@@ -93,7 +110,21 @@ const DoctorProfile = (props) => {
               </Card.Text>
               <br />
               <Card.Title>Locations</Card.Title>
-              <Card.Text>Morristown, Newark, Harrison</Card.Text>
+              {locations.map((locations, index) => {
+                return (
+                  <ListGroup key={index}>
+                    <ListGroup.Item>
+                      {locations.name}
+                      <br></br>
+                      {locations.location}
+                      <br></br>
+                      {locations.website}
+                      <br></br>
+                      {locations.phone}
+                    </ListGroup.Item>
+                  </ListGroup>
+                );
+              })}
               <br />
               <Card.Title>Appointments</Card.Title>
               <Button size="lg" block href="/book-appointment">
@@ -153,7 +184,7 @@ const DoctorProfile = (props) => {
       </Container>
 
       <Container>
-        <Card>
+        {/* <Card>
           <Card.Body>
             <blockquote className="blockquote mb-0 text-center">
               <p>
@@ -205,7 +236,8 @@ const DoctorProfile = (props) => {
               </Accordion.Collapse>
             </Card>
           </Accordion>
-        </Card>
+        </Card> */}
+        REVIEWS: TODO
       </Container>
 
       <Row>
