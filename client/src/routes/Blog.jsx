@@ -77,6 +77,19 @@ const Blog = (props) => {
                         )
 
                         })}
+                        {articles.map((article) => {
+
+                        return (
+                            <>
+                                <hr />
+                                <Row>
+                                    <ArticleComponent article={article} writer="Anonymous Writer" type="horizontal" />
+                                    {/* {getAuthorName(article.writer_id)} */}
+                                </Row>
+                            </>
+                        )
+
+                        })}
 
                     </Container>
 
@@ -86,8 +99,18 @@ const Blog = (props) => {
                                 <Form inline>
                                     <FormControl type="text" placeholder="Search" />
                                     <Button variant="outline-success">Search</Button>
-
                                 </Form>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <br />
+                            </Col>
+                        </Row>
+                        
+                        
+                        <Row>
+                            <Col>
                                 <br />
                                 <br />
                                 <h1>Recent Posts</h1>
@@ -103,11 +126,31 @@ const Blog = (props) => {
 Symptoms include unexpected weight loss, rapid or irregular heartbeat, sweating, and irritability, although the elderly often experience no symptoms.</p>
                                 <br />
                                 <img src={ad300} alt="ad300" width={250} mode='fit' />
+
+                            </Col>
+                            
+                        </Row>
+                        <Row>
+                            <Col>
+                                <br />
                             </Col>
                         </Row>
-
-
-
+                        <Row>
+                            <Col>
+                                <br />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <br />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <br />
+                            </Col>
+                        </Row>
+                        <br />
 
 
                     </Container>
