@@ -145,7 +145,8 @@ const DoctorProfile = (props) => {
               <h3>
                 Overall Rating:
                 <br />
-                {rating}
+                {/* {rating} TODO */}
+                5.0
               </h3>
             </div>
             <Image
@@ -184,7 +185,7 @@ const DoctorProfile = (props) => {
       </Container>
 
       <Container>
-        {/* <Card>
+        <Card>
           <Card.Body>
             <blockquote className="blockquote mb-0 text-center">
               <p>
@@ -236,8 +237,8 @@ const DoctorProfile = (props) => {
               </Accordion.Collapse>
             </Card>
           </Accordion>
-        </Card> */}
-        REVIEWS: TODO
+        </Card>
+        {/* REVIEWS: TODO */}
       </Container>
 
       <Row>
