@@ -23,14 +23,13 @@ const DoctorProfile = (props) => {
   let { doctorID } = useParams();
   const [name, setName] = useState();
   const [cityState, setCityState] = useState();
+  const [specialties, setSpecialties] = useState([]);
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [locations, setLocations] = useState([]);
   const [profilePicture, setProfilePicture] = useState();
   const [rating, setRating] = useState("");
   const [bio, setBio] = useState("");
-
-  const { setSpecialties } = useContext(AppContext);
 
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
@@ -48,6 +47,7 @@ const DoctorProfile = (props) => {
         // console.log(response.data.data);
         setName(response.data.data.doctor_name);
         setCityState(response.data.data.city + ", " + response.data.data.state);
+        setSpecialties(response.data.data.specialty);
         setPhone(response.data.data.phone);
         setEmail(response.data.data.email);
         setProfilePicture(response.data.data.profile_picture);
@@ -98,6 +98,18 @@ const DoctorProfile = (props) => {
                 {cityState}
               </Card.Subtitle>
               <br></br>
+              <Card.Title>Specialties</Card.Title>
+              {/* <Card.Text>
+                lol<br></br>lol
+              </Card.Text> */}
+              {specialties.map((specialties, index) => {
+                return (
+                  <ListGroup key={index}>
+                    <ListGroup.Item>{specialties}</ListGroup.Item>
+                  </ListGroup>
+                );
+              })}
+              <br />
               <Card.Title>About Me</Card.Title>
               <Card.Text>{bio}</Card.Text>
               <br></br>
