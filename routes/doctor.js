@@ -79,4 +79,84 @@ router.post("/removeSpecialty", async (req, res) => {
     }
 });
 
+router.post("/updateName", async (req, res) => {
+    try {
+        const n = await doctor.update(
+            { doctor_name: req.body.name },
+            { where: {doctor_id: req.body.doctor_id} }
+        );
+        console.log(req.body)
+        res.status(200).json({
+            status: "success",
+            data: {
+                doctor_name: req.body.name,
+                doctor_id: req.body.doctor_id
+            }
+        })
+    }
+    catch (err) {
+      console.log(err)
+    }
+});
+
+router.post("/updatePhone", async (req, res) => {
+    try {
+        const p = await doctor.update(
+            { phone: req.body.phone },
+            { where: {doctor_id: req.body.doctor_id} }
+        );
+        console.log(req.body)
+        res.status(200).json({
+            status: "success",
+            data: {
+                phone: req.body.phone,
+                doctor_id: req.body.doctor_id
+            }
+        })
+    }
+    catch (err) {
+      console.log(err)
+    }
+});
+
+router.post("/updateBio", async (req, res) => {
+    try {
+        const b = await doctor.update(
+            { bio: req.body.bio },
+            { where: {doctor_id: req.body.doctor_id} }
+        );
+        console.log(req.body)
+        res.status(200).json({
+            status: "success",
+            data: {
+                bio: req.body.bio,
+                doctor_id: req.body.doctor_id
+            }
+        })
+    }
+    catch (err) {
+      console.log(err)
+    }
+});
+
+router.post("/updateProfilePic", async (req, res) => {
+    try {
+        const b = await doctor.update(
+            { profile_picture: req.body.image },
+            { where: {doctor_id: req.body.doctor_id} }
+        );
+        //console.log(req.body)
+        res.status(200).json({
+            status: "success",
+            data: {
+                profile_picture: req.body.image,
+                doctor_id: req.body.doctor_id
+            }
+        })
+    }
+    catch (err) {
+      console.log(err)
+    }
+});
+
 module.exports = router;

@@ -21,7 +21,7 @@ const doctor = db.define('doctor', {
         type: DataTypes.DECIMAL
     },
     profile_picture: {
-        type: DataTypes.STRING
+        type: DataTypes.TEXT
     },
     bio: {
         type: DataTypes.STRING
@@ -29,7 +29,14 @@ const doctor = db.define('doctor', {
     specialty: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         defaultValue: []
-    }
+    },
+    phone: {
+        type: DataTypes.STRING,
+        validate: {
+            is: /^(\()?[2-9]{1}\d{2}(\))?(-|\s)?[2-9]{1}\d{2}(-|\s)\d{4}$/
+        },
+        allowNull: false
+    },
 }, {underscored: true});
 
 // doctor.hasMany(practice, {

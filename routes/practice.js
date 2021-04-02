@@ -41,6 +41,36 @@ router.post("/create", async (req, res) => {
     }
 });
 
+router.post("/remove", async (req, res) => {
+    try {
+        if(req.body.practiceName != ""){
+            const practices = practice.findAll({
+                where: {
+                    doctor_id: req.body.doctorID,
+                    location: req.body.location,
+                    name: req.body.practiceName
+                }
+                }).then((result) => {
+                    return practice.destroy({
+                        where: {
+                            doctor_id: req.body.doctorID,
+                            location: req.body.location,
+                            name: req.body.practiceName
+                        }
+                    })
+                    .then((u) => {
+                        res.status(201).json({
+                            status: "success",
+                        })
+                    });
+             });
+        }
+    }
+    catch (err) {
+      console.log(err)
+    }
+});
+
 router.post("/findAll", async (req, res) => {
     try {
         const practiceResult = await practice.findAll({
