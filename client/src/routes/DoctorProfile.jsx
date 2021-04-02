@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import DoctorAPI from "../apis/DoctorAPI";
+import PracticeAPI from "../apis/PracticeAPI";
 
 import { AppContext } from "../context/AppContext";
 import { useParams } from "react-router-dom";
@@ -11,6 +12,7 @@ import {
   Card,
   Button,
   Accordion,
+  ListGroup,
 } from "react-bootstrap";
 import fivestar from "./fivestar.png";
 
@@ -19,25 +21,22 @@ import TopNavBar from "../components/TopNavBar";
 
 const DoctorProfile = (props) => {
   let { doctorID } = useParams();
-  const [rating, setRating] = useState();
   const [name, setName] = useState();
-  const [profilePicture, setProfilePicture] = useState();
-  const [bio, setBio] = useState("");
+  const [cityState, setCityState] = useState();
+  const [specialties, setSpecialties] = useState([]);
   const [phone, setPhone] = useState("");
-  // const [newImage, setNewImage] = useState(""); // image link
-  // const [updatedName, setUpdatedName] = useState("");
-  // const [updatedPhone, setUpdatedPhone] = useState("");
-  // const [updatedBio, setUpdatedBio] = useState("");
   const [email, setEmail] = useState("");
-
-  const { setSpecialties } = useContext(AppContext);
+  const [locations, setLocations] = useState([]);
+  const [profilePicture, setProfilePicture] = useState();
+  const [rating, setRating] = useState("");
+  const [bio, setBio] = useState("");
 
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
     const fetchData = async () => {
       try {
         const response = await DoctorAPI.post(
-          "/findDoctor",
+          "/findOne",
           {
             doctor_id: doctorID,
           },
@@ -45,25 +44,36 @@ const DoctorProfile = (props) => {
             withCredentials: false,
           }
         );
-        console.log(response.data);
-        setRating(response.data.data[0].rating);
-        // setName(response.data.data[0].firstName + response.data.data[0].lastName)
-        setName(response.data.data[0].doctor_name);
-        // setUpdatedName(response.data.data[0].doctor_name);
-        setProfilePicture(response.data.data[0].profile_picture);
-        setSpecialties(response.data.data[0].specialty);
-        setBio(response.data.data[0].bio);
-        setEmail(response.data.data[0].email);
-        setPhone(response.data.data[0].phone);
-        // setUpdatedBio(response.data.data[0].bio);
-        // setDoctorID(response.data.data[0].doctor_id)
+        // console.log(response.data.data);
+        setName(response.data.data.doctor_name);
+        setCityState(response.data.data.city + ", " + response.data.data.state);
+        setSpecialties(response.data.data.specialty);
+        setPhone(response.data.data.phone);
+        setEmail(response.data.data.email);
+        setProfilePicture(response.data.data.profile_picture);
+        setBio(response.data.data.bio);
+        setRating(response.data.data.rating);
+      } catch (err) {
+        console.log(err);
+      }
+      try {
+        const practiceResponse = await PracticeAPI.post(
+          "/findAll",
+          {
+            doctor_id: doctorID,
+          },
+          {
+            withCredentials: false,
+          }
+        );
+        console.log(practiceResponse.data.data);
+        setLocations(practiceResponse.data.data);
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
-  }, [doctorID, setSpecialties]);
-
+  }, []);
   return (
     <>
       <TopNavBar />
@@ -85,25 +95,50 @@ const DoctorProfile = (props) => {
             <Card.Body>
               <Card.Title>{name}</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
-                Morristown, NJ
+                {cityState}
               </Card.Subtitle>
+              <br></br>
+              <Card.Title>Specialties</Card.Title>
+              {/* <Card.Text>
+                lol<br></br>lol
+              </Card.Text> */}
+              {specialties.map((specialties, index) => {
+                return (
+                  <ListGroup key={index}>
+                    <ListGroup.Item>{specialties}</ListGroup.Item>
+                  </ListGroup>
+                );
+              })}
+              <br />
+              <Card.Title>About Me</Card.Title>
               <Card.Text>{bio}</Card.Text>
               <br></br>
-              <Card.Title>Contact Information: </Card.Title>
-
+              <Card.Title>Contact Information</Card.Title>
               <Card.Text>
                 Phone: {phone}
-                <br></br>
-                Fax: (222)222-2222
                 <br></br>
                 Email: {email}
                 <br></br>
               </Card.Text>
               <br />
-              <Card.Title>Locations: </Card.Title>
-              <Card.Text>Morristown, Newark, Harrison</Card.Text>
+              <Card.Title>Locations</Card.Title>
+              {locations.map((locations, index) => {
+                return (
+                  <ListGroup key={index}>
+                    <ListGroup.Item>
+                      {locations.name}
+                      <br></br>
+                      {locations.location}
+                      <br></br>
+                      {locations.website}
+                      <br></br>
+                      {locations.phone}
+                    </ListGroup.Item>
+                  </ListGroup>
+                );
+              })}
               <br />
-              <Card.Title>Appointments: </Card.Title>
+              <Card.Title>Appointments</Card.Title>
               <Button size="lg" block href="/book-appointment">
                 Book now
               </Button>
@@ -122,6 +157,7 @@ const DoctorProfile = (props) => {
               <h3>
                 Overall Rating:
                 <br />
+                {/* {rating} TODO */}
                 5.0
               </h3>
             </div>
@@ -214,6 +250,7 @@ const DoctorProfile = (props) => {
             </Card>
           </Accordion>
         </Card>
+        {/* REVIEWS: TODO */}
       </Container>
 
       <Row>

@@ -72,7 +72,7 @@ router.post("/remove", isAuthAndDoctor, async (req, res) => {
   }
 });
 
-router.post("/findAll", isAuthAndDoctor, async (req, res) => {
+router.post("/findAll", async (req, res) => {
   try {
     const practiceResult = await practice.findAll({
       where: {
