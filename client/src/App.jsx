@@ -16,11 +16,11 @@ import { AuthContext } from "./context/AuthContext";
 import LoginAPI from "./apis/LoginAPI";
 import { Button } from "react-bootstrap";
 import Appointment from "./routes/Appointment";
-import ArticleCategory from './routes/Category';
-import Blog from './routes/Blog';
+import ArticleCategory from "./routes/Category";
+import Blog from "./routes/Blog";
 
 const App = () => {
-  const { loggedIn, setLoggedIn, setRole } = useContext(AuthContext);
+  const { loggedIn, setLoggedIn, setRole, setId } = useContext(AuthContext);
 
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
@@ -29,20 +29,28 @@ const App = () => {
         const response = await LoginAPI.get("/user", {
           withCredentials: true,
         });
-        console.log(Object.keys(response.data).length);
+        console.log(response.data.role);
         if (Object.keys(response.data).length > 0) {
           setLoggedIn(true);
           setRole(response.data.role);
+          if (response.data.role === "Doctor") {
+            setId(response.data.doctor_id);
+          } else if (response.data.role === "Writer") {
+            setId(response.data.writer_id);
+          } else {
+            setId(response.data.user_id);
+          }
         } else {
           setLoggedIn(false);
           setRole("None");
+          setId(null);
         }
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
-  }, [setLoggedIn, setRole]);
+  }, [setLoggedIn, setRole, setId]);
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -85,7 +93,7 @@ const App = () => {
           />{" "}
           <Route path="/article/:id" component={Article} />
           <Route path="/book-appointment" component={Appointment} />
-          <Route exact path="/category/Blog" component = { Blog } />
+          <Route exact path="/category/Blog" component={Blog} />
           <Route path="/category/:id" component={ArticleCategory} />
         </Switch>
       </div>
@@ -115,7 +123,7 @@ const App = () => {
           />{" "}
           <Route path="/article/:id" component={Article} />
           <Route path="/book-appointment" component={Appointment} />
-          <Route exact path="/category/Blog" component = { Blog } />
+          <Route exact path="/category/Blog" component={Blog} />
           <Route path="/category/:id" component={ArticleCategory} />
         </Switch>
       </div>

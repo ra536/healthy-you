@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Navbar, Nav, Image, NavDropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 
+import { AuthContext } from "../context/AuthContext";
 import hwf_logo from "./img/hwf_logo.png";
 // import hwf_logo_small from'./img/hwf_logo_small.png';
 
 const TopNavBar = () => {
+  const { id, role } = useContext(AuthContext);
+  const [dashboard, setDashboard] = useState(null);
+  useEffect(() => {
+    // Define a function fetchData that calls APIs which is then called in useEffect
+    const fetchData = async () => {
+      if (role === "Doctor") {
+        setDashboard("/doctor-dashboard/" + id);
+      } else if (role === "Writer") {
+        setDashboard("/writer-dashboard/" + id);
+      } else {
+        setDashboard("/");
+      }
+      console.log(dashboard + " is the link to the dashboard!");
+    };
+    fetchData();
+  }, [id, role, dashboard]);
   return (
     <>
       <div style={{ position: "sticky", top: "0", zIndex: "1" }}>
@@ -30,9 +47,7 @@ const TopNavBar = () => {
                 <NavDropdown.Item href="/login">Login</NavDropdown.Item>
                 <NavDropdown.Item href="/register">Register</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.3">
-                  My Account
-                </NavDropdown.Item>
+                <NavDropdown.Item href={dashboard}>Dashboard</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
               </NavDropdown>
