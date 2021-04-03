@@ -14,7 +14,6 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import DoctorProfile from "./routes/DoctorProfile";
 import { AuthContext } from "./context/AuthContext";
 import LoginAPI from "./apis/LoginAPI";
-import { Button } from "react-bootstrap";
 import Appointment from "./routes/Appointment";
 import ArticleCategory from "./routes/Category";
 import Blog from "./routes/Blog";
@@ -52,37 +51,7 @@ const App = () => {
     fetchData();
   }, [setLoggedIn, setRole, setId]);
 
-  return loggedIn ? (
-    <AppContextProvider>
-      <div>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/register" component={Registration} />
-          <Route exact path="/login" component={Login} loggedIn={loggedIn} />
-          <Route exact path="/search" component={Search} />
-          <Route path="/results" component={SearchResults} />
-          <Route path="/doctor-profile/:doctorID" component={DoctorProfile} />
-          <ProtectedRoute
-            path="/doctor-dashboard/:doctorID"
-            component={DoctorDashboard}
-            requiredRoles={["Doctor"]}
-          />
-          <Route path="/leaveReview/:id">
-            <Review url={window.location.href} />
-          </Route>
-          <ProtectedRoute
-            path="/writer-dashboard/:id"
-            component={WriterDashboard}
-            requiredRoles={["Writer"]}
-          />{" "}
-          <Route path="/article/:id" component={Article} />
-          <Route path="/book-appointment" component={Appointment} />
-          <Route exact path="/category/Blog" component={Blog} />
-          <Route path="/category/:id" component={ArticleCategory} />
-        </Switch>
-      </div>
-    </AppContextProvider>
-  ) : (
+  return (
     <AppContextProvider>
       <div>
         <Switch>
