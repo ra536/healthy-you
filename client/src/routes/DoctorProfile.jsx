@@ -1,8 +1,7 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import DoctorAPI from "../apis/DoctorAPI";
 import PracticeAPI from "../apis/PracticeAPI";
 
-import { AppContext } from "../context/AppContext";
 import { useParams } from "react-router-dom";
 import {
   Container,
@@ -99,9 +98,6 @@ const DoctorProfile = (props) => {
               </Card.Subtitle>
               <br></br>
               <Card.Title>Specialties</Card.Title>
-              {/* <Card.Text>
-                lol<br></br>lol
-              </Card.Text> */}
               {specialties.map((specialties, index) => {
                 return (
                   <ListGroup key={index}>

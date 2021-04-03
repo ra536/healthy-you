@@ -39,7 +39,7 @@ const LoginForm = () => {
           );
           console.log(response.data);
           if (response.data.status === "success") {
-            alert("You have successfully logged in!");
+            // alert("You have successfully logged in!");
             if (response.data.user.role === "Doctor") {
               setLoggedIn(true);
               setRole(response.data.user.role);
