@@ -1,6 +1,5 @@
 import React from "react";
 import { Navbar, Nav, Image, NavDropdown } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 
 import hwf_logo from "./img/hwf_logo.png";
