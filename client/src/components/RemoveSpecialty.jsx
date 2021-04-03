@@ -15,7 +15,7 @@ const RemoveSpecialty = (props) => {
     const fetchData = async () => {
       try {
         const response = await DoctorAPI.post(
-          "/findDoctor",
+          "/findOne",
           {
             doctor_id: props.doctor_id,
           },
