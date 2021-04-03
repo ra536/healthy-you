@@ -1,14 +1,30 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Navbar, Nav, Image, NavDropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
-
 import { AuthContext } from "../context/AuthContext";
 import hwf_logo from "./img/hwf_logo.png";
-// import hwf_logo_small from'./img/hwf_logo_small.png';
+import LoginAPI from "../apis/LoginAPI";
 
 const TopNavBar = () => {
-  const { id, role } = useContext(AuthContext);
+  const { id, role, loggedIn, setLoggedIn, setRole, setId } = useContext(
+    AuthContext
+  );
   const [dashboard, setDashboard] = useState(null);
+  const handleClick = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await LoginAPI.get("/logout", {
+        withCredentials: true,
+      });
+      console.log(response);
+      setLoggedIn(false);
+      setRole(null);
+      setId(null);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
     const fetchData = async () => {
@@ -19,10 +35,10 @@ const TopNavBar = () => {
       } else {
         setDashboard("/");
       }
-      console.log(dashboard + " is the link to the dashboard!");
     };
     fetchData();
-  }, [id, role, dashboard]);
+  }, [id, role]);
+
   return (
     <>
       <div style={{ position: "sticky", top: "0", zIndex: "1" }}>
@@ -39,18 +55,31 @@ const TopNavBar = () => {
               <Nav.Link href="/category/Blog">Blog</Nav.Link>
               <Nav.Link href="/search">Directory</Nav.Link>
               <Nav.Link href="#contact-us">Contact Us</Nav.Link>
-              <NavDropdown
-                title="Account"
-                alignRight
-                id="collasible-nav-dropdown"
-              >
-                <NavDropdown.Item href="/login">Login</NavDropdown.Item>
-                <NavDropdown.Item href="/register">Register</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href={dashboard}>Dashboard</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
-              </NavDropdown>
+              {loggedIn ? (
+                <NavDropdown
+                  title="Account"
+                  alignRight
+                  id="collasible-nav-dropdown"
+                >
+                  <NavDropdown.Item href={dashboard}>
+                    Dashboard
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item onClick={handleClick}>
+                    Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
+              ) : (
+                <NavDropdown
+                  title="Account"
+                  alignRight
+                  id="collasible-nav-dropdown"
+                >
+                  <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="/register">Register</NavDropdown.Item>
+                </NavDropdown>
+              )}
             </Nav>
           </Navbar.Collapse>
           <br />
