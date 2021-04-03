@@ -52,24 +52,8 @@ const App = () => {
     fetchData();
   }, [setLoggedIn, setRole, setId]);
 
-  const handleClick = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await LoginAPI.get("/logout", {
-        withCredentials: true,
-      });
-      console.log(response);
-      setLoggedIn(false);
-      setRole(null);
-    } catch (err) {
-      console.log(err);
-    }
-  };
   return loggedIn ? (
     <AppContextProvider>
-      <div>
-        <Button onClick={handleClick}>Logout</Button>
-      </div>
       <div>
         <Switch>
           <Route exact path="/" component={Home} />
