@@ -9,7 +9,7 @@ import WriterDashboard from "./routes/WriterDashboard";
 import Article from "./routes/Article";
 import Login from "./routes/Login";
 import Search from "./routes/Search";
-import SearchResults from "./components/SearchResults";
+import Results from "./routes/Results";
 import ProtectedRoute from "./components/ProtectedRoute";
 import DoctorProfile from "./routes/DoctorProfile";
 import { AuthContext } from "./context/AuthContext";
@@ -68,7 +68,7 @@ const App = () => {
           <Route exact path="/register" component={Registration} />
           <Route exact path="/login" component={Login} loggedIn={loggedIn} />
           <Route exact path="/search" component={Search} />
-          <Route path="/results" component={SearchResults} />
+          <Route path="/results" component={Results} />
           <Route path="/doctor-profile/:doctorID" component={DoctorProfile} />
           <ProtectedRoute
             path="/doctor-dashboard/:doctorID"
@@ -98,7 +98,7 @@ const App = () => {
           <Route exact path="/register" component={Registration} />
           <Route exact path="/login" component={Login} loggedIn={loggedIn} />
           <Route exact path="/search" component={Search} />
-          <Route path="/results" component={SearchResults} />
+          <Route path="/results" component={Results} />
           <Route path="/doctor-profile/:doctorID" component={DoctorProfile} />
           <ProtectedRoute
             path="/doctor-dashboard/:doctorID"
