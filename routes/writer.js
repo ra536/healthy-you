@@ -43,10 +43,10 @@ router.post("/findOne", async (req, res) => {
         city: writerResult.city,
         writer_id: writerResult.doctor_id,
         email: writerResult.email,
-        firstName: writerResult.first_name,
-        lastName: writerResult.last_name,
         state: writerResult.state,
         articles: writerResult.articles,
+        firstName: writerResult.firstName,
+        lastName: writerResult.lastName,
       },
     });
   } catch (err) {
