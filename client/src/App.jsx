@@ -12,6 +12,7 @@ import Search from "./routes/Search";
 import SearchResults from "./components/SearchResults";
 import ProtectedRoute from "./components/ProtectedRoute";
 import DoctorProfile from "./routes/DoctorProfile";
+import WriterProfile from "./routes/WriterProfile";
 import { AuthContext } from "./context/AuthContext";
 import LoginAPI from "./apis/LoginAPI";
 import Appointment from "./routes/Appointment";
@@ -61,6 +62,7 @@ const App = () => {
           <Route exact path="/search" component={Search} />
           <Route path="/results" component={SearchResults} />
           <Route path="/doctor-profile/:doctorID" component={DoctorProfile} />
+          <Route path="/writer-profile/:writerID" component={WriterProfile} />
           <ProtectedRoute
             path="/doctor-dashboard/:doctorID"
             component={DoctorDashboard}
