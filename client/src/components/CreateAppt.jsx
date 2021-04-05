@@ -12,7 +12,7 @@ const CreateAppt = (props) => {
 
     const addToList = async () => {
         console.log(startDT,"\n\n", endDT);
-        insertDT([...listOfDTs, {start: startDT, end: endDT}]);
+        insertDT([...listOfDTs, [startDT, endDT]]);
     }
 
     const handleSubmit = async () => {
@@ -25,6 +25,7 @@ const CreateAppt = (props) => {
         // catch (err) {
         //     console.log(err)
         // }
+        insertDT([]);
     }
 
     return(
@@ -56,12 +57,12 @@ const CreateAppt = (props) => {
 
         <h4>Appointment Slots To Be Added (Start : End)</h4>
         {listOfDTs.map((dt, index) => (
-            <div key={index}>{dt.start.toLocaleString()}{" : "}{dt.end.toLocaleString()}</div>
+            <div key={index}>{dt[0].toLocaleString()}{" : "}{dt[1].toLocaleString()}</div>
             ))}
         </div>
         
         <br/>
-        <Button size="sm" onClick={() => handleSubmit()}>Add Time Slots</Button>
+        <Button size="sm" onClick={() => handleSubmit()}>Save</Button>
         </div>
     );
 };
