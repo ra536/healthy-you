@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import WriterAPI from "../apis/WriterAPI";
-
+import ArticleAPI from "../apis/ArticleAPI";
 import { useParams } from "react-router-dom";
 import {
   Container,
@@ -12,7 +12,7 @@ import {
   Accordion,
   ListGroup,
 } from "react-bootstrap";
-import fivestar from "./fivestar.png";
+import ArticleComponent from "../components/ArticleComponent";
 
 // import axios from "axios";
 import TopNavBar from "../components/TopNavBar";
@@ -22,6 +22,8 @@ const WriterProfile = (props) => {
   const [name, setName] = useState();
   const [cityState, setCityState] = useState();
   const [email, setEmail] = useState("");
+  const [articles, setArticles] = useState([]);
+  const [author, setAuthor] = useState("");
 
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
@@ -36,12 +38,32 @@ const WriterProfile = (props) => {
             withCredentials: false,
           }
         );
-        console.log(response.data.data);
+        // console.log(response.data.data);
         setName(
           response.data.data.firstName + " " + response.data.data.lastName
         );
         setCityState(response.data.data.city + ", " + response.data.data.state);
         setEmail(response.data.data.email);
+      } catch (err) {
+        console.log(err);
+      }
+      try {
+        const articleResponse = await ArticleAPI.post(
+          "/findByWriterID",
+          {
+            writer_id: writerID,
+          },
+          {
+            withCredentials: false,
+          }
+        );
+        console.log(articleResponse.data);
+        setArticles(articleResponse.data.data);
+        setAuthor(
+          articleResponse.data.writer.firstName +
+            " " +
+            articleResponse.data.writer.lastName
+        );
       } catch (err) {
         console.log(err);
       }
@@ -68,69 +90,32 @@ const WriterProfile = (props) => {
               </Card.Subtitle>
               <br></br>
               <Card.Title>Contact Information</Card.Title>
-              <Card.Text>Email: {email}</Card.Text>
+              <Card.Text>{email}</Card.Text>
               <br />
             </Card.Body>
           </Card>
         </Col>
       </Row>
       <br></br>
-
-      <Container>
-        <Card>
-          <Card.Body>
-            <blockquote className="blockquote mb-0 text-center">
-              <p>
-                {" "}
-                "Doctor Farhad really helped me to achieve a natural look after
-                my surgery. I would highly recommend him for anyone that is
-                interested in plastic surgery."{" "}
-              </p>
-              <footer className="blockquote-footer">
-                Karen K. <cite title="Source Title"></cite>
-              </footer>
-            </blockquote>
-          </Card.Body>
-          <Accordion>
-            <Card>
-              <Card.Header className="text-center">
-                <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                  More Reviews
-                </Accordion.Toggle>
-              </Card.Header>
-              <Accordion.Collapse eventKey="0">
-                <Card.Body>
-                  <blockquote className="blockquote mb-0 text-center">
-                    <p>
-                      {" "}
-                      "Doctor Farhad really helped me to regain my beauty after
-                      my surgery. He was really understanding and catered to me.
-                      The staff was also very friendly."{" "}
-                    </p>
-                    <footer className="blockquote-footer text-center">
-                      Cynthia C. <cite title="Source Title"></cite>
-                    </footer>
-                  </blockquote>
-                  <br></br>
-                  <br></br>
-                  <blockquote className="blockquote mb-0 text-center">
-                    <p>
-                      {" "}
-                      "I needed to find a reliable doctor for my cosmetic
-                      surgery, my friends recommended Dr. Farhad, and I can not
-                      recommend him enough! Procedure was swift and my
-                      appointment was quick."{" "}
-                    </p>
-                    <footer className="blockquote-footer text-center">
-                      Jessica J.<cite title="Source Title"></cite>
-                    </footer>
-                  </blockquote>
-                </Card.Body>
-              </Accordion.Collapse>
-            </Card>
-          </Accordion>
-        </Card>
-        {/* REVIEWS: TODO */}
+      <Container style={{ width: "65%", display: "inline-block" }}>
+        <br />
+        <div align="left">
+          <h2>{author}'s Articles</h2>
+        </div>
+        {articles.map((articles, index) => {
+          return (
+            <div>
+              <Row>
+                <ArticleComponent
+                  article={articles}
+                  writer={author}
+                  type="horizontal"
+                />
+              </Row>
+              <br />
+            </div>
+          );
+        })}
       </Container>
     </>
   );
