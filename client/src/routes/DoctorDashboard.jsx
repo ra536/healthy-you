@@ -171,6 +171,7 @@ const DoctorDashboard = (props) => {
     <>
       <TopNavBar />
       <Container>
+        <a href={"/doctor-profile/" + doctorID}>View your profile</a>
         <h1>Doctor Dashboard</h1>
         <br />
         <h1>Name</h1>
