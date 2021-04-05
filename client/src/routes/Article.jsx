@@ -19,6 +19,7 @@ const Article = (props) => {
   const [caption, setCaption] = useState("");
   const [publishDate, setPublishDate] = useState("");
   const [author, setAuthor] = useState("");
+  const [writerID, setWriterID] = useState(null);
 
   const link =
     "https://healthy-you-project.herokuapp.com/article/87918716-f71f-4548-aea3-ad0496d44c9a";
@@ -40,7 +41,8 @@ const Article = (props) => {
         setAuthor(
           response.data.writer.firstName + " " + response.data.writer.lastName
         );
-        console.log(response.data.data);
+        setWriterID(response.data.data[0].writer_id);
+        console.log(response.data.data[0]);
       } catch (err) {
         console.log(err);
       }
@@ -55,12 +57,11 @@ const Article = (props) => {
     <>
       <TopNavBar />
       <Container>
-        {console.log(content)}
         <h1>{headline}</h1>
         Category: <a href={"/category/" + category}>{category}</a>
         <br />
         <br />
-        <a href="/">{author}</a> |{" "}
+        <a href={"/writer-profile/" + writerID}>{author}</a> |{" "}
         <Moment format="dddd MMMM Do, YYYY [at] h:mm A">{publishDate}</Moment>
         <br />
         <br />
