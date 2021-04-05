@@ -90,12 +90,14 @@ router.post("/findByWriterID", async (req, res) => {
       },
       raw: true,
     });
+    const writerResult = await writer.findByPk(articleResult[0].writer_id);
     res.status(200).json({
       status: "success",
       data: articleResult,
+      writer: writerResult,
     });
   } catch (err) {
-    console.error(err.message);
+    console.log(err.message);
   }
 });
 
