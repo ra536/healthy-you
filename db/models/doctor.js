@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../index');
-const practice = require('./practice');
+const appointment = require('./appointment');
 
 const doctor = db.define('doctor', {
     doctor_id: {
@@ -37,15 +37,11 @@ const doctor = db.define('doctor', {
         },
         allowNull: false
     },
-    available_appt: {
-        type: DataTypes.ARRAY(DataTypes.DATE),
-        defaultValue: []
-    }
 }, {underscored: true});
 
-// doctor.hasMany(practice, {
-//     sourceKey: 'doctor_id',
-//     foreignKey: 'doctor_id'
-// });
+doctor.hasMany(appointment, {
+    sourceKey: 'doctor_id',
+    foreignKey: 'doctor_id'
+});
 
 module.exports = doctor;
