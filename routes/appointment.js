@@ -107,4 +107,24 @@ router.post("/getApptInfo", async (req, res) => {
   }
 });
 
+router.post("/cancelAppt", async (req, res) => {
+  try {
+      const appointmentResults = await appointment.destroy({
+          raw: true,
+          where: {
+            appointment_id: req.body.appointment_id
+          }
+      });
+      console.log(appointmentResults);
+      res.status(200).json({
+        status: "success",
+        data: appointmentResults
+      })
+    } 
+  catch (err) {
+      console.error(err);
+  }
+});
+
+
 module.exports = router;
