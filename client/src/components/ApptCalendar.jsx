@@ -11,6 +11,7 @@ const ApptCalendar = (props) => {
     const [value, onChange] = useState(new Date());
     const [appts, setAppointments] = useState([]);
     const [currentDayApts, setCurrentDayApts] = useState([]);
+    const [selectedDay, setDay] = useState(new Date());
 
     function loadTodaysAppts(props){
         // To display the appointments for today when page loads
@@ -18,7 +19,7 @@ const ApptCalendar = (props) => {
 
         var todaysAppts = [];
         var index = 0;
-        var td = new Date();
+        var td = selectedDay;
 
         for(var i = 0; i < props.length; i++){
             // sdt = Start Date Time
@@ -56,15 +57,17 @@ const ApptCalendar = (props) => {
             }
         }
         todaysAppts.sort();
-        console.log(todaysAppts);
+        // console.log(todaysAppts);
         setCurrentDayApts(todaysAppts);
     }
 
     const dayClicked = async (e) => {
         // When user clicks a day on the calendar, show appointments for that day
         setCurrentDayApts([]);
+        setDay(e);
         var todaysAppts = [];
         var index = 0;
+
         for(var i = 0; i < appts.length; i++){
             var id = appts[i].appointment_id;
             var sdt = new Date(appts[i].start_time);
@@ -109,7 +112,7 @@ const ApptCalendar = (props) => {
                 const response = await (AppointmentAPI.post("/getAppointments", {
                     doctor_id: props.doctorID
                 }));
-                console.log(response.data.data);
+                // console.log(response.data.data);
                 setAppointments(response.data.data)
                 loadTodaysAppts(response.data.data);
             }
@@ -118,7 +121,7 @@ const ApptCalendar = (props) => {
             }
         }
         fetchData();
-    }, []);
+    }, [props]);
 
     const handleClick = (e) => {
         console.log(e);

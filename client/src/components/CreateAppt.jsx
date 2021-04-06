@@ -72,7 +72,7 @@ const CreateAppt = (props) => {
 
         <br/>
         <h4>All Appts</h4>
-        <ApptCalendar doctorID = '1b6cdc52-0ae6-4a70-8290-a0aa2aceeb61'/>
+        <ApptCalendar doctorID = '1b6cdc52-0ae6-4a70-8290-a0aa2aceeb61' reload={listOfDTs}/>
         </div>  
         </div>
     );
