@@ -32,25 +32,6 @@ router.post("/findDoctor", async (req, res) => {
     }
 });
 
-router.post("/getAppointments", async (req, res) => {
-    try {
-        const doctorResult = await doctor.findAll({
-            where: {
-                doctor_id: req.body.doctor_id
-            },
-            raw: true
-        })
-        //console.log(req.body)
-        res.status(200).json({
-            status: "success",
-            data: doctorResult
-        })
-    }
-    catch (err) {
-      console.log(err)
-    }
-});
-
 router.post("/addSpecialty", async (req, res) => {
     try {
         const specialty = await doctor.update(
