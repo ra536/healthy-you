@@ -1,32 +1,38 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { Container, Table, Button, Col, Row } from 'react-bootstrap';
 import DoctorAPI from '../apis/DoctorAPI';
+import AppointmentAPI from '../apis/AppointmentAPI';
 import DateTimePicker from 'react-datetime-picker';
+import ApptCalendar from '../components/ApptCalendar';
 
 const CreateAppt = (props) => {
     // console.log(props.doctorID);
     const [startDT, setStartDT] = useState(new Date());
     const [endDT, setEndDT] = useState(new Date());
 
-    const [listOfDTs, insertDT] = useState([])
+    const [listOfDTs, insertDT] = useState([]);
 
     const addToList = async () => {
         console.log(startDT,"\n\n", endDT);
-        insertDT([...listOfDTs, [startDT, endDT]]);
+        try {
+            const response = await AppointmentAPI.post("/saveAppt", {
+                start: startDT,
+                end: endDT,
+                doctor_id: '1b6cdc52-0ae6-4a70-8290-a0aa2aceeb61'
+            });
+            console.log(response.data.data)
+            insertDT([...listOfDTs, [startDT, endDT, response.data.data.appointment_id]]);
+        }
+        catch (err) {
+            console.log(err)
+        }
+        // insertDT([...listOfDTs, [startDT, endDT]]);
     }
 
-    const handleSubmit = async () => {
-        console.log(listOfDTs);
-        // try {
-        //     const response = await DoctorAPI.post("/addApptSlot", {
-        //     });
-        //     console.log(response.data.data)
-        // }
-        // catch (err) {
-        //     console.log(err)
-        // }
-        insertDT([]);
+    const handleSubmit = async (e) => {
+        console.log(e)
     }
+
 
     return(
         <div>
@@ -55,14 +61,19 @@ const CreateAppt = (props) => {
             </div>
         <div>
 
-        <h4>Appointment Slots To Be Added (Start : End)</h4>
+        <h4>Recently Added (Start : End)</h4>
         {listOfDTs.map((dt, index) => (
-            <div key={index}>{dt[0].toLocaleString()}{" : "}{dt[1].toLocaleString()}</div>
+            <div key={index}>
+                {dt[0].toLocaleString()}{" : "}{dt[1].toLocaleString()}
+                <Button size="sm" onClick={(e) => handleSubmit(dt[2])}>Remove</Button>
+                <br/>
+            </div>
             ))}
-        </div>
-        
+
         <br/>
-        <Button size="sm" onClick={() => handleSubmit()}>Save</Button>
+        <h4>All Appts</h4>
+        <ApptCalendar doctorID = '1b6cdc52-0ae6-4a70-8290-a0aa2aceeb61'/>
+        </div>  
         </div>
     );
 };
