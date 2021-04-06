@@ -1,14 +1,23 @@
-import React, { useEffect, useContext } from 'react';
-import LoginForm from '../components/LoginForm'
+import React, { useContext } from "react";
+import LoginForm from "../components/LoginForm";
+import { Redirect } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import { Container } from "react-bootstrap";
+import TopNavBar from "../components/TopNavBar";
 
 const Login = () => {
-
-    return (
-        <div>
-            <h1>Login</h1>
-            <LoginForm />
-        </div>
-    )
-}
+  const { loggedIn } = useContext(AuthContext);
+  return loggedIn === true ? (
+    <Redirect to="/" />
+  ) : (
+    <div>
+      <TopNavBar />
+      <Container>
+        <h1>Login</h1>
+        <LoginForm />
+      </Container>
+    </div>
+  );
+};
 
 export default Login;

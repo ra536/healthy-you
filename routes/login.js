@@ -1,53 +1,39 @@
-const express = require('express');
+const express = require("express");
+
 const router = express.Router();
-const db = require('../db/index')
-const user = require('../db/models/user');
-const doctorUser = require('../db/models/doctor');
+const passport = require("passport");
 
 router.use(express.json());
 
-router.get("/:id", async (req, res) =>{
-    try {
-        str = req.params.id
-        const userInfo = str.split(' ');
-        const username = userInfo[0];
-        const password = userInfo[1];
-        const userResults = await user.findOne({
-           where:{
-             email: username,
-             password: password
-           }, 
-          raw: true
-        });
-
-        console.log("here is the user id", userResults); 
-        uniqueID = userResults.user_id
-
-        const doctorResults = await doctorUser.findOne({
-            where:{
-                doctor_id: uniqueID
-            }, 
-            raw: true
-          });
-
-        if ( userResults.role === "User" ){
-        res.status(200).json({
-
-          status: "success",
-          data: userResults
-        })
+router.post("/", (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    // console.log(info);
+    // console.log(user)
+    if (!user) {
+      res.json({
+        target: info.target,
+        status: info.message,
+      });
+    } else {
+      req.login(user, (error) => {
+        if (error) {
+          return next(error);
+        }
+        // console.log(user.user_id);
+        return res.json({ status: "success", user });
+      });
     }
-    else{
-        res.status(200).json({
+  })(req, res, next);
+});
 
-            status: "success",
-            data: doctorResults
-          })
-    }
-      } 
-    catch (err) {
-        console.error(err.message);
-    }
+router.get("/user", (req, res) => {
+  // console.log(req.user);
+  res.send(req.user);
+});
+
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.send("Successfully logged out!");
 });
 
 module.exports = router;

@@ -1,12 +1,14 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const db = require('../index');
+const { Sequelize, DataTypes } = require("sequelize");
+const db = require("../index");
 
-const appointment = db.define('appointment', {
+const appointment = db.define(
+  "appointment",
+  {
     appointment_id: {
-        type: DataTypes.UUID,
-        defaultValue: Sequelize.UUIDV1,
-        allowNull: false,
-        primaryKey: true
+      type: DataTypes.UUID,
+      defaultValue: Sequelize.UUIDV1,
+      allowNull: false,
+      primaryKey: true,
     },
     // practice_id: {
     //     type: DataTypes.UUID,
@@ -17,8 +19,8 @@ const appointment = db.define('appointment', {
     //     allowNull: false
     // },
     doctor_id: {
-        type: DataTypes.UUID,
-        allowNull: false
+      type: DataTypes.UUID,
+      allowNull: false,
     },
     // user_id: {
     //     type: DataTypes.UUID,
@@ -46,8 +48,10 @@ const appointment = db.define('appointment', {
         defaultValue: 0
     },
     reviewStatus: {
-        type: DataTypes.STRING
-    }
-}, {underscored: true})
+      type: DataTypes.STRING,
+    },
+  },
+  { underscored: true }
+);
 
 module.exports = appointment;
