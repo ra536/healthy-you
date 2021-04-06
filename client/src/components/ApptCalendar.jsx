@@ -12,6 +12,7 @@ const ApptCalendar = (props) => {
     const [appts, setAppointments] = useState([]);
     const [currentDayApts, setCurrentDayApts] = useState([]);
     const [selectedDay, setDay] = useState(new Date());
+    const [apptInfo, setApptInfo] = useState([]);
 
     function loadTodaysAppts(props, td) {
         // To display the appointments for today when page loads
@@ -70,7 +71,7 @@ const ApptCalendar = (props) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await (AppointmentAPI.post("/getAppointments", {
+                const response = await (AppointmentAPI.post("/getAllAppts", {
                     doctor_id: props.doctorID
                 }));
                 // console.log(response.data.data);
@@ -84,8 +85,17 @@ const ApptCalendar = (props) => {
         fetchData();
     }, [props]);
 
-    const handleClick = (e) => {
+    const handleClick = async (e) => {
         console.log(e);
+        try {
+            const response = await (AppointmentAPI.post("/getApptInfo", {
+                appointment_id: e
+            }));
+            setApptInfo(response.data.data);
+        }
+        catch (err) {
+            console.log(err)
+        }
     }
 
     return (
@@ -115,16 +125,22 @@ const ApptCalendar = (props) => {
             </div>
             <div>
                 <h1>Appointment Info</h1>
-                Practice:
-                <br />
-                Start Time:
-                <br />
-                End Time:
-                <br />
-                Status:
-                <br />
-                Patient:
-                <br />
+                {apptInfo.map((apptInfo, index) => {
+                    return (
+                        <div key={index}>
+                            Practice: 
+                            <br />
+                            Start Time: {apptInfo.start_time}
+                            <br />
+                            End Time: {apptInfo.end_time}
+                            <br />
+                            Status: {apptInfo.status}
+                            <br />
+                            Patient: 
+                            <br />
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );
