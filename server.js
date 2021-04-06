@@ -41,6 +41,7 @@ app.use("/api/v1/writer", require('./routes/writer'));
 app.use("/api/v1/search", require('./routes/search'));
 app.use("/api/v1/register/", require('./routes/register'));
 app.use("/api/v1/login/", require('./routes/login'));
+app.use("/api/v1/appointment", require('./routes/appointment'));
 
 // app.use("/api/v1/image", require('./routes/image'));
 
