@@ -13,7 +13,7 @@ const CreateAppt = (props) => {
     const [listOfDTs, insertDT] = useState([]);
 
     const addToList = async () => {
-        console.log(startDT,"\n\n", endDT);
+        console.log(startDT, "\n\n", endDT);
         try {
             const response = await AppointmentAPI.post("/saveAppt", {
                 start: startDT,
@@ -29,24 +29,33 @@ const CreateAppt = (props) => {
         // insertDT([...listOfDTs, [startDT, endDT]]);
     }
 
-    const handleSubmit = async (e) => {
-        console.log(e)
-    }
+    // const handleSubmit = async (e) => {
+    //     console.log(e);
+    //     try {
+    //         const response = await (AppointmentAPI.post("/cancelAppt", {
+    //             appointment_id: e
+    //         }));
+    //         console.log(response.data.data);
+    //     }
+    //     catch (err) {
+    //         console.log(err)
+    //     }
+    // }
 
 
-    return(
+    return (
         <div>
-            <div style={{display:"flex", flexDirection:"row"}}>
-                <div style={{display:"flex", flexDirection:"column"}}>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+                <div style={{ display: "flex", flexDirection: "column" }}>
                     <h1>Start</h1>
                     <DateTimePicker
                         onChange={setStartDT}
                         value={startDT}
                         clearIcon={null}
-                    /> 
+                    />
                     {startDT.toLocaleString()}
                 </div>
-                <div style={{marginLeft:20, display:"flex", flexDirection:"column"}}>
+                <div style={{ marginLeft: 20, display: "flex", flexDirection: "column" }}>
                     <h1>End</h1>
                     <DateTimePicker
                         onChange={setEndDT}
@@ -55,12 +64,12 @@ const CreateAppt = (props) => {
                     />
                     {endDT.toLocaleString()}
                 </div>
-                <div style={{margin:55}}>
-                    <Button  size="sm" onClick={() => addToList()}>Insert</Button>
+                <div style={{ margin: 55 }}>
+                    <Button size="sm" onClick={() => addToList()}>Insert</Button>
                 </div>
             </div>
-        <div>
-
+            <div>
+                {/* 
         <h4>Recently Added (Start : End)</h4>
         {listOfDTs.map((dt, index) => (
             <div key={index}>
@@ -68,12 +77,12 @@ const CreateAppt = (props) => {
                 <Button size="sm" onClick={(e) => handleSubmit(dt[2])}>Remove</Button>
                 <br/>
             </div>
-            ))}
+            ))} */}
 
-        <br/>
-        <h4>All Appts</h4>
-        <ApptCalendar doctorID = '1b6cdc52-0ae6-4a70-8290-a0aa2aceeb61' reload={listOfDTs}/>
-        </div>  
+                <br />
+                <h4>All Appts</h4>
+                <ApptCalendar doctorID='1b6cdc52-0ae6-4a70-8290-a0aa2aceeb61' reload={listOfDTs} />
+            </div>
         </div>
     );
 };

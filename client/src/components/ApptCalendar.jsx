@@ -13,6 +13,7 @@ const ApptCalendar = (props) => {
     const [currentDayApts, setCurrentDayApts] = useState([]);
     const [selectedDay, setDay] = useState(new Date());
     const [apptInfo, setApptInfo] = useState([]);
+    const [canceledAppt, setCanceledAppt] = useState([]);
 
     function loadTodaysAppts(props, td) {
         // To display the appointments for today when page loads
@@ -76,14 +77,14 @@ const ApptCalendar = (props) => {
                 }));
                 // console.log(response.data.data);
                 setAppointments(response.data.data)
-                loadTodaysAppts(response.data.data,selectedDay);
+                loadTodaysAppts(response.data.data, selectedDay);
             }
             catch (err) {
                 console.log(err)
             }
         }
         fetchData();
-    }, [props]);
+    }, [props, canceledAppt]);
 
     const handleClick = async (e) => {
         console.log(e);
@@ -92,6 +93,20 @@ const ApptCalendar = (props) => {
                 appointment_id: e
             }));
             setApptInfo(response.data.data);
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
+    const onClickCancel = async (e) => {
+        console.log(e);
+        setCanceledAppt(e);
+        try {
+            const response = await (AppointmentAPI.post("/cancelAppt", {
+                appointment_id: e
+            }));
+            console.log(response.data.data);
         }
         catch (err) {
             console.log(err)
@@ -128,7 +143,7 @@ const ApptCalendar = (props) => {
                 {apptInfo.map((apptInfo, index) => {
                     return (
                         <div key={index}>
-                            Practice: 
+                            Practice:
                             <br />
                             Start Time: {apptInfo.start_time}
                             <br />
@@ -136,8 +151,11 @@ const ApptCalendar = (props) => {
                             <br />
                             Status: {apptInfo.status}
                             <br />
-                            Patient: 
+                            Patient:
                             <br />
+                            <Button onClick={() => onClickCancel(apptInfo.appointment_id)}>
+                                Cancel
+                            </Button>
                         </div>
                     );
                 })}
