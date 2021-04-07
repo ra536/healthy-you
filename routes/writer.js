@@ -28,4 +28,32 @@ router.post("/create", async (req, res) => {
   }
 });
 
+router.post("/findOne", async (req, res) => {
+  try {
+    const writerResult = await writers.findOne({
+      where: {
+        writer_id: req.body.writer_id,
+      },
+      raw: true,
+    });
+    res.status(200).json({
+      status: "success",
+      data: {
+        birthdate: writerResult.birthdate,
+        city: writerResult.city,
+        writer_id: writerResult.doctor_id,
+        email: writerResult.email,
+        state: writerResult.state,
+        articles: writerResult.articles,
+        firstName: writerResult.firstName,
+        lastName: writerResult.lastName,
+      },
+    });
+  } catch (err) {
+    // console.log(req.body);
+    // console.log(err)
+    // console.log("THERE IS AN ERROR!");
+  }
+});
+
 module.exports = router;
