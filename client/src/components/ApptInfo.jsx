@@ -31,6 +31,9 @@ const ApptInfo = (props) => {
                 appointment_id: e
             }));
             console.log(response.data.data);
+            if(response.data.data === 1){
+                setApptInfo([]);
+            }
         }
         catch (err) {
             console.log(err)
@@ -39,11 +42,13 @@ const ApptInfo = (props) => {
     }
 
     return (
-        <div>
+        <div style={{height:250}}>
             <h1>Appointment Info</h1>
             {apptInfo.map((apptInfo, index) => {
                 return (
                     <div key={index}>
+                        Appointment ID: {apptInfo.appointment_id}
+                        <br />
                         Practice:
                         <br />
                             Start Time: {apptInfo.start_time}
@@ -56,7 +61,7 @@ const ApptInfo = (props) => {
                         <br />
                         <Button onClick={() => onClickCancel(apptInfo.appointment_id)}>
                             Cancel
-                            </Button>
+                        </Button>
                     </div>
                 );
             })}
