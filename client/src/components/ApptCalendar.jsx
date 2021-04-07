@@ -102,9 +102,9 @@ const ApptCalendar = (props) => {
                         onClickDay={dayClicked}
                     />
                 </div>
-                <div style={{ alignItems: "center", display: "flex", flexDirection: "column", left: 350, overflow: "hidden", "borderWidth": "1px", 'borderColor': "#aaaaaa", 'borderStyle': 'solid', width: 1000 }}>
+                <div style={{ alignItems: "center", display: "flex", flexDirection: "column", left: 350,  height:302, width: 5000,"borderWidth": "1px", 'borderColor': "#aaaaaa", 'borderStyle': 'solid' }}>
                     <h4>Availability</h4>
-                    <div style={{ overflowY: 'auto' }}>
+                    <div style={{overflow: "auto", height:3000, width: 1000}}>
                         {currentDayApts.map((currentDayApts, index) => {
                             return (
                                 <Button onClick={() => handleClick(currentDayApts[2])} key={index} style={{ margin: 5 }}>
