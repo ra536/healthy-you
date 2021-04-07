@@ -14,13 +14,12 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import DoctorProfile from "./routes/DoctorProfile";
 import { AuthContext } from "./context/AuthContext";
 import LoginAPI from "./apis/LoginAPI";
-import { Button } from "react-bootstrap";
 import Appointment from "./routes/Appointment";
-import ArticleCategory from './routes/Category';
-import Blog from './routes/Blog';
+import ArticleCategory from "./routes/Category";
+import Blog from "./routes/Blog";
 
 const App = () => {
-  const { loggedIn, setLoggedIn, setRole } = useContext(AuthContext);
+  const { loggedIn, setLoggedIn, setRole, setId } = useContext(AuthContext);
 
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
@@ -29,68 +28,30 @@ const App = () => {
         const response = await LoginAPI.get("/user", {
           withCredentials: true,
         });
-        console.log(Object.keys(response.data).length);
+        console.log(response.data.role);
         if (Object.keys(response.data).length > 0) {
           setLoggedIn(true);
           setRole(response.data.role);
+          if (response.data.role === "Doctor") {
+            setId(response.data.doctor_id);
+          } else if (response.data.role === "Writer") {
+            setId(response.data.writer_id);
+          } else {
+            setId(response.data.user_id);
+          }
         } else {
           setLoggedIn(false);
           setRole("None");
+          setId(null);
         }
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
-  }, [setLoggedIn, setRole]);
+  }, [setLoggedIn, setRole, setId]);
 
-  const handleClick = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await LoginAPI.get("/logout", {
-        withCredentials: true,
-      });
-      console.log(response);
-      setLoggedIn(false);
-      setRole(null);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  return loggedIn ? (
-    <AppContextProvider>
-      <div>
-        <Button onClick={handleClick}>Logout</Button>
-      </div>
-      <div>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/register" component={Registration} />
-          <Route exact path="/login" component={Login} loggedIn={loggedIn} />
-          <Route exact path="/search" component={Search} />
-          <Route path="/results" component={Results} />
-          <Route path="/doctor-profile/:doctorID" component={DoctorProfile} />
-          <ProtectedRoute
-            path="/doctor-dashboard/:doctorID"
-            component={DoctorDashboard}
-            requiredRoles={["Doctor"]}
-          />
-          <Route path="/leaveReview/:id">
-            <Review url={window.location.href} />
-          </Route>
-          <ProtectedRoute
-            path="/writer-dashboard/:id"
-            component={WriterDashboard}
-            requiredRoles={["Writer"]}
-          />{" "}
-          <Route path="/article/:id" component={Article} />
-          <Route path="/book-appointment" component={Appointment} />
-          <Route exact path="/category/Blog" component = { Blog } />
-          <Route path="/category/:id" component={ArticleCategory} />
-        </Switch>
-      </div>
-    </AppContextProvider>
-  ) : (
+  return (
     <AppContextProvider>
       <div>
         <Switch>
@@ -115,7 +76,7 @@ const App = () => {
           />{" "}
           <Route path="/article/:id" component={Article} />
           <Route path="/book-appointment" component={Appointment} />
-          <Route exact path="/category/Blog" component = { Blog } />
+          <Route exact path="/category/Blog" component={Blog} />
           <Route path="/category/:id" component={ArticleCategory} />
         </Switch>
       </div>

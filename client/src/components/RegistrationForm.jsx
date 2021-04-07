@@ -54,7 +54,7 @@ const RegistrationForm = () => {
           });
           console.log(response.data);
           if (response.data.status === "success") {
-            alert("Account successfully created!");
+            // alert("Account successfully created!");
             try {
               console.log(
                 "This is the role I'm logging in with: " + response.data.role
@@ -71,7 +71,6 @@ const RegistrationForm = () => {
                 }
               );
               if (loginResponse.data.status === "success") {
-                // alert("You have successfully logged in!");
                 if (loginResponse.data.user.role === "Doctor") {
                   setLoggedIn(true);
                   setRole(loginResponse.data.user.role);
