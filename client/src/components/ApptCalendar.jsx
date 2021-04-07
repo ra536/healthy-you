@@ -12,8 +12,7 @@ const ApptCalendar = (props) => {
     const [appts, setAppointments] = useState([]);
     const [currentDayApts, setCurrentDayApts] = useState([]);
     const [selectedDay, setDay] = useState(new Date());
-    const [apptInfo, setApptInfo] = useState([]);
-    const [canceledAppt, setCanceledAppt] = useState([]);
+
 
     function loadTodaysAppts(props, td) {
         // To display the appointments for today when page loads
@@ -62,11 +61,11 @@ const ApptCalendar = (props) => {
         setCurrentDayApts(todaysAppts);
     }
 
-    const dayClicked = async (e) => {
+    const dayClicked = async (day) => {
         // When user clicks a day on the calendar, show appointments for that day
         setCurrentDayApts([]);
-        setDay(e);
-        loadTodaysAppts(appts, e);
+        setDay(day);
+        loadTodaysAppts(appts, day);
     }
 
     useEffect(() => {
@@ -84,33 +83,11 @@ const ApptCalendar = (props) => {
             }
         }
         fetchData();
-    }, [props, canceledAppt]);
+    }, [props]);
 
-    const handleClick = async (e) => {
-        console.log(e);
-        try {
-            const response = await (AppointmentAPI.post("/getApptInfo", {
-                appointment_id: e
-            }));
-            setApptInfo(response.data.data);
-        }
-        catch (err) {
-            console.log(err)
-        }
-    }
-
-    const onClickCancel = async (e) => {
-        console.log(e);
-        setCanceledAppt(e);
-        try {
-            const response = await (AppointmentAPI.post("/cancelAppt", {
-                appointment_id: e
-            }));
-            console.log(response.data.data);
-        }
-        catch (err) {
-            console.log(err)
-        }
+    const handleClick = async (id) => {
+        console.log(id);
+        props.appt_id(id);
     }
 
     return (
@@ -137,28 +114,6 @@ const ApptCalendar = (props) => {
                         })}
                     </div>
                 </div>
-            </div>
-            <div>
-                <h1>Appointment Info</h1>
-                {apptInfo.map((apptInfo, index) => {
-                    return (
-                        <div key={index}>
-                            Practice:
-                            <br />
-                            Start Time: {apptInfo.start_time}
-                            <br />
-                            End Time: {apptInfo.end_time}
-                            <br />
-                            Status: {apptInfo.status}
-                            <br />
-                            Patient:
-                            <br />
-                            <Button onClick={() => onClickCancel(apptInfo.appointment_id)}>
-                                Cancel
-                            </Button>
-                        </div>
-                    );
-                })}
             </div>
         </div>
     );
