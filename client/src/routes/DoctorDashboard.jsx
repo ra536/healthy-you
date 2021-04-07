@@ -9,6 +9,9 @@ import { AppContext } from "../context/AppContext";
 import { useParams } from "react-router-dom";
 import { Container, Table } from "react-bootstrap";
 import TopNavBar from "../components/TopNavBar";
+import CreateAppt from '../components/CreateAppt';
+import ApptCalendar from '../components/ApptCalendar';
+import ApptInfo from '../components/ApptInfo';
 
 const DoctorDashboard = (props) => {
   let { doctorID } = useParams();
@@ -21,6 +24,9 @@ const DoctorDashboard = (props) => {
   const [updatedName, setUpdatedName] = useState("");
   const [updatedPhone, setUpdatedPhone] = useState("");
   const [updatedBio, setUpdatedBio] = useState("");
+  const [appt, setAppt] = useState([]);
+  const [apptID, setApptID] = useState();
+  const [canceledAppt, setCanceledAppt] = useState();
 
   const { specialties, setSpecialties } = useContext(AppContext);
 
@@ -167,6 +173,21 @@ const DoctorDashboard = (props) => {
     }
   };
 
+  const getAppt = (data) => {
+    console.log(data);
+    setAppt(data);
+  }
+
+  const getApptID = (data) => {
+    console.log(data);
+    setApptID(data);
+  }
+
+  const getCanceledApptID = (data) => {
+    console.log(data);
+    setCanceledAppt(data);
+  }
+  
   return (
     <>
       <TopNavBar />
@@ -278,7 +299,10 @@ const DoctorDashboard = (props) => {
         <RemovePractice doctorID={doctorID} />
         <br />
         <h1>Appointments</h1>
-        <br />
+        <hr/>
+        <CreateAppt doctorID={doctorID} newAppt={getAppt}/>
+        <ApptCalendar doctorID={doctorID} newAppt={appt} appt_id={getApptID} canceledAppt={canceledAppt}/>
+        <ApptInfo apptID={apptID} onCancel={getCanceledApptID}/>
       </Container>
     </>
   );
