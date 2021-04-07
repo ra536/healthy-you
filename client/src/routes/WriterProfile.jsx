@@ -38,7 +38,7 @@ const WriterProfile = (props) => {
             withCredentials: false,
           }
         );
-        // console.log(response.data.data);
+        console.log(response.data.data);
         setName(
           response.data.data.firstName + " " + response.data.data.lastName
         );
