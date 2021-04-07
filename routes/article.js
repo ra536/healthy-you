@@ -82,6 +82,25 @@ router.post("/find", async (req, res) => {
   }
 });
 
+router.post("/findByWriterID", async (req, res) => {
+  try {
+    const articleResult = await articles.findAll({
+      where: {
+        writer_id: req.body.writer_id,
+      },
+      raw: true,
+    });
+    const writerResult = await writer.findByPk(articleResult[0].writer_id);
+    res.status(200).json({
+      status: "success",
+      data: articleResult,
+      writer: writerResult,
+    });
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./uploads/");
