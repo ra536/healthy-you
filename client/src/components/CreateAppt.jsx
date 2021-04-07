@@ -15,14 +15,16 @@ const CreateAppt = (props) => {
     const addToList = async () => {
         console.log(startDT, "\n\n", endDT);
         try {
-            const response = await AppointmentAPI.post("/saveAppt", {
+            if(startDT <= endDT){
+                const response = await AppointmentAPI.post("/saveAppt", {
                 start: startDT,
                 end: endDT,
                 doctor_id: props.doctorID
-            });
-            console.log(response.data.data)
-            insertDT([...listOfDTs, [startDT, endDT, response.data.data.appointment_id]]);
-            props.newAppt([startDT,endDT,response.data.data.appointment_id]);
+                });
+                console.log(response.data.data)
+                insertDT([...listOfDTs, [startDT, endDT, response.data.data.appointment_id]]);
+                props.newAppt([startDT,endDT,response.data.data.appointment_id]);
+            }
         }
         catch (err) {
             console.log(err)
