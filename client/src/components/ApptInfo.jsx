@@ -41,6 +41,24 @@ const ApptInfo = (props) => {
         props.onCancel();
     }
 
+    const formatDT = (dt) => {
+        dt = new Date(dt);
+        var ampm = "AM"
+        var hours = dt.getHours();
+        var mins = dt.getMinutes();
+
+        if(hours === 0){
+            hours = 12;
+        } else if (hours > 12 && hours < 24){
+            hours = hours - 12;
+            ampm = "PM";
+        }
+        if(mins.toString().length === 1){
+            mins = "0" + mins.toString();
+        }
+        return (dt.getMonth()+1) +"/"+ dt.getDate() +"/"+ dt.getFullYear() + " " + hours + ":" + mins + " " + ampm;
+    }
+
     return (
         <div style={{height:250}}>
             <h1>Appointment Info</h1>
@@ -51,9 +69,9 @@ const ApptInfo = (props) => {
                         <br />
                         Practice:
                         <br />
-                            Start Time: {apptInfo.start_time}
+                            Start Time: {formatDT(apptInfo.start_time)}
                         <br />
-                            End Time: {apptInfo.end_time}
+                            End Time: {formatDT(apptInfo.end_time)}
                         <br />
                             Status: {apptInfo.status}
                         <br />
