@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import SearchAPI from "../apis/SearchAPI";
 import DoctorAPI from "../apis/DoctorAPI";
-import Search from "../routes/Search";
+import SearchBar from "../components/SearchBar";
 import { AppContext } from "../context/AppContext";
 import queryString from "query-string";
 import { Container } from "react-bootstrap";
@@ -18,10 +18,11 @@ import {
 } from "react-bootstrap";
 import { SocialIcon } from "react-social-icons";
 import magazine from "../components/magazines/magazine.jpg";
-import doctorPhoto from "../routes/file.jpg";
+import doctorPhoto from "./file.jpg";
 import adLong from "../components/ads/ad300.jpg";
+import TopNavBar from "../components/TopNavBar";
 
-const SearchResults = (props) => {
+const Results = (props) => {
   const { results, setResults } = useContext(AppContext);
 
   const [featuredDoctor, setFeaturedDoctor] = useState("");
@@ -105,9 +106,11 @@ const SearchResults = (props) => {
 
   return (
     <div>
-      <Search />
-      <br />
+      <TopNavBar />
       <Container fluid="md">
+        <br/>
+        <SearchBar />
+        <br />
         <Row align="left">
           <Col align="left">
             <div align="left">
@@ -335,4 +338,4 @@ const SearchResults = (props) => {
   );
 };
 
-export default SearchResults;
+export default Results;
