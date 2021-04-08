@@ -45,7 +45,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.post("/saveAppt", async (req, res) => {
+router.post("/createAppt", async (req, res) => {
   try {
     const checkIfExists = await appointment.count({
       where: {
@@ -81,7 +81,7 @@ router.post("/saveAppt", async (req, res) => {
           doctor_id: req.body.doctor_id,
           start_time: req.body.start,
           end_time: req.body.end,
-          status: 0
+          status: -1
         }
       );
       // console.log(req.body)
@@ -92,7 +92,7 @@ router.post("/saveAppt", async (req, res) => {
           start_time: req.body.start,
           end_time: req.body.end,
           doctor_id: req.body.doctor_id,
-          status: 0,
+          status: -1,
         }
       })
     }
@@ -106,7 +106,12 @@ router.post("/getAllAppts", async (req, res) => {
   try {
     const appointmentResults = await appointment.findAll({
       raw: true,
-      where: { doctor_id: req.body.doctor_id }
+      where: {
+        doctor_id: req.body.doctor_id,
+        status: {
+          [Op.in]: req.body.status
+        }
+      }
     });
     // console.log(appointmentResults);
     res.status(200).json({
@@ -157,5 +162,51 @@ router.post("/cancelAppt", async (req, res) => {
   }
 });
 
+router.put("/saveAllAppts", async (req, res) => {
+  try {
+    const appointmentResults = appointment.update({
+      status: 0
+    },
+    {
+      where: {
+        doctor_id: req.body.doctor_id,
+        status: -1
+      }
+    }).then(function(numUpdated){
+      res.status(201).json({
+        status: "success",
+        data: {
+          data: numUpdated
+        },
+      });
+    })
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.put("/saveOneAppt", async (req, res) => {
+  try {
+    const appointmentResults = appointment.update({
+      status: 0
+    },
+    {
+      where: {
+        doctor_id: req.body.doctor_id,
+        appointment_id: req.body.appointment_id,
+        status: -1
+      }
+    }).then(function(numUpdated){
+      res.status(201).json({
+        status: "success",
+        data: {
+          data: numUpdated
+        },
+      });
+    })
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 module.exports = router;
