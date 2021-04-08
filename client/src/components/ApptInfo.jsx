@@ -47,11 +47,16 @@ const ApptInfo = (props) => {
         var hours = dt.getHours();
         var mins = dt.getMinutes();
 
-        if(hours === 0){
+        if (hours === 0) {
             hours = 12;
-        } else if (hours > 12 && hours < 24){
-            hours = hours - 12;
+        } else if (hours >= 11 && hours < 24) {
             ampm = "PM";
+            if(hours > 12){
+                hours = hours - 12;
+            }
+        }
+        if(hours.toString().length === 1){
+            hours = "0" + hours.toString();
         }
         if(mins.toString().length === 1){
             mins = "0" + mins.toString();
