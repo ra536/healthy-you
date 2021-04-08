@@ -72,7 +72,8 @@ const ApptCalendar = (props) => {
         const fetchData = async () => {
             try {
                 const response = await (AppointmentAPI.post("/getAllAppts", {
-                    doctor_id: props.doctorID
+                    doctor_id: props.doctorID,
+                    status: [0, 1]
                 }));
                 // console.log(response.data.data);
                 setAppointments(response.data.data)
