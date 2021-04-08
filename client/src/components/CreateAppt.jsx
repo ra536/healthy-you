@@ -127,6 +127,14 @@ const CreateAppt = (props) => {
                     />
                     {endDT.toLocaleString()}
                 </div>
+                <div style={{ marginLeft: 20, display: "flex", flexDirection: "column" }}>
+                    <h1>Practice</h1>
+                    <form>
+                        <select >
+                            <option value=""> </option>
+                        </select>
+                    </form>
+                </div>
                 <div style={{ margin: 55 }}>
                     <Button size="sm" onClick={() => onClickInsert()}>Insert</Button>
                 </div>
