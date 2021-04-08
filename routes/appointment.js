@@ -62,7 +62,15 @@ router.post("/saveAppt", async (req, res) => {
               [Op.gte]: req.body.start,
               [Op.lte]: req.body.end
             }]
-          }
+          },
+          [Op.and]: [{
+            start_time: {
+              [Op.lte]: req.body.start
+            },
+            end_time: {
+              [Op.gte]: req.body.end
+            }
+          }]
         },
       }
     })
