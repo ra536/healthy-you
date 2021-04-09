@@ -2,8 +2,8 @@ import React, { useEffect, useContext, useState } from 'react';
 import { Container, Table, Button, Col, Row } from 'react-bootstrap';
 import DoctorAPI from '../apis/DoctorAPI';
 import AppointmentAPI from '../apis/AppointmentAPI';
-import DateTimePicker from 'react-datetime-picker';
-import ApptCalendar from '../components/ApptCalendar';
+import Datepicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const CreateAppt = (props) => {
 
@@ -111,19 +111,27 @@ const CreateAppt = (props) => {
             <div style={{ display: "flex", flexDirection: "row" }}>
                 <div style={{ display: "flex", flexDirection: "column" }}>
                     <h1>Start</h1>
-                    <DateTimePicker
-                        onChange={setStartDT}
-                        value={startDT}
-                        clearIcon={null}
+                    <Datepicker
+                        required
+                        selected={startDT}
+                        onChange={date => setStartDT(date)}
+                        showTimeSelect
+                        dateFormat="Pp"
+                        timeFormat="h:mm aa"
+                        timeIntervals={1}
                     />
                     {startDT.toLocaleString()}
                 </div>
                 <div style={{ marginLeft: 20, display: "flex", flexDirection: "column" }}>
                     <h1>End</h1>
-                    <DateTimePicker
-                        onChange={setEndDT}
-                        value={endDT}
-                        clearIcon={null}
+                    <Datepicker
+                        required
+                        selected={endDT}
+                        onChange={date => setEndDT(date)}
+                        showTimeSelect
+                        dateFormat="Pp"
+                        timeFormat="h:mm aa"
+                        timeIntervals={1}
                     />
                     {endDT.toLocaleString()}
                 </div>
