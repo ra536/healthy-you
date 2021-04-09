@@ -44,7 +44,7 @@ const ApptCalendar = (props) => {
                 todaysAppts[i][2]
             ]
         }
-        console.log(todaysAppts);
+        //console.log(todaysAppts);
         setCurrentDayApts(todaysAppts);
     }
 
