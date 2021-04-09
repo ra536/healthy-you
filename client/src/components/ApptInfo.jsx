@@ -31,7 +31,7 @@ const ApptInfo = (props) => {
                 appointment_id: e
             }));
             console.log(response.data.data);
-            if(response.data.data === 1){
+            if (response.data.data === 1) {
                 setApptInfo([]);
             }
         }
@@ -43,26 +43,28 @@ const ApptInfo = (props) => {
 
     const formatDT = (dt) => {
         dt = new Date(dt);
-        return (Intl.DateTimeFormat("en-US", {year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit"}).format(dt));
+        return (Intl.DateTimeFormat("en-US", { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).format(dt));
     }
 
     return (
-        <div style={{height:250}}>
+        <div style={{ height: 250 }}>
             <h1>Appointment Info</h1>
             {apptInfo.map((apptInfo, index) => {
                 return (
                     <div key={index}>
                         Appointment ID: {apptInfo.appointment_id}
                         <br />
-                        Practice:
+                        Practice: {apptInfo.practice_name}
                         <br />
-                            Start Time: {formatDT(apptInfo.start_time)}
+                        Address: {apptInfo.address}
                         <br />
-                            End Time: {formatDT(apptInfo.end_time)}
+                        Start Time: {formatDT(apptInfo.start_time)}
                         <br />
-                            Status: {apptInfo.status}
+                        End Time: {formatDT(apptInfo.end_time)}
                         <br />
-                            Patient:
+                        Status: {apptInfo.status}
+                        <br />
+                        Patient:
                         <br />
                         <Button onClick={() => onClickCancel(apptInfo.appointment_id)}>
                             Cancel
