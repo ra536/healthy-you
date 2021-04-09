@@ -39,9 +39,12 @@ const CreateAppt = (props) => {
                 const response = await AppointmentAPI.post("/createAppt", {
                     start: startDT,
                     end: endDT,
-                    doctor_id: props.doctorID
+                    doctor_id: props.doctorID,
+                    practice_id: selectedPractice.practice_id,
+                    address: selectedPractice.location,
+                    practice_name: selectedPractice.name
                 });
-                console.log(response.data.data)
+                // console.log(response.data.data)
                 props.newAppt(response.data.data)
             }
         }
@@ -52,7 +55,7 @@ const CreateAppt = (props) => {
 
     const onPracticeChange = (e) => {
         // console.log(e.target.value)
-        setSelectedPractice(e.target.value)
+        setSelectedPractice(allPractices[e.target.value])
     }
 
     const formatDT = (dt) => {
@@ -96,7 +99,7 @@ const CreateAppt = (props) => {
                             return (
                                 <option
                                     key={index}
-                                    value={practice.practice_id}
+                                    value={index}
                                 >
                                     {practice.name}, {practice.location}
                                 </option>

@@ -81,6 +81,9 @@ router.post("/createAppt", async (req, res) => {
           doctor_id: req.body.doctor_id,
           start_time: req.body.start,
           end_time: req.body.end,
+          practice_id: req.body.practice_id,
+          address: req.body.address,
+          practice_name: req.body.practice_name,
           status: -1
         }
       );
@@ -92,6 +95,9 @@ router.post("/createAppt", async (req, res) => {
           start_time: req.body.start,
           end_time: req.body.end,
           doctor_id: req.body.doctor_id,
+          practice_id: req.body.practice_id,
+          address: req.body.address,
+          practice_name: req.body.practice_name,
           status: -1,
         }
       })
