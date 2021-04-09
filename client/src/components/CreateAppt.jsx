@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { Container, Table, Button, Col, Row } from 'react-bootstrap';
-import DoctorAPI from '../apis/DoctorAPI';
+import PracticeAPI from '../apis/PracticeAPI';
 import AppointmentAPI from '../apis/AppointmentAPI';
 import Datepicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -11,6 +11,8 @@ const CreateAppt = (props) => {
     const [endDT, setEndDT] = useState(new Date());
 
     const [unSavedAppts, setUnsavedAppts] = useState([]);
+    const [allPractices, setAllPractices] = useState([]);
+    const [selectedPractice, setSelectedPractice] = useState();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -28,6 +30,25 @@ const CreateAppt = (props) => {
         }
         fetchData();
     }, [props]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await PracticeAPI.post(
+                    "/findAll",
+                    {
+                        doctor_id: props.doctorID,
+                    }
+                );
+                console.log(response.data.data);
+                setAllPractices(response.data.data);
+                setSelectedPractice(response.data.data[0])
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        fetchData();
+    }, [props.doctorID]);
 
     const onClickInsert = async () => {
         console.log(startDT, "\n\n", endDT);
@@ -83,9 +104,14 @@ const CreateAppt = (props) => {
         }
     }
 
+    const onPracticeChange = (e) => {
+        // console.log(e.target.value)
+        setSelectedPractice(e.target.value)
+    }
+
     const formatDT = (dt) => {
         dt = new Date(dt);
-        return (Intl.DateTimeFormat("en-US", {year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit"}).format(dt));
+        return (Intl.DateTimeFormat("en-US", { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).format(dt));
     }
 
     return (
@@ -119,20 +145,26 @@ const CreateAppt = (props) => {
                 </div>
                 <div style={{ marginLeft: 20, display: "flex", flexDirection: "column" }}>
                     <h1>Practice</h1>
-                    <form>
-                        <select >
-                            <option value=""> </option>
-                        </select>
-                    </form>
+                    <select value={selectedPractice} onChange={e => onPracticeChange(e)}>
+                        {allPractices.map((practice, index) => {
+                            return (
+                                <option
+                                    key={index}
+                                    value={practice.practice_id}
+                                >
+                                    {practice.name}, {practice.location}
+                                </option>
+                            );
+                        })}
+                    </select>
                 </div>
                 <div style={{ margin: 55 }}>
                     <Button size="sm" onClick={() => onClickInsert()}>Insert</Button>
                 </div>
-
             </div>
             <div>
                 <h3>Unsaved Appointments (Start -- End)</h3>
-                <Button size="sm" onClick={() => onClickSaveAll()}>Save All</Button>
+                <Button size="sm" onClick={onClickSaveAll}>Save All</Button>
                 <ul style={{ listStyleType: "none" }}>
                     {unSavedAppts.map((unSavedAppts, index) => {
                         return (
