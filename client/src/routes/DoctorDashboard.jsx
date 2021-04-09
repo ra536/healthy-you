@@ -12,6 +12,7 @@ import TopNavBar from "../components/TopNavBar";
 import CreateAppt from '../components/CreateAppt';
 import ApptCalendar from '../components/ApptCalendar';
 import ApptInfo from '../components/ApptInfo';
+import NotPublishedAppts from '../components/NotPublishedAppts';
 
 const DoctorDashboard = (props) => {
   let { doctorID } = useParams();
@@ -301,6 +302,7 @@ const DoctorDashboard = (props) => {
         <h1>Appointments</h1>
         <hr/>
         <CreateAppt doctorID={doctorID} newAppt={getAppt}/>
+        <NotPublishedAppts doctorID={doctorID} newAppt={getAppt} reload={appt}/>
         <ApptCalendar doctorID={doctorID} newAppt={appt} appt_id={getApptID} canceledAppt={canceledAppt}/>
         <ApptInfo apptID={apptID} onCancel={getCanceledApptID}/>
       </Container>
