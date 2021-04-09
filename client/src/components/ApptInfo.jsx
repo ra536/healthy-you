@@ -43,25 +43,7 @@ const ApptInfo = (props) => {
 
     const formatDT = (dt) => {
         dt = new Date(dt);
-        var ampm = "AM"
-        var hours = dt.getHours();
-        var mins = dt.getMinutes();
-
-        if (hours === 0) {
-            hours = 12;
-        } else if (hours >= 11 && hours < 24) {
-            ampm = "PM";
-            if(hours > 12){
-                hours = hours - 12;
-            }
-        }
-        if(hours.toString().length === 1){
-            hours = "0" + hours.toString();
-        }
-        if(mins.toString().length === 1){
-            mins = "0" + mins.toString();
-        }
-        return (dt.getMonth()+1) +"/"+ dt.getDate() +"/"+ dt.getFullYear() + " " + hours + ":" + mins + " " + ampm;
+        return (Intl.DateTimeFormat("en-US", {year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit"}).format(dt));
     }
 
     return (

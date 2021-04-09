@@ -32,32 +32,19 @@ const ApptCalendar = (props) => {
             var year = sdt.getFullYear();
 
             if (date == td.getDate() && month == td.getMonth() && year == td.getFullYear()) {
-                var startHours = sdt.getHours()
-                if (startHours.toString().length === 1) {
-                    startHours = "0" + startHours;
-                }
-                var startMinutes = sdt.getMinutes();
-                if (startMinutes.toString().length === 1) {
-                    startMinutes = "0" + startMinutes;
-                }
-                var startTime = "Start: " + startHours + ":" + startMinutes;
-
-                var endHours = edt.getHours()
-                if (endHours.toString().length === 1) {
-                    endHours = "0" + endHours;
-                }
-                var endMinutes = edt.getMinutes();
-                if (endMinutes.toString().length === 1) {
-                    endMinutes = "0" + endMinutes;
-                }
-                var endTime = " End: " + endHours + ":" + endMinutes;
-
-                todaysAppts[index] = [startTime, endTime, id];
+                todaysAppts[index] = [sdt, edt, id];
                 index += 1;
             }
         }
         todaysAppts.sort();
-        // console.log(todaysAppts);
+        for (var i = 0; i < todaysAppts.length; i++){
+            todaysAppts[i] = [
+                (Intl.DateTimeFormat("en-US", {hour: "2-digit", minute: "2-digit"}).format(todaysAppts[i][0])),
+                (Intl.DateTimeFormat("en-US", {hour: "2-digit", minute: "2-digit"}).format(todaysAppts[i][1])),
+                todaysAppts[i][2]
+            ]
+        }
+        console.log(todaysAppts);
         setCurrentDayApts(todaysAppts);
     }
 
@@ -109,7 +96,7 @@ const ApptCalendar = (props) => {
                         {currentDayApts.map((currentDayApts, index) => {
                             return (
                                 <Button onClick={() => handleClick(currentDayApts[2])} key={index} style={{ margin: 5 }}>
-                                    {currentDayApts[0] + currentDayApts[1]}
+                                    {currentDayApts[0]} : {currentDayApts[1]}
                                 </Button>
                             )
                         })}
