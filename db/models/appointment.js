@@ -14,14 +14,6 @@ const appointment = db.define(
         type: DataTypes.UUID,
         allowNull: false
     },
-    practice_name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    address: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
     doctor_id: {
       type: DataTypes.UUID,
       allowNull: false,
