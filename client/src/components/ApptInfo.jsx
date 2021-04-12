@@ -4,9 +4,11 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import DoctorAPI from '../apis/DoctorAPI';
 import AppointmentAPI from '../apis/AppointmentAPI';
+import PracticeAPI from '../apis/PracticeAPI';
 
 const ApptInfo = (props) => {
     const [apptInfo, setApptInfo] = useState([]);
+    const [practiceInfo, setPracticeInfo] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -14,7 +16,12 @@ const ApptInfo = (props) => {
                 const response = await (AppointmentAPI.post("/getApptInfo", {
                     appointment_id: props.apptID
                 }));
+                const practiceResponse = await (PracticeAPI.post("/getPracticeData", {
+                    practice_id: response.data.data[0].practice_id
+                }));
+                setPracticeInfo(practiceResponse.data.data);
                 setApptInfo(response.data.data);
+                console.log(practiceResponse.data.data)
             }
             catch (err) {
                 console.log(err)
@@ -54,9 +61,9 @@ const ApptInfo = (props) => {
                     <div key={index}>
                         Appointment ID: {apptInfo.appointment_id}
                         <br />
-                        Practice: {apptInfo.practice_name}
+                        Practice: {practiceInfo[index].name}
                         <br />
-                        Address: {apptInfo.address}
+                        Address: {practiceInfo[index].location}
                         <br />
                         Start Time: {formatDT(apptInfo.start_time)}
                         <br />
