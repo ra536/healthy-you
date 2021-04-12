@@ -11,7 +11,7 @@ const CreateAppt = (props) => {
     const [endDT, setEndDT] = useState(new Date());
 
     const [allPractices, setAllPractices] = useState([]);
-    const [selectedPractice, setSelectedPractice] = useState();
+    const [selectedPractice, setSelectedPractice] = useState(0);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,7 +24,6 @@ const CreateAppt = (props) => {
                 );
                 console.log(response.data.data);
                 setAllPractices(response.data.data);
-                setSelectedPractice(response.data.data[0])
             } catch (err) {
                 console.log(err);
             }
@@ -33,16 +32,17 @@ const CreateAppt = (props) => {
     }, [props.doctorID]);
 
     const onClickInsert = async () => {
-        console.log(startDT, "\n\n", endDT);
+        // console.log(startDT, "\n\n", endDT);
+        // console.log(selectedPractice)
         try {
             if (startDT <= endDT) {
                 const response = await AppointmentAPI.post("/createAppt", {
                     start: startDT,
                     end: endDT,
                     doctor_id: props.doctorID,
-                    practice_id: selectedPractice.practice_id,
-                    address: selectedPractice.location,
-                    practice_name: selectedPractice.name
+                    practice_id: allPractices[selectedPractice].practice_id,
+                    address: allPractices[selectedPractice].location,
+                    practice_name: allPractices[selectedPractice].name
                 });
                 // console.log(response.data.data)
                 props.newAppt(response.data.data)
@@ -55,7 +55,7 @@ const CreateAppt = (props) => {
 
     const onPracticeChange = (e) => {
         // console.log(e.target.value)
-        setSelectedPractice(allPractices[e.target.value])
+        setSelectedPractice(e.target.value)
     }
 
     const formatDT = (dt) => {
