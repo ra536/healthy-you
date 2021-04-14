@@ -26,6 +26,9 @@ const review = db.define(
     availability: {
       type: DataTypes.DECIMAL(1, 0),
     },
+    name: {
+      type: DataTypes.STRING,
+    },
     full_review: {
       type: DataTypes.TEXT,
     },

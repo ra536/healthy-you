@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReviewAPI from "../apis/ReviewAPI";
+import { Container } from "react-bootstrap";
+import TopNavBar from "../components/TopNavBar";
 // import TestAPI from '../apis/TestAPI';
 // import InputTest from '../components/InputTest';
 // import { TestContext } from '../context/TestContext';
@@ -8,6 +10,14 @@ const Review = (props) => {
   // Store the data retrieved from backend API into context
   // const { tests, setTests } = useContext(TestContext);
   const [codes, setCodes] = useState([]);
+  const [name, setName] = useState("");
+  const [review, setReview] = useState("");
+  const [overall, setOverall] = useState("");
+  const [bedside, setBedside] = useState("");
+  const [wait, setWait] = useState("");
+  const [availability, setAvailability] = useState("");
+
+
   var validCodes = [];
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
@@ -33,15 +43,82 @@ const Review = (props) => {
   );
   // Constant Review ID Value
 
+  const handleSubmit = (e) => {
+    console.log("SUBMIT");
+    console.log(name);
+    console.log(review);
+    console.log(overall);
+    console.log(bedside);
+    console.log(wait);
+    console.log(availability);
+    e.preventDefault();
+  }
 
   if (codes.some((code) => code.toString() === accessCode)) {
     // come up with the form and create form handler component
     // pull the corresponding information (doctor, etc.)
     return (
-      <div>
+      <>
+      <TopNavBar />
+      <Container>
         <h1>Review</h1>
-        <h2>Valid: {accessCode}</h2>
-      </div>
+        <i>Include doctor name, appt date?</i><br/><br/>
+        <form onSubmit={handleSubmit}>
+          <h5>Name</h5>
+          <input type="text" placeholder="Name" onChange={(e) => setName(e.target.value)}></input>
+          <br /><br />
+
+          <h5>Review</h5>
+          <textarea placeholder="Review" onChange={(e) => setReview(e.target.value)}/>
+          <br /><br />
+          
+          <h5>Overall Rating</h5>
+          {[1, 2, 3, 4, 5].map((number) => {
+            return (
+              <>
+              <input type="radio" name="overall" value={number} onChange={(e) => setOverall(e.target.value)}></input>{' '}
+              <label>{number}</label>{' '}
+              </>
+            )
+          })}
+
+          <br /><br />
+
+          <h5>Bedside Manner</h5>
+          {[1, 2, 3, 4, 5].map((number) => {
+            return (
+              <>
+              <input type="radio" name="bedside" value={number} onChange={(e) => setBedside(e.target.value)}></input>{' '}
+              <label>{number}</label>{' '}
+              </>
+            )
+          })}
+
+          <h5>Wait Time</h5>
+          {[1, 2, 3, 4, 5].map((number) => {
+            return (
+              <>
+              <input type="radio" name="wait" value={number} onChange={(e) => setWait(e.target.value)}></input>{' '}
+              <label>{number}</label>{' '}
+              </>
+            )
+          })}
+
+          <h5>Availability</h5>
+          {[1, 2, 3, 4, 5].map((number) => {
+            return (
+              <>
+              <input type="radio" name="availability" value={number} onChange={(e) => setAvailability(e.target.value)}></input>{' '}
+              <label>{number}</label>{' '}
+              </>
+            )
+          })}
+
+          <br />
+          <input type="submit" value="Leave Review" />
+        </form>
+      </Container>
+      </>
     );
   }
 
