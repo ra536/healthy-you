@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import ReviewAPI from "../apis/ReviewAPI";
 // import TestAPI from '../apis/TestAPI';
 // import InputTest from '../components/InputTest';
 // import { TestContext } from '../context/TestContext';
@@ -6,17 +7,34 @@ import React from "react";
 const Review = (props) => {
   // Store the data retrieved from backend API into context
   // const { tests, setTests } = useContext(TestContext);
+  const [codes, setCodes] = useState([]);
+  var validCodes = [];
+  useEffect(() => {
+    // Define a function fetchData that calls APIs which is then called in useEffect
+    const fetchData = async () => {
+      try {
+        validCodes = await ReviewAPI.post("/getAllInviteCodes", {});
+        const codeArray = validCodes.data.data;
+        console.log("Array ", codeArray);
+        const newArray = codeArray.map((element) => element.review_id);
+        console.log("Array ", newArray);
+        setCodes(newArray);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
 
   // Call our backend API to retrieve list of test objects from db
   const accessCode = props.url.substr(
     props.url.indexOf("leaveReview/") + 12,
-    5
+    36
   );
   // Constant Review ID Value
 
-  const validCodes = [12345, 23456];
 
-  if (validCodes.some((code) => code.toString() === accessCode)) {
+  if (codes.some((code) => code.toString() === accessCode)) {
     // come up with the form and create form handler component
     // pull the corresponding information (doctor, etc.)
     return (

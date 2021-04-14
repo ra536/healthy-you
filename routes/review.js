@@ -25,6 +25,20 @@ router.post("/findAllForDoctor", async (req, res) => {
     }
 });
 
+router.post("/getAllInviteCodes", async (req, res) => {
+    try {
+        const results = await review.findAll({
+            attributes: ['review_id']
+        });
+        res.status(200).json({
+            status: "success",
+            data: results,
+        });
+    } catch (err) {
+        //
+    }
+});
+
 router.post("/create", async (req, res) => {
     try {
         const newReview = await review.create({
