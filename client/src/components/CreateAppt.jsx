@@ -43,7 +43,11 @@ const CreateAppt = (props) => {
                     practice_id: allPractices[selectedPractice].practice_id,
                     address: allPractices[selectedPractice].location,
                     practice_name: allPractices[selectedPractice].name
-                });
+                },
+                {
+                  withCredentials: true,
+                }
+                );
                 // console.log(response.data.data)
                 props.newAppt(response.data.data)
             }

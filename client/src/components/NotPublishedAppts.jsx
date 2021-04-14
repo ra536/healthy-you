@@ -27,6 +27,9 @@ const NotPublishedAppts = (props) => {
         console.log(unSavedAppts)
         const response = await AppointmentAPI.put("/saveAllAppts", {
             doctor_id: props.doctorID
+        },
+        {
+          withCredentials: true,
         })
         console.log(response.data.data);
         props.newAppt(unSavedAppts)
@@ -38,6 +41,9 @@ const NotPublishedAppts = (props) => {
         const response = await AppointmentAPI.put("/saveOneAppt", {
             doctor_id: props.doctorID,
             appointment_id: data.appointment_id
+        },
+        {
+          withCredentials: true,
         })
         console.log(response.data.data);
         props.newAppt(data)
@@ -50,6 +56,9 @@ const NotPublishedAppts = (props) => {
             const response = await AppointmentAPI.post("/cancelAppt", {
                 doctor_id: props.doctorID,
                 appointment_id: id
+            },
+            {
+              withCredentials: true,
             });
             console.log(response.data.data)
             setUnsavedAppts(unSavedAppts.filter(item => item.appointment_id !== id))

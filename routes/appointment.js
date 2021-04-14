@@ -6,6 +6,7 @@ const db = require('../db/index')
 const appointment = require('../db/models/appointment')
 const doctor = require('./doctor');
 const { Op } = require("sequelize");
+const { isAuthAndDoctor } = require("../passport");
 
 router.use(express.json());
 
@@ -45,7 +46,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.post("/createAppt", async (req, res) => {
+router.post("/createAppt", isAuthAndDoctor, async (req, res) => {
   try {
     const checkIfExists = await appointment.count({
       where: {
@@ -145,7 +146,7 @@ router.post("/getApptInfo", async (req, res) => {
   }
 });
 
-router.post("/cancelAppt", async (req, res) => {
+router.post("/cancelAppt", isAuthAndDoctor, async (req, res) => {
   try {
     const appointmentResults = await appointment.destroy({
       raw: true,
@@ -164,7 +165,7 @@ router.post("/cancelAppt", async (req, res) => {
   }
 });
 
-router.put("/saveAllAppts", async (req, res) => {
+router.put("/saveAllAppts", isAuthAndDoctor, async (req, res) => {
   try {
     const appointmentResults = appointment.update({
       status: 0
@@ -187,7 +188,7 @@ router.put("/saveAllAppts", async (req, res) => {
   }
 });
 
-router.put("/saveOneAppt", async (req, res) => {
+router.put("/saveOneAppt", isAuthAndDoctor, async (req, res) => {
   try {
     const appointmentResults = appointment.update({
       status: 0

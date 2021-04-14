@@ -36,6 +36,9 @@ const ApptInfo = (props) => {
         try {
             const response = await (AppointmentAPI.post("/cancelAppt", {
                 appointment_id: e
+            },
+            {
+              withCredentials: true,
             }));
             console.log(response.data.data);
             if (response.data.data === 1) {
