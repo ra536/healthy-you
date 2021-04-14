@@ -62,8 +62,8 @@ const ApptInfo = (props) => {
             {apptInfo.map((apptInfo, index) => {
                 return (
                     <div key={index}>
-                        Appointment ID: {apptInfo.appointment_id}
-                        <br />
+                        {/* Appointment ID: {apptInfo.appointment_id}
+                        <br /> */}
                         Practice: {practiceInfo[index].name}
                         <br />
                         Address: {practiceInfo[index].location}
@@ -76,8 +76,8 @@ const ApptInfo = (props) => {
                         <br />
                         Patient:
                         <br />
-                        <Button onClick={() => onClickCancel(apptInfo.appointment_id)}>
-                            Cancel
+                        <Button variant="danger" onClick={() => onClickCancel(apptInfo.appointment_id)}>
+                            Delete
                         </Button>
                     </div>
                 );
