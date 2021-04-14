@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DoctorAPI from "../apis/DoctorAPI";
 import PracticeAPI from "../apis/PracticeAPI";
+import ReviewAPI from "../apis/ReviewAPI";
 
 import { useParams } from "react-router-dom";
 import {
@@ -68,6 +69,17 @@ const DoctorProfile = (props) => {
         console.log(practiceResponse.data.data);
         setLocations(practiceResponse.data.data);
       } catch (err) {
+        console.log(err);
+      }
+      try {
+        const allReviews = await ReviewAPI.post(
+          "/findAllForDoctor",
+          {
+            doctor_id: doctorID,
+          },
+        );
+        console.log(allReviews);
+      } catch (err){
         console.log(err);
       }
     };
