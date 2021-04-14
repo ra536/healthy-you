@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import DoctorAPI from "../apis/DoctorAPI";
+import ReviewAPI from "../apis/ReviewAPI";
 
 const AdminDashboard = (props) => {
     const [allDoctors, setAllDoctors] = useState([""]);
@@ -26,12 +27,31 @@ const AdminDashboard = (props) => {
         e.preventDefault();
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         console.log(e);
         console.log(doctor);
         console.log(emailInput);
         var arr = emailInput.split(/,\s+/);
         console.log(arr);
+        
+        // for each email, create a new entry in the database
+        arr.map(async (email) => {
+            var revID = "";
+            try {
+                const response = await ReviewAPI.post("/create", {
+                    doctor_id: doctor
+                });
+                revID = response.data.review_id;
+                console.log(revID);
+            } catch (err) {
+                console.log(err);
+            }
+            console.log("Sending ", revID);
+
+        })
+        // use nodemailer to send invite to client
+        // set expiration date (within review model)
+
         e.preventDefault();
     }
     

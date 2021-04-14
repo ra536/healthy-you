@@ -24,4 +24,22 @@ router.post("/findAllForDoctor", async (req, res) => {
     }
 });
 
+router.post("/create", async (req, res) => {
+    try {
+        const newReview = await review.create({
+            // review_id:
+              doctor_id: req.body.doctor_id,
+              status: "SENT"
+        }).then(revObject => res.status(200).json({
+            status: "success",
+            review_id: revObject.review_id,
+        }))
+        // const review = newReview.review_id;
+        // console.log(review);
+        
+    } catch (err){
+        //
+    }
+})
+
 module.exports = router;
