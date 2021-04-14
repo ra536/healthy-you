@@ -6,6 +6,7 @@ import DoctorDashboard from "./routes/DoctorDashboard";
 import Review from "./routes/Review";
 import Registration from "./routes/Registration";
 import WriterDashboard from "./routes/WriterDashboard";
+import AdminDashboard from "./routes/AdminDashboard";
 import Article from "./routes/Article";
 import Login from "./routes/Login";
 import Search from "./routes/Search";
@@ -80,6 +81,7 @@ const App = () => {
           <Route path="/book-appointment" component={Appointment} />
           <Route exact path="/category/Blog" component={Blog} />
           <Route path="/category/:id" component={ArticleCategory} />
+          <Route path="/admin-dashboard" component={AdminDashboard} />
         </Switch>
       </div>
     </AppContextProvider>

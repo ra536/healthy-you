@@ -13,6 +13,16 @@ router.use(express.json());
 // UPDATE bio and maybe appointments, profile pictures
 // DELETE specialties, practices, appointments,
 
+router.post("/findAll", async (req, res) => {
+  const allDoctors = await doctor.findAll({
+    attributes: ['doctor_name', 'doctor_id']
+  });
+  res.status(200).json({
+    status: "success",
+    data: allDoctors,
+  })
+})
+
 router.post("/findOne", async (req, res) => {
   try {
     const doctorResult = await doctor.findOne({
