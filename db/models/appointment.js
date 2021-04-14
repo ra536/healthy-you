@@ -39,9 +39,9 @@ const appointment = db.define(
         allowNull: false
     },
     status: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: 0
+        defaultValue: "Unpublished"
     },
     reviewStatus: {
       type: DataTypes.STRING,

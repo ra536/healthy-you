@@ -11,7 +11,7 @@ const NotPublishedAppts = (props) => {
             try {
                 const response = await (AppointmentAPI.post("/getAllAppts", {
                     doctor_id: props.doctorID,
-                    status: [-1]
+                    status: ["Unpublished"]
                 }));
                 // console.log(response.data.data);
                 setUnsavedAppts(response.data.data);

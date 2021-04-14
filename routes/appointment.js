@@ -83,7 +83,7 @@ router.post("/createAppt", isAuthAndDoctor, async (req, res) => {
           start_time: req.body.start,
           end_time: req.body.end,
           practice_id: req.body.practice_id,
-          status: -1
+          status: "Unpublished"
         }
       );
       // console.log(req.body)
@@ -95,7 +95,7 @@ router.post("/createAppt", isAuthAndDoctor, async (req, res) => {
           end_time: req.body.end,
           doctor_id: req.body.doctor_id,
           practice_id: req.body.practice_id,
-          status: -1,
+          status: "Unpublished",
         }
       })
     }
@@ -168,12 +168,12 @@ router.post("/cancelAppt", isAuthAndDoctor, async (req, res) => {
 router.put("/saveAllAppts", isAuthAndDoctor, async (req, res) => {
   try {
     const appointmentResults = appointment.update({
-      status: 0
+      status: "Open"
     },
     {
       where: {
         doctor_id: req.body.doctor_id,
-        status: -1
+        status: "Unpublished"
       }
     }).then(function(numUpdated){
       res.status(201).json({
@@ -191,13 +191,13 @@ router.put("/saveAllAppts", isAuthAndDoctor, async (req, res) => {
 router.put("/saveOneAppt", isAuthAndDoctor, async (req, res) => {
   try {
     const appointmentResults = appointment.update({
-      status: 0
+      status: "Open"
     },
     {
       where: {
         doctor_id: req.body.doctor_id,
         appointment_id: req.body.appointment_id,
-        status: -1
+        status: "Unpublished"
       }
     }).then(function(numUpdated){
       res.status(201).json({

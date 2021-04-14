@@ -33,7 +33,7 @@ const ApptCalendar = (props) => {
             var color = "primary";
 
             if (date == td.getDate() && month == td.getMonth() && year == td.getFullYear()) {
-                if(props[i].status == 1){
+                if(props[i].status == "Booked"){
                     color = "success";
                 }
                 todaysAppts[index] = [sdt, edt, id, color];
@@ -50,7 +50,6 @@ const ApptCalendar = (props) => {
             ]
         }
         //console.log(todaysAppts);
-        console.log(todaysAppts);
         setCurrentDayApts(todaysAppts);
     }
 
@@ -66,7 +65,7 @@ const ApptCalendar = (props) => {
             try {
                 const response = await (AppointmentAPI.post("/getAllAppts", {
                     doctor_id: props.doctorID,
-                    status: [0, 1]
+                    status: ["Open", "Booked"]
                 }));
                 // console.log(response.data.data);
                 setAppointments(response.data.data)
