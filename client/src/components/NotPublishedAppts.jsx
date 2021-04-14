@@ -82,10 +82,10 @@ const NotPublishedAppts = (props) => {
                     return (
                         <li key={index}>
                             {formatDT(unSavedAppts.start_time)} -- {formatDT(unSavedAppts.end_time)}
-                            <Button style={{ margin: 3 }} onClick={() => onClickSave(unSavedAppts)}>
+                            <Button variant="success" style={{ margin: 3 }} onClick={() => onClickSave(unSavedAppts)}>
                                 ✓
                                 </Button>
-                            <Button style={{ margin: 3 }} onClick={() => onClickRemove(unSavedAppts.appointment_id)}>
+                            <Button variant="danger" style={{ margin: 3 }} onClick={() => onClickRemove(unSavedAppts.appointment_id)}>
                                 X
                                 </Button>
                         </li>
