@@ -18,6 +18,7 @@ import { AuthContext } from "./context/AuthContext";
 import LoginAPI from "./apis/LoginAPI";
 import Appointment from "./routes/Appointment";
 import ArticleCategory from "./routes/Category";
+import ReviewSuccess from "./routes/ReviewSuccess";
 import Blog from "./routes/Blog";
 
 const App = () => {
@@ -82,6 +83,7 @@ const App = () => {
           <Route exact path="/category/Blog" component={Blog} />
           <Route path="/category/:id" component={ArticleCategory} />
           <Route path="/admin-dashboard" component={AdminDashboard} />
+          <Route path="/reviewSuccess" component={ReviewSuccess} />
         </Switch>
       </div>
     </AppContextProvider>

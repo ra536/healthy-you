@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReviewAPI from "../apis/ReviewAPI";
 import { Container } from "react-bootstrap";
 import TopNavBar from "../components/TopNavBar";
+import { useHistory } from "react-router-dom";
 // import TestAPI from '../apis/TestAPI';
 // import InputTest from '../components/InputTest';
 // import { TestContext } from '../context/TestContext';
@@ -16,6 +17,8 @@ const Review = (props) => {
   const [bedside, setBedside] = useState("");
   const [wait, setWait] = useState("");
   const [availability, setAvailability] = useState("");
+
+  let history = useHistory();
 
 
   var validCodes = [];
@@ -41,9 +44,12 @@ const Review = (props) => {
     props.url.indexOf("leaveReview/") + 12,
     36
   );
+  console.log(accessCode);
   // Constant Review ID Value
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     console.log("SUBMIT");
     console.log(name);
     console.log(review);
@@ -51,7 +57,26 @@ const Review = (props) => {
     console.log(bedside);
     console.log(wait);
     console.log(availability);
-    e.preventDefault();
+
+    console.log("ATTEMPT");
+
+    try {
+      const result = await ReviewAPI.post("/leaveReview", {
+        name: name,
+        review: review,
+        overall: overall,
+        bedside: bedside,
+        wait: wait,
+        availability: availability,
+        review_id: accessCode,
+      })
+    } catch (err){
+      console.log(err);
+    }
+
+    console.log("SUCCESS");
+    history.push("/reviewSuccess");
+    
   }
 
   if (codes.some((code) => code.toString() === accessCode)) {

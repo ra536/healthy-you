@@ -57,6 +57,28 @@ router.post("/create", async (req, res) => {
     }
 })
 
+router.post("/leaveReview", async (req, res) => {
+    try {
+        const result = await review.findByPk(req.body.review_id);
+        console.log("HERE@!J!!J!");
+        console.log(result);
+        result.name = req.body.name;
+        result.full_review = req.body.review;
+        result.overall_rating = req.body.overall;
+        result.bedside_manner = req.body.bedside;
+        result.wait_time = req.body.wait;
+        result.availability = req.body.availability;
+        result.status = "COMPLETED";
+
+        await result.save();
+    } catch (err){
+        console.log(err);
+    }
+    res.status(200).json({
+        status: "success",
+    })
+})
+
 router.post("/sendInvite", async (req, res) => {
     console.log("IN SERVER, ", req.body.review_id, req.body.email);
 
