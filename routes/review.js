@@ -24,4 +24,4 @@ router.post("/findAllForDoctor", async (req, res) => {
     }
 });
 
-module.exports = review;
+module.exports = router;

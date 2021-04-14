@@ -77,9 +77,13 @@ const DoctorProfile = (props) => {
           {
             doctor_id: doctorID,
           },
+          {
+            withCredentials: false,
+          }
         );
         console.log(allReviews);
       } catch (err){
+        console.log("HERE!----!");
         console.log(err);
       }
     };
