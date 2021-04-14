@@ -30,9 +30,13 @@ const ApptCalendar = (props) => {
             var date = sdt.getDate();
             var month = sdt.getMonth();
             var year = sdt.getFullYear();
+            var color = "primary";
 
             if (date == td.getDate() && month == td.getMonth() && year == td.getFullYear()) {
-                todaysAppts[index] = [sdt, edt, id];
+                if(props[i].status == 1){
+                    color = "success";
+                }
+                todaysAppts[index] = [sdt, edt, id, color];
                 index += 1;
             }
         }
@@ -41,10 +45,12 @@ const ApptCalendar = (props) => {
             todaysAppts[i] = [
                 (Intl.DateTimeFormat("en-US", {hour: "2-digit", minute: "2-digit"}).format(todaysAppts[i][0])),
                 (Intl.DateTimeFormat("en-US", {hour: "2-digit", minute: "2-digit"}).format(todaysAppts[i][1])),
-                todaysAppts[i][2]
+                todaysAppts[i][2],
+                todaysAppts[i][3]
             ]
         }
         //console.log(todaysAppts);
+        console.log(todaysAppts);
         setCurrentDayApts(todaysAppts);
     }
 
@@ -95,7 +101,7 @@ const ApptCalendar = (props) => {
                     <div style={{overflow: "auto", height:3000, width: 1000}}>
                         {currentDayApts.map((currentDayApts, index) => {
                             return (
-                                <Button onClick={() => handleClick(currentDayApts[2])} key={index} style={{ margin: 5 }}>
+                                <Button variant={currentDayApts[3]} onClick={() => handleClick(currentDayApts[2])} key={index} style={{ margin: 5 }}>
                                     {currentDayApts[0]} : {currentDayApts[1]}
                                 </Button>
                             )
