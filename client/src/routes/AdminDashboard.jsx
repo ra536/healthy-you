@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import DoctorAPI from "../apis/DoctorAPI";
 import ReviewAPI from "../apis/ReviewAPI";
+const nodemailer = require("nodemailer");
 
 const AdminDashboard = (props) => {
     const [allDoctors, setAllDoctors] = useState([""]);
@@ -48,8 +49,19 @@ const AdminDashboard = (props) => {
             }
             console.log("Sending ", revID);
 
+            // try {
+            //     const response = await ReviewAPI.post("/sendInvite", {
+            //         review_id: revID,
+            //         email: email
+            //     });
+                
+            //     console.log("Success");
+            // } catch (err) {
+            //     //
+            // }
+            console.log("localhost:3000/leaveReview/" + revID);
         })
-        // use nodemailer to send invite to client
+        
         // set expiration date (within review model)
 
         e.preventDefault();
