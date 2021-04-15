@@ -22,6 +22,7 @@ const AdminDashboard = (props) => {
           }
         );
         console.log(response);
+        setId(response.data.data.user_id);
       } catch (err) {
         console.log(err);
       }
