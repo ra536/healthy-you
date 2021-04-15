@@ -48,6 +48,10 @@ const LoginForm = () => {
               setLoggedIn(true);
               setRole(response.data.user.role);
               history.push("/writer-dashboard/" + response.data.user.writer_id);
+            } else if (response.data.user.role === "Admin") {
+              setLoggedIn(true);
+              setRole(response.data.user.role);
+              history.push("/admin-dashboard/" + response.data.user.user_id);
             } else {
               setLoggedIn(true);
               setRole(response.data.user.role);
@@ -110,7 +114,7 @@ const LoginForm = () => {
               <Form.Label>I am logging in as a:</Form.Label>
               <Form.Control
                 as="select"
-                htmlSize={3}
+                htmlSize={4}
                 custom
                 values={values.role}
                 onChange={handleChange}
