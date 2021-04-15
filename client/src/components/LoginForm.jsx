@@ -120,6 +120,7 @@ const LoginForm = () => {
                 <option value="User"> User </option>
                 <option value="Doctor"> Doctor </option>
                 <option value="Writer"> Writer </option>
+                <option value="Writer"> Admin </option>
               </Form.Control>
               <Form.Control.Feedback type="invalid">
                 {errors.role}
