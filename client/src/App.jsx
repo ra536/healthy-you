@@ -18,6 +18,7 @@ import LoginAPI from "./apis/LoginAPI";
 import Appointment from "./routes/Appointment";
 import ArticleCategory from "./routes/Category";
 import Blog from "./routes/Blog";
+import Author from "./routes/ArticlesBy";
 
 const App = () => {
   const { loggedIn, setLoggedIn, setRole, setId } = useContext(AuthContext);
@@ -80,6 +81,7 @@ const App = () => {
           <Route path="/book-appointment" component={Appointment} />
           <Route exact path="/category/Blog" component={Blog} />
           <Route path="/category/:id" component={ArticleCategory} />
+          <Route path="/author/:id" component={Author}/>
         </Switch>
       </div>
     </AppContextProvider>
