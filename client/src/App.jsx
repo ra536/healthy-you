@@ -18,6 +18,7 @@ import LoginAPI from "./apis/LoginAPI";
 import Appointment from "./routes/Appointment";
 import ArticleCategory from "./routes/Category";
 import Blog from "./routes/Blog";
+import AdminDashboard from "./routes/AdminDashboard";
 
 const App = () => {
   const { loggedIn, setLoggedIn, setRole, setId } = useContext(AuthContext);
@@ -67,6 +68,11 @@ const App = () => {
             path="/doctor-dashboard/:doctorID"
             component={DoctorDashboard}
             requiredRoles={["Doctor"]}
+          />
+          <ProtectedRoute
+            path="/admin-dashboard/:adminID"
+            component={AdminDashboard}
+            requiredRoles={["Admin"]}
           />
           <Route path="/leaveReview/:id">
             <Review url={window.location.href} />
