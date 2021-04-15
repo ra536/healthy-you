@@ -49,7 +49,13 @@ const CreateAppt = (props) => {
                 }
                 );
                 // console.log(response.data.data)
-                props.newAppt(response.data.data)
+                // console.log(response.data.status);
+                if(response.data.status == "error"){
+                    // give error for time overlap
+                } else {
+                    props.newAppt(response.data.data)
+                }
+                
             }
         }
         catch (err) {

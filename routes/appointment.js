@@ -98,6 +98,10 @@ router.post("/createAppt", isAuthAndDoctor, async (req, res) => {
           status: "Unpublished",
         }
       })
+    } else {
+      res.status(200).json({
+        status: "error"
+      })
     }
   }
   catch (err) {
