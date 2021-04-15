@@ -47,10 +47,6 @@
     "path": "^0.12.7",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
-<<<<<<< HEAD
-    "react-social-icons": "^5.0.0",
-    "sequelize": "^6.5.0"
-=======
     "prettier": "^2.2.1",
     "react-hook-form": "^6.15.5",
     "sequelize": "^6.5.1",
@@ -63,6 +59,5 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.23.1"
->>>>>>> 29d3bb3d682f59d055ab064826a13712bf936a12
   }
 }
