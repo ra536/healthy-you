@@ -35,7 +35,7 @@ const TopNavBar = () => {
       } else if (role === "Admin") {
         setDashboard("admin-dashboard/" + id);
       } else {
-        setDashboard("/");
+        setDashboard("/user-dashboard/" + id);
       }
     };
     fetchData();

@@ -19,6 +19,7 @@ import Appointment from "./routes/Appointment";
 import ArticleCategory from "./routes/Category";
 import Blog from "./routes/Blog";
 import AdminDashboard from "./routes/AdminDashboard";
+import UserDashboard from "./routes/UserDashboard";
 
 const App = () => {
   const { loggedIn, setLoggedIn, setRole, setId } = useContext(AuthContext);
@@ -73,6 +74,11 @@ const App = () => {
             path="/admin-dashboard/:adminID"
             component={AdminDashboard}
             requiredRoles={["Admin"]}
+          />
+          <ProtectedRoute
+            path="/user-dashboard/:userID"
+            component={UserDashboard}
+            requiredRoles={["User"]}
           />
           <Route path="/leaveReview/:id">
             <Review url={window.location.href} />

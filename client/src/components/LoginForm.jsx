@@ -55,7 +55,7 @@ const LoginForm = () => {
             } else {
               setLoggedIn(true);
               setRole(response.data.user.role);
-              history.push("/");
+              history.push("/user-dashboard/" + response.data.user.user_id);
             }
           } else {
             if (response.data.target === "email") {
