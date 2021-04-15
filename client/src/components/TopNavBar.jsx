@@ -32,8 +32,10 @@ const TopNavBar = () => {
         setDashboard("/doctor-dashboard/" + id);
       } else if (role === "Writer") {
         setDashboard("/writer-dashboard/" + id);
+      } else if (role === "Admin") {
+        setDashboard("admin-dashboard/" + id);
       } else {
-        setDashboard("/");
+        setDashboard("/user-dashboard/" + id);
       }
     };
     fetchData();

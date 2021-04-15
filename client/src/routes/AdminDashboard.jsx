@@ -1,28 +1,19 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import DoctorAPI from "../apis/DoctorAPI";
 import ReviewAPI from "../apis/ReviewAPI";
-import TopNavBar from "../components/TopNavBar";
+import UserAPI from "../apis/UserAPI";
+import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
+import TopNavBar from "../components/TopNavBar";
 const nodemailer = require("nodemailer");
 
 const AdminDashboard = (props) => {
-    const [allDoctors, setAllDoctors] = useState([""]);
-    const [doctor, setDoctor] = useState("");
-    const [emailInput, setEmailInput] = useState("");
-    
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const response = await DoctorAPI.post("/findAll", {});
-            console.log(response.data.data);
-            setAllDoctors(response.data.data);
-            console.log(response.data.data[0].doctor_name);
-          } catch (err) {
-            console.log(err);
-          }
-        };
-        fetchData();
-      }, [setAllDoctors]);
+  let { adminID } = useParams();
+  const [id, setId] = useState(null);
+
+  const [allDoctors, setAllDoctors] = useState([""]);
+  const [doctor, setDoctor] = useState("");
+  const [emailInput, setEmailInput] = useState("");
 
     const handleChange = (e) => {
         setDoctor(e.target.value);
@@ -68,12 +59,43 @@ const AdminDashboard = (props) => {
 
         e.preventDefault();
     }
-    
 
-    return (
-        <>
-        <TopNavBar />
-        <Container>
+  useEffect(() => {
+    // Define a function fetchData that calls APIs which is then called in useEffect
+    const fetchData = async () => {
+      try {
+        const response = await UserAPI.post(
+          "/findOne",
+          {
+            user_id: adminID,
+          },
+          {
+            withCredentials: true,
+          }
+        );
+        console.log(response.data.data);
+        setId(response.data.data.user_id);
+      } catch (err) {
+        console.log(err);
+      }
+
+      try {
+        const response = await DoctorAPI.post("/findAll", {});
+        console.log(response.data.data);
+        setAllDoctors(response.data.data);
+        console.log(response.data.data[0].doctor_name);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    console.log("use effect happened!");
+    fetchData();
+  }, [adminID]);
+
+  return (
+    <>
+      <TopNavBar />
+      <Container>
         <h1>Admin Dashboard</h1>
         <form onSubmit={handleSubmit}>
         <span>Select a doctor:</span><br />
@@ -98,8 +120,8 @@ const AdminDashboard = (props) => {
         <input type="submit" value="Send Review Links"/>
         </form>
         </Container>
-        </>
-    );
-}
+    </>
+  );
+};
 
 export default AdminDashboard;
