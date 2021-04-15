@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Sequelize } = require("sequelize");
+const { Sequelize, Op } = require("sequelize");
 const review = require("../db/models/review");
 const nodemailer = require("nodemailer");
 
@@ -28,7 +28,12 @@ router.post("/findAllForDoctor", async (req, res) => {
 router.post("/getAllInviteCodes", async (req, res) => {
     try {
         const results = await review.findAll({
-            attributes: ['review_id']
+            attributes: ['review_id'],
+            where: {
+                status: {
+                    [Op.ne]: "COMPLETED",
+                }
+            }
         });
         res.status(200).json({
             status: "success",

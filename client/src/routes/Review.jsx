@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { ExclamationTriangle } from 'react-bootstrap-icons';
 import ReviewAPI from "../apis/ReviewAPI";
 import { Container } from "react-bootstrap";
 import TopNavBar from "../components/TopNavBar";
@@ -149,9 +150,17 @@ const Review = (props) => {
 
   return (
     // Return different webpage, depending on the validity of the ID provided
-    <div>
-      <p>Error: invalid access code {accessCode}</p>
-    </div>
+    <>
+    <TopNavBar />
+    <Container>
+      <div align="center">
+      <h1>Error</h1>
+      <p style={{ fontSize: "24px" }}>The review link you are accessing has either been filled out or expired<br/>
+      No further action is required</p>
+      <ExclamationTriangle size={100} color="darkkhaki"/>
+      </div>
+    </Container>
+    </>
   );
 };
 
