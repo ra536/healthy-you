@@ -1,47 +1,72 @@
-const express = require('express');
+const express = require("express");
+
 const router = express.Router();
-const db = require('../db/index')
-const users = require('../db/models/user.js')
+const bcrypt = require("bcrypt");
+const user = require("../db/models/user");
 
 router.use(express.json());
 
-//Test route to get started and gets all test objects from test table in db
-router.get("/", async (req, res) => {
-    try {
-        const testResults = await test.findAll({
-            raw: true
-        });
-        console.log(testResults);
-        res.status(200).json({
+router.post("/create", async (req, res) => {
+  const {
+    email,
+    password,
+    firstName,
+    lastName,
+    city,
+    state,
+    birthdate,
+  } = req.body;
+  bcrypt.hash(password, 10).then((hash) => {
+    user
+      .create({
+        email,
+        password: hash,
+        firstName,
+        lastName,
+        city,
+        state,
+        birthdate,
+      })
+      .then(() => {
+        res.status(201).json({
           status: "success",
-          data: testResults
-        })
-      } 
-    catch (err) {
-        console.error(err.message);
-    }
+        });
+      })
+      .catch((err) => {
+        // console.log(err);
+        res.json({
+          status: err.errors,
+        });
+      });
+  });
 });
 
-// Route to create a test object in DB
-router.post("/", async (req, res) => {
-    // Express JSON middleware allows for results to be in body
-    try {
-        const tests = await test.create({
-            test_id: req.body.test_id,
-            content: req.body.content,
-        })
-        console.log(tests.dataValues)
-        res.status(201).json({
-            status: "success",
-            data: {
-                test_id: tests.dataValues.test_id,
-                content: tests.dataValues.content
-            }
-        })
-    }
-    catch (err) {
-      console.log(err)
-    }
+router.post("/findOne", async (req, res) => {
+  try {
+    const userResult = await user.findOne({
+      where: {
+        user_id: req.body.user_id,
+      },
+      raw: true,
+    });
+    res.status(200).json({
+      status: "success",
+      data: {
+        birthdate: userResult.birthdate,
+        city: userResult.city,
+        user_id: userResult.user_id,
+        email: userResult.email,
+        firstName: userResult.firstName,
+        lastName: userResult.lastName,
+        state: userResult.state,
+        role: userResult.role,
+      },
+    });
+  } catch (err) {
+    // console.log(req.body);
+    console.log(err);
+    // console.log("THERE IS AN ERROR!");
+  }
 });
 
 module.exports = router;

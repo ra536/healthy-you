@@ -1,768 +1,769 @@
-'use strict';
+"use strict";
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('specialties', [
+    return queryInterface.bulkInsert("specialties", [
       {
-        specialty: 'Alternative Medicine',
+        specialty: "Alternative Medicine",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Anesthesiology',
+        specialty: "Anesthesiology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Audiology (Non M.D.)',
+        specialty: "Audiology (Non M.D.)",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Bariatrics',
+        specialty: "Bariatrics",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Breast Surgery',
+        specialty: "Breast Surgery",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Cardiac Anesthesia',
+        specialty: "Cardiac Anesthesia",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Cardiac Surgery: Mitral Valve/ Aortic Valve/ Coronary Artery Bypass',
+        specialty:
+          "Cardiac Surgery: Mitral Valve/ Aortic Valve/ Coronary Artery Bypass",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Cardiology: Electrophysiology',
+        specialty: "Cardiology: Electrophysiology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Cardiology: Interventional',
+        specialty: "Cardiology: Interventional",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Cardiology: Non-Interventional',
+        specialty: "Cardiology: Non-Interventional",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Chiropractic',
+        specialty: "Chiropractic",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Clinical Genetics',
+        specialty: "Clinical Genetics",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Colo-Rectal',
+        specialty: "Colo-Rectal",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Complementary Medicine',
+        specialty: "Complementary Medicine",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Concierge Medicine',
+        specialty: "Concierge Medicine",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Cosmetic',
+        specialty: "Cosmetic",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Cosmetic Surgery: Breast | Body Contouring',
+        specialty: "Cosmetic Surgery: Breast | Body Contouring",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Cosmetic Surgery: Facial',
+        specialty: "Cosmetic Surgery: Facial",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Dermatology (Aesthetic)',
+        specialty: "Dermatology (Aesthetic)",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Dermatology (Medical)',
+        specialty: "Dermatology (Medical)",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Diabetes Care',
+        specialty: "Diabetes Care",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Emergency Medicine',
+        specialty: "Emergency Medicine",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Emergency Surgery',
+        specialty: "Emergency Surgery",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Endocrinology',
+        specialty: "Endocrinology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Environmental/Occupational Health',
+        specialty: "Environmental/Occupational Health",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Family Medicine',
+        specialty: "Family Medicine",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Fertility',
+        specialty: "Fertility",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Gastroenterology',
+        specialty: "Gastroenterology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Gastroenterology: Inflammatory Bowel Disease',
+        specialty: "Gastroenterology: Inflammatory Bowel Disease",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Gastroenterology: Liver Disease',
+        specialty: "Gastroenterology: Liver Disease",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'General Cosmetic Surgery',
+        specialty: "General Cosmetic Surgery",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'General Gynecology',
+        specialty: "General Gynecology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'General Neurology',
+        specialty: "General Neurology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'General Obstetrics | High-Risk Obstetrics',
+        specialty: "General Obstetrics | High-Risk Obstetrics",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'General Pediatric Surgery',
+        specialty: "General Pediatric Surgery",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'General Pediatrics',
+        specialty: "General Pediatrics",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'General Surgery',
+        specialty: "General Surgery",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Geriatrics',
+        specialty: "Geriatrics",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Gynecologic Oncology',
+        specialty: "Gynecologic Oncology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Hair Restoration',
+        specialty: "Hair Restoration",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Hand Surgery',
+        specialty: "Hand Surgery",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Hematology',
+        specialty: "Hematology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Hepatobiliary',
+        specialty: "Hepatobiliary",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Hospitalist Medicine',
+        specialty: "Hospitalist Medicine",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Hyperbaric Medicine',
+        specialty: "Hyperbaric Medicine",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Infectious Disease',
+        specialty: "Infectious Disease",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Infectious Disease: Lyme Disease',
+        specialty: "Infectious Disease: Lyme Disease",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Integrative Medicine',
+        specialty: "Integrative Medicine",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Internal Medicine: General',
+        specialty: "Internal Medicine: General",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Lasik Surgery',
+        specialty: "Lasik Surgery",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Medical Specialty',
+        specialty: "Medical Specialty",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Neonatology',
+        specialty: "Neonatology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Nephrology',
+        specialty: "Nephrology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Neurology: General',
+        specialty: "Neurology: General",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Neurology: Movement Disorder',
+        specialty: "Neurology: Movement Disorder",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Neurology: Multiple Sclerosis',
+        specialty: "Neurology: Multiple Sclerosis",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Neurology: Neuromuscular',
+        specialty: "Neurology: Neuromuscular",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Neurosurgery',
+        specialty: "Neurosurgery",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Non-Operative Orthopaedics',
+        specialty: "Non-Operative Orthopaedics",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Nuclear Medicine',
+        specialty: "Nuclear Medicine",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Oncology',
+        specialty: "Oncology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Oncology: Breast',
+        specialty: "Oncology: Breast",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Oncology: Colon',
+        specialty: "Oncology: Colon",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Oncology: General',
+        specialty: "Oncology: General",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Oncology: Orthopedic',
+        specialty: "Oncology: Orthopedic",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Oncology: Pancreatic',
+        specialty: "Oncology: Pancreatic",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Oncology: Prostate',
+        specialty: "Oncology: Prostate",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Ophthalmology',
+        specialty: "Ophthalmology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Optometry (Non-M.D.)',
+        specialty: "Optometry (Non-M.D.)",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Oral Maxillofacial',
+        specialty: "Oral Maxillofacial",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Orthopedic Oncology',
+        specialty: "Orthopedic Oncology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Orthopedic Surgery',
+        specialty: "Orthopedic Surgery",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Orthopedic Surgery: Foot and Ankle',
+        specialty: "Orthopedic Surgery: Foot and Ankle",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Orthopedic Surgery: Hand',
+        specialty: "Orthopedic Surgery: Hand",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Orthopedic Surgery: Joint',
+        specialty: "Orthopedic Surgery: Joint",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Orthopedic Surgery: Spine',
+        specialty: "Orthopedic Surgery: Spine",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Orthopedic Surgery: Sports Medicine',
+        specialty: "Orthopedic Surgery: Sports Medicine",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Orthopedics: General',
+        specialty: "Orthopedics: General",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Otolaryngology: Adult General',
+        specialty: "Otolaryngology: Adult General",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Otolaryngology: Head & Neck Malignancies',
+        specialty: "Otolaryngology: Head & Neck Malignancies",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Otolaryngology: Vestibular (Non M.D.)',
+        specialty: "Otolaryngology: Vestibular (Non M.D.)",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pain Management',
+        specialty: "Pain Management",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pain Management: Acute',
+        specialty: "Pain Management: Acute",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Palliative Medicine',
+        specialty: "Palliative Medicine",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pathology',
+        specialty: "Pathology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Allergy',
+        specialty: "Pediatric Allergy",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Anesthesia',
+        specialty: "Pediatric Anesthesia",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Behavior & Development',
+        specialty: "Pediatric Behavior & Development",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Cardiac Surgery',
+        specialty: "Pediatric Cardiac Surgery",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Cardiology',
+        specialty: "Pediatric Cardiology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Critical Care Medicine',
+        specialty: "Pediatric Critical Care Medicine",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Dermatology',
+        specialty: "Pediatric Dermatology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Emergency Medicine',
+        specialty: "Pediatric Emergency Medicine",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Endocrinology',
+        specialty: "Pediatric Endocrinology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Epidemiologist',
+        specialty: "Pediatric Epidemiologist",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Gastroenterology',
+        specialty: "Pediatric Gastroenterology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Hematology & Oncology',
+        specialty: "Pediatric Hematology & Oncology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Hospitalist Medicine',
+        specialty: "Pediatric Hospitalist Medicine",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Infectious Diseases',
+        specialty: "Pediatric Infectious Diseases",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Nephrology',
+        specialty: "Pediatric Nephrology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Neurology',
+        specialty: "Pediatric Neurology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Neurosurgery',
+        specialty: "Pediatric Neurosurgery",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Opthalmology',
+        specialty: "Pediatric Opthalmology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Orthopedics',
+        specialty: "Pediatric Orthopedics",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Psychiatry (Adolescent)',
+        specialty: "Pediatric Psychiatry (Adolescent)",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Pulmonology',
+        specialty: "Pediatric Pulmonology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Rheumatology',
+        specialty: "Pediatric Rheumatology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Sleep Medicine',
+        specialty: "Pediatric Sleep Medicine",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Sports Medicine',
+        specialty: "Pediatric Sports Medicine",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Urology',
+        specialty: "Pediatric Urology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Physical Medicine',
+        specialty: "Physical Medicine",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Physical Medicine | Rehab | Physiatry',
+        specialty: "Physical Medicine | Rehab | Physiatry",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Plastic Surgery: Reconstructive',
+        specialty: "Plastic Surgery: Reconstructive",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Podiatry',
+        specialty: "Podiatry",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Podiatry: Foot | Ankle',
+        specialty: "Podiatry: Foot | Ankle",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Psychiatry',
+        specialty: "Psychiatry",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Psychiatry: Eating Disorders',
+        specialty: "Psychiatry: Eating Disorders",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Public Health',
+        specialty: "Public Health",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pulmonary',
+        specialty: "Pulmonary",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Radiation Oncology',
+        specialty: "Radiation Oncology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Radiology',
+        specialty: "Radiology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Radiology: Interventional',
+        specialty: "Radiology: Interventional",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Rehabilitation',
+        specialty: "Rehabilitation",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Reproductive Endocrinology | IVF',
+        specialty: "Reproductive Endocrinology | IVF",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Rheumatology | Clinical Immunology',
+        specialty: "Rheumatology | Clinical Immunology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Sleep Medicine',
+        specialty: "Sleep Medicine",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Sports Medicine',
+        specialty: "Sports Medicine",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Surgical Oncology',
+        specialty: "Surgical Oncology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Surgical Specialty: Urogynecology',
+        specialty: "Surgical Specialty: Urogynecology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Thoracic Surgery',
+        specialty: "Thoracic Surgery",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Transplant Surgery',
+        specialty: "Transplant Surgery",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Transplant: Cardiac',
+        specialty: "Transplant: Cardiac",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Transplant: Kidney | Pancreas | Liver',
+        specialty: "Transplant: Kidney | Pancreas | Liver",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Transplant: Lung',
+        specialty: "Transplant: Lung",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Trauma',
+        specialty: "Trauma",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Urogynecology',
+        specialty: "Urogynecology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Urology',
+        specialty: "Urology",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Vascular Surgery',
+        specialty: "Vascular Surgery",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Vein',
+        specialty: "Vein",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Weight Management',
+        specialty: "Weight Management",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Wound Care',
+        specialty: "Wound Care",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Cosmetic Dentistry',
+        specialty: "Cosmetic Dentistry",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Dentistry',
+        specialty: "Dentistry",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Endodontist',
+        specialty: "Endodontist",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'General Dentist',
+        specialty: "General Dentist",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Dental Implants',
+        specialty: "Dental Implants",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Oral Maxillofacial Surgeon',
+        specialty: "Oral Maxillofacial Surgeon",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Oral Pathologist',
+        specialty: "Oral Pathologist",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Orthodontist',
+        specialty: "Orthodontist",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Pediatric Dentist',
+        specialty: "Pediatric Dentist",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Periodontist',
+        specialty: "Periodontist",
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       },
       {
-        specialty: 'Prosthodontist',
+        specialty: "Prosthodontist",
         createdAt: new Date(),
-        updatedAt: new Date()
-      }
+        updatedAt: new Date(),
+      },
     ]);
   },
 
@@ -773,5 +774,5 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-  }
+  },
 };

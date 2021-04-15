@@ -23,23 +23,55 @@
   },
   "homepage": "https://github.com/ra536/healthy-you#readme",
   "dependencies": {
+<<<<<<< HEAD
     "@fullcalendar/core": "^5.5.1",
     "@fullcalendar/daygrid": "^5.5.0",
     "@fullcalendar/react": "^5.5.0",
     "@fullcalendar/timegrid": "^5.5.1",
     "@material-ui/core": "^4.11.3",
+=======
+    "@hookform/resolvers": "^1.3.5",
+    "bcrypt": "^5.0.1",
+>>>>>>> 29d3bb3d682f59d055ab064826a13712bf936a12
     "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "eslint": "^7.23.0",
+    "eslint-config-airbnb": "^18.2.1",
     "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "express-flash": "0.0.2",
+    "express-session": "^1.17.1",
+    "formik": "^2.2.6",
     "fs": "0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.2",
     "mysql2": "^2.2.5",
     "nodemon": "^2.0.7",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
+<<<<<<< HEAD
     "react-bootstrap-date-picker": "^5.1.0",
     "sequelize": "^6.5.0",
     "sequelize-cli": "^6.2.0"
+=======
+    "prettier": "^2.2.1",
+    "react-hook-form": "^6.15.5",
+    "sequelize": "^6.5.1",
+    "sequelize-cli": "^6.2.0",
+    "uuidv4": "^6.2.6",
+    "yup": "^0.32.9"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.23.1"
+>>>>>>> 29d3bb3d682f59d055ab064826a13712bf936a12
   }
 }

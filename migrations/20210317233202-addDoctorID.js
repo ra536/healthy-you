@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-var Sequelize = require('sequelize');
+var Sequelize = require("sequelize");
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -14,5 +14,5 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-  }
+  },
 };

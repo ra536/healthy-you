@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    queryInterface.addConstraint('specialties', {
-      fields: ['specialty'],
-      type: 'unique',
+    queryInterface.addConstraint("specialties", {
+      fields: ["specialty"],
+      type: "unique",
     });
   },
 
@@ -15,5 +15,5 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-  }
+  },
 };
