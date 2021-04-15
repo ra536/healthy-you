@@ -31,7 +31,10 @@ router.post("/getAllInviteCodes", async (req, res) => {
             attributes: ['review_id'],
             where: {
                 status: {
-                    [Op.ne]: "COMPLETED",
+                    [Op.or]: {
+                        [Op.ne]: "COMPLETED",
+                        [Op.ne]: "APPROVED",
+                    }
                 }
             }
         });

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import DoctorAPI from "../apis/DoctorAPI";
 import ReviewAPI from "../apis/ReviewAPI";
+import TopNavBar from "../components/TopNavBar";
+import { Container } from "react-bootstrap";
 const nodemailer = require("nodemailer");
 
 const AdminDashboard = (props) => {
@@ -70,7 +72,9 @@ const AdminDashboard = (props) => {
 
     return (
         <>
-        <h1>Hello</h1>
+        <TopNavBar />
+        <Container>
+        <h1>Admin Dashboard</h1>
         <form onSubmit={handleSubmit}>
         <span>Select a doctor:</span><br />
         <select name="Doctor Pick" onChange={handleChange}>
@@ -93,6 +97,7 @@ const AdminDashboard = (props) => {
         <br />
         <input type="submit" value="Send Review Links"/>
         </form>
+        </Container>
         </>
     );
 }

@@ -80,6 +80,8 @@ const Review = (props) => {
     
   }
 
+  console.log(codes);
+
   if (codes.some((code) => code.toString() === accessCode)) {
     // come up with the form and create form handler component
     // pull the corresponding information (doctor, etc.)
