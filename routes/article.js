@@ -298,7 +298,6 @@ router.post("/category", async (req, res) => {
 router.post("/author", async (req, res) => {
   try {
     const id = req.body.article_id;
-    console.log("what is the id", id)
     console.log(req.body);
 
     const results = await articles.findOne({
@@ -308,7 +307,6 @@ router.post("/author", async (req, res) => {
       raw: true,
     });
 
-    console.log("what is results ", results);
     const writer = results.writer_id;
 
     const articleResults = await articles.findAll({
@@ -328,4 +326,34 @@ router.post("/author", async (req, res) => {
   }
 });
 
+router.post("/sameCategory", async (req, res) => {
+  try {
+    const id = req.body.article_id;
+    console.log(req.body);
+
+    const results = await articles.findOne({
+      where: {
+        article_id: id,
+      },
+      raw: true,
+    });
+
+    const category = results.category;
+
+    const articleResults = await articles.findAll({
+      where: {
+        category: category,
+      }
+    })
+
+    console.log(articleResults)
+
+    res.status(200).json({
+      status: "success",
+      data: articleResults,
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+});
 module.exports = router;
