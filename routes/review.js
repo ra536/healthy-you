@@ -25,6 +25,22 @@ router.post("/findAllForDoctor", async (req, res) => {
     }
 });
 
+router.post("/findAll", async (req, res) => {
+    try {
+        const reviewResults = await review.findAll({
+            raw: true,
+        });
+        res.status(200).json({
+            status: "success",
+            data: reviewResults,
+        });
+    } catch (err) {
+        // console.log(req.body);
+        // console.log(err)
+        // console.log("THERE IS AN ERROR!");
+    }
+});
+
 router.post("/getAllInviteCodes", async (req, res) => {
     try {
         const results = await review.findAll({
