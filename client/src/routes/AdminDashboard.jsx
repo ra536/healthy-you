@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import UserAPI from "../apis/DoctorAPI";
+import UserAPI from "../apis/UserAPI";
 import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import TopNavBar from "../components/TopNavBar";
@@ -21,12 +21,13 @@ const AdminDashboard = (props) => {
             withCredentials: true,
           }
         );
-        console.log(response);
+        console.log(response.data.data);
         setId(response.data.data.user_id);
       } catch (err) {
         console.log(err);
       }
     };
+    console.log("use effect happened!");
     fetchData();
   }, [adminID]);
 
