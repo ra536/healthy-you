@@ -54,7 +54,7 @@ passport.use(
       passReqToCallback: true,
     },
     (req, username, password, done) => {
-      if (req.body.role === "User") {
+      if (req.body.role === "User" || req.body.role === "Admin") {
         user
           .findOne({
             where: {
