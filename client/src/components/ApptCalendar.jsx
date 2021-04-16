@@ -4,6 +4,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import DoctorAPI from '../apis/DoctorAPI';
 import AppointmentAPI from '../apis/AppointmentAPI';
+import { AuthContext } from "../context/AuthContext";
 
 const ApptCalendar = (props) => {
     // console.log(props.doctorID);
@@ -12,7 +13,7 @@ const ApptCalendar = (props) => {
     const [appts, setAppointments] = useState([]);
     const [currentDayApts, setCurrentDayApts] = useState([]);
     const [selectedDay, setDay] = useState(new Date());
-
+    const { loggedIn, role, id } = useContext(AuthContext);
 
     function loadTodaysAppts(props, td) {
         // To display the appointments for today when page loads
@@ -40,6 +41,7 @@ const ApptCalendar = (props) => {
                 index += 1;
             }
         }
+
         todaysAppts.sort();
         for (var i = 0; i < todaysAppts.length; i++){
             todaysAppts[i] = [
@@ -63,9 +65,13 @@ const ApptCalendar = (props) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                var status = ["Open"];
+                if(role === "Doctor" && props.route === "Dashboard"){
+                    status = ["Open", "Booked"]
+                }
                 const response = await (AppointmentAPI.post("/getAllAppts", {
                     doctor_id: props.doctorID,
-                    status: ["Open", "Booked"]
+                    status: status
                 }));
                 // console.log(response.data.data);
                 setAppointments(response.data.data)
@@ -79,8 +85,12 @@ const ApptCalendar = (props) => {
     }, [props]);
 
     const handleClick = async (id) => {
-        console.log(id);
-        props.appt_id(id);
+        if(role === "Doctor" && props.route === "Dashboard"){
+            console.log(id);
+            props.appt_id(id);
+        } else {
+            console.log("USER CLICKED: " + id);
+        }
     }
 
     return (
@@ -95,9 +105,9 @@ const ApptCalendar = (props) => {
                         onClickDay={dayClicked}
                     />
                 </div>
-                <div style={{ alignItems: "center", display: "flex", flexDirection: "column", left: 350,  height:302, width: 5000,"borderWidth": "1px", 'borderColor': "#aaaaaa", 'borderStyle': 'solid' }}>
+                <div style={{ alignItems: "center", display: "flex", flexDirection: "column", left: 350, minWidth:790, height:302, width:"100%","borderWidth": "1px", 'borderColor': "#aaaaaa", 'borderStyle': 'solid' }}>
                     <h4>Availability</h4>
-                    <div style={{overflow: "auto", height:3000, width: 1000}}>
+                    <div style={{overflow: "auto", height:3000, width: "100%"}}>
                         {currentDayApts.map((currentDayApts, index) => {
                             return (
                                 <Button variant={currentDayApts[3]} onClick={() => handleClick(currentDayApts[2])} key={index} style={{ margin: 5 }}>

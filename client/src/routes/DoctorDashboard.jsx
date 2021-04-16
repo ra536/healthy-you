@@ -303,7 +303,7 @@ const DoctorDashboard = (props) => {
         <hr/>
         <CreateAppt doctorID={doctorID} newAppt={getAppt}/>
         <NotPublishedAppts doctorID={doctorID} newAppt={getAppt} reload={appt}/>
-        <ApptCalendar doctorID={doctorID} newAppt={appt} appt_id={getApptID} canceledAppt={canceledAppt}/>
+        <ApptCalendar doctorID={doctorID} newAppt={appt} appt_id={getApptID} canceledAppt={canceledAppt} route="Dashboard"/>
         <ApptInfo apptID={apptID} onCancel={getCanceledApptID}/>
       </Container>
     </>
