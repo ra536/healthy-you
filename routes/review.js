@@ -81,6 +81,22 @@ router.post("/create", async (req, res) => {
     }
 })
 
+router.post("/approve", async (req, res) => {
+    try {
+        const approveReview = await review.findByPk(req.body.review_id);
+        approveReview.status = "APPROVED";
+        await approveReview.save();
+        res.status(200).json({
+            status: "success",
+        })
+        // const review = newReview.review_id;
+        // console.log(review);
+        
+    } catch (err){
+        //
+    }
+})
+
 router.post("/leaveReview", async (req, res) => {
     try {
         const result = await review.findByPk(req.body.review_id);

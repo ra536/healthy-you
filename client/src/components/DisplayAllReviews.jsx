@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { AdminContext } from "../context/AdminContext";
 import ReviewAPI from "../apis/ReviewAPI";
 import "bootstrap/dist/css/bootstrap.css";
 import { Table } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 const DisplayAllReviews = (props) => {
 
-    const [reviews, setReviews] = useState([]);
+    //const { allReviews, setAllReviews } = useContext(AdminContext);
+    const [allReviews, setAllReviews] = useState([]);
 
     // NEED useContext to sync with parent element!
 
@@ -15,7 +18,7 @@ const DisplayAllReviews = (props) => {
             try {
                 const response = await ReviewAPI.post("/findAll", {});
                 console.log(response.data.data);
-                setReviews(response.data.data);
+                setAllReviews(response.data.data);
             } catch (err) {
                 console.log(err);
             }
@@ -23,14 +26,28 @@ const DisplayAllReviews = (props) => {
         fetchData();
     }, []);
 
+    const handleApprove = async (e) => {
+        console.log(e.target.id);
+        try {
+            const response = await ReviewAPI.post("/approve", {
+                review_id: e.target.id,
+            })
+        } catch (err){
+            console.log(err);
+        }
+        // create route to approve review
+        // figure out useContext (ask Jeff...)
+    }
+
     return (
         <>
-            <h1>Hello</h1>
+            <br />
+            <h2>Manage Doctor Reviews</h2>
             <Table striped bordered hover>
             <thead>
           <tr>
+            <th>Approve</th>
             <th>Status</th>
-            <th>ReviewID</th>
             <th>Name</th>
             <th>Overall Rating</th>
             <th>Bedside Manner</th>
@@ -41,12 +58,27 @@ const DisplayAllReviews = (props) => {
           </tr>
         </thead>
         <tbody>
-            {reviews.map((review) => {
+            {allReviews.map((review) => {
+                var color = "";
+                const status = review.status;
+                let statusElement;
+                let approveElement = <td></td>
+                console.log(status);
+                if(status == "SENT"){
+                    statusElement = <td style={{color: "orange"}}>{review.status}</td>
+                } else if (status == "COMPLETED"){
+                    statusElement = <td style={{color: "green"}}>{review.status}</td>
+                    approveElement = <td><Button id={review.review_id} onClick={handleApprove}>Approve</Button></td>
+                } else if (status == "APPROVED"){
+                    statusElement = <td style={{color: "blue"}}>{review.status}</td>
+                } else {
+                    statusElement = <td style={{color: "black"}}>{review.status}</td>
+                }
                 return (
                     <>
                     <tr key={review.review_id}>
-                    <td>{review.status}</td>
-                    <td>{review.review_id}</td>
+                    {approveElement}
+                    {statusElement}
                     <td>{review.name}</td>
                     <td>{review.overall_rating}</td>
                     <td>{review.bedside_manner}</td>
