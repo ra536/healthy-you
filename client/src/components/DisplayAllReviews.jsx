@@ -4,6 +4,8 @@ import ReviewAPI from "../apis/ReviewAPI";
 import "bootstrap/dist/css/bootstrap.css";
 import { Table } from "react-bootstrap";
 import { Button } from "react-bootstrap";
+import Moment from "react-moment";
+import "moment-timezone";
 
 const DisplayAllReviews = (props) => {
 
@@ -64,6 +66,11 @@ const DisplayAllReviews = (props) => {
                 const status = review.status;
                 let statusElement;
                 let approveElement = <td></td>
+                let timeElement = <td></td>
+
+                if(review.publication_date !== null){
+                    timeElement = <td><Moment format="MM/DD/YYYY">{review.publication_date}</Moment></td>
+                }
                 // console.log(status);
                 if(status == "SENT"){
                     statusElement = <td style={{color: "orange"}}>{review.status}</td>
@@ -87,7 +94,7 @@ const DisplayAllReviews = (props) => {
                     <td>{review.wait_time}</td>
                     <td>{review.availability}</td>
                     <td>{review.full_review}</td>
-                    <td>{review.publication_date}</td>
+                    {timeElement}
                     </tr>
                     </>
                 );

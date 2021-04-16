@@ -102,7 +102,6 @@ router.post("/approve", async (req, res) => {
 router.post("/leaveReview", async (req, res) => {
     try {
         const result = await review.findByPk(req.body.review_id);
-        console.log("HERE@!J!!J!");
         console.log(result);
         result.name = req.body.name;
         result.full_review = req.body.review;
@@ -111,6 +110,7 @@ router.post("/leaveReview", async (req, res) => {
         result.wait_time = req.body.wait;
         result.availability = req.body.availability;
         result.status = "COMPLETED";
+        result.publication_date = Sequelize.fn('NOW');
 
         await result.save();
     } catch (err){
