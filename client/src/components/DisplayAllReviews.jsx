@@ -48,6 +48,7 @@ const DisplayAllReviews = (props) => {
           <tr>
             <th>Approve</th>
             <th>Status</th>
+            <th>Email</th>
             <th>Name</th>
             <th>Overall Rating</th>
             <th>Bedside Manner</th>
@@ -79,6 +80,7 @@ const DisplayAllReviews = (props) => {
                     <tr key={review.review_id}>
                     {approveElement}
                     {statusElement}
+                    <td>{review.email}</td>
                     <td>{review.name}</td>
                     <td>{review.overall_rating}</td>
                     <td>{review.bedside_manner}</td>

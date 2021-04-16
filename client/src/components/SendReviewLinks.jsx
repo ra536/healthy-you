@@ -26,10 +26,12 @@ const [allDoctors, setAllDoctors] = useState([""]);
         
         // for each email, create a new entry in the database
         arr.map(async (email) => {
+            const theEmail = email;
             var revID = "";
             try {
                 const response = await ReviewAPI.post("/create", {
-                    doctor_id: doctor
+                    doctor_id: doctor,
+                    email: theEmail,
                 });
                 addReview(response);
                 revID = response.data.review_id;

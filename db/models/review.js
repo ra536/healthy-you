@@ -29,6 +29,9 @@ const review = db.define(
     name: {
       type: DataTypes.STRING,
     },
+    email: {
+      type: DataTypes.STRING,
+    },
     full_review: {
       type: DataTypes.TEXT,
     },

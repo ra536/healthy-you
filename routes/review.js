@@ -68,6 +68,7 @@ router.post("/create", async (req, res) => {
         const newReview = await review.create({
             // review_id:
               doctor_id: req.body.doctor_id,
+              email: req.body.email,
               status: "SENT"
         }).then(revObject => res.status(200).json({
             status: "success",
