@@ -1,8 +1,10 @@
 import React, { useEffect, useContext, useState } from "react";
 import DoctorAPI from "../apis/DoctorAPI";
-
+import ApptCalendar from '../components/ApptCalendar';
 import { AppContext } from "../context/AppContext";
 import { useParams } from "react-router-dom";
+import { withRouter } from "react-router";
+import { AuthContext } from "../context/AuthContext";
 import {
   Container,
   Table,
@@ -30,6 +32,12 @@ import axios from "axios";
 import TopNavBar from "../components/TopNavBar";
 
 const Appointment = (props) => {
+
+  const { loggedIn, role, id } = useContext(AuthContext);
+  console.log("User ID: " + id);
+  // let { doctorID } = props.location.pathname.split("/")[2];
+  // console.log("DOCTOR ID: " + props.location.pathname.split("/")[2]);
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -119,9 +127,8 @@ const Appointment = (props) => {
 
           <br />
         </Form>
-
         <Row>
-          <>
+        {/* <>
             <Col>
               <Button
                 variant="success"
@@ -262,10 +269,11 @@ const Appointment = (props) => {
                 </Modal.Footer>
               </Modal>
             </Col>
-          </>
+          </> */}
+          <ApptCalendar doctorID={props.location.pathname.split("/")[2]} />
           <Col>
-            <div align="center">
-              <Button variant="success" type="submit" size="lg" block disabled>
+            <div style={{margin:20}} align="center">
+              <Button variant="success" type="submit" size="lg">
                 Submit
               </Button>
               <br />
