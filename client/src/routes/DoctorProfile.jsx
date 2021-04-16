@@ -2,7 +2,6 @@ import React, { useEffect, useContext, useState } from "react";
 import DoctorAPI from "../apis/DoctorAPI";
 import PracticeAPI from "../apis/PracticeAPI";
 
-import { AppContext } from "../context/AppContext";
 import { useParams } from "react-router-dom";
 import {
   Container,
@@ -30,6 +29,7 @@ const DoctorProfile = (props) => {
   const [profilePicture, setProfilePicture] = useState();
   const [rating, setRating] = useState("");
   const [bio, setBio] = useState("");
+
 
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
@@ -139,7 +139,7 @@ const DoctorProfile = (props) => {
               })}
               <br />
               <Card.Title>Appointments</Card.Title>
-              <Button size="lg" block href="/book-appointment">
+              <Button size="lg" block href={"/book-appointment/" + doctorID}>
                 Book now
               </Button>
               <br />
@@ -258,7 +258,7 @@ const DoctorProfile = (props) => {
         <Col>
           <div align="center">
             <br />
-            <Button variant="primary" size="lg" href="/book-appointment">
+            <Button variant="primary" size="lg" href={"/book-appointment/" + doctorID}>
               Book Appointment Now
             </Button>
             <br />
