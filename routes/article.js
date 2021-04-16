@@ -69,8 +69,22 @@ router.post("/find", async (req, res) => {
       },
       raw: true,
     });
+    
+
+    
+    // testResults[0].update({
+    //   page_views: +1,
+    // }).then(function(){})
+
+    // console.log("test results", testResults[0].page_views);
+    // console.log("article views", testResults[0].page_views);
+    // testResults[0].page_views += 1
+    // console.log("article views", testResults[0].page_views);
+    // await testResults.save().then(function() {});
+
     const writerResult = await writer.findByPk(testResults[0].writer_id);
-    console.log(writerResult);
+    console.log("writer results", writerResult);
+    
     res.status(200).json({
       status: "success",
       data: testResults,
@@ -356,4 +370,27 @@ router.post("/sameCategory", async (req, res) => {
     console.log(error.message);
   }
 });
+
+router.post("/pageView", async (req, res) => {
+  try {
+    const id = req.body.id;
+    console.log(req.body);
+
+    const articleResults = await articles.findByPk(req.body.id);
+
+    console.log(articleResults);
+    articleResults.page_views += 1
+    await articleResults.save();
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        page_views: req.body.page_views,
+      },
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 module.exports = router;
