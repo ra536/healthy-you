@@ -18,7 +18,7 @@ const [allDoctors, setAllDoctors] = useState([""]);
     };
 
     const handleSubmit = async (e) => {
-        console.log(e);
+        console.log(e.target);
         console.log(doctor);
         console.log(emailInput);
         var arr = emailInput.split(/,\s+/);

@@ -17,7 +17,7 @@ const DisplayAllReviews = (props) => {
         const fetchData = async () => {
             try {
                 const response = await ReviewAPI.post("/findAll", {});
-                console.log(response.data.data);
+                // console.log(response.data.data);
                 setAllReviews(response.data.data);
             } catch (err) {
                 console.log(err);
@@ -64,7 +64,7 @@ const DisplayAllReviews = (props) => {
                 const status = review.status;
                 let statusElement;
                 let approveElement = <td></td>
-                console.log(status);
+                // console.log(status);
                 if(status == "SENT"){
                     statusElement = <td style={{color: "orange"}}>{review.status}</td>
                 } else if (status == "COMPLETED"){
