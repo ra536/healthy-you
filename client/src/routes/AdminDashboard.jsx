@@ -5,6 +5,7 @@ import { Container } from "react-bootstrap";
 import TopNavBar from "../components/TopNavBar";
 import SendReviewLinks from "../components/SendReviewLinks";
 import DisplayAllReviews from "../components/DisplayAllReviews";
+import { AdminContextProvider } from "../context/AdminContext";
 const nodemailer = require("nodemailer");
 
 const AdminDashboard = (props) => {
@@ -36,12 +37,14 @@ const AdminDashboard = (props) => {
 
   return (
     <>
-      <TopNavBar />
-      <Container>
-        <h1>Admin Dashboard</h1>
-        <SendReviewLinks />
-        <DisplayAllReviews />
+      <AdminContextProvider>
+        <TopNavBar />
+        <Container>
+          <h1>Admin Dashboard</h1>
+          <SendReviewLinks />
+          <DisplayAllReviews />
         </Container>
+      </AdminContextProvider>
     </>
   );
 };

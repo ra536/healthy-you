@@ -71,6 +71,7 @@ router.post("/create", async (req, res) => {
               status: "SENT"
         }).then(revObject => res.status(200).json({
             status: "success",
+            data: newReview,
             review_id: revObject.review_id,
         }))
         // const review = newReview.review_id;

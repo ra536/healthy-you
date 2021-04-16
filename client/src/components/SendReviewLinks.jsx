@@ -1,13 +1,15 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import DoctorAPI from "../apis/DoctorAPI";
 import ReviewAPI from "../apis/ReviewAPI";
 import "bootstrap/dist/css/bootstrap.css";
+import { AdminContext } from "../context/AdminContext";
 
 const SendReviewLinks = (props) => {
 
 const [allDoctors, setAllDoctors] = useState([""]);
   const [doctor, setDoctor] = useState("");
   const [emailInput, setEmailInput] = useState("");
+  const { addReview } = useContext(AdminContext);
 
     const handleChange = (e) => {
         setDoctor(e.target.value);
@@ -29,6 +31,7 @@ const [allDoctors, setAllDoctors] = useState([""]);
                 const response = await ReviewAPI.post("/create", {
                     doctor_id: doctor
                 });
+                addReview(response);
                 revID = response.data.review_id;
                 console.log(revID);
             } catch (err) {

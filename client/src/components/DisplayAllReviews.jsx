@@ -7,8 +7,8 @@ import { Button } from "react-bootstrap";
 
 const DisplayAllReviews = (props) => {
 
-    //const { allReviews, setAllReviews } = useContext(AdminContext);
-    const [allReviews, setAllReviews] = useState([]);
+    const { allReviews, setAllReviews } = useContext(AdminContext);
+    // const [allReviews, setAllReviews] = useState([]);
 
     // NEED useContext to sync with parent element!
 
@@ -24,7 +24,7 @@ const DisplayAllReviews = (props) => {
             }
         };
         fetchData();
-    }, []);
+    }, [allReviews]);
 
     const handleApprove = async (e) => {
         console.log(e.target.id);
