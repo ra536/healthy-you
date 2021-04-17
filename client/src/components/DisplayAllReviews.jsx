@@ -29,11 +29,13 @@ const DisplayAllReviews = (props) => {
     }, [allReviews]);
 
     const handleApprove = async (e) => {
-        console.log(e.target.id);
+        console.log(e.target.name);
         try {
             const response = await ReviewAPI.post("/approve", {
                 review_id: e.target.id,
+                doctor_id: e.target.name,
             })
+            console.log(response);
         } catch (err){
             console.log(err);
         }
@@ -76,7 +78,7 @@ const DisplayAllReviews = (props) => {
                     statusElement = <td style={{color: "orange"}}>{review.status}</td>
                 } else if (status == "COMPLETED"){
                     statusElement = <td style={{color: "green"}}>{review.status}</td>
-                    approveElement = <td><Button id={review.review_id} onClick={handleApprove}>Approve</Button></td>
+                    approveElement = <td><Button id={review.review_id} name={review.doctor_id} onClick={handleApprove}>Approve</Button></td>
                 } else if (status == "APPROVED"){
                     statusElement = <td style={{color: "blue"}}>{review.status}</td>
                 } else {

@@ -109,8 +109,48 @@ router.post("/approve", async (req, res) => {
         const approveReview = await review.findByPk(req.body.review_id);
         approveReview.status = "APPROVED";
         await approveReview.save();
+        
+        const theDoctor = await doctor.findByPk(req.body.doctor_id);
+        const currNumRatings = theDoctor.num_ratings;
+        const currRating = theDoctor.rating;
+        const currBedside = theDoctor.bedside;
+        const currWaitTime = theDoctor.wait_time;
+        const currAvail = theDoctor.availability;
+
+        if(currNumRatings == 0){
+            theDoctor.rating = approveReview.overall_rating;
+            theDoctor.bedside = approveReview.bedside_manner;
+            theDoctor.wait_time = approveReview.wait_time;
+            theDoctor.availability = approveReview.availability;
+            theDoctor.num_ratings = 1;
+        } else {
+            const nextNumRatings = currNumRatings + 1;
+
+            const interRating = currRating * (currNumRatings / nextNumRatings);
+            const newRating = interRating + (approveReview.overall_rating / nextNumRatings);
+            theDoctor.rating = newRating;
+
+            const interBedside = currBedside * (currNumRatings / nextNumRatings);
+            const newBedside = interBedside + (approveReview.bedside_manner / nextNumRatings);
+            theDoctor.bedside = newBedside;
+
+            const interWait = currWaitTime * (currNumRatings / nextNumRatings);
+            const newWait = interWait + (approveReview.wait_time / nextNumRatings);
+            theDoctor.wait_time = newWait;
+
+            const interAvail = currAvail * (currNumRatings / nextNumRatings);
+            const newAvail = interAvail + (approveReview.availability / nextNumRatings);
+            theDoctor.availability = newAvail;
+
+            theDoctor.num_ratings = nextNumRatings;
+            // calculate average
+        }
+
+        await theDoctor.save();
+        
         res.status(200).json({
             status: "success",
+            data: theDoctor,
         })
         // const review = newReview.review_id;
         // console.log(review);
