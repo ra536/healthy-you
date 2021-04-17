@@ -4,7 +4,7 @@ import DoctorAPI from "../apis/DoctorAPI";
 import SearchBar from "../components/SearchBar";
 import { AppContext } from "../context/AppContext";
 import queryString from "query-string";
-import { Container } from "react-bootstrap";
+import { Container, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {
   Accordion,
@@ -22,10 +22,49 @@ import doctorPhoto from "./file.jpg";
 import adLong from "../components/ads/ad300.jpg";
 import TopNavBar from "../components/TopNavBar";
 
+import fivestar from "./stars/FiveStar.png";
+import fourhstar from "./stars/FourHStar.png";
+import fourstar from "./stars/FourStar.png";
+import threehstar from "./stars/ThreeHStar.png";
+import threestar from "./stars/ThreeStar.png";
+import twohstar from "./stars/TwoHStar.png";
+import twostar from "./stars/TwoStar.png";
+import onehstar from "./stars/OneHStar.png";
+import onestar from "./stars/OneStar.png";
+import hstar from "./stars/HStar.png";
+import star from "./stars/Star.png";
+
 const Results = (props) => {
   const { results, setResults } = useContext(AppContext);
 
   const [featuredDoctor, setFeaturedDoctor] = useState("");
+
+  const determineStars = (rating) => {
+    //alert(rating);
+    if(rating > 4.75){
+      return fivestar;
+    } else if (rating > 4.25 && rating <= 4.75){
+      return fourhstar;
+    } else if (rating > 3.75 && rating <= 4.25){
+      return fourstar;
+    } else if (rating > 3.25 && rating <= 3.75){
+      return threehstar;
+    } else if (rating > 2.75 && rating <= 3.25){
+      return threestar;
+    } else if (rating > 2.25 && rating <= 2.75){
+      return twohstar;
+    } else if (rating > 1.75 && rating <= 2.25){
+      return twostar;
+    } else if (rating > 1.25 && rating <= 1.75){
+      return onehstar;
+    } else if (rating > 0.75 && rating <= 1.25){
+      return onestar;
+    } else if (rating > 0.25 && rating <= 0.75){
+      return hstar;
+    } else {
+      return star;
+    }
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -133,7 +172,12 @@ const Results = (props) => {
                       <h3>{featuredDoctor.doctor_name}</h3>
                       <h6>Morristown, NJ</h6>
                       <h6>{featuredDoctor.phone}</h6>
-                      <br />
+                      <Image
+                            src={determineStars(featuredDoctor.rating)}
+                            className=""
+                            style={{ width: "50%" }}
+                          />
+                      <br /><br />
                       <h6>Specialty: {featuredDoctor.specialty}</h6>
                       <h6>Location: Morris County</h6>
 
@@ -169,7 +213,12 @@ const Results = (props) => {
                           <h3>{results.doctor.doctor_name}</h3>
                           <h6>Morristown, NJ</h6>
                           <h6>{results.doctor.phone}</h6>
-                          <br />
+                          <Image
+                            src={determineStars(results.doctor.rating)}
+                            className=""
+                            style={{ width: "50%" }}
+                          />
+                          <br /><br />
                           <h6>Specialty: {results.doctor.specialty}</h6>
                           <h6>Location: Morris County</h6>
 
