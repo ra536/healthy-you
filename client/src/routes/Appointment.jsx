@@ -44,6 +44,7 @@ const Appointment = (props) => {
   const [startDT, setStartDT] = useState("");
   const [endDT, setEndDT] = useState("");
   const [duration, setDurationInMin] = useState("");
+  const [reason, setReason] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -76,6 +77,10 @@ const Appointment = (props) => {
     }
   }
 
+  const handleReasonChange = (data) => {
+    console.log(data.target.value);
+    setReason(data.target.value);
+  }
 
   return (
     <div>
@@ -122,7 +127,7 @@ const Appointment = (props) => {
           <Form.Row>
             <Form.Group as={Col} controlId="formGridCity" xs={6}>
               <Form.Label>What's the reason for your visit?</Form.Label>
-              <Form.Control />
+              <Form.Control onChange={handleReasonChange}/>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridCity" xs={6}>
