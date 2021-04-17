@@ -5,10 +5,13 @@ import 'react-calendar/dist/Calendar.css';
 import DoctorAPI from '../apis/DoctorAPI';
 import AppointmentAPI from '../apis/AppointmentAPI';
 import PracticeAPI from '../apis/PracticeAPI';
+import UserAPI from '../apis/UserAPI';
 
 const ApptInfo = (props) => {
     const [apptInfo, setApptInfo] = useState([]);
     const [practiceInfo, setPracticeInfo] = useState([]);
+    const [userInfo, setUserInfo] = useState([]);
+    const [userName, setUserName] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -21,7 +24,17 @@ const ApptInfo = (props) => {
                 }));
                 setPracticeInfo(practiceResponse.data.data);
                 setApptInfo(response.data.data);
-                console.log(practiceResponse.data.data)
+                
+                if(response.data.data[0].status === "Booked"){
+                    const userResponse = await (UserAPI.post("/getUser", {
+                        user_id: response.data.data[0].user_id
+                    }));
+                    setUserInfo(userResponse.data.data);
+                    setUserName(userResponse.data.data.firstName + " " + userResponse.data.data.lastName);
+                } else if (response.data.data[0].status === "Open"){
+                    setUserInfo("");
+                    setUserName("");
+                }
             }
             catch (err) {
                 console.log(err)
@@ -74,7 +87,9 @@ const ApptInfo = (props) => {
                         <br />
                         Status: {apptInfo.status}
                         <br />
-                        Patient:
+                        Patient: {userName}
+                        <br />
+                        Reason: {apptInfo.reason}
                         <br />
                         <Button variant="danger" onClick={() => onClickCancel(apptInfo.appointment_id)}>
                             Delete
