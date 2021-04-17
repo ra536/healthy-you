@@ -15,6 +15,8 @@ const ApptCalendar = (props) => {
     const [selectedDay, setDay] = useState(new Date());
     const { loggedIn, role, id } = useContext(AuthContext);
 
+    const [selectedAppt, setSelectedAppt] = useState("");
+
     function loadTodaysAppts(props, td) {
         // To display the appointments for today when page loads
         setCurrentDayApts([]);
@@ -44,12 +46,22 @@ const ApptCalendar = (props) => {
 
         todaysAppts.sort();
         for (var i = 0; i < todaysAppts.length; i++){
-            todaysAppts[i] = [
-                (Intl.DateTimeFormat("en-US", {hour: "2-digit", minute: "2-digit"}).format(todaysAppts[i][0])),
-                (Intl.DateTimeFormat("en-US", {hour: "2-digit", minute: "2-digit"}).format(todaysAppts[i][1])),
-                todaysAppts[i][2],
-                todaysAppts[i][3]
-            ]
+            
+            if(todaysAppts[i][2] === selectedAppt){
+                todaysAppts[i] = [
+                    (Intl.DateTimeFormat("en-US", {hour: "2-digit", minute: "2-digit"}).format(todaysAppts[i][0])),
+                    (Intl.DateTimeFormat("en-US", {hour: "2-digit", minute: "2-digit"}).format(todaysAppts[i][1])),
+                    todaysAppts[i][2],
+                    "warning"
+                ]
+            } else {
+                todaysAppts[i] = [
+                    (Intl.DateTimeFormat("en-US", {hour: "2-digit", minute: "2-digit"}).format(todaysAppts[i][0])),
+                    (Intl.DateTimeFormat("en-US", {hour: "2-digit", minute: "2-digit"}).format(todaysAppts[i][1])),
+                    todaysAppts[i][2],
+                    todaysAppts[i][3]
+                ]
+            }
         }
         //console.log(todaysAppts);
         setCurrentDayApts(todaysAppts);
@@ -86,11 +98,15 @@ const ApptCalendar = (props) => {
 
     const handleClick = async (id) => {
         if(role === "Doctor" && props.route === "Dashboard"){
-            console.log(id);
+            // console.log(id);
             props.appt_id(id);
         } else {
             console.log("USER CLICKED: " + id);
             props.user_appt_selected(id);
+        }
+        setSelectedAppt(id);
+        if(id !== selectedAppt){
+            loadTodaysAppts(appts, selectedDay);
         }
     }
 
