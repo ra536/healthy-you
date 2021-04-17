@@ -3,8 +3,26 @@ const router = express.Router();
 const { Sequelize, Op } = require("sequelize");
 const review = require("../db/models/review");
 const nodemailer = require("nodemailer");
+const doctor = require("../db/models/doctor");
 
 router.use(express.json());
+
+router.post("/getDoctor", async (req, res) => {
+    try {
+        const findReview = await review.findByPk(req.body.review_id);
+        const doctor_id = findReview.doctor_id;
+        console.log("\n\n\n", doctor_id);
+        const findDoctor = await doctor.findByPk(doctor_id);
+        console.log("\n\n\nFOUND!!!");
+        res.status(200).json({
+            status: "success",
+            data: findDoctor,
+        })
+        console.log("SENT!!!")
+    } catch (err){
+        //
+    }
+});
 
 router.post("/findAllForDoctor", async (req, res) => {
     try {
@@ -28,6 +46,9 @@ router.post("/findAllForDoctor", async (req, res) => {
 router.post("/findAll", async (req, res) => {
     try {
         const reviewResults = await review.findAll({
+            order: [
+                ['status', 'DESC']
+            ],
             raw: true,
         });
         res.status(200).json({

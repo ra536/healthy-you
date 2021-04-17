@@ -19,10 +19,21 @@ const Review = (props) => {
   const [wait, setWait] = useState("");
   const [availability, setAvailability] = useState("");
 
+  const [doctor, setDoctor] = useState("");
+
   let history = useHistory();
 
 
   var validCodes = [];
+
+  // Call our backend API to retrieve list of test objects from db
+  const accessCode = props.url.substr(
+    props.url.indexOf("leaveReview/") + 12,
+    36
+  );
+  console.log(accessCode);
+  // Constant Review ID Value
+
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
     const fetchData = async () => {
@@ -36,17 +47,23 @@ const Review = (props) => {
       } catch (err) {
         console.log(err);
       }
+
+      try {
+        const reviewID = props.url.substr(
+          props.url.indexOf("leaveReview/") + 12,
+          36);
+        const theDoctor = await ReviewAPI.post("/getDoctor", {
+          review_id: reviewID,
+        })
+        console.log(theDoctor);
+        setDoctor(theDoctor.data.data.doctor_name);
+
+      } catch (err) {
+        //
+      }
     };
     fetchData();
   }, []);
-
-  // Call our backend API to retrieve list of test objects from db
-  const accessCode = props.url.substr(
-    props.url.indexOf("leaveReview/") + 12,
-    36
-  );
-  console.log(accessCode);
-  // Constant Review ID Value
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -90,7 +107,7 @@ const Review = (props) => {
       <TopNavBar />
       <Container>
         <h1>Review</h1>
-        <i>Include doctor name, appt date?</i><br/><br/>
+        <span>Leave a review for your recent visit with:<br /><h3>{doctor}</h3></span><br/>
         <form onSubmit={handleSubmit}>
           <h5>Name</h5>
           <input type="text" placeholder="Name" onChange={(e) => setName(e.target.value)}></input>
