@@ -216,4 +216,30 @@ router.put("/saveOneAppt", isAuthAndDoctor, async (req, res) => {
   }
 });
 
+router.put("/bookAppt", async (req, res) => {
+  try {
+    const appointmentResults = appointment.update({
+      status: "Booked",
+      user_id: req.body.user_id,
+      reason: req.body.reason
+    },
+    {
+      where: {
+        doctor_id: req.body.doctor_id,
+        appointment_id: req.body.appointment_id,
+        status: "Open"
+      }
+    }).then(function(numUpdated){
+      res.status(201).json({
+        status: "success",
+        data: {
+          data: numUpdated
+        },
+      });
+    })
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 module.exports = router;
