@@ -29,6 +29,9 @@ const DoctorProfile = (props) => {
   const [locations, setLocations] = useState([]);
   const [profilePicture, setProfilePicture] = useState();
   const [rating, setRating] = useState("");
+  const [bedside, setBedside] = useState("");
+  const [waitTime, setWaitTime] = useState("");
+  const [availability, setAvailability] = useState("");
   const [bio, setBio] = useState("");
 
   useEffect(() => {
@@ -53,6 +56,9 @@ const DoctorProfile = (props) => {
         setProfilePicture(response.data.data.profile_picture);
         setBio(response.data.data.bio);
         setRating(response.data.data.rating);
+        setBedside(response.data.data.bedside);
+        setWaitTime(response.data.data.wait_time);
+        setAvailability(response.data.data.availability);
       } catch (err) {
         console.log(err);
       }
@@ -161,6 +167,7 @@ const DoctorProfile = (props) => {
         </Col>
       </Row>
       <br></br>
+      {rating}{bedside}{waitTime}{availability}
       <Container>
         <Row>
           <Col md={8}>
