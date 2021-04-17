@@ -35,15 +35,13 @@ import TopNavBar from "../components/TopNavBar";
 const Appointment = (props) => {
 
   const { loggedIn, role, id } = useContext(AuthContext);
-  console.log("User ID: " + id);
-  // let { doctorID } = props.location.pathname.split("/")[2];
-  // console.log("DOCTOR ID: " + props.location.pathname.split("/")[2]);
 
   const [show, setShow] = useState(false);
-  const [selectedApptDT, setApptDT] = useState("");
-  const [startDT, setStartDT] = useState("");
-  const [endDT, setEndDT] = useState("");
-  const [duration, setDurationInMin] = useState("");
+  const doctorID = props.location.pathname.split("/")[2];
+  const [selectedApptID, setApptID] = useState("");
+  // const [startDT, setStartDT] = useState("");
+  // const [endDT, setEndDT] = useState("");
+  // const [duration, setDurationInMin] = useState("");
   const [reason, setReason] = useState("");
 
   const handleClose = () => setShow(false);
@@ -55,31 +53,50 @@ const Appointment = (props) => {
     return (Intl.DateTimeFormat("en-US", { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).format(dt));
   }
 
-  const getApptID = async (id) => {
-    console.log(id);
-    setApptDT(id);
-    try {
-      const response = await (AppointmentAPI.post("/getApptInfo", {
-          appointment_id: id
-      }));
-      setStartDT(formatDT(response.data.data[0].start_time));
-      setEndDT(formatDT(response.data.data[0].end_time));
+  const getApptID = async (appt_id) => {
+    console.log(appt_id);
+    setApptID(appt_id);
+    // try {
+    //   const response = await (AppointmentAPI.post("/getApptInfo", {
+    //       appointment_id: appt_id
+    //   }));
+    //   setStartDT(formatDT(response.data.data[0].start_time));
+    //   setEndDT(formatDT(response.data.data[0].end_time));
       
-      var diff = new Date(response.data.data[0].end_time) - new Date(response.data.data[0].start_time); //in ms
-      diff = diff/1000;
-      diff = diff/60;
-      diff = Math.abs(Math.round(diff));
-      console.log(diff);
-      setDurationInMin(diff + " Minutes");
-    }
-    catch (err) {
-        console.log(err)
-    }
+    //   var diff = new Date(response.data.data[0].end_time) - new Date(response.data.data[0].start_time); //in ms
+    //   diff = diff/1000;
+    //   diff = diff/60;
+    //   diff = Math.abs(Math.round(diff));
+    //   console.log(diff);
+    //   setDurationInMin(diff + " Minutes");
+    // }
+    // catch (err) {
+    //     console.log(err)
+    // }
   }
 
   const handleReasonChange = (data) => {
-    console.log(data.target.value);
     setReason(data.target.value);
+  }
+
+  const submitAppt = async () => {
+    if(loggedIn && selectedApptID != ""){
+      alert("success")
+      try {
+        if(loggedIn){
+          const response = await AppointmentAPI.put("/bookAppt", {
+            appointment_id: selectedApptID,
+            doctor_id: doctorID,
+            reason: reason,
+            user_id: id
+          }
+          );
+        }
+      }
+      catch (err) {
+          console.log(err)
+      }
+    }
   }
 
   return (
@@ -309,10 +326,10 @@ const Appointment = (props) => {
               </Modal>
             </Col>
           </> */}
-          <ApptCalendar doctorID={props.location.pathname.split("/")[2]} user_appt_selected={getApptID}/>
+          <ApptCalendar doctorID={doctorID} user_appt_selected={getApptID}/>
           <Col>
             <div style={{margin:20}} align="center">
-              <Button variant="success" type="submit" size="lg">
+              <Button variant="success" type="submit" size="lg" onClick={submitAppt} href={"/doctor-profile/" + doctorID}>
                 Submit
               </Button>
               <br />
