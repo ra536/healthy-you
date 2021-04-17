@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import DoctorAPI from "../apis/DoctorAPI";
+import AppointmentAPI from '../apis/AppointmentAPI';
 import ApptCalendar from '../components/ApptCalendar';
 import { AppContext } from "../context/AppContext";
 import { useParams } from "react-router-dom";
@@ -39,9 +40,42 @@ const Appointment = (props) => {
   // console.log("DOCTOR ID: " + props.location.pathname.split("/")[2]);
 
   const [show, setShow] = useState(false);
+  const [selectedApptDT, setApptDT] = useState("");
+  const [startDT, setStartDT] = useState("");
+  const [endDT, setEndDT] = useState("");
+  const [duration, setDurationInMin] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+
+  const formatDT = (dt) => {
+    dt = new Date(dt);
+    return (Intl.DateTimeFormat("en-US", { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).format(dt));
+  }
+
+  const getApptID = async (id) => {
+    console.log(id);
+    setApptDT(id);
+    try {
+      const response = await (AppointmentAPI.post("/getApptInfo", {
+          appointment_id: id
+      }));
+      setStartDT(formatDT(response.data.data[0].start_time));
+      setEndDT(formatDT(response.data.data[0].end_time));
+      
+      var diff = new Date(response.data.data[0].end_time) - new Date(response.data.data[0].start_time); //in ms
+      diff = diff/1000;
+      diff = diff/60;
+      diff = Math.abs(Math.round(diff));
+      console.log(diff);
+      setDurationInMin(diff + " Minutes");
+    }
+    catch (err) {
+        console.log(err)
+    }
+  }
+
 
   return (
     <div>
@@ -270,7 +304,7 @@ const Appointment = (props) => {
               </Modal>
             </Col>
           </> */}
-          <ApptCalendar doctorID={props.location.pathname.split("/")[2]} />
+          <ApptCalendar doctorID={props.location.pathname.split("/")[2]} user_appt_selected={getApptID}/>
           <Col>
             <div style={{margin:20}} align="center">
               <Button variant="success" type="submit" size="lg">

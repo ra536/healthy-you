@@ -90,6 +90,7 @@ const ApptCalendar = (props) => {
             props.appt_id(id);
         } else {
             console.log("USER CLICKED: " + id);
+            props.user_appt_selected(id);
         }
     }
 
