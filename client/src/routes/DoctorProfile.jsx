@@ -45,6 +45,7 @@ const DoctorProfile = (props) => {
   const [bedside, setBedside] = useState("");
   const [waitTime, setWaitTime] = useState("");
   const [availability, setAvailability] = useState("");
+  const [numRatings, setNumRatings] = useState("");
   const [bio, setBio] = useState("");
 
   const [reviews, setReviews] = useState([]);
@@ -101,6 +102,7 @@ const DoctorProfile = (props) => {
         setBedside(response.data.data.bedside);
         setWaitTime(response.data.data.wait_time);
         setAvailability(response.data.data.availability);
+        setNumRatings(response.data.data.num_ratings);
       } catch (err) {
         console.log(err);
       }
@@ -274,7 +276,7 @@ const DoctorProfile = (props) => {
             <Card>
               <Card.Header className="text-center">
                 <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                  More Reviews
+                  Read More ({numRatings} reviews)
                 </Accordion.Toggle>
               </Card.Header>
               <Accordion.Collapse eventKey="0">

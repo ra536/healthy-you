@@ -50,6 +50,7 @@ router.post("/findOne", async (req, res) => {
         availability: doctorResult.availability,
         specialty: doctorResult.specialty,
         state: doctorResult.state,
+        num_ratings: doctorResult.num_ratings,
       },
     });
   } catch (err) {
