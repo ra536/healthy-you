@@ -18,10 +18,13 @@ const appointment = db.define(
       type: DataTypes.UUID,
       allowNull: false,
     },
-    // user_id: {
-    //     type: DataTypes.UUID,
-    //     allowNull: false
-    // },
+    user_id: {
+        type: DataTypes.UUID,
+        allowNull: true
+    },
+    reason: {
+      type: DataTypes.STRING,
+    },
     // date: {
     //     type: DataTypes.STRING,
     //     allowNull: false
