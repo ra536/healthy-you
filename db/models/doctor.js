@@ -71,6 +71,9 @@ const doctor = db.define(
     profile_picture: {
       type: DataTypes.TEXT,
     },
+    num_ratings: {
+      type: DataTypes.INTEGER,
+    },
     bio: {
       type: DataTypes.STRING,
     },
