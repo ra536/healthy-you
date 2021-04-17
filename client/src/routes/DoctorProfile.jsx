@@ -14,7 +14,17 @@ import {
   Accordion,
   ListGroup,
 } from "react-bootstrap";
-import fivestar from "./fivestar.png";
+import fivestar from "./stars/FiveStar.png";
+import fourhstar from "./stars/FourHStar.png";
+import fourstar from "./stars/FourStar.png";
+import threehstar from "./stars/ThreeHStar.png";
+import threestar from "./stars/ThreeStar.png";
+import twohstar from "./stars/TwoHStar.png";
+import twostar from "./stars/TwoStar.png";
+import onehstar from "./stars/OneHStar.png";
+import onestar from "./stars/OneStar.png";
+import hstar from "./stars/HStar.png";
+import star from "./stars/Star.png";
 
 // import axios from "axios";
 import TopNavBar from "../components/TopNavBar";
@@ -33,6 +43,33 @@ const DoctorProfile = (props) => {
   const [waitTime, setWaitTime] = useState("");
   const [availability, setAvailability] = useState("");
   const [bio, setBio] = useState("");
+
+  const determineStars = () => {
+    //alert(rating);
+    if(rating > 4.75){
+      return fivestar;
+    } else if (rating > 4.25 && rating <= 4.75){
+      return fourhstar;
+    } else if (rating > 3.75 && rating <= 4.25){
+      return fourstar;
+    } else if (rating > 3.25 && rating <= 3.75){
+      return threehstar;
+    } else if (rating > 2.75 && rating <= 3.25){
+      return threestar;
+    } else if (rating > 2.25 && rating <= 2.75){
+      return twohstar;
+    } else if (rating > 1.75 && rating <= 2.25){
+      return twostar;
+    } else if (rating > 1.25 && rating <= 1.75){
+      return onehstar;
+    } else if (rating > 0.75 && rating <= 1.25){
+      return onestar;
+    } else if (rating > 0.25 && rating <= 0.75){
+      return hstar;
+    } else {
+      return star;
+    }
+  }
 
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
@@ -167,7 +204,6 @@ const DoctorProfile = (props) => {
         </Col>
       </Row>
       <br></br>
-      {rating}{bedside}{waitTime}{availability}
       <Container>
         <Row>
           <Col md={8}>
@@ -176,12 +212,11 @@ const DoctorProfile = (props) => {
               <h3>
                 Overall Rating:
                 <br />
-                {/* {rating} TODO */}
-                5.0
+                {Number(rating).toFixed(1)}
               </h3>
             </div>
             <Image
-              src={fivestar}
+              src={determineStars(rating)}
               className="mx-auto d-block"
               style={{ width: "50%" }}
             />
@@ -189,23 +224,23 @@ const DoctorProfile = (props) => {
           <Col>
             <br />
             <div align="center">
-              Bedside Manner:
+              Bedside Manner: {Number(bedside).toFixed(1)}
               <Image
-                src={fivestar}
+                src={determineStars(bedside)}
                 className="mx-auto d-block"
                 style={{ width: "30%" }}
               />
               <br />
-              Average wait time:
+              Average wait time: {Number(waitTime).toFixed(1)}
               <Image
-                src={fivestar}
+                src={determineStars(waitTime)}
                 className="mx-auto d-block"
                 style={{ width: "30%" }}
               />
               <br />
-              Availability:
+              Availability: {Number(availability).toFixed(1)}
               <Image
-                src={fivestar}
+                src={determineStars(availability)}
                 className="mx-auto d-block"
                 style={{ width: "30%" }}
               />
