@@ -54,6 +54,19 @@ const doctor = db.define(
     },
     rating: {
       type: DataTypes.DECIMAL,
+      defaultValue: 0,
+    },
+    bedside: {
+      type: DataTypes.DECIMAL,
+      defaultValue: 0,
+    },
+    wait_time: {
+      type: DataTypes.DECIMAL,
+      defaultValue: 0,
+    },
+    availability: {
+      type: DataTypes.DECIMAL,
+      defaultValue: 0,
     },
     profile_picture: {
       type: DataTypes.TEXT,
