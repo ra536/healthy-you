@@ -26,6 +26,9 @@ import onestar from "./stars/OneStar.png";
 import hstar from "./stars/HStar.png";
 import star from "./stars/Star.png";
 
+import Moment from "react-moment";
+import "moment-timezone";
+
 // import axios from "axios";
 import TopNavBar from "../components/TopNavBar";
 
@@ -46,7 +49,7 @@ const DoctorProfile = (props) => {
 
   const [reviews, setReviews] = useState([]);
 
-  const determineStars = () => {
+  const determineStars = (rating) => {
     //alert(rating);
     if(rating > 4.75){
       return fivestar;
@@ -279,12 +282,49 @@ const DoctorProfile = (props) => {
                   {reviews.map((review) => {
                     return (
                       <blockquote className="blockquote mb-0 text-center">
+                      <Container>
+                        <Row>
+                          <Col>
+                          <span>Overall rating:</span>
+                            <Image
+                                src={determineStars(review.overall_rating)}
+                                className="mx-auto d-block"
+                                style={{ height: "2em" }}
+                              />
+                          </Col>
+                          <Col>
+                            <span>Bedside manner:</span>
+                            <Image
+                                src={determineStars(review.bedside_manner)}
+                                className="mx-auto d-block"
+                                style={{ height: "2em" }}
+                              />
+                          </Col>
+                          <Col><span>Wait Time:</span>
+                            <Image
+                                src={determineStars(review.wait_time)}
+                                className="mx-auto d-block"
+                                style={{ height: "2em" }}
+                              />
+                          </Col>
+                          <Col>
+                            <span>Availability:</span>
+                            <Image
+                                src={determineStars(review.availability)}
+                                className="mx-auto d-block"
+                                style={{ height: "2em" }}
+                              />
+                          </Col>
+                        </Row>
+                      </Container>
+                      
+                        <br/>
                       <p>
                         {" "}
                         "{review.full_review}"{" "}
                       </p>
                       <footer className="blockquote-footer text-center">
-                        {review.name} <cite title="Source Title"></cite>
+                        {review.name} (<Moment format="MM/DD/YYYY">{review.publication_date}</Moment>)
                       </footer>
                       <hr />
                     </blockquote>
