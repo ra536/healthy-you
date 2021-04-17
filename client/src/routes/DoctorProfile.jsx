@@ -44,6 +44,8 @@ const DoctorProfile = (props) => {
   const [availability, setAvailability] = useState("");
   const [bio, setBio] = useState("");
 
+  const [reviews, setReviews] = useState([]);
+
   const determineStars = () => {
     //alert(rating);
     if(rating > 4.75){
@@ -124,9 +126,9 @@ const DoctorProfile = (props) => {
             withCredentials: false,
           }
         );
-        console.log(allReviews);
+        console.log(allReviews.data.data);
+        setReviews(allReviews.data.data);
       } catch (err){
-        console.log("HERE!----!");
         console.log(err);
       }
     };
@@ -274,31 +276,20 @@ const DoctorProfile = (props) => {
               </Card.Header>
               <Accordion.Collapse eventKey="0">
                 <Card.Body>
-                  <blockquote className="blockquote mb-0 text-center">
-                    <p>
-                      {" "}
-                      "Doctor Farhad really helped me to regain my beauty after
-                      my surgery. He was really understanding and catered to me.
-                      The staff was also very friendly."{" "}
-                    </p>
-                    <footer className="blockquote-footer text-center">
-                      Cynthia C. <cite title="Source Title"></cite>
-                    </footer>
-                  </blockquote>
-                  <br></br>
-                  <br></br>
-                  <blockquote className="blockquote mb-0 text-center">
-                    <p>
-                      {" "}
-                      "I needed to find a reliable doctor for my cosmetic
-                      surgery, my friends recommended Dr. Farhad, and I can not
-                      recommend him enough! Procedure was swift and my
-                      appointment was quick."{" "}
-                    </p>
-                    <footer className="blockquote-footer text-center">
-                      Jessica J.<cite title="Source Title"></cite>
-                    </footer>
-                  </blockquote>
+                  {reviews.map((review) => {
+                    return (
+                      <blockquote className="blockquote mb-0 text-center">
+                      <p>
+                        {" "}
+                        "{review.full_review}"{" "}
+                      </p>
+                      <footer className="blockquote-footer text-center">
+                        {review.name} <cite title="Source Title"></cite>
+                      </footer>
+                      <hr />
+                    </blockquote>
+                    );
+                  })}
                 </Card.Body>
               </Accordion.Collapse>
             </Card>
