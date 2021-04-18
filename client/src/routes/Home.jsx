@@ -53,7 +53,6 @@ const Home = () => {
                     } */}
         <TopNavBar />
         <TopFeaturedAds />
-        <br />
         <Container id="article-highlights">
           <Row>
             <Col>

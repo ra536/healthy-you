@@ -96,7 +96,7 @@ const TopNavBar = () => {
               <Nav.Link href=""></Nav.Link>
               <Nav.Link style={{color: "#fff"}} href="/category/Health"><b>Health</b></Nav.Link>
               <Nav.Link href=""></Nav.Link>
-              <Nav.Link style={{color: "#fff"}} href="/category/Language"><b>Language</b></Nav.Link>
+              <Nav.Link style={{color: "#fff"}} href="/category/Wellness"><b>Wellness</b></Nav.Link>
               <Nav.Link href=""></Nav.Link>
               <Nav.Link style={{color: "#fff"}} href="/category/Covid-19"><b>Covid-19</b></Nav.Link>
               <Nav.Link href=""></Nav.Link>
@@ -106,7 +106,6 @@ const TopNavBar = () => {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <br />
         <br />
       </div>
     </>
