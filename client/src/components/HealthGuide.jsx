@@ -15,27 +15,35 @@ const HealthGuide = (props) => {
         <Container>
           <Row>
             <Col>
-              <Button variant="outline-dark" size="sm" block>
+            </Col>
+            <Col>
+              <Button variant="success" size="md" block href="/results/?practice=&doctor=&specialty=Family Medicine&location=&rating=">
                 Doctor
               </Button>
             </Col>
             <Col>
-              <Button variant="outline-dark" size="sm" block>
+              <Button variant="success" size="md" block href="/results/?practice=&doctor=&specialty=Dentistry&location=&rating=">
                 Dentist
               </Button>
+            </Col>
+            <Col>
             </Col>
           </Row>
           <br />
           <Row>
             <Col>
-              <Button variant="outline-dark" size="sm" block>
+            </Col>
+            <Col>
+              <Button variant="success" size="md" block href="/results/?practice=&doctor=&specialty=Chiropractic&location=&rating=">
                 Chiropractor
               </Button>
             </Col>
             <Col>
-              <Button variant="outline-dark" size="sm" block>
+              <Button variant="success" size="md" block href="/results">
                 More...
               </Button>
+            </Col>
+            <Col>
             </Col>
           </Row>
         </Container>
