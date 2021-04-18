@@ -42,7 +42,6 @@ const AdminDashboard = (props) => {
         <TopNavBar />
         <Container>
           <h1>Admin Dashboard</h1>
-          {process.env.REACT_APP_REVIEW_URL}
           <SendReviewLinks />
           <DisplayAllReviews />
         </Container>
