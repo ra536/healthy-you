@@ -93,7 +93,6 @@ const App = () => {
           <Route path="/book-appointment" component={Appointment} />
           <Route exact path="/category/Blog" component={Blog} />
           <Route path="/category/:id" component={ArticleCategory} />
-          <Route path="/admin-dashboard" component={AdminDashboard} />
           <Route path="/reviewSuccess" component={ReviewSuccess} />
         </Switch>
       </div>
