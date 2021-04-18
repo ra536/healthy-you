@@ -162,9 +162,6 @@ const Home = () => {
           <br />
           <HomeSideBar />
           <br />
-          <br />
-          <br />
-          <br />
         </Container>
 
         <AdBreak />

@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Media } from "react-bootstrap";
+import { Row, Col, Media, Card } from "react-bootstrap";
 import ad250 from "./ads/ad250.jpg";
 import magazine from "./magazines/magazine.jpg";
 import "bootstrap/dist/css/bootstrap.css";
@@ -7,6 +7,25 @@ import "bootstrap/dist/css/bootstrap.css";
 const HomeSideBar = (props) => {
   return (
     <>
+     <Card border="" style={{ width: '18rem' }}>
+    <Card.Body>
+      <Row>
+        <Col>
+        <div>
+          <iframe
+            title="Title"
+            allowFullScreen
+            height="200"
+            width= "250"
+            scrolling="no"
+            frameBorder="0"
+            style={{ border: "none" }}
+            src="https://www.wevideo.com/api/4/media/1921444596/embed"
+          >
+          </iframe>
+        </div>
+        </Col>
+      </Row>
       <Row>
         <Col>
           <img src={ad250} alt="ad250" width={250} height={250} mode="fit" />
@@ -75,8 +94,9 @@ const HomeSideBar = (props) => {
           <img src={ad250} alt="ad250" width={250} height={250} mode="fit" />
         </Col>
       </Row>
-      <br></br>
-      <br></br>
+
+      </Card.Body>
+  </Card>
     </>
   );
 };
