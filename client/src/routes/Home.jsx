@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Carousel, Card, Image } from "react-bootstrap";
 import ArticleAPI from "../apis/ArticleAPI";
-
+import food_pic from "./food_pic_front.jpg";
 // bootstrap styles library (gives automatic styling)
 import "bootstrap/dist/css/bootstrap.css";
 import TopNavBar from "../components/TopNavBar";
@@ -12,7 +12,7 @@ import HomeSideBar from "../components/HomeSideBar";
 import TopFeaturedAds from "../components/TopFeaturedAds";
 import AdBreak from "../components/AdBreak";
 import CategoryCarousel from "../components/CategoryCarousel";
-
+import foodpic2 from './food_pic_front.jpg';
 const Home = () => {
   // Store the data retrieved from backend API into context
   const { loggedIn, role } = useContext(AuthContext);
@@ -53,49 +53,37 @@ const Home = () => {
                     } */}
         <TopNavBar />
         <TopFeaturedAds />
-        <br />
-        <Container id="article-highlights">
-          <Row>
-            <Col>
-              <ArticleComponent
-                article={featuredArticle}
-                writer={featuredAuthor}
-                type="featured-large"
-              />
-            </Col>
-          </Row>
-          <br />
-          <br />
-
-          <Row>
-            <Col>
-              <ArticleComponent
-                article={featuredArticle}
-                writer={featuredAuthor}
-                type="featured-small"
-              />
-            </Col>
-
-            <Col>
-              <ArticleComponent
-                article={featuredArticle}
-                writer={featuredAuthor}
-                type="featured-small"
-              />
-            </Col>
-            <Col>
-              <ArticleComponent
-                article={featuredArticle}
-                writer={featuredAuthor}
-                type="featured-small"
-              />
-            </Col>
-          </Row>
-        </Container>
-        <br />
-
+            <div align="center" display="inline">
+            <Carousel
+              interval={10000}
+              style={{ width: "500px", display: "inline-block" }}
+            >
+            <Carousel.Item>
+                  <ArticleComponent
+                    article={featuredArticle}
+                    writer={featuredAuthor}
+                    type="featured-small"
+                  />
+            </Carousel.Item>
+            <Carousel.Item>
+                  <ArticleComponent
+                    article={featuredArticle}
+                    writer={featuredAuthor}
+                    type="featured-small"
+                  />
+            </Carousel.Item>
+                  <ArticleComponent
+                    article={featuredArticle}
+                    writer={featuredAuthor}
+                    type="featured-small"
+                  />
+            </Carousel>
+            </div>
+        <div align = "center">
+        <Image src={foodpic2} width={1504} height={1000}fluid/>
+        </div>
         <HealthGuide />
-
+               
         <Container
           id="Latest Articles"
           style={{ width: "65%", display: "inline-block" }}
@@ -170,33 +158,42 @@ const Home = () => {
 
         <AdBreak />
 
-        <br />
-        <div style={{ backgroundColor: "#F8F8F8" }}>
+        <br />       
+
+          <hr/>
           <CategoryCarousel
             article={featuredArticle}
             writer={featuredAuthor}
             category="Health"
           />
-          <hr />
+        
+          
           <CategoryCarousel
             article={featuredArticle}
             writer={featuredAuthor}
             category="Wellness"
           />
-          <hr />
+          <hr/>
+
+          <hr/>
+          <div>
+            <Row>
+              <Col>
           <CategoryCarousel
             article={featuredArticle}
             writer={featuredAuthor}
             category="Fitness"
           />
-          <hr />
+              </Col>
+            </Row>
+          </div>
           <CategoryCarousel
             article={featuredArticle}
             writer={featuredAuthor}
             category="Food"
           />
-        </div>
-
+          <hr/>
+        
         <AdBreak />
         <div align="center">
           <iframe

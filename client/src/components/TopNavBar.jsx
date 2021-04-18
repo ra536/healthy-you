@@ -101,7 +101,7 @@ const TopNavBar = () => {
           </Navbar.Collapse>
         </Navbar>
         <br />
-        <br />
+
       </div>
     </>
   );
