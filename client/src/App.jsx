@@ -4,36 +4,6 @@ import { AppContextProvider } from "./context/AppContext";
 import Home from "./routes/Home";
 import DoctorDashboard from "./routes/DoctorDashboard";
 import Review from "./routes/Review";
-<<<<<<< HEAD
-import Appointments from "./routes/Appointments";
-import Register from './routes/Register'
-import Blog from "./routes/Blog";
-import DoctorProfile from "./routes/DoctorProfile";
-import DoctorReview from "./routes/DoctorReview";
-
-const App = () => {
-    return (
-        <AppContextProvider>
-            <div>
-                <Router>
-                    <Switch>
-                        <Route exact path="/" component={ Home }/>
-                        <Route exact path="/register" component = { Register }/>
-                        <Route exact path="/doctor-dashboard/:doctorID" component = { DoctorDashboard }>
-                        </Route>
-                        <Route exact path="/doctor" component={ DoctorProfile }/>
-						<Route exact path="/DoctorReview" component={ DoctorReview }/>
-                        <Route path="/leaveReview/:id">
-                            <Review url={window.location.href}/>
-                        </Route>
-                        <Route exact path="/appt" component={ Appointments }/>
-                        <Route exact path="/blog" component={ Blog }/>
-                    </Switch>
-                </Router>
-            </div>
-        </AppContextProvider>
-    )
-=======
 import Registration from "./routes/Registration";
 import WriterDashboard from "./routes/WriterDashboard";
 import Article from "./routes/Article";
@@ -126,7 +96,6 @@ const App = () => {
       </div>
     </AppContextProvider>
   );
->>>>>>> 29d3bb3d682f59d055ab064826a13712bf936a12
 };
 
 export default App;

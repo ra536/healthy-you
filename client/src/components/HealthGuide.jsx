@@ -15,12 +15,12 @@ const HealthGuide = (props) => {
         <Container>
           <Row>
             <Col>
-              <Button variant="outline-dark" size="sm" block>
+              <Button variant="success" size="sm" block >
                 Doctor
               </Button>
             </Col>
             <Col>
-              <Button variant="outline-dark" size="sm" block>
+              <Button variant="success" size="sm" block>
                 Dentist
               </Button>
             </Col>
@@ -28,12 +28,12 @@ const HealthGuide = (props) => {
           <br />
           <Row>
             <Col>
-              <Button variant="outline-dark" size="sm" block>
+              <Button variant="success" size="sm" block>
                 Chiropractor
               </Button>
             </Col>
             <Col>
-              <Button variant="outline-dark" size="sm" block>
+              <Button variant="success" size="sm" block>
                 More...
               </Button>
             </Col>

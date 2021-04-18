@@ -7,6 +7,7 @@ import "moment-timezone";
 import TopNavBar from "../components/TopNavBar";
 import SocialShareButtons from "../components/SocialShareButtons";
 import "bootstrap/dist/css/bootstrap.css";
+import HomeSideBar from "../components/HomeSideBar";
 
 const Article = (props) => {
   let { id } = useParams();
@@ -56,7 +57,10 @@ const Article = (props) => {
     // Return different webpage, depending on the validity of the ID provided
     <>
       <TopNavBar />
-      <Container>
+      <Container
+      id="Latest Articles"
+      style={{  width: "65%", display: "inline-block"  }}
+      >
         <h1>{headline}</h1>
         Category: <a href={"/category/" + category}>{category}</a>
         <br />
@@ -82,6 +86,17 @@ const Article = (props) => {
         <br />
         <br />
       </Container>
+      <Container
+          id="Right Sidebar"
+          style={{ width: "35%", display: "inline-block" }}
+        >
+          <br />
+          <HomeSideBar />
+          <br />
+          <br />
+          <br />
+          <br />
+        </Container>
     </>
   );
 };

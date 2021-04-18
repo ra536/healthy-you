@@ -15,16 +15,6 @@ require("dotenv").config();
 
 const app = express();
 
-<<<<<<< HEAD
-/*
-const db = require("./app/models");
-db.sequelize.sync();
-*/
-
-var corsOptions = {
-  origin: "http://localhost:8081"
-};
-=======
 // Allows for two different domains to interact
 const corsOptions = {
   origin: "http://localhost:3000",
@@ -32,7 +22,6 @@ const corsOptions = {
   optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
->>>>>>> 29d3bb3d682f59d055ab064826a13712bf936a12
 
 if (process.env.NODE_ENV === "production") {
   // server static content
