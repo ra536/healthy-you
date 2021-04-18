@@ -13,6 +13,16 @@ router.use(express.json());
 // UPDATE bio and maybe appointments, profile pictures
 // DELETE specialties, practices, appointments,
 
+router.post("/findAll", async (req, res) => {
+  const allDoctors = await doctor.findAll({
+    attributes: ['doctor_name', 'doctor_id']
+  });
+  res.status(200).json({
+    status: "success",
+    data: allDoctors,
+  })
+})
+
 router.post("/findOne", async (req, res) => {
   try {
     const doctorResult = await doctor.findOne({
@@ -35,8 +45,12 @@ router.post("/findOne", async (req, res) => {
         phone: doctorResult.phone,
         profile_picture: doctorResult.profile_picture,
         rating: doctorResult.rating,
+        wait_time: doctorResult.wait_time,
+        bedside: doctorResult.bedside,
+        availability: doctorResult.availability,
         specialty: doctorResult.specialty,
         state: doctorResult.state,
+        num_ratings: doctorResult.num_ratings,
       },
     });
   } catch (err) {

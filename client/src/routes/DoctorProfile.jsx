@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DoctorAPI from "../apis/DoctorAPI";
 import PracticeAPI from "../apis/PracticeAPI";
+import ReviewAPI from "../apis/ReviewAPI";
 
 import { useParams } from "react-router-dom";
 import {
@@ -13,7 +14,20 @@ import {
   Accordion,
   ListGroup,
 } from "react-bootstrap";
-import fivestar from "./fivestar.png";
+import fivestar from "./stars/FiveStar.png";
+import fourhstar from "./stars/FourHStar.png";
+import fourstar from "./stars/FourStar.png";
+import threehstar from "./stars/ThreeHStar.png";
+import threestar from "./stars/ThreeStar.png";
+import twohstar from "./stars/TwoHStar.png";
+import twostar from "./stars/TwoStar.png";
+import onehstar from "./stars/OneHStar.png";
+import onestar from "./stars/OneStar.png";
+import hstar from "./stars/HStar.png";
+import star from "./stars/Star.png";
+
+import Moment from "react-moment";
+import "moment-timezone";
 
 // import axios from "axios";
 import TopNavBar from "../components/TopNavBar";
@@ -28,7 +42,40 @@ const DoctorProfile = (props) => {
   const [locations, setLocations] = useState([]);
   const [profilePicture, setProfilePicture] = useState();
   const [rating, setRating] = useState("");
+  const [bedside, setBedside] = useState("");
+  const [waitTime, setWaitTime] = useState("");
+  const [availability, setAvailability] = useState("");
+  const [numRatings, setNumRatings] = useState("");
   const [bio, setBio] = useState("");
+
+  const [reviews, setReviews] = useState([]);
+
+  const determineStars = (rating) => {
+    //alert(rating);
+    if(rating > 4.75){
+      return fivestar;
+    } else if (rating > 4.25 && rating <= 4.75){
+      return fourhstar;
+    } else if (rating > 3.75 && rating <= 4.25){
+      return fourstar;
+    } else if (rating > 3.25 && rating <= 3.75){
+      return threehstar;
+    } else if (rating > 2.75 && rating <= 3.25){
+      return threestar;
+    } else if (rating > 2.25 && rating <= 2.75){
+      return twohstar;
+    } else if (rating > 1.75 && rating <= 2.25){
+      return twostar;
+    } else if (rating > 1.25 && rating <= 1.75){
+      return onehstar;
+    } else if (rating > 0.75 && rating <= 1.25){
+      return onestar;
+    } else if (rating > 0.25 && rating <= 0.75){
+      return hstar;
+    } else {
+      return star;
+    }
+  }
 
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
@@ -52,6 +99,10 @@ const DoctorProfile = (props) => {
         setProfilePicture(response.data.data.profile_picture);
         setBio(response.data.data.bio);
         setRating(response.data.data.rating);
+        setBedside(response.data.data.bedside);
+        setWaitTime(response.data.data.wait_time);
+        setAvailability(response.data.data.availability);
+        setNumRatings(response.data.data.num_ratings);
       } catch (err) {
         console.log(err);
       }
@@ -68,6 +119,21 @@ const DoctorProfile = (props) => {
         console.log(practiceResponse.data.data);
         setLocations(practiceResponse.data.data);
       } catch (err) {
+        console.log(err);
+      }
+      try {
+        const allReviews = await ReviewAPI.post(
+          "/findAllForDoctor",
+          {
+            doctor_id: doctorID,
+          },
+          {
+            withCredentials: false,
+          }
+        );
+        console.log(allReviews.data.data);
+        setReviews(allReviews.data.data);
+      } catch (err){
         console.log(err);
       }
     };
@@ -153,12 +219,11 @@ const DoctorProfile = (props) => {
               <h3>
                 Overall Rating:
                 <br />
-                {/* {rating} TODO */}
-                5.0
+                {Number(rating).toFixed(1)}
               </h3>
             </div>
             <Image
-              src={fivestar}
+              src={determineStars(rating)}
               className="mx-auto d-block"
               style={{ width: "50%" }}
             />
@@ -166,23 +231,23 @@ const DoctorProfile = (props) => {
           <Col>
             <br />
             <div align="center">
-              Bedside Manner:
+              Bedside Manner: {Number(bedside).toFixed(1)}
               <Image
-                src={fivestar}
+                src={determineStars(bedside)}
                 className="mx-auto d-block"
                 style={{ width: "30%" }}
               />
               <br />
-              Average wait time:
+              Average wait time: {Number(waitTime).toFixed(1)}
               <Image
-                src={fivestar}
+                src={determineStars(waitTime)}
                 className="mx-auto d-block"
                 style={{ width: "30%" }}
               />
               <br />
-              Availability:
+              Availability: {Number(availability).toFixed(1)}
               <Image
-                src={fivestar}
+                src={determineStars(availability)}
                 className="mx-auto d-block"
                 style={{ width: "30%" }}
               />
@@ -211,36 +276,62 @@ const DoctorProfile = (props) => {
             <Card>
               <Card.Header className="text-center">
                 <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                  More Reviews
+                  Read More ({numRatings} reviews)
                 </Accordion.Toggle>
               </Card.Header>
               <Accordion.Collapse eventKey="0">
                 <Card.Body>
-                  <blockquote className="blockquote mb-0 text-center">
-                    <p>
-                      {" "}
-                      "Doctor Farhad really helped me to regain my beauty after
-                      my surgery. He was really understanding and catered to me.
-                      The staff was also very friendly."{" "}
-                    </p>
-                    <footer className="blockquote-footer text-center">
-                      Cynthia C. <cite title="Source Title"></cite>
-                    </footer>
-                  </blockquote>
-                  <br></br>
-                  <br></br>
-                  <blockquote className="blockquote mb-0 text-center">
-                    <p>
-                      {" "}
-                      "I needed to find a reliable doctor for my cosmetic
-                      surgery, my friends recommended Dr. Farhad, and I can not
-                      recommend him enough! Procedure was swift and my
-                      appointment was quick."{" "}
-                    </p>
-                    <footer className="blockquote-footer text-center">
-                      Jessica J.<cite title="Source Title"></cite>
-                    </footer>
-                  </blockquote>
+                  {reviews.map((review) => {
+                    return (
+                      <blockquote className="blockquote mb-0 text-center">
+                      <Container>
+                        <Row>
+                          <Col>
+                          <span>Overall rating:</span>
+                            <Image
+                                src={determineStars(review.overall_rating)}
+                                className="mx-auto d-block"
+                                style={{ height: "2em" }}
+                              />
+                          </Col>
+                          <Col>
+                            <span>Bedside manner:</span>
+                            <Image
+                                src={determineStars(review.bedside_manner)}
+                                className="mx-auto d-block"
+                                style={{ height: "2em" }}
+                              />
+                          </Col>
+                          <Col><span>Wait Time:</span>
+                            <Image
+                                src={determineStars(review.wait_time)}
+                                className="mx-auto d-block"
+                                style={{ height: "2em" }}
+                              />
+                          </Col>
+                          <Col>
+                            <span>Availability:</span>
+                            <Image
+                                src={determineStars(review.availability)}
+                                className="mx-auto d-block"
+                                style={{ height: "2em" }}
+                              />
+                          </Col>
+                        </Row>
+                      </Container>
+                      
+                        <br/>
+                      <p>
+                        {" "}
+                        "{review.full_review}"{" "}
+                      </p>
+                      <footer className="blockquote-footer text-center">
+                        {review.name} (<Moment format="MM/DD/YYYY">{review.publication_date}</Moment>)
+                      </footer>
+                      <hr />
+                    </blockquote>
+                    );
+                  })}
                 </Card.Body>
               </Accordion.Collapse>
             </Card>

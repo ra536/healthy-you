@@ -6,7 +6,7 @@ const path = require("path");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const flash = require("express-flash");
 const user = require("./db/models/user");
 const doctor = require("./db/models/doctor");
@@ -161,6 +161,7 @@ app.use("/api/v1/writer", require("./routes/writer"));
 app.use("/api/v1/search", require("./routes/search"));
 app.use("/api/v1/register/", require("./routes/register"));
 app.use("/api/v1/login/", require("./routes/login"));
+app.use("/api/v1/review", require("./routes/review"));
 
 // app.use("/api/v1/image", require('./routes/image'));
 

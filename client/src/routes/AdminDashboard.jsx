@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import UserAPI from "../apis/UserAPI";
 import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import TopNavBar from "../components/TopNavBar";
+import SendReviewLinks from "../components/SendReviewLinks";
+import DisplayAllReviews from "../components/DisplayAllReviews";
+import { AdminContextProvider } from "../context/AdminContext";
+require("dotenv").config();
+const nodemailer = require("nodemailer");
 
 const AdminDashboard = (props) => {
   let { adminID } = useParams();
@@ -33,14 +38,14 @@ const AdminDashboard = (props) => {
 
   return (
     <>
-      <TopNavBar />
-      <Container>
-        <h1>Admin Dashboard</h1>
-        <br />
-        <h1>Admin ID:</h1>
-        {id}
-        <br />
-      </Container>
+      <AdminContextProvider>
+        <TopNavBar />
+        <Container>
+          <h1>Admin Dashboard</h1>
+          <SendReviewLinks />
+          <DisplayAllReviews />
+        </Container>
+      </AdminContextProvider>
     </>
   );
 };

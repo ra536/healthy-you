@@ -1,10 +1,12 @@
-"use strict";
+'use strict';
 
 var { Sequelize, DataTypes } = require("sequelize");
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    queryInterface.addColumn('doctors', 'bedside', {type: DataTypes.DECIMAL})
+    queryInterface.addColumn('doctors', 'num_ratings', {
+      type: DataTypes.INTEGER,
+    })
   },
 
   down: async (queryInterface, Sequelize) => {

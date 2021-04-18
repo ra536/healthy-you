@@ -6,6 +6,7 @@ import DoctorDashboard from "./routes/DoctorDashboard";
 import Review from "./routes/Review";
 import Registration from "./routes/Registration";
 import WriterDashboard from "./routes/WriterDashboard";
+import AdminDashboard from "./routes/AdminDashboard";
 import Article from "./routes/Article";
 import Login from "./routes/Login";
 import Search from "./routes/Search";
@@ -17,8 +18,8 @@ import { AuthContext } from "./context/AuthContext";
 import LoginAPI from "./apis/LoginAPI";
 import Appointment from "./routes/Appointment";
 import ArticleCategory from "./routes/Category";
+import ReviewSuccess from "./routes/ReviewSuccess";
 import Blog from "./routes/Blog";
-import AdminDashboard from "./routes/AdminDashboard";
 import UserDashboard from "./routes/UserDashboard";
 
 const App = () => {
@@ -92,6 +93,8 @@ const App = () => {
           <Route path="/book-appointment" component={Appointment} />
           <Route exact path="/category/Blog" component={Blog} />
           <Route path="/category/:id" component={ArticleCategory} />
+          <Route path="/admin-dashboard" component={AdminDashboard} />
+          <Route path="/reviewSuccess" component={ReviewSuccess} />
         </Switch>
       </div>
     </AppContextProvider>
