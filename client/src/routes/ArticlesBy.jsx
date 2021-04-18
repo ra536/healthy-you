@@ -9,7 +9,7 @@ import TopNavBar from "../components/TopNavBar";
 
 
 const Author = () => {
-    let { id } = useParams();
+    let { id, count } = useParams();
 
     const [articles, setArticles] = useState([]);
     useEffect(() => {
@@ -17,6 +17,7 @@ const Author = () => {
             try {
                 const response = await ArticleAPI.post("/author",{
                     article_id: id,
+                    numOfArticles: count,
                 });
                 
                 console.log("response:", response.data.data);

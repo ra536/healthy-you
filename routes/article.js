@@ -2,6 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 const multer = require("multer");
+const { array } = require("yup/lib/locale");
 const articles = require("../db/models/article.js");
 const writer = require("../db/models/writer.js");
 // var upload = multer({ dest: './uploads' })
@@ -70,18 +71,6 @@ router.post("/find", async (req, res) => {
       raw: true,
     });
     
-
-    
-    // testResults[0].update({
-    //   page_views: +1,
-    // }).then(function(){})
-
-    // console.log("test results", testResults[0].page_views);
-    // console.log("article views", testResults[0].page_views);
-    // testResults[0].page_views += 1
-    // console.log("article views", testResults[0].page_views);
-    // await testResults.save().then(function() {});
-
     const writerResult = await writer.findByPk(testResults[0].writer_id);
     console.log("writer results", writerResult);
     
@@ -309,9 +298,38 @@ router.post("/category", async (req, res) => {
   }
 });
 
+
+router.post("/latest", async (req, res) => {
+  try {
+    const count = req.body.numOfArticles;
+    console.log(req.body);
+    console.log("got here1")
+    const results = await articles.findAndCountAll({
+      raw: true,
+    });
+    console.log("got here2")
+    const skip = results.count - count;
+
+    console.log("count: ", skip)
+    console.log("got here3")
+    const articleResults = await articles.findAll({
+      offset: skip,
+      raw: true,
+    })
+
+    res.status(200).json({
+      status: "success",
+      data: articleResults,
+    });
+
+  } catch (error) {
+    console.log(error.message);
+  }
+});
 router.post("/author", async (req, res) => {
   try {
     const id = req.body.article_id;
+    const count = req.body.numOfArticles;
     console.log(req.body);
 
     const results = await articles.findOne({
@@ -326,7 +344,8 @@ router.post("/author", async (req, res) => {
     const articleResults = await articles.findAll({
       where: {
         writer_id: writer,
-      }
+      },
+      limit: count,
     })
 
     console.log(articleResults)
@@ -343,6 +362,7 @@ router.post("/author", async (req, res) => {
 router.post("/sameCategory", async (req, res) => {
   try {
     const id = req.body.article_id;
+    const count = req.body.numOfArticles;
     console.log(req.body);
 
     const results = await articles.findOne({
@@ -357,9 +377,11 @@ router.post("/sameCategory", async (req, res) => {
     const articleResults = await articles.findAll({
       where: {
         category: category,
-      }
+      },
+      limit: count,
     })
 
+    
     console.log(articleResults)
 
     res.status(200).json({
@@ -371,26 +393,5 @@ router.post("/sameCategory", async (req, res) => {
   }
 });
 
-router.post("/pageView", async (req, res) => {
-  try {
-    const id = req.body.id;
-    console.log(req.body);
-
-    const articleResults = await articles.findByPk(req.body.id);
-
-    console.log(articleResults);
-    articleResults.page_views += 1
-    await articleResults.save();
-
-    res.status(200).json({
-      status: "success",
-      data: {
-        page_views: req.body.page_views,
-      },
-    });
-  } catch (error) {
-    console.log(error.message);
-  }
-});
 
 module.exports = router;

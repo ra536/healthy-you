@@ -20,7 +20,7 @@ const Article = (props) => {
   const [publishDate, setPublishDate] = useState("");
   const [author, setAuthor] = useState("");
   const [writerID, setWriterID] = useState(null);
-  const [numViews, setNumViews] = useState(0);
+
 
   const link =
     "https://healthy-you-project.herokuapp.com/article/87918716-f71f-4548-aea3-ad0496d44c9a";
@@ -33,10 +33,6 @@ const Article = (props) => {
           article_id: id,
         });
 
-        const views = await ArticleAPI.post("/pageView",{
-          id: id,
-        });
-        console.log("data", views.data.data[0])
         setHeadline(response.data.data[0].headline);
         setCategory(response.data.data[0].category);
         setSummary(response.data.data[0].summary);
@@ -44,7 +40,6 @@ const Article = (props) => {
         setImage(response.data.data[0].image_data);
         setCaption(response.data.data[0].image_caption);
         setPublishDate(response.data.data[0].createdAt);
-        setNumViews(response.data.data[0].page_views);
         setAuthor(
           response.data.writer.firstName + " " + response.data.writer.lastName
         );
@@ -65,7 +60,6 @@ const Article = (props) => {
       <TopNavBar />
       <Container>
         <h1>{headline}</h1>
-        <h5>number of views: {numViews} </h5>
         Category: <a href={"/category/" + category}>{category}</a>
         <br />
         <br />

@@ -48,10 +48,6 @@ const article = db.define(
       type: DataTypes.UUID,
       allowNull: false,
     },
-    page_views: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0,
-    },
   },
   { underscored: true }
 );

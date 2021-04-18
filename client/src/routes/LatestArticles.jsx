@@ -7,16 +7,14 @@ import "bootstrap/dist/css/bootstrap.css";
 import ArticleComponent from "../components/ArticleComponent";
 import TopNavBar from "../components/TopNavBar";
 
-
-const Category = () => {
-    let { id, count } = useParams();
+const LatestArticles = () => {
+    let { count } = useParams();
 
     const [articles, setArticles] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await ArticleAPI.post("/sameCategory",{
-                    article_id: id,
+                const response = await ArticleAPI.post("/latest",{
                     numOfArticles: count,
                 });
                 
@@ -31,35 +29,34 @@ const Category = () => {
         fetchData();
     }, []);
 
-
-  return(
-      <>
+    return(
+        <>
         <TopNavBar />
         <Container>
-          <div align="center">
-            <h1>{id} </h1>
-          </div>
-          <br />
+            <div align="center">
+            <h1> Latest Articles </h1>
+            </div>
+            <br />
 
-          {articles.map((article) => {
+            {articles.map((article) => {
             return (
-              <>
+                <>
                 <hr />
                 <Row>
-                  <ArticleComponent
+                    <ArticleComponent
                     article={article}
                     writer="Anonymous Writer"
                     type="horizontal"
-                  />
-                  {/* {getAuthorName(article.writer_id)} */}
+                    />
+                    {/* {getAuthorName(article.writer_id)} */}
                 </Row>
-              </>
+                </>
             );
-          })}
+            })}
         </Container>
-      </>
-  );
+        </>
+    );
 
 };
 
-export default Category;
+export default LatestArticles;
