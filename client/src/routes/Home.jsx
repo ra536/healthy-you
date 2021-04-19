@@ -27,6 +27,9 @@ const Home = () => {
   const [featuredArticle2, setFeaturedArticle2] = useState("");
   const [featuredAuthor2, setFeaturedAuthor2] = useState("");
 
+  const [featuredArticle3, setFeaturedArticle3] = useState("");
+  const [featuredAuthor3, setFeaturedAuthor3] = useState("");
+
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
     const fetchData = async () => {
@@ -45,6 +48,16 @@ const Home = () => {
         console.log(response.data.data);
         setFeaturedArticle2(response.data.data);
         setFeaturedAuthor2(
+          response.data.writer.firstName + " " + response.data.writer.lastName
+        );
+      } catch (err) {
+        console.log(err);
+      }
+      try {
+        const response = await ArticleAPI.get("/random");
+        console.log(response.data.data);
+        setFeaturedArticle3(response.data.data);
+        setFeaturedAuthor3(
           response.data.writer.firstName + " " + response.data.writer.lastName
         );
       } catch (err) {
@@ -105,8 +118,21 @@ const Home = () => {
                 </div>
                 <br />
               </Link>
-              
-              
+            </Carousel.Item>
+
+            <Carousel.Item>
+              <Link to={"/article/" + featuredArticle3.article_id}
+              style={{ textDecoration: "none", color: "black" }}>
+              <img src={featuredArticle3.image_data} width="100%"/>
+              <Carousel.Caption>
+                
+              </Carousel.Caption>
+              <div backgroundColor="black">
+                  <h1>{featuredArticle3.headline}</h1>
+                  <p>{featuredArticle3.summary}</p>
+                </div>
+                <br />
+              </Link>
             </Carousel.Item>
             </Carousel>
         </div>
