@@ -10,7 +10,7 @@ require("dotenv").config();
 const ArticleComponent = (props) => {
   const componentType = props.type;
   const articleInfo = props.article;
-  const writerInfo = props.writer;
+  // const writerInfo = props.writer;
   const link =
     "https://healthy-you-project.herokuapp.com/article/87918716-f71f-4548-aea3-ad0496d44c9a";
 
@@ -79,15 +79,6 @@ const ArticleComponent = (props) => {
             <h4>{articleInfo.headline}</h4>
 
             {articleInfo.summary}
-
-            <br />
-            <small className="text-muted">
-              {writerInfo} |{" "}
-              <Moment format="dddd MMMM Do, YYYY">
-                {articleInfo.createdAt}
-              </Moment>
-            </small>
-            <br />
           </Link>
         </Col>
       </>

@@ -22,6 +22,7 @@ const Article = (props) => {
   const [author, setAuthor] = useState("");
   const [writerID, setWriterID] = useState(null);
 
+
   const link =
     "https://healthy-you-project.herokuapp.com/article/87918716-f71f-4548-aea3-ad0496d44c9a";
 
@@ -32,6 +33,7 @@ const Article = (props) => {
         const response = await ArticleAPI.post("/find", {
           article_id: id,
         });
+
         setHeadline(response.data.data[0].headline);
         setCategory(response.data.data[0].category);
         setSummary(response.data.data[0].summary);

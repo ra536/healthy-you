@@ -30,6 +30,8 @@ const Home = () => {
   const [featuredArticle3, setFeaturedArticle3] = useState("");
   const [featuredAuthor3, setFeaturedAuthor3] = useState("");
 
+  const [latestArticles, setLatestArticles] = useState([]);
+
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
     const fetchData = async () => {
@@ -60,6 +62,15 @@ const Home = () => {
         setFeaturedAuthor3(
           response.data.writer.firstName + " " + response.data.writer.lastName
         );
+      } catch (err) {
+        console.log(err);
+      }
+      try {
+        const response = await ArticleAPI.post("/latest", {
+          numOfArticles: 6,
+        });
+        console.log(response.data.data);
+        setLatestArticles(response.data.data);
       } catch (err) {
         console.log(err);
       }
@@ -149,64 +160,21 @@ const Home = () => {
           <div align="left">
             <h2>The Latest</h2>
           </div>
+          
+          {latestArticles.map((article) => {
+            return (
+              <>
+              <Row>
+              <ArticleComponent
+                article={article}
+                type="horizontal"
+              />
+            </Row>
 
-          <Row>
-            <ArticleComponent
-              article={featuredArticle}
-              writer={featuredAuthor}
-              type="horizontal"
-            />
-          </Row>
-
-          <hr />
-
-          <Row>
-            <ArticleComponent
-              article={featuredArticle}
-              writer={featuredAuthor}
-              type="horizontal"
-            />
-          </Row>
-
-          <hr />
-
-          <Row>
-            <ArticleComponent
-              article={featuredArticle}
-              writer={featuredAuthor}
-              type="horizontal"
-            />
-          </Row>
-
-          <hr />
-
-          <Row>
-            <ArticleComponent
-              article={featuredArticle}
-              writer={featuredAuthor}
-              type="horizontal"
-            />
-          </Row>
-
-          <hr />
-
-          <Row>
-            <ArticleComponent
-              article={featuredArticle}
-              writer={featuredAuthor}
-              type="horizontal"
-            />
-          </Row>
-
-          <hr />
-
-          <Row>
-            <ArticleComponent
-              article={featuredArticle}
-              writer={featuredAuthor}
-              type="horizontal"
-            />
-          </Row>
+            <hr />
+            </>
+            );
+          })}
 
           <br />
         </Container>

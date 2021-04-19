@@ -21,6 +21,9 @@ import ArticleCategory from "./routes/Category";
 import ReviewSuccess from "./routes/ReviewSuccess";
 import Blog from "./routes/Blog";
 import UserDashboard from "./routes/UserDashboard";
+import Author from "./routes/ArticlesBy";
+import Category from "./routes/ArticleCategory";
+import LatestArticles from "./routes/LatestArticles";
 
 const App = () => {
   const { loggedIn, setLoggedIn, setRole, setId } = useContext(AuthContext);
@@ -95,6 +98,9 @@ const App = () => {
           <Route path="/category/:id" component={ArticleCategory} />
           <Route path="/admin-dashboard" component={AdminDashboard} />
           <Route path="/reviewSuccess" component={ReviewSuccess} />
+          <Route path="/author/:id/:count" component={Author}/>
+          <Route path="/sameCategory/:id/:count" component={Category}/>
+          <Route path="/LatestArticles/:count" component={LatestArticles}/>
         </Switch>
       </div>
     </AppContextProvider>
