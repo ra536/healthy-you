@@ -2,6 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 const multer = require("multer");
+const { array } = require("yup/lib/locale");
 const articles = require("../db/models/article.js");
 const writer = require("../db/models/writer.js");
 const { Sequelize } = require("sequelize");
@@ -73,8 +74,10 @@ router.post("/find", async (req, res) => {
       },
       raw: true,
     });
+    
     const writerResult = await writer.findByPk(testResults[0].writer_id);
-    console.log(writerResult);
+    console.log("writer results", writerResult);
+    
     res.status(200).json({
       status: "success",
       data: testResults,
@@ -298,5 +301,95 @@ router.post("/category", async (req, res) => {
     console.log(error.message);
   }
 });
+
+
+router.post("/latest", async (req, res) => {
+  try {
+    const count = req.body.numOfArticles;
+    const articleResults = await articles.findAll({
+      //offset: skip,
+      order: [
+        ["created_at", "DESC"]
+      ],
+      limit: count,
+      raw: true,
+    })
+
+    res.status(200).json({
+      status: "success",
+      data: articleResults,
+    });
+
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+router.post("/author", async (req, res) => {
+  try {
+    const id = req.body.article_id;
+    const count = req.body.numOfArticles;
+    console.log(req.body);
+
+    const results = await articles.findOne({
+      where: {
+        article_id: id,
+      },
+      raw: true,
+    });
+
+    const writer = results.writer_id;
+
+    const articleResults = await articles.findAll({
+      where: {
+        writer_id: writer,
+      },
+      limit: count,
+    })
+
+    console.log(articleResults)
+
+    res.status(200).json({
+      status: "success",
+      data: articleResults,
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+router.post("/sameCategory", async (req, res) => {
+  try {
+    const id = req.body.article_id;
+    const count = req.body.numOfArticles;
+    console.log(req.body);
+
+    const results = await articles.findOne({
+      where: {
+        article_id: id,
+      },
+      raw: true,
+    });
+
+    const category = results.category;
+
+    const articleResults = await articles.findAll({
+      where: {
+        category: category,
+      },
+      limit: count,
+    })
+
+    
+    console.log(articleResults)
+
+    res.status(200).json({
+      status: "success",
+      data: articleResults,
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 
 module.exports = router;
