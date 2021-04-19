@@ -201,7 +201,7 @@ const DoctorProfile = (props) => {
               })}
               <br />
               <Card.Title>Appointments</Card.Title>
-              <Button size="lg" block href="/book-appointment">
+              <Button size="lg" block href={"/book-appointment/" + doctorID}>
                 Book now
               </Button>
               <br />
@@ -345,7 +345,7 @@ const DoctorProfile = (props) => {
         <Col>
           <div align="center">
             <br />
-            <Button variant="primary" size="lg" href="/book-appointment">
+            <Button variant="primary" size="lg" href={"/book-appointment/" + doctorID}>
               Book Appointment Now
             </Button>
             <br />

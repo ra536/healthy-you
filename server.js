@@ -162,7 +162,7 @@ app.use("/api/v1/search", require("./routes/search"));
 app.use("/api/v1/register/", require("./routes/register"));
 app.use("/api/v1/login/", require("./routes/login"));
 app.use("/api/v1/review", require("./routes/review"));
-
+app.use("/api/v1/appointment", require('./routes/appointment'));
 // app.use("/api/v1/image", require('./routes/image'));
 
 // Code to upload/save files into 'uploads' folder -- maybe move this later

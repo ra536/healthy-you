@@ -1,8 +1,11 @@
 import React, { useEffect, useContext, useState } from "react";
 import DoctorAPI from "../apis/DoctorAPI";
-
+import AppointmentAPI from '../apis/AppointmentAPI';
+import ApptCalendar from '../components/ApptCalendar';
 import { AppContext } from "../context/AppContext";
 import { useParams } from "react-router-dom";
+import { withRouter } from "react-router";
+import { AuthContext } from "../context/AuthContext";
 import {
   Container,
   Table,
@@ -30,10 +33,71 @@ import axios from "axios";
 import TopNavBar from "../components/TopNavBar";
 
 const Appointment = (props) => {
+
+  const { loggedIn, role, id } = useContext(AuthContext);
+
   const [show, setShow] = useState(false);
+  const doctorID = props.location.pathname.split("/")[2];
+  const [selectedApptID, setApptID] = useState("");
+  // const [startDT, setStartDT] = useState("");
+  // const [endDT, setEndDT] = useState("");
+  // const [duration, setDurationInMin] = useState("");
+  const [reason, setReason] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+
+  const formatDT = (dt) => {
+    dt = new Date(dt);
+    return (Intl.DateTimeFormat("en-US", { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).format(dt));
+  }
+
+  const getApptID = async (appt_id) => {
+    console.log(appt_id);
+    setApptID(appt_id);
+    // try {
+    //   const response = await (AppointmentAPI.post("/getApptInfo", {
+    //       appointment_id: appt_id
+    //   }));
+    //   setStartDT(formatDT(response.data.data[0].start_time));
+    //   setEndDT(formatDT(response.data.data[0].end_time));
+      
+    //   var diff = new Date(response.data.data[0].end_time) - new Date(response.data.data[0].start_time); //in ms
+    //   diff = diff/1000;
+    //   diff = diff/60;
+    //   diff = Math.abs(Math.round(diff));
+    //   console.log(diff);
+    //   setDurationInMin(diff + " Minutes");
+    // }
+    // catch (err) {
+    //     console.log(err)
+    // }
+  }
+
+  const handleReasonChange = (data) => {
+    setReason(data.target.value);
+  }
+
+  const submitAppt = async () => {
+    if(loggedIn && selectedApptID != ""){
+      alert("success")
+      try {
+        if(loggedIn){
+          const response = await AppointmentAPI.put("/bookAppt", {
+            appointment_id: selectedApptID,
+            doctor_id: doctorID,
+            reason: reason,
+            user_id: id
+          }
+          );
+        }
+      }
+      catch (err) {
+          console.log(err)
+      }
+    }
+  }
 
   return (
     <div>
@@ -80,7 +144,7 @@ const Appointment = (props) => {
           <Form.Row>
             <Form.Group as={Col} controlId="formGridCity" xs={6}>
               <Form.Label>What's the reason for your visit?</Form.Label>
-              <Form.Control />
+              <Form.Control onChange={handleReasonChange}/>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridCity" xs={6}>
@@ -119,9 +183,8 @@ const Appointment = (props) => {
 
           <br />
         </Form>
-
         <Row>
-          <>
+        {/* <>
             <Col>
               <Button
                 variant="success"
@@ -262,10 +325,11 @@ const Appointment = (props) => {
                 </Modal.Footer>
               </Modal>
             </Col>
-          </>
+          </> */}
+          <ApptCalendar doctorID={doctorID} user_appt_selected={getApptID}/>
           <Col>
-            <div align="center">
-              <Button variant="success" type="submit" size="lg" block disabled>
+            <div style={{margin:20}} align="center">
+              <Button variant="success" type="submit" size="lg" onClick={submitAppt} href={"/doctor-profile/" + doctorID}>
                 Submit
               </Button>
               <br />

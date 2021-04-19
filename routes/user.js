@@ -69,4 +69,22 @@ router.post("/findOne", async (req, res) => {
   }
 });
 
+router.post("/getUser", async (req, res) => {
+  try {
+    const getUser = await user.findOne({
+      where: {
+        user_id: req.body.user_id
+      },
+      raw: true,
+    });
+    console.log(getUser);
+    res.status(200).json({
+      status: "success",
+      data: getUser,
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
 module.exports = router;
