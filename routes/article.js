@@ -5,7 +5,7 @@ const multer = require("multer");
 const { array } = require("yup/lib/locale");
 const articles = require("../db/models/article.js");
 const writer = require("../db/models/writer.js");
-const { Sequelize } = require("sequelize");
+const { Sequelize, Op } = require("sequelize");
 // var upload = multer({ dest: './uploads' })
 
 router.use(express.json());
@@ -342,6 +342,9 @@ router.post("/author", async (req, res) => {
     const articleResults = await articles.findAll({
       where: {
         writer_id: writer,
+        article_id: {
+          [Op.ne]: id,
+        }
       },
       limit: count,
     })
