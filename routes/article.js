@@ -302,6 +302,31 @@ router.post("/category", async (req, res) => {
   }
 });
 
+router.post("/numCategory", async (req, res) => {
+  try {
+    const name = req.body.category;
+    const num = req.body.num;
+    console.log(req.body);
+
+    const articleResults = await articles.findAll({
+      where: {
+        category: name,
+      },
+      limit: num,
+      raw: true,
+    });
+
+    console.log(articleResults);
+
+    res.status(200).json({
+      status: "success",
+      data: articleResults,
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 
 router.post("/latest", async (req, res) => {
   try {

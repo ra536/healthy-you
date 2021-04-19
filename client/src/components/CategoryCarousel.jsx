@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import ArticleComponent from "./ArticleComponent";
 import SocialShareButtons from "./SocialShareButtons";
+import ArticleAPI from "../apis/ArticleAPI";
 
 const CategoryCarousel = (props) => {
   // const articleInfo = props.article;
@@ -11,6 +12,27 @@ const CategoryCarousel = (props) => {
   const link =
     "https://healthy-you-project.herokuapp.com/article/87918716-f71f-4548-aea3-ad0496d44c9a";
 
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await ArticleAPI.post("/numCategory",{
+                    category: category,
+                    num: 3,
+                });
+                
+                console.log("response:", response.data.data);
+
+                setArticles(response.data.data);
+                
+            } catch (error) {
+                console.log(error)
+            }
+        };
+        fetchData();
+    }, []);
+  
   return (
     <Container id="health">
       <br />
@@ -19,29 +41,16 @@ const CategoryCarousel = (props) => {
       </div>
       <br />
       <Row>
-        <Col>
-          <ArticleComponent
-            article={props.article}
-            writer={props.writer}
-            type="carousel"
-          />
-        </Col>
-
-        <Col>
-          <ArticleComponent
-            article={props.article}
-            writer={props.writer}
-            type="carousel"
-          />
-        </Col>
-
-        <Col>
-          <ArticleComponent
-            article={props.article}
-            writer={props.writer}
-            type="carousel"
-          />
-        </Col>
+        {articles.map((article) => {
+          return (
+            <Col>
+              <ArticleComponent
+                article={article}
+                type="carousel"
+              />
+            </Col>
+          );
+        })}
       </Row>
 
       <br />
