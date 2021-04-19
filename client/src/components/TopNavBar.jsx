@@ -47,7 +47,7 @@ const TopNavBar = () => {
         <Navbar bg="light" variant="light" expand="lg">
           <Navbar.Brand>
             <Nav.Link href="/">
-              <Image vertical-align="top" height="50px" src={hwf_logo} />
+              <Image vertical-align="top" height="100px" src={hwf_logo} />
             </Nav.Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -86,21 +86,26 @@ const TopNavBar = () => {
           </Navbar.Collapse>
           <br />
         </Navbar>
-        <Navbar bg="dark" variant="dark" expand="lg">
+        <Navbar bg="primary" variant="light" expand="lg">
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="m-auto">
-              <Nav.Link href="/category/Food">Food</Nav.Link>
-              <Nav.Link href="/category/Nutrition">Nutrition</Nav.Link>
-              <Nav.Link href="/category/Health">Health</Nav.Link>
-              <Nav.Link href="/category/Language">Language</Nav.Link>
-              <Nav.Link href="/category/Covid-19">Covid-19</Nav.Link>
-              <Nav.Link href="/category/News">News</Nav.Link>
-              <Nav.Link href="/category/Exercise">Exercise</Nav.Link>
+              <Nav.Link style={{color: "#fff"}} href="/category/Food"><b>Food</b></Nav.Link>
+              <Nav.Link href=""></Nav.Link>
+              <Nav.Link style={{color: "#fff"}} href="/category/Nutrition"><b>Nutrition</b></Nav.Link>
+              <Nav.Link href=""></Nav.Link>
+              <Nav.Link style={{color: "#fff"}} href="/category/Health"><b>Health</b></Nav.Link>
+              <Nav.Link href=""></Nav.Link>
+              <Nav.Link style={{color: "#fff"}} href="/category/Wellness"><b>Wellness</b></Nav.Link>
+              <Nav.Link href=""></Nav.Link>
+              <Nav.Link style={{color: "#fff"}} href="/category/Covid-19"><b>Covid-19</b></Nav.Link>
+              <Nav.Link href=""></Nav.Link>
+              <Nav.Link style={{color: "#fff"}} href="/category/News"><b>News</b></Nav.Link>
+              <Nav.Link href=""></Nav.Link>
+              <Nav.Link style={{color: "#fff"}} href="/category/Exercise"><b>Exercise</b></Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <br />
         <br />
       </div>
     </>

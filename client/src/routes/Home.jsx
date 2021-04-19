@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Carousel, Card, Image } from "react-bootstrap";
 import ArticleAPI from "../apis/ArticleAPI";
 
 // bootstrap styles library (gives automatic styling)
@@ -13,12 +13,22 @@ import TopFeaturedAds from "../components/TopFeaturedAds";
 import AdBreak from "../components/AdBreak";
 import CategoryCarousel from "../components/CategoryCarousel";
 
+import food_pic from "./food_pic_front.jpg";
+import food_pic2 from "./food_pic_front.jpg";
+import { Link } from "react-router-dom";
+
 const Home = () => {
   // Store the data retrieved from backend API into context
   const { loggedIn, role } = useContext(AuthContext);
   //const { featuredArticles, setFeaturedArticles } = useContext(ArticleContext);
   const [featuredArticle, setFeaturedArticle] = useState("");
   const [featuredAuthor, setFeaturedAuthor] = useState("");
+
+  const [featuredArticle2, setFeaturedArticle2] = useState("");
+  const [featuredAuthor2, setFeaturedAuthor2] = useState("");
+
+  const [featuredArticle3, setFeaturedArticle3] = useState("");
+  const [featuredAuthor3, setFeaturedAuthor3] = useState("");
 
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
@@ -28,6 +38,26 @@ const Home = () => {
         console.log(response.data.data);
         setFeaturedArticle(response.data.data);
         setFeaturedAuthor(
+          response.data.writer.firstName + " " + response.data.writer.lastName
+        );
+      } catch (err) {
+        console.log(err);
+      }
+      try {
+        const response = await ArticleAPI.get("/random");
+        console.log(response.data.data);
+        setFeaturedArticle2(response.data.data);
+        setFeaturedAuthor2(
+          response.data.writer.firstName + " " + response.data.writer.lastName
+        );
+      } catch (err) {
+        console.log(err);
+      }
+      try {
+        const response = await ArticleAPI.get("/random");
+        console.log(response.data.data);
+        setFeaturedArticle3(response.data.data);
+        setFeaturedAuthor3(
           response.data.writer.firstName + " " + response.data.writer.lastName
         );
       } catch (err) {
@@ -53,45 +83,60 @@ const Home = () => {
                     } */}
         <TopNavBar />
         <TopFeaturedAds />
-        <br />
-        <Container id="article-highlights">
-          <Row>
-            <Col>
-              <ArticleComponent
-                article={featuredArticle}
-                writer={featuredAuthor}
-                type="featured-large"
-              />
-            </Col>
-          </Row>
-          <br />
-          <br />
+        <div align="center" display="inline">
+          <Carousel
+            interval={10000}
+            style={{ width: "80%", display: "inline-block" }}
+          >
+            <Carousel.Item>
+              <Link to={"/article/" + featuredArticle.article_id}
+              style={{ textDecoration: "none", color: "black" }}>
+              <img src={featuredArticle.image_data} width="100%"/>
+              <Carousel.Caption>
+                
+                
+              </Carousel.Caption>
+              <div backgroundColor="black">
+                <h1 color="black">{featuredArticle.headline}</h1>
+                <p>{featuredArticle.summary}</p>
+                </div>
+                <br />
+              </Link>
+              
+              
+            </Carousel.Item>
+            <Carousel.Item>
+              <Link to={"/article/" + featuredArticle2.article_id}
+              style={{ textDecoration: "none", color: "black" }}>
+              <img src={featuredArticle2.image_data} width="100%"/>
+              <Carousel.Caption>
+                
+              </Carousel.Caption>
+              <div backgroundColor="black">
+                  <h1>{featuredArticle2.headline}</h1>
+                  <p>{featuredArticle2.summary}</p>
+                </div>
+                <br />
+              </Link>
+            </Carousel.Item>
 
-          <Row>
-            <Col>
-              <ArticleComponent
-                article={featuredArticle}
-                writer={featuredAuthor}
-                type="featured-small"
-              />
-            </Col>
-
-            <Col>
-              <ArticleComponent
-                article={featuredArticle}
-                writer={featuredAuthor}
-                type="featured-small"
-              />
-            </Col>
-            <Col>
-              <ArticleComponent
-                article={featuredArticle}
-                writer={featuredAuthor}
-                type="featured-small"
-              />
-            </Col>
-          </Row>
-        </Container>
+            <Carousel.Item>
+              <Link to={"/article/" + featuredArticle3.article_id}
+              style={{ textDecoration: "none", color: "black" }}>
+              <img src={featuredArticle3.image_data} width="100%"/>
+              <Carousel.Caption>
+                
+              </Carousel.Caption>
+              <div backgroundColor="black">
+                  <h1>{featuredArticle3.headline}</h1>
+                  <p>{featuredArticle3.summary}</p>
+                </div>
+                <br />
+              </Link>
+            </Carousel.Item>
+            </Carousel>
+        </div>
+        
         <br />
 
         <HealthGuide />
@@ -153,6 +198,16 @@ const Home = () => {
             />
           </Row>
 
+          <hr />
+
+          <Row>
+            <ArticleComponent
+              article={featuredArticle}
+              writer={featuredAuthor}
+              type="horizontal"
+            />
+          </Row>
+
           <br />
         </Container>
 
@@ -162,9 +217,6 @@ const Home = () => {
         >
           <br />
           <HomeSideBar />
-          <br />
-          <br />
-          <br />
           <br />
         </Container>
 
@@ -198,20 +250,7 @@ const Home = () => {
         </div>
 
         <AdBreak />
-        <div align="center">
-          <iframe
-            title="Title"
-            allowFullScreen
-            height="200"
-            scrolling="no"
-            frameBorder="0"
-            style={{ border: "none" }}
-            src="https://www.wevideo.com/api/4/media/1921444596/embed"
-          >
-            {" "}
-          </iframe>
-        </div>
-        <Container></Container>
+        <br/>
       </div>
     </div>
   );
