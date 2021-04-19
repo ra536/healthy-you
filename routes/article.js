@@ -4,6 +4,7 @@ const router = express.Router();
 const multer = require("multer");
 const articles = require("../db/models/article.js");
 const writer = require("../db/models/writer.js");
+const { Sequelize } = require("sequelize");
 // var upload = multer({ dest: './uploads' })
 
 router.use(express.json());
@@ -45,6 +46,9 @@ router.post("/findWriter", async (req, res) => {
 router.get("/random", async (req, res) => {
   try {
     const randomResults = await articles.findOne({
+      order: [
+        Sequelize.fn('RANDOM'),
+      ],
       raw: true,
     });
     const writerResult = await writer.findByPk(randomResults.writer_id);

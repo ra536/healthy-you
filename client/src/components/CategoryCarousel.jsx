@@ -25,7 +25,6 @@ const CategoryCarousel = (props) => {
             writer={props.writer}
             type="carousel"
           />
-          <SocialShareButtons link={link} />
         </Col>
 
         <Col>
@@ -34,7 +33,6 @@ const CategoryCarousel = (props) => {
             writer={props.writer}
             type="carousel"
           />
-          <SocialShareButtons link={link} />
         </Col>
 
         <Col>
@@ -43,7 +41,6 @@ const CategoryCarousel = (props) => {
             writer={props.writer}
             type="carousel"
           />
-          <SocialShareButtons link={link} />
         </Col>
       </Row>
 

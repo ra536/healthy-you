@@ -32,7 +32,6 @@ const ArticleComponent = (props) => {
           <span style={{ color: "blue" }}>{articleInfo.category}</span>
           <h2>{articleInfo.headline}</h2>
           <p>{articleInfo.summary}</p>
-          <SocialShareButtons link={link} />
         </span>
       </Link>
     );
@@ -48,7 +47,6 @@ const ArticleComponent = (props) => {
           <span style={{ color: "blue" }}>{articleInfo.category}</span>
           <h4>{articleInfo.headline}</h4>
           <p>{articleInfo.summary}</p>
-          <SocialShareButtons link={link} />
         </span>
       </Link>
     );
@@ -90,7 +88,6 @@ const ArticleComponent = (props) => {
               </Moment>
             </small>
             <br />
-            <SocialShareButtons link={link} />
           </Link>
         </Col>
       </>
