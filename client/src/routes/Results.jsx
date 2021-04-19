@@ -239,7 +239,7 @@ const Results = (props) => {
           </Col>
 
           <Col align="center">
-            <h3>Follow us on our social media</h3>
+            <h3>Follow us</h3>
             <SocialIcon url="https://www.facebook.com/hwfmg/" />{" "}
             <SocialIcon url="https://twitter.com/HWFMagazine1/" />{" "}
             <SocialIcon url="https://www.instagram.com/healthwellnessfitnessmag/" />{" "}
