@@ -378,6 +378,9 @@ router.post("/sameCategory", async (req, res) => {
     const articleResults = await articles.findAll({
       where: {
         category: category,
+        article_id: {
+          [Op.ne]: id,
+        }
       },
       limit: count,
     })
