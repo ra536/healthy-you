@@ -6,6 +6,7 @@ import { AppContext } from "../context/AppContext";
 import { useParams } from "react-router-dom";
 import { withRouter } from "react-router";
 import { AuthContext } from "../context/AuthContext";
+import { useHistory } from "react-router-dom";
 import {
   Container,
   Table,
@@ -33,6 +34,8 @@ import axios from "axios";
 import TopNavBar from "../components/TopNavBar";
 
 const Appointment = (props) => {
+
+  let history = useHistory();
 
   const { loggedIn, role, id } = useContext(AuthContext);
 
@@ -83,19 +86,19 @@ const Appointment = (props) => {
     if(loggedIn && selectedApptID != ""){
       alert("success")
       try {
-        if(loggedIn){
-          const response = await AppointmentAPI.put("/bookAppt", {
-            appointment_id: selectedApptID,
-            doctor_id: doctorID,
-            reason: reason,
-            user_id: id
-          }
-          );
+        const response = await AppointmentAPI.put("/bookAppt", {
+          appointment_id: selectedApptID,
+          doctor_id: doctorID,
+          reason: reason,
+          user_id: id
         }
+        );
+        console.log(response);
       }
       catch (err) {
           console.log(err)
       }
+      history.push("/doctor-profile/" + doctorID);
     }
   }
 
@@ -184,154 +187,13 @@ const Appointment = (props) => {
           <br />
         </Form>
         <Row>
-        {/* <>
-            <Col>
-              <Button
-                variant="success"
-                type="submit"
-                size="lg"
-                block
-                block
-                onClick={handleShow}
-              >
-                Choose Date and Time
-              </Button>
-              Next Availability: Thursday, April 8
-              <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                  <Modal.Title>Book your Appointment time!</Modal.Title>
-                </Modal.Header>
-
-                <Modal.Body>
-                  <div align="center">
-                    <h6>Choose a time and location that works with you:</h6>
-                  </div>
-                  <Dropdown>
-                    <Dropdown.Toggle
-                      variant="dark"
-                      id="dropdown-basic"
-                      size="sm"
-                      block
-                    >
-                      Location...
-                    </Dropdown.Toggle>
-
-                    <Dropdown.Menu>
-                      <Dropdown.Item href="">
-                        123 Main St, Newark NJ 09435
-                      </Dropdown.Item>
-                      <Dropdown.Item href="">
-                        123 Martin Luther King Jr Dr, Newark NJ 09435
-                      </Dropdown.Item>
-                      <Dropdown.Item href="">
-                        123 John F Kennedy Blvd, Newark NJ 09435
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                  <br />
-                  <h6>Monday, April 5</h6>
-                  <Row></Row>
-                  <Button variant="success" type="submit" size="sm">
-                    11:30 PM
-                  </Button>
-                  &nbsp; &nbsp;
-                  <Button variant="success" type="submit" size="sm">
-                    12:30 PM
-                  </Button>
-                  &nbsp; &nbsp;
-                  <Button variant="success" type="submit" size="sm">
-                    1:00 PM
-                  </Button>
-                  <br />
-                  <br />
-                  <h6>Tuesday, April 6</h6>
-                  <Row></Row>
-                  <Button variant="success" type="submit" size="sm">
-                    12:00 PM
-                  </Button>
-                  &nbsp; &nbsp;
-                  <Button variant="success" type="submit" size="sm">
-                    12:30 PM
-                  </Button>
-                  &nbsp; &nbsp;
-                  <Button variant="success" type="submit" size="sm">
-                    1:00 PM
-                  </Button>
-                  &nbsp; &nbsp;
-                  <Button variant="success" type="submit" size="sm">
-                    2:00 PM
-                  </Button>
-                  <br />
-                  <br />
-                  <h6>Wednesday, April 7</h6>
-                  <Row></Row>
-                  <Button variant="success" type="submit" size="sm">
-                    10:00 AM
-                  </Button>
-                  &nbsp; &nbsp;
-                  <Button variant="success" type="submit" size="sm">
-                    3:00 PM
-                  </Button>
-                  <br />
-                  <br />
-                  <h6>Thursday, April 8</h6>
-                  <Row></Row>
-                  <Button variant="success" type="submit" size="sm">
-                    8:00 AM
-                  </Button>
-                  <br />
-                  <br />
-                  <h6>Friday, April 9</h6>
-                  <Row></Row>
-                  <Button variant="success" type="submit" size="sm">
-                    11:00 AM
-                  </Button>
-                  &nbsp; &nbsp;
-                  <Button variant="success" type="submit" size="sm">
-                    1:30 PM
-                  </Button>
-                  &nbsp; &nbsp;
-                  <Button variant="success" type="submit" size="sm">
-                    3:00 PM
-                  </Button>
-                  &nbsp; &nbsp;
-                  <Button variant="success" type="submit" size="sm">
-                    3:30 PM
-                  </Button>
-                  &nbsp; &nbsp;
-                  <Button variant="success" type="submit" size="sm">
-                    More
-                  </Button>
-                  <br />
-                  <br />
-                  <h6>Saturday, April 10</h6>
-                  <Button variant="secondary" type="submit" size="sm">
-                    No Availability
-                  </Button>
-                  <br />
-                  <br />
-                  <h6>Sunday, April 11</h6>
-                  <Button variant="secondary" type="submit" size="sm">
-                    No Availability
-                  </Button>
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button variant="secondary" onClick={handleClose}>
-                    Close
-                  </Button>
-                  <Button variant="success" onClick={handleClose}>
-                    Save Changes
-                  </Button>
-                </Modal.Footer>
-              </Modal>
-            </Col>
-          </> */}
           <ApptCalendar doctorID={doctorID} user_appt_selected={getApptID}/>
           <Col>
             <div style={{margin:20}} align="center">
-              <Button variant="success" type="submit" size="lg" onClick={submitAppt} href={"/doctor-profile/" + doctorID}>
+              <Button variant="success" type="submit" size="lg" onClick={submitAppt} >
                 Submit
               </Button>
+              {/*href={"/doctor-profile/" + doctorID}*/}
               <br />
             </div>
           </Col>
