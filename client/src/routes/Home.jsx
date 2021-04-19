@@ -153,7 +153,6 @@ const Home = () => {
           <Row>
             <ArticleComponent
               article={featuredArticle}
-              writer={featuredAuthor}
               type="horizontal"
             />
           </Row>
@@ -163,7 +162,6 @@ const Home = () => {
           <Row>
             <ArticleComponent
               article={featuredArticle}
-              writer={featuredAuthor}
               type="horizontal"
             />
           </Row>
@@ -173,7 +171,6 @@ const Home = () => {
           <Row>
             <ArticleComponent
               article={featuredArticle}
-              writer={featuredAuthor}
               type="horizontal"
             />
           </Row>
@@ -183,7 +180,6 @@ const Home = () => {
           <Row>
             <ArticleComponent
               article={featuredArticle}
-              writer={featuredAuthor}
               type="horizontal"
             />
           </Row>
@@ -193,7 +189,6 @@ const Home = () => {
           <Row>
             <ArticleComponent
               article={featuredArticle}
-              writer={featuredAuthor}
               type="horizontal"
             />
           </Row>
@@ -203,7 +198,6 @@ const Home = () => {
           <Row>
             <ArticleComponent
               article={featuredArticle}
-              writer={featuredAuthor}
               type="horizontal"
             />
           </Row>
