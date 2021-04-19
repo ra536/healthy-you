@@ -1,6 +1,7 @@
 import React from "react";
-import { Row, Col, Media, Card } from "react-bootstrap";
+import { Row, Col, Media, Card, Button, ButtonGroup} from "react-bootstrap";
 import ad250 from "./ads/ad250.jpg";
+import newMag from "./newMag.JPG";
 import magazine from "./magazines/magazine.jpg";
 import "bootstrap/dist/css/bootstrap.css";
 
@@ -34,7 +35,19 @@ const HomeSideBar = (props) => {
       <br />
       <Row>
         <Col>
-          <img src={magazine} alt="magazine" width={250} mode="fit" />
+        <ButtonGroup vertical>
+                <Card.Img variant="top" src={newMag} />
+
+                <Button variant="outline-info" size="md" href ="https://issuu.com/healthwellnessfitness">
+                  Subscribe
+                </Button>
+
+                <Button variant="outline-info" size="md" href="https://issuu.com/healthwellnessfitness/docs/1-56-compressed">
+                  Read Issue
+                </Button>
+
+
+              </ButtonGroup>
         </Col>
       </Row>
       <br />

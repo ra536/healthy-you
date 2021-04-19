@@ -18,6 +18,7 @@ import {
 } from "react-bootstrap";
 import { SocialIcon } from "react-social-icons";
 import magazine from "../components/magazines/magazine.jpg";
+import newMag from "./newMag.JPG";
 import doctorPhoto from "./file.jpg";
 import adLong from "../components/ads/ad300.jpg";
 import TopNavBar from "../components/TopNavBar";
@@ -300,27 +301,17 @@ const Results = (props) => {
             </div>
             <div align="center" style={{ width: "50%" }}>
               <ButtonGroup vertical>
-                <Card.Img variant="top" src={magazine} />
+                <Card.Img variant="top" src={newMag} />
 
-                <Button variant="outline-info" size="md">
+                <Button variant="outline-info" size="md" href ="https://issuu.com/healthwellnessfitness">
                   Subscribe
                 </Button>
 
-                <Button variant="outline-info" size="md">
-                  Gifts
+                <Button variant="outline-info" size="md" href="https://issuu.com/healthwellnessfitness/docs/1-56-compressed">
+                  Read Issue
                 </Button>
 
-                <Button variant="outline-info" size="md">
-                  Digital Subscription
-                </Button>
 
-                <Button variant="outline-info" size="md">
-                  Manage Account
-                </Button>
-
-                <Button variant="outline-info" size="md">
-                  Table of Contents
-                </Button>
               </ButtonGroup>
             </div>
             <br />
