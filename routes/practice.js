@@ -90,6 +90,23 @@ router.post("/findAll", async (req, res) => {
   }
 });
 
+router.post("/getPracticeData", async (req, res) => {
+  try {
+    const practiceResult = await practice.findAll({
+      where: {
+        practice_id: req.body.practice_id,
+      },
+      raw: true,
+    });
+    res.status(200).json({
+      status: "success",
+      data: practiceResult,
+    });
+  } catch (err) {
+    // console.log(err);
+  }
+});
+
 practice.belongsTo(doctor, {
   targetKey: "doctor_id",
   foreignKey: "doctor_id",

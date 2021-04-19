@@ -40,7 +40,7 @@ const App = () => {
             setId(response.data.doctor_id);
           } else if (response.data.role === "Writer") {
             setId(response.data.writer_id);
-          } else {
+          } else if(response.data.role === "User"){
             setId(response.data.user_id);
           }
         } else {
@@ -90,7 +90,7 @@ const App = () => {
             requiredRoles={["Writer"]}
           />{" "}
           <Route path="/article/:id" component={Article} />
-          <Route path="/book-appointment" component={Appointment} />
+          <Route path="/book-appointment/:doctorID" component={Appointment} />
           <Route exact path="/category/Blog" component={Blog} />
           <Route path="/category/:id" component={ArticleCategory} />
           <Route path="/admin-dashboard" component={AdminDashboard} />

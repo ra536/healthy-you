@@ -1,5 +1,6 @@
-const { Sequelize, DataTypes } = require("sequelize");
-const db = require("../index");
+const { Sequelize, DataTypes } = require('sequelize');
+const db = require('../index');
+const appointment = require('./appointment');
 const practice = require("./practice");
 
 const doctor = db.define(
@@ -96,6 +97,11 @@ const doctor = db.define(
 doctor.hasMany(practice, {
   sourceKey: "doctor_id",
   foreignKey: "doctor_id",
+});
+
+doctor.hasMany(appointment, {
+  sourceKey: 'doctor_id',
+  foreignKey: 'doctor_id'
 });
 
 module.exports = doctor;
