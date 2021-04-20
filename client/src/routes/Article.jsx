@@ -68,18 +68,18 @@ const Article = (props) => {
       <TopNavBar />
       <Container style={{  width: "65%", display: "inline-block"  }}>
         <h1>{headline}</h1>
-        <h5>number of views: {numViews} </h5>
         Category: <a href={"/category/" + category}>{category}</a>
         <br />
         <br />
         <a href={"/writer-profile/" + writerID}>{author}</a> |{" "}
-        <Moment format="dddd MMMM Do, YYYY [at] h:mm A">{publishDate}</Moment>
+        <Moment format="dddd MMMM Do, YYYY [at] h:mm A">{publishDate}</Moment> |{" "}
+        {numViews} views
         <br />
         <br />
         <SocialShareButtons link={link} />
         <br />
         <br />
-        <img src={image} alt="" />
+        <img src={image} width="100%" alt="" />
         <p>
           <i>Above: {caption}</i>
         </p>

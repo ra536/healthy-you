@@ -4,9 +4,9 @@ var { Sequelize, DataTypes } = require("sequelize");
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    queryInterface.addColumn('doctors', 'num_ratings', {
-      type: DataTypes.INTEGER,
-    })
+    // queryInterface.addColumn('doctors', 'num_ratings', {
+    //   type: DataTypes.INTEGER,
+    // })
   },
 
   down: async (queryInterface, Sequelize) => {
