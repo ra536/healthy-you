@@ -73,6 +73,9 @@ const ApptInfo = (props) => {
     }
 
     const formatD = (dt) => {
+        if(dt == null){
+            return ""
+        }
         dt = new Date(dt);
         return (Intl.DateTimeFormat("en-US", { year: "numeric", month: "2-digit", day: "2-digit"}).format(dt));
     }
