@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import DoctorAPI from "../apis/DoctorAPI";
 import AppointmentAPI from '../apis/AppointmentAPI';
+import UserAPI from '../apis/UserAPI';
 import ApptCalendar from '../components/ApptCalendar';
 import { AppContext } from "../context/AppContext";
 import { useParams } from "react-router-dom";
@@ -42,63 +43,66 @@ const Appointment = (props) => {
   const [show, setShow] = useState(false);
   const doctorID = props.location.pathname.split("/")[2];
   const [selectedApptID, setApptID] = useState("");
-  // const [startDT, setStartDT] = useState("");
-  // const [endDT, setEndDT] = useState("");
-  // const [duration, setDurationInMin] = useState("");
   const [reason, setReason] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [month, setMonth] = useState("");
+  const [day, setDay] = useState("");
+  const [year, setYear] = useState("");
+  const [insurance, setInsurance] = useState("");
+  const [gender, setGender] = useState("Gender");
+  const [seen, setSeen] = useState("Y/N");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-
-  const formatDT = (dt) => {
-    dt = new Date(dt);
-    return (Intl.DateTimeFormat("en-US", { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).format(dt));
-  }
+  useEffect(() => {
+    // Define a function fetchData that calls APIs which is then called in useEffect
+    const fetchData = async () => {
+      try {
+        if(loggedIn){
+          const response = await UserAPI.post("/findOne", {
+            user_id: id,
+          });
+          console.log(response.data.data);
+          setFirstName(response.data.data.firstName)
+          setLastName(response.data.data.lastName)
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, [id]);
 
   const getApptID = async (appt_id) => {
     console.log(appt_id);
     setApptID(appt_id);
-    // try {
-    //   const response = await (AppointmentAPI.post("/getApptInfo", {
-    //       appointment_id: appt_id
-    //   }));
-    //   setStartDT(formatDT(response.data.data[0].start_time));
-    //   setEndDT(formatDT(response.data.data[0].end_time));
-      
-    //   var diff = new Date(response.data.data[0].end_time) - new Date(response.data.data[0].start_time); //in ms
-    //   diff = diff/1000;
-    //   diff = diff/60;
-    //   diff = Math.abs(Math.round(diff));
-    //   console.log(diff);
-    //   setDurationInMin(diff + " Minutes");
-    // }
-    // catch (err) {
-    //     console.log(err)
-    // }
   }
-
-  const handleReasonChange = (data) => {
-    setReason(data.target.value);
-  }
-
+  
   const submitAppt = async () => {
-    if(loggedIn && selectedApptID != ""){
-      alert("success")
-      try {
-        const response = await AppointmentAPI.put("/bookAppt", {
-          appointment_id: selectedApptID,
-          doctor_id: doctorID,
-          reason: reason,
-          user_id: id
+    if(loggedIn && selectedApptID != "" && new Date(parseInt(year), parseInt(month)-1, parseInt(day), 0, 0,0) != "Invalid Date" && gender != "Gender" && seen != "Y/N"){
+        alert("success")
+        try {
+          const response = await AppointmentAPI.put("/bookAppt", {
+            appointment_id: selectedApptID,
+            doctor_id: doctorID,
+            reason: reason,
+            user_id: id,
+            first_name: firstName,
+            last_name: lastName,
+            dob: new Date(parseInt(year), parseInt(month)-1, parseInt(day), 0, 0,0),
+            insurance: insurance,
+            gender: gender,
+            seen: seen
+          }
+          );
+          console.log(response);
         }
-        );
-        console.log(response);
-      }
-      catch (err) {
-          console.log(err)
-      }
-      history.push("/doctor-profile/" + doctorID);
+        catch (err) {
+            console.log(err)
+        }
+        history.push("/doctor-profile/" + doctorID);
     }
   }
 
@@ -116,29 +120,29 @@ const Appointment = (props) => {
           <Form.Row>
             <Form.Group as={Col} controlId="formGridEmail" xs={6}>
               <Form.Label>First Name</Form.Label>
-              <Form.Control type="name" placeholder="" />
+              <Form.Control type="name" value={firstName} onChange={(e) => {setFirstName(e.target.value); console.log(e.target.value)}}/>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridPassword" xs={6}>
               <Form.Label>Last Name</Form.Label>
-              <Form.Control type="last" placeholder="" />
+              <Form.Control type="last" value={lastName} onChange={(e) => {setLastName(e.target.value); console.log(e.target.value)}}/>
             </Form.Group>
           </Form.Row>
           <br />
           <Form.Row>
             <Form.Group as={Col} controlId="formGridEmail" xs={4}>
               <Form.Label>Date of Birth</Form.Label>
-              <Form.Control type="name" placeholder="MM" />
+              <Form.Control type="name" placeholder="MM" onChange={(e) => {setMonth(e.target.value)}}/>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridPassword" xs={4}>
               <Form.Label>Day</Form.Label>
-              <Form.Control type="last" placeholder="DD" />
+              <Form.Control type="last" placeholder="DD" onChange={(e) => {setDay(e.target.value)}}/>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridPassword" xs={4}>
               <Form.Label>Year</Form.Label>
-              <Form.Control type="last" placeholder="YYYY" />
+              <Form.Control type="last" placeholder="YYYY" onChange={(e) => {setYear(e.target.value)}}/>
             </Form.Group>
           </Form.Row>
 
@@ -147,12 +151,12 @@ const Appointment = (props) => {
           <Form.Row>
             <Form.Group as={Col} controlId="formGridCity" xs={6}>
               <Form.Label>What's the reason for your visit?</Form.Label>
-              <Form.Control onChange={handleReasonChange}/>
+              <Form.Control onChange={(e) => {setReason(e.target.value); console.log(e.target.value)}}/>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridCity" xs={6}>
               <Form.Label>What's your insurance plan?</Form.Label>
-              <Form.Control />
+              <Form.Control onChange={(e) => {setInsurance(e.target.value); console.log(e.target.value)}}/>
             </Form.Group>
           </Form.Row>
           <br />
@@ -161,12 +165,12 @@ const Appointment = (props) => {
               <Form.Label>Sex</Form.Label>
               <DropdownButton
                 id="dropdown-basic-button"
-                title="Gender"
+                title={gender}
                 variant="success"
                 expand="lg"
               >
-                <Dropdown.Item href="">Male</Dropdown.Item>
-                <Dropdown.Item href="">Female</Dropdown.Item>
+                <Dropdown.Item href="" onClick={() => setGender("Male")}>Male</Dropdown.Item>
+                <Dropdown.Item href="" onClick={() => setGender("Female")}>Female</Dropdown.Item>
               </DropdownButton>
             </Form.Group>
 
@@ -174,12 +178,12 @@ const Appointment = (props) => {
               <Form.Label>Has the Patient seen this Doctor before?</Form.Label>
               <DropdownButton
                 id="dropdown-basic-button"
-                title="Y/N"
+                title={seen}
                 variant="success"
                 expand="lg"
               >
-                <Dropdown.Item href="">Yes</Dropdown.Item>
-                <Dropdown.Item href="">No</Dropdown.Item>
+                <Dropdown.Item href="" onClick={() => setSeen("Yes")}>Yes</Dropdown.Item>
+                <Dropdown.Item href="" onClick={() => setSeen("No")}>No</Dropdown.Item>
               </DropdownButton>
             </Form.Group>
           </Form.Row>
