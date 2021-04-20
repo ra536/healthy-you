@@ -22,7 +22,25 @@ const appointment = db.define(
         type: DataTypes.UUID,
         allowNull: true
     },
+    first_name:{
+      type: DataTypes.STRING,
+    },
+    last_name: {
+      type: DataTypes.STRING,
+    },
+    dob: {
+      type: DataTypes.DATE
+    },
     reason: {
+      type: DataTypes.STRING,
+    },
+    gender: {
+      type: DataTypes.STRING,
+    },
+    seen: {
+      type: DataTypes.STRING,
+    },
+    insurance: {
       type: DataTypes.STRING,
     },
     // date: {
