@@ -182,7 +182,7 @@ const Results = (props) => {
                       <h6>Specialty: {featuredDoctor.specialty}</h6>
                       <h6>Location: Morris County</h6>
 
-                      <Button variant="info" size="md" href="/book-appointment">
+                      <Button variant="success" size="md" href="/book-appointment">
                         Available starting April 8
                       </Button>
                     </Col>
