@@ -222,7 +222,13 @@ router.put("/bookAppt", async (req, res) => {
     const appointmentResults = appointment.update({
       status: "Booked",
       user_id: req.body.user_id,
-      reason: req.body.reason
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      dob: req.body.dob,
+      reason: req.body.reason,
+      insurance: req.body.insurance,
+      seen: req.body.seen,
+      gender: req.body.gender
     },
     {
       where: {
