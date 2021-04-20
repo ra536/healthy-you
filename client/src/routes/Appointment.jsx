@@ -81,7 +81,7 @@ const Appointment = (props) => {
   }
   
   const submitAppt = async () => {
-    if(loggedIn && selectedApptID != "" && new Date(parseInt(year), parseInt(month)-1, parseInt(day), 0, 0,0) != "Invalid Date" && gender != "Gender" && seen != "Y/N"){
+    if(loggedIn && selectedApptID != "" && new Date(parseInt(year), parseInt(month)-1, parseInt(day), 0, 0,0) != "Invalid Date" && gender != "Gender" && seen != "Y/N" && firstName != "" && lastName != ""){
         alert("success")
         try {
           const response = await AppointmentAPI.put("/bookAppt", {
