@@ -86,7 +86,7 @@ const SearchBar = () => {
         </div>
         <div align="center">
         <form>
-          <input
+          <input 
             id="search-practice"
             value={practice}
             placeholder="Practice"
