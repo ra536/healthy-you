@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Media, Card, Button, ButtonGroup} from "react-bootstrap";
+import { Row, Col, Media, Card, Button, ButtonGroup, Form, FormControl, Container} from "react-bootstrap";
 import ad300 from "../components/ads/ad300.jpg";
 
 
@@ -10,7 +10,8 @@ import "bootstrap/dist/css/bootstrap.css";
 const BlogSideBar = (props) => {
     return(
         <>
-        <Container style={{ width: "35%", display: "inline-block" }}>
+       
+        <Container>
                         <Row>
                             <Col>
                                 <Form inline>
@@ -40,38 +41,18 @@ const BlogSideBar = (props) => {
                                 <br />
                                 <h2>Hyperthyroid</h2>
                                 <p>Hyperthyroidism is the production of too much thyroxine hormone. It can increase metabolism.
-Symptoms include unexpected weight loss, rapid or irregular heartbeat, sweating, and irritability, although the elderly often experience no symptoms.</p>
+                                Symptoms include unexpected weight loss, rapid or irregular heartbeat, sweating, and irritability, although the elderly often experience no symptoms.</p>
                                 <br />
                                 <img src={ad300} alt="ad300" width={250} mode='fit' />
 
                             </Col>
                             
                         </Row>
-                        <Row>
-                            <Col>
-                                <br />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <br />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <br />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <br />
-                            </Col>
-                        </Row>
-                        <br />
+
 
 
                     </Container>
-
+                    
 
 
 

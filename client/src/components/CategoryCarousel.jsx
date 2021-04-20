@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Badge} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import ArticleComponent from "./ArticleComponent";
 import SocialShareButtons from "./SocialShareButtons";
@@ -15,7 +15,10 @@ const CategoryCarousel = (props) => {
     <Container id="health">
       <br />
       <div align="center">
-        <h2>{category}</h2>
+      <Badge variant="primary">
+        <h2>&nbsp;{category}&nbsp;</h2>
+      </Badge>
+        
       </div>
       <br />
       <Row>
