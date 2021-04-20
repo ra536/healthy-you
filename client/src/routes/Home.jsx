@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { Container, Row, Col, Carousel, Card, Image, Badge} from "react-bootstrap";
+import { Container, Row, Col, Carousel, Card, Image, Badge, Button} from "react-bootstrap";
 import ArticleAPI from "../apis/ArticleAPI";
 
 // bootstrap styles library (gives automatic styling)
@@ -175,7 +175,7 @@ const Home = () => {
             </>
             );
           })}
-
+          <Button href="/latestArticles/100" block>See More</Button>
           <br />
         </Container>
 
@@ -197,6 +197,12 @@ const Home = () => {
             writer={featuredAuthor}
             category="Health"
           />
+          <div align="center">
+          <br />
+          <Button href="/category/Health">More Health Articles</Button>
+          </div>
+          
+          
           <hr />
           
           <CategoryCarousel
@@ -205,18 +211,31 @@ const Home = () => {
             category="Wellness"
             
           />
+          <div align="center">
+          <br />
+          <Button href="/category/Wellness">More Wellness Articles</Button>
+          </div>
           <hr />
           <CategoryCarousel
             article={featuredArticle}
             writer={featuredAuthor}
             category="Fitness"
           />
+          <div align="center">
+          <br />
+          <Button href="/category/Fitness">More Fitness Articles</Button>
+          </div>
           <hr />
           <CategoryCarousel
             article={featuredArticle}
             writer={featuredAuthor}
             category="Food"
           />
+          <div align="center">
+          <br />
+          <Button href="/category/Food">More Food Articles</Button>
+          </div>
+          <br />
         </div>
 
         <AdBreak />
