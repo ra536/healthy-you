@@ -76,13 +76,19 @@ const SearchBar = () => {
     <div>
         <div align="center">
           <h1 align="center"> Doctor Directory</h1>
-          A comprehensive resource
+          <h6>A comprehensive resource
           guide including our annual Top Doctors list as well as other medical
-          professionals in the Morris area.
+          professionals.</h6>
         </div>
-        <h1>Search</h1>
+        <br/>
+        <div align="center">
+        <h2>Search</h2>
+        <br />
+        </div>
+
+        <div align="center">
         <form>
-          <input
+          <input 
             id="search-practice"
             value={practice}
             placeholder="Practice"
@@ -103,28 +109,26 @@ const SearchBar = () => {
               );
             })}
           </select>
+          {' '}
           <input
-            id="search-doctor"
-            value={doctor_name}
-            placeholder="Doctor"
-            onChange={(e) => setDoctor(e.target.value)}
+            id="search-specialty"
+            value={specialty}
+            placeholder="Specialty"
+            onChange={(e) => setSpecialty(e.target.value)}
           />
-          <input
-            id="search-rating"
-            value={rating}
-            placeholder="Rating"
-            onChange={(e) => setRating(e.target.value)}
-          />
+          {' '}
           <input
             id="search-location"
             value={location}
             placeholder="Location"
             onChange={(e) => setLocation(e.target.value)}
           />
+          {' '}
           <button type="submit" onClick={handleSubmit}>
             Search
           </button>
         </form>
+        </div>
         <br />
         <hr />
     </div>

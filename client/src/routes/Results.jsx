@@ -155,6 +155,7 @@ const Results = (props) => {
             <div align="left">
               <h3>Featured Doctors</h3>
             </div>
+
             <Link
               to={"/doctor-profile/" + featuredDoctor.doctor_id}
               style={{ textDecoration: "none", color: "black" }}
@@ -170,18 +171,55 @@ const Results = (props) => {
                     </Col>
                     <Col>
                       <h3>{featuredDoctor.doctor_name}</h3>
-                      <h6>Morristown, NJ</h6>
+                      <h4>John Doe</h4>
                       <h6>{featuredDoctor.phone}</h6>
                       <Image
                             src={determineStars(featuredDoctor.rating)}
                             className=""
                             style={{ width: "50%" }}
                           />
-                      <br /><br />
-                      <h6>Specialty: {featuredDoctor.specialty}</h6>
-                      <h6>Location: Morris County</h6>
+                      
+                      <h6>Orthopedic Surgery: Spine{featuredDoctor.specialty}</h6>
+                      <h6>123 Main St, Baltimore, MD</h6>
+                      <h6>551-222-2352</h6>
 
-                      <Button variant="info" size="md" href="/book-appointment">
+                      <Button variant="success" size="sm" block href="/book-appointment">
+                        Available starting April 8
+                      </Button>
+                    </Col>
+                  </Row>
+                </Container>
+              </ListGroup.Item>
+            </Link>
+            <br />
+            <Link
+              to={"/doctor-profile/" + featuredDoctor.doctor_id}
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <ListGroup.Item>
+                <Container fluid="md">
+                  <Row>
+                    <Col>
+                      <Card.Img
+                        variant="top"
+                        src={featuredDoctor.profile_picture}
+                      />
+                    </Col>
+                    <Col>
+                      <h3>{featuredDoctor.doctor_name}</h3>
+                      <h4>Smith Will</h4>
+                      <h6>{featuredDoctor.phone}</h6>
+                      <Image
+                            src={determineStars(featuredDoctor.rating)}
+                            className=""
+                            style={{ width: "50%" }}
+                          />
+                      
+                      <h6>Orthopedic Surgery: Spine{featuredDoctor.specialty}</h6>
+                      <h6>123 Main St, Baltimore, MD</h6>
+                      <h6>551-222-2352</h6>
+
+                      <Button variant="success" size="sm" block href="/book-appointment">
                         Available starting April 8
                       </Button>
                     </Col>
@@ -191,6 +229,44 @@ const Results = (props) => {
             </Link>
 
             <br />
+
+            <Link
+              to={"/doctor-profile/" + featuredDoctor.doctor_id}
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <ListGroup.Item>
+                <Container fluid="md">
+                  <Row>
+                    <Col>
+                      <Card.Img
+                        variant="top"
+                        src={featuredDoctor.profile_picture}
+                      />
+                    </Col>
+                    <Col>
+                      <h3>{featuredDoctor.doctor_name}</h3>
+                      <h4>Tom Brady</h4>
+                      <h6>{featuredDoctor.phone}</h6>
+                      <Image
+                            src={determineStars(featuredDoctor.rating)}
+                            className=""
+                            style={{ width: "50%" }}
+                          />
+                      
+                      <h6>Orthopedic Surgery: Spine{featuredDoctor.specialty}</h6>
+                      <h6>123 Main St, Baltimore, MD</h6>
+                      <h6>551-222-2352</h6>
+
+                      <Button variant="success" size="sm" block href="/book-appointment">
+                        Available starting April 8
+                      </Button>
+                    </Col>
+                  </Row>
+                </Container>
+              </ListGroup.Item>
+            </Link>
+
+
             <div align="left">
               <h3>Search Results</h3>
             </div>
@@ -238,6 +314,7 @@ const Results = (props) => {
             })}
           </Col>
 
+         
           <Col align="center">
             <h3>Follow us</h3>
             <SocialIcon url="https://www.facebook.com/hwfmg/" />{" "}
@@ -247,19 +324,35 @@ const Results = (props) => {
             <br />
             <br />
             <br />
-            <Form style={{ width: "50%" }}>
-              <Form.Control
+
+            <div style={{ width: "50%" }}>
+            <Card>
+                <Card.Body>
+                  <Card.Title><h3>Doctor Finder</h3></Card.Title>
+                </Card.Body>
+              </Card>
+            </div>
+
+            
+
+            <Form style={{ width: "50%" }}   >
+              <Form.Control 
                 type="email"
-                placeholder="Search For Doctors"
+                placeholder="Search Doctors"
                 rounded
+                size="sm"
+      
               />
             </Form>
+            
             <div style={{ width: "50%" }}>
+        
               <Accordion>
+
                 <Card>
                   <Card.Header>
-                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                      Specialty
+                    <Accordion.Toggle as={Button} variant="link" eventKey="0" size="sm">
+                      + SPECIALTY
                     </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey="0">
@@ -274,10 +367,11 @@ const Results = (props) => {
                     </Card.Body>
                   </Accordion.Collapse>
                 </Card>
+                
                 <Card>
                   <Card.Header>
-                    <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                      Location
+                    <Accordion.Toggle as={Button} variant="link" eventKey="1" size="sm" >
+                      + LOCATION
                     </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey="1">
@@ -366,8 +460,10 @@ const Results = (props) => {
                 </ListGroup.Item>
               </Link>
             </div>
+            
             <br />
           </Col>
+         
         </Row>
       </Container>
       <br />
