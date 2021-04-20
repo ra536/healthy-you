@@ -13,10 +13,6 @@ const ApptInfo = (props) => {
     const [userInfo, setUserInfo] = useState([]);
     const [userName, setUserName] = useState("");
     const [patientName, setPatientName] = useState("");
-    const [gender, setGender] = useState("");
-    const [newPatient, setNewPatient] = useState("");
-    const [dob, setDob] = useState("");
-    const [insurance, setInsurance] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
