@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import DoctorAPI from "../apis/DoctorAPI";
 import PracticeAPI from "../apis/PracticeAPI";
 import ReviewAPI from "../apis/ReviewAPI";
-import { AuthContext } from "../context/AuthContext";
-import { useHistory } from "react-router-dom";
+
 import { useParams } from "react-router-dom";
 import {
   Container,
@@ -51,10 +50,6 @@ const DoctorProfile = (props) => {
 
   const [reviews, setReviews] = useState([]);
 
-  const { loggedIn, role, id } = useContext(AuthContext);
-
-  let history = useHistory();
-  
   const determineStars = (rating) => {
     //alert(rating);
     if(rating > 4.75){
@@ -79,14 +74,6 @@ const DoctorProfile = (props) => {
       return hstar;
     } else {
       return star;
-    }
-  }
-
-  const changePage = () => {
-    if(loggedIn){
-      history.push("/book-appointment/" + doctorID);
-    } else {
-      history.push("/login");
     }
   }
 
@@ -214,7 +201,7 @@ const DoctorProfile = (props) => {
               })}
               <br />
               <Card.Title>Appointments</Card.Title>
-              <Button size="lg" block onClick={changePage}>
+              <Button size="lg" block href={"/book-appointment/" + doctorID}>
                 Book now
               </Button>
               <br />
@@ -358,7 +345,7 @@ const DoctorProfile = (props) => {
         <Col>
           <div align="center">
             <br />
-            <Button variant="primary" size="lg" onClick={changePage}>
+            <Button variant="primary" size="lg" href={"/book-appointment/" + doctorID}>
               Book Appointment Now
             </Button>
             <br />
