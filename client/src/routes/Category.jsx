@@ -3,7 +3,7 @@ import ad300 from "../components/ads/ad300.jpg";
 import { useParams } from "react-router-dom";
 import ArticleAPI from "../apis/ArticleAPI";
 import { ListGroup, Container, Row } from "react-bootstrap";
-import HomeSideBar from "../components/HomeSideBar";
+import BlogSideBar from "../components/HomeSideBar";
 
 import "bootstrap/dist/css/bootstrap.css";
 import ArticleComponent from "../components/ArticleComponent";
@@ -87,7 +87,7 @@ const ArticleCategory = (props) => {
       </Container>
       <Container>
       <div align ="right">
-        < HomeSideBar />
+        < BlogSideBar />
       </div>
       </Container>
      
