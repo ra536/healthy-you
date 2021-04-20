@@ -422,5 +422,27 @@ router.post("/sameCategory", async (req, res) => {
   }
 });
 
+router.post("/pageView", async (req, res) => {
+  try {
+    const id = req.body.id;
+    console.log(req.body);
+
+    const articleResults = await articles.findByPk(req.body.id);
+
+    console.log(articleResults);
+    articleResults.page_views += 1
+    await articleResults.save();
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        page_views: req.body.page_views,
+      },
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 
 module.exports = router;

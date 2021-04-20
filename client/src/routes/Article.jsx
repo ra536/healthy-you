@@ -21,6 +21,7 @@ const Article = (props) => {
   const [publishDate, setPublishDate] = useState("");
   const [author, setAuthor] = useState("");
   const [writerID, setWriterID] = useState(null);
+  const [numViews, setNumViews] = useState(0);
 
 
   const link =
@@ -34,6 +35,11 @@ const Article = (props) => {
           article_id: id,
         });
 
+        const views = await ArticleAPI.post("/pageView",{
+          id: id,
+        });
+        console.log("data", views.data.data[0])
+
         setHeadline(response.data.data[0].headline);
         setCategory(response.data.data[0].category);
         setSummary(response.data.data[0].summary);
@@ -41,6 +47,7 @@ const Article = (props) => {
         setImage(response.data.data[0].image_data);
         setCaption(response.data.data[0].image_caption);
         setPublishDate(response.data.data[0].createdAt);
+        setNumViews(response.data.data[0].page_views);
         setAuthor(
           response.data.writer.firstName + " " + response.data.writer.lastName
         );
@@ -65,13 +72,14 @@ const Article = (props) => {
         <br />
         <br />
         <a href={"/writer-profile/" + writerID}>{author}</a> |{" "}
-        <Moment format="dddd MMMM Do, YYYY [at] h:mm A">{publishDate}</Moment>
+        <Moment format="dddd MMMM Do, YYYY [at] h:mm A">{publishDate}</Moment> |{" "}
+        {numViews} views
         <br />
         <br />
         <SocialShareButtons link={link} />
         <br />
         <br />
-        <img src={image} alt="" />
+        <img src={image} width="100%" alt="" />
         <p>
           <i>Above: {caption}</i>
         </p>
