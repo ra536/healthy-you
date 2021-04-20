@@ -153,8 +153,55 @@ const DoctorProfile = (props) => {
             roundedCircle
           />
           <br></br>
-        </Col>
+		            <Col md={8}>
+            <br />
 
+            
+          </Col>
+	<Row>
+	          <Col md={8}>
+            <br />
+            <div align="center">
+              <h3>
+                Overall Rating:
+                <br />
+                {Number(rating).toFixed(1)}
+              </h3>
+            </div>
+            <Image
+              src={determineStars(rating)}
+              className="mx-auto d-block"
+              style={{ width: "50%" }}
+            />
+          </Col>
+          <Col>
+            <br />
+            <div align="center">
+              Bedside Manner: {Number(bedside).toFixed(1)}
+              <Image
+                src={determineStars(bedside)}
+                className="mx-auto d-block"
+                style={{ width: "40%" }}
+              />
+              <br />
+              Average wait time: {Number(waitTime).toFixed(1)}
+              <Image
+                src={determineStars(waitTime)}
+                className="mx-auto d-block"
+                style={{ width: "40%" }}
+              />
+              <br />
+              Availability: {Number(availability).toFixed(1)}
+              <Image
+                src={determineStars(availability)}
+                className="mx-auto d-block"
+                style={{ width: "40%" }}
+              />
+              <br />
+            </div>
+          </Col>
+		</Row>
+        </Col>
         <Col>
           <Card style={{ width: "30rem" }}>
             <Card.Body>
@@ -211,51 +258,7 @@ const DoctorProfile = (props) => {
         </Col>
       </Row>
       <br></br>
-      <Container>
-        <Row>
-          <Col md={8}>
-            <br />
-            <div align="center">
-              <h3>
-                Overall Rating:
-                <br />
-                {Number(rating).toFixed(1)}
-              </h3>
-            </div>
-            <Image
-              src={determineStars(rating)}
-              className="mx-auto d-block"
-              style={{ width: "50%" }}
-            />
-          </Col>
-          <Col>
-            <br />
-            <div align="center">
-              Bedside Manner: {Number(bedside).toFixed(1)}
-              <Image
-                src={determineStars(bedside)}
-                className="mx-auto d-block"
-                style={{ width: "30%" }}
-              />
-              <br />
-              Average wait time: {Number(waitTime).toFixed(1)}
-              <Image
-                src={determineStars(waitTime)}
-                className="mx-auto d-block"
-                style={{ width: "30%" }}
-              />
-              <br />
-              Availability: {Number(availability).toFixed(1)}
-              <Image
-                src={determineStars(availability)}
-                className="mx-auto d-block"
-                style={{ width: "30%" }}
-              />
-              <br />
-            </div>
-          </Col>
-        </Row>
-      </Container>
+
 
       <Container>
         <Card>
