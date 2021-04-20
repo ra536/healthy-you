@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ArticleAPI from "../apis/ArticleAPI";
-import { Container, Row, Col, Card, Form, FormControl, Button } from "react-bootstrap";
+import { Container, Row, Col, Card, Form, FormControl, Button, Image } from "react-bootstrap";
 import Moment from "react-moment";
 import "moment-timezone";
 import TopNavBar from "../components/TopNavBar";
@@ -9,6 +9,7 @@ import ad300 from "../components/ads/ad300.jpg";
 import SocialShareButtons from "../components/SocialShareButtons";
 import ArticleComponent from "../components/ArticleComponent";
 import "bootstrap/dist/css/bootstrap.css";
+import blogPage from "./BlogPage.jpg";
 
 const Blog = (props) => {
     const [articles, setArticles] = useState([]);
@@ -47,6 +48,7 @@ const Blog = (props) => {
             <TopNavBar />
             <div align="center">
                 <h1>Blog</h1>
+                <Image src={blogPage} width="75%"></Image>
             </div>
             <br />
             

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { Container, Row, Col, Carousel, Card, Image } from "react-bootstrap";
+import { Container, Row, Col, Carousel, Card, Image, Badge} from "react-bootstrap";
 import ArticleAPI from "../apis/ArticleAPI";
 
 // bootstrap styles library (gives automatic styling)
@@ -198,10 +198,12 @@ const Home = () => {
             category="Health"
           />
           <hr />
+          
           <CategoryCarousel
             article={featuredArticle}
             writer={featuredAuthor}
             category="Wellness"
+            
           />
           <hr />
           <CategoryCarousel

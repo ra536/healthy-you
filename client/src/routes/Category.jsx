@@ -1,7 +1,9 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, Col, Form, FormControl, Button, } from "react";
+import ad300 from "../components/ads/ad300.jpg";
 import { useParams } from "react-router-dom";
 import ArticleAPI from "../apis/ArticleAPI";
-import { ListGroup, Container, Row } from "react-bootstrap";
+import { ListGroup, Container, Row, Badge } from "react-bootstrap";
+import BlogSideBar from "../components/BlogSideBar";
 
 import "bootstrap/dist/css/bootstrap.css";
 import ArticleComponent from "../components/ArticleComponent";
@@ -59,12 +61,28 @@ const ArticleCategory = (props) => {
   return (
     <>
       <TopNavBar />
-      <Container>
-        <div align="center">
-          <h1>{id} </h1>
-        </div>
-        <br />
+      <div align="center">
+        <Badge variant="primary">
+        
+          <h1>
+          &nbsp;
+          {id}
+          &nbsp;
+          </h1>
+       
+        </Badge>
+        
 
+
+      </div>
+      <br />
+
+
+
+      
+      <Container style={{ width: "65%", display: "inline-block" }}>
+
+     
         {articles.map((article) => {
           return (
             <>
@@ -80,8 +98,17 @@ const ArticleCategory = (props) => {
             </>
           );
         })}
+      
       </Container>
+      
+      <Container style={{ width: "35%", display: "inline-block"}}>
+        <div >
+          <BlogSideBar />
+        </div>
+      </Container>
+      
     </>
+    
   );
 };
 
