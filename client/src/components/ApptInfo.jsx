@@ -12,6 +12,7 @@ const ApptInfo = (props) => {
     const [practiceInfo, setPracticeInfo] = useState([]);
     const [userInfo, setUserInfo] = useState([]);
     const [userName, setUserName] = useState("");
+    const [patientName, setPatientName] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,16 +25,18 @@ const ApptInfo = (props) => {
                 }));
                 setPracticeInfo(practiceResponse.data.data);
                 setApptInfo(response.data.data);
-                
+                console.log(response.data.data);
                 if(response.data.data[0].status === "Booked"){
                     const userResponse = await (UserAPI.post("/getUser", {
                         user_id: response.data.data[0].user_id
                     }));
                     setUserInfo(userResponse.data.data);
                     setUserName(userResponse.data.data.firstName + " " + userResponse.data.data.lastName);
+                    setPatientName(response.data.data[0].first_name + " " + response.data.data[0].last_name)
                 } else if (response.data.data[0].status === "Open"){
                     setUserInfo("");
                     setUserName("");
+                    setPatientName("");
                 }
             }
             catch (err) {
@@ -69,6 +72,14 @@ const ApptInfo = (props) => {
         return (Intl.DateTimeFormat("en-US", { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).format(dt));
     }
 
+    const formatD = (dt) => {
+        if(dt == null){
+            return ""
+        }
+        dt = new Date(dt);
+        return (Intl.DateTimeFormat("en-US", { year: "numeric", month: "2-digit", day: "2-digit"}).format(dt));
+    }
+
     return (
         <div style={{ height: 250 }}>
             <h1>Appointment Info</h1>
@@ -87,9 +98,17 @@ const ApptInfo = (props) => {
                         <br />
                         Status: {apptInfo.status}
                         <br />
-                        Patient: {userName}
+                        Patient: {patientName}
+                        <br />
+                        Date of birth: {formatD(apptInfo.dob)}
                         <br />
                         Reason: {apptInfo.reason}
+                        <br />
+                        Gender: {apptInfo.gender}
+                        <br />
+                        Insurance: {apptInfo.insurance}
+                        <br />
+                        Returning Patient: {apptInfo.seen}
                         <br />
                         <Button variant="danger" onClick={() => onClickCancel(apptInfo.appointment_id)}>
                             Delete

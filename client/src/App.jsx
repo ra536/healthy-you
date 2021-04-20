@@ -93,7 +93,11 @@ const App = () => {
             requiredRoles={["Writer"]}
           />{" "}
           <Route path="/article/:id" component={Article} />
-          <Route path="/book-appointment/:doctorID" component={Appointment} />
+          <ProtectedRoute 
+            path="/book-appointment/:doctorID" 
+            component={Appointment} 
+            requiredRoles={["User", "Admin", "Doctor", "Writer"]}
+          />
           <Route exact path="/category/Blog" component={Blog} />
           <Route path="/category/:id" component={ArticleCategory} />
           <Route path="/admin-dashboard" component={AdminDashboard} />
