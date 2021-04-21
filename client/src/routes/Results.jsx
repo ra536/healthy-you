@@ -178,7 +178,7 @@ const Results = (props) => {
                       <Image
                             src={determineStars(featuredDoctor.rating)}
                             className=""
-                            style={{ width: "50%" }}
+                            style={{ width: "60%" }}
                           /><br /><br />
                       <h6>Specialty: {featuredDoctor.specialty}</h6>
                       <h6>Location: Morristown, NJ</h6>
@@ -218,7 +218,7 @@ const Results = (props) => {
                           <Image
                             src={determineStars(results.doctor.rating)}
                             className=""
-                            style={{ width: "50%" }}
+                            style={{ width: "60%" }}
                           /><br /><br />
                           <h6>Specialty: {results.doctor.specialty}</h6>
                           <h6>Location: Morristown, NJ</h6>
@@ -253,17 +253,55 @@ const Results = (props) => {
             <br />
             <br />
 
-            <div style={{ width: "50%" }}>
-            <Card>
-                <Card.Body>
-                  <Card.Title><h3>Doctor Finder</h3></Card.Title>
-                </Card.Body>
-              </Card>
+
+            <Card style={{ width:"60%"}}>
+              <Card.Body>
+                <Card.Title><h3>Doctor Finder</h3></Card.Title>
+                <h6>Featured Listing</h6>
+              </Card.Body>
+            </Card>
+
+            <div style={{ width: "60%" }}>
+        
+              <Link
+                to={"/doctor-profile/" + featuredDoctor.doctor_id}
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                <ListGroup.Item>
+                  <Container fluid="md">
+                      <Row>
+                        <Col>
+                        <Image src={featuredDoctor.profile_picture} rounded />
+                        </Col>
+                        <Col>
+                      
+                        <h3>{featuredDoctor.doctor_name}</h3>
+                        <h6>{featuredDoctor.phone}</h6>
+                        <br />
+                        <h6>Specialty: {featuredDoctor.specialty}</h6>
+                        <h6>Phone:</h6>
+
+                        <Button
+                          variant="success"
+                          size="sm"
+                          block
+                          href="/book-appointment"
+                        >
+                          Book now
+                        </Button>
+                        </Col>
+                      </Row>
+                  </Container>
+                </ListGroup.Item>
+              </Link>
+              
             </div>
+                
+           
 
             
 
-            <Form style={{ width: "50%" }}   >
+            <Form style={{ width: "60%" }}   >
               <Form.Control 
                 type="email"
                 placeholder="Search Doctors"
@@ -273,7 +311,7 @@ const Results = (props) => {
               />
             </Form>
             
-            <div style={{ width: "50%" }}>
+            <div style={{ width: "60%" }}>
         
               <Accordion>
 
@@ -320,7 +358,7 @@ const Results = (props) => {
             <div align="center">
               <h3>Magazine</h3>
             </div>
-            <div align="center" style={{ width: "50%" }}>
+            <div align="center" style={{ width: "60%" }}>
               <ButtonGroup vertical>
                 <Card.Img variant="top" src={newMag} />
 
@@ -336,20 +374,20 @@ const Results = (props) => {
               </ButtonGroup>
             </div>
             <br />
-            <Card.Img variant="top" src={adLong} style={{ width: "50%" }} />
+            <Card.Img variant="top" src={adLong} style={{ width: "60%" }} />
             <br />
             <br />
             <br />
             <br />
-            <div align="center" style={{ width: "50%" }}>
+            <div align="center" style={{ width: "60%" }}>
               <h3>Featured Listings</h3>
             </div>
             <Card.Img
               variant="top"
               src={featuredDoctor.profile_picture}
-              style={{ width: "50%" }}
+              style={{ width: "60%" }}
             />
-            <div style={{ width: "50%" }}>
+            <div style={{ width: "60%" }}>
               <Link
                 to={"/doctor-profile/" + featuredDoctor.doctor_id}
                 style={{ textDecoration: "none", color: "black" }}
