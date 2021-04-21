@@ -216,4 +216,22 @@ router.post("/updateProfilePic", isAuthAndDoctor, async (req, res) => {
   }
 });
 
+router.post("/getDoctorName", async (req, res) => {
+  try {
+    const doctorResult = await doctor.findOne({
+      where: {
+        doctor_id: req.body.doctor_id,
+      },
+      raw: true,
+    });
+    res.status(200).json({
+      status: "success",
+      data: {
+        doctor_name: doctorResult.doctor_name
+      },
+    });
+  } catch (err) {
+  }
+});
+
 module.exports = router;
