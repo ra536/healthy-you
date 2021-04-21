@@ -169,6 +169,27 @@ router.post("/cancelAppt", isAuthAndDoctor, async (req, res) => {
   }
 });
 
+
+router.post("/userAppts", async (req, res) => {
+  try {
+    const  id = req.body.user_id;
+    console.log(req.body)
+
+    const appointmentResults = await appointment.findAll({
+      where: {
+        user_id: id,
+      }
+    })
+
+    res.status(200).json({
+      status: "success",
+      data: appointmentResults
+    })
+
+  } catch (error) {
+    console.error(error)
+  }
+});
 router.put("/saveAllAppts", isAuthAndDoctor, async (req, res) => {
   try {
     const appointmentResults = appointment.update({
