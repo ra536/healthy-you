@@ -113,7 +113,7 @@ module.exports = {
       },
       {
         insurance: "Aetna",
-          popular: 0,
+          popular: 1,
             createdAt: new Date(),
               updatedAt: new Date(),
       },
@@ -493,7 +493,7 @@ module.exports = {
       },
       {
         insurance: "Blue Cross Blue Shield (BCBS)",
-          popular: 0,
+          popular: 1,
             createdAt: new Date(),
               updatedAt: new Date(),
       },
@@ -987,7 +987,7 @@ module.exports = {
       },
       {
         insurance: "Cigna",
-          popular: 0,
+          popular: 1,
             createdAt: new Date(),
               updatedAt: new Date(),
       },
@@ -1429,13 +1429,13 @@ module.exports = {
       },
       {
         insurance: "EmblemHealth (formerly known as GHI)",
-          popular: 0,
+          popular: 1,
             createdAt: new Date(),
               updatedAt: new Date(),
       },
       {
         insurance: "EmblemHealth (formerly known as HIP)",
-          popular: 0,
+          popular: 1,
             createdAt: new Date(),
               updatedAt: new Date(),
       },
@@ -4002,7 +4002,7 @@ module.exports = {
       },
       {
         insurance: "UnitedHealthcare",
-          popular: 0,
+          popular: 1,
             createdAt: new Date(),
               updatedAt: new Date(),
       },
@@ -4014,7 +4014,7 @@ module.exports = {
       },
       {
         insurance: "UnitedHealthcare Oxford",
-          popular: 0,
+          popular: 1,
             createdAt: new Date(),
               updatedAt: new Date(),
       },
