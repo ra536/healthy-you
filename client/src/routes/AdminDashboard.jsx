@@ -6,14 +6,13 @@ import TopNavBar from "../components/TopNavBar";
 import SendReviewLinks from "../components/SendReviewLinks";
 import DisplayAllReviews from "../components/DisplayAllReviews";
 import { AdminContextProvider } from "../context/AdminContext";
-import FeaturedAPI from "../apis/FeaturedAPI";
+import ManageFeatured from "../components/ManageFeatured";
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 
 const AdminDashboard = (props) => {
   let { adminID } = useParams();
   const [id, setId] = useState(null);
-  const [results, setResults] = useState([]);
 
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
@@ -33,20 +32,6 @@ const AdminDashboard = (props) => {
       } catch (err) {
         console.log(err);
       }
-
-      try {
-        const response = await FeaturedAPI.post(
-          "/findAll",
-          {
-
-          }
-        );
-        setResults(response.data.data);
-        console.log("Featured thing");
-        console.log(response.data.data);
-      } catch (err){
-        console.log(err);
-      }
     };
     console.log("use effect happened!");
     fetchData();
@@ -60,14 +45,7 @@ const AdminDashboard = (props) => {
           <h1>Admin Dashboard</h1>
           <SendReviewLinks />
           <DisplayAllReviews />
-          {results.map((obj) => {
-            return (
-              <>
-              <p>Here</p>
-              <p>{obj.featured_id}</p>
-              </>
-            );
-          })}
+          <ManageFeatured />
         </Container>
       </AdminContextProvider>
     </>
