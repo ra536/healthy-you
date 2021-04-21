@@ -64,10 +64,10 @@ const Appointment = (props) => {
   const [gender, setGender] = useState("Gender");
   const [allInsurance, setAllInsurance] = useState([]);
   const [popular, setPopular] = useState([]);
-  const [selectedInsurance, setSelectedInsurance] = useState("I'm paying for myself");
-  const [usersInsurance, setUsersInsurance] = useState("I'm paying for myself");
+  const [selectedInsurance, setSelectedInsurance] = useState("I'm paying for myself (Paying out of pocket)");
+  const [usersInsurance, setUsersInsurance] = useState("I'm paying for myself (Paying out of pocket)");
   const [otherInsurance, setOtherInsurance] = useState([
-    { insurance: "I'm paying for myself", disabled: false, fontSize: 18, color: "black" },
+    { insurance: "I'm paying for myself (Paying out of pocket)", disabled: false, fontSize: 18, color: "black" },
     { insurance: "I'll choose my insurance later", disabled: false, fontSize: 18, color: "black" }
   ])
 
