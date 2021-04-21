@@ -3,6 +3,7 @@ import UserAPI from "../apis/UserAPI";
 import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import TopNavBar from "../components/TopNavBar";
+import UserApptTable from '../components/UserApptTable';
 
 const UserDashboard = (props) => {
   let { userID } = useParams();
@@ -40,6 +41,7 @@ const UserDashboard = (props) => {
         <h1>User ID:</h1>
         {id}
         <br />
+        <UserApptTable user_id={id}/>
       </Container>
     </>
   );
