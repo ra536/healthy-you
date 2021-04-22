@@ -85,7 +85,7 @@ router.post("/getAllInviteCodes", async (req, res) => {
 });
 
 router.post("/create", async (req, res) => {
-  const ids = [];
+  const reviewIDs = [];
   try {
     for (const email of req.body.emails) {
       const newReview = await review
@@ -94,11 +94,11 @@ router.post("/create", async (req, res) => {
           email: email,
           status: "SENT",
         })
-        .then((revObject) => ids.push(revObject.review_id));
+        .then((revObject) => reviewIDs.push(revObject.review_id));
     }
     res.status(200).json({
       status: "success",
-      ids: ids,
+      ids: reviewIDs,
     });
   } catch (err) {
     res.send(err);
@@ -186,7 +186,8 @@ router.post("/leaveReview", async (req, res) => {
 });
 
 router.post("/sendInvite", async (req, res) => {
-  const { emails } = req.body;
+  const { emails, ids } = req.body;
+  console.log(ids);
   // Generate test SMTP service account from ethereal.email
   // Only needed if you don't have a real mail account for testing
   //   const testAccount = await nodemailer.createTestAccount();
@@ -201,22 +202,26 @@ router.post("/sendInvite", async (req, res) => {
       pass: "6PqvP2DFtPZbxxcwYA", // generated ethereal password TODO move to .env
     },
   });
-  const recipients = emails;
-  const message = {
-    from: '"Fred Foo 👻" <ra536@njit.edu>', // sender address
-    to: recipients, // list of receivers
-    subject: "Hello there!", // Subject line
-    text: "Hello world?", // plain text body
-    html: "<b>Hello world?</b>", // html body
-  };
-  // send mail with defined transport object
-  const info = await transporter.sendMail(message);
+  const emailResponse = [];
+  for (let i = 0; i < emails.length; i += 1) {
+    const mailOptions = {
+      from: '"Fred Foo 👻" <ra536@njit.edu>', // sender address
+      to: emails[i], // list of receivers
+      subject: "Hello there!", // Subject line
+      text: ids[i], // plain text body
+      html: ids[i],
+    };
+    // send mail with defined transport object
+    const info = transporter.sendMail(mailOptions);
+    emailResponse.push(info);
+  }
 
   res.status(200).json({
     status: "sent!",
-    data: info,
+    data: emailResponse,
   });
   console.log("Successfully emailed review!");
+  console.log(emails.length);
 });
 
 module.exports = router;
