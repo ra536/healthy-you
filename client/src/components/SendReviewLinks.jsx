@@ -8,7 +8,7 @@ const SendReviewLinks = (props) => {
   const [allDoctors, setAllDoctors] = useState([""]);
   const [doctor, setDoctor] = useState("");
   const [emailInput, setEmailInput] = useState("");
-  // const [reviewIDs, setReviewIDs] = useState([]); may not need?
+  const [reviewIDs, setReviewIDs] = useState([]);
   const { addReview } = useContext(AdminContext);
 
   const handleChange = (e) => {
@@ -63,14 +63,14 @@ const SendReviewLinks = (props) => {
         doctor_id: doctor,
         emails: emails,
       });
-      //console.log(response.data.ids);
-      //setReviewIDs(response.data.ids); may not need?
+      //console.log(response.data.ids); may not need?
+      setReviewIDs(response.data.ids);
     } catch (err) {
       console.log(err);
     }
     try {
       const res = await ReviewAPI.post("/sendInvite", {
-        // ids: reviewIDs, may not need?
+        ids: reviewIDs,
         emails: emails,
       });
       console.log(res.data.status);
