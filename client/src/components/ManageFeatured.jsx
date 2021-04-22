@@ -23,8 +23,6 @@ const ManageFeatured = (props) => {
         } catch (err) {
             console.log(err);
         }
-        setType("");
-        setTypeID("");
     };
 
     const handleDelete = async (e) => {
@@ -83,7 +81,7 @@ const ManageFeatured = (props) => {
                             <>
                                 <tr>
                                     <td>{obj.type}</td>
-                                    <td>{obj.featured_id}</td>
+                                    <td>{obj.item_id}</td>
                                     <td><Button variant="danger" id={obj.featured_id} onClick={handleDelete}>Delete</Button></td>
                                 </tr>
                             </>

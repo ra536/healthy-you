@@ -1,11 +1,29 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Row, Col, Media, Card, Button, ButtonGroup} from "react-bootstrap";
 import ad250 from "./ads/ad250.jpg";
 import newMag from "./newMag.JPG";
 import magazine from "./magazines/magazine.jpg";
 import "bootstrap/dist/css/bootstrap.css";
+import FeaturedAPI from "../apis/FeaturedAPI";
 
 const HomeSideBar = (props) => {
+
+  const [featuredDoctors, setFeaturedDoctors] = useState([]);
+
+   useEffect(() => {
+    // Define a function fetchData that calls APIs which is then called in useEffect
+    const fetchData = async () => {
+      try {
+        const response = await FeaturedAPI.post("/findFeaturedDoctors", {});
+        console.log(response.data.data)
+        setFeaturedDoctors(response.data.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
      <Card border="" style={{ width: '18rem' }}>

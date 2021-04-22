@@ -2,6 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 const { Sequelize } = require("sequelize");
+const doctors = require("../db/models/doctor");
 const featured = require("../db/models/featured");
 const { isAuthAndDoctor } = require("../passport");
 
@@ -15,6 +16,36 @@ router.post("/findAll", async (req, res) => {
         status: "success",
         data: allFeatured,
     })
+})
+
+// BROKEN
+router.post("/findFeaturedDoctors", async (req, res) => {
+    const doctorArray = [];
+    const allOfType = await featured.findAll({
+        attributes: ['item_id'],
+        where: {
+            type: "doctor",
+        },
+        raw: true,
+    })
+    allOfType.forEach(async (obj) => {
+        const newDoctor = await doctors.findByPk(obj.item_id);
+        doctorArray.push(newDoctor);
+    })
+    console.log(doctorArray);
+    res.status(200).json({
+        status: "success",
+        data: doctorArray,
+    })
+    // const doctorInfo = await doctors.findAll({
+    //     include: {
+    //         model: featured,
+    //         where {
+    //             item_id: Sequelize.col('doctors.doctor_id')
+    //         },
+    //     },
+    // })
+
 })
 
 
