@@ -84,6 +84,15 @@ const Home = () => {
         });
         console.log(response.data.data);
         setFeaturedArticles(response.data.data);
+      } catch (err){
+        console.log(err);
+      }
+      
+      try {
+        const response = await ArticleAPI.post("/mostViewed", {
+          numOfArticles: 3,
+        });
+        console.log(response.data.data);
       } catch (err) {
         console.log(err);
       }
