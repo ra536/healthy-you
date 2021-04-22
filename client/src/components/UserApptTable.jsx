@@ -71,7 +71,7 @@ const UserApptTable = (props) => {
 
     return (
         <>
-            <h1>Your Upcoming Appointments</h1>
+            <h2>Your Upcoming Appointments</h2>
             <Table striped bordered hover>
                 <thead>
                     <tr>
