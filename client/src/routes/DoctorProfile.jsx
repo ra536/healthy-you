@@ -25,6 +25,7 @@ import onehstar from "./stars/OneHStar.png";
 import onestar from "./stars/OneStar.png";
 import hstar from "./stars/HStar.png";
 import star from "./stars/Star.png";
+import Form from 'react-bootstrap/Form'
 
 import Moment from "react-moment";
 import "moment-timezone";
@@ -356,6 +357,43 @@ const DoctorProfile = (props) => {
           </div>
         </Col>
       </Row>
+	  
+	  <Row>
+
+	  <Col>
+	  	  
+	  <Form>
+  <Form.Row>
+    <Form.Group as={Col} controlId="formGridEmail">
+      <Form.Label>Email</Form.Label>
+      <Form.Control type="email" placeholder="Enter email" />
+    </Form.Group>
+
+    <Form.Group as={Col} controlId="formGridName">
+      <Form.Label>Name</Form.Label>
+      <Form.Control type="name" placeholder="Name" />
+    </Form.Group>
+  </Form.Row>
+
+  <Form.Row>
+    <Form.Group as={Col} controlId="formGridSubject">
+      <Form.Label>Subject</Form.Label>
+      <Form.Control />
+    </Form.Group>
+
+  </Form.Row>
+    <Form.Group controlId="exampleForm.ControlTextarea1">
+    <Form.Label>Message</Form.Label>
+    <Form.Control as="textarea" rows={3} />
+  </Form.Group>
+
+  <Button variant="primary" type="submit">
+    Submit
+  </Button>
+</Form>
+	</Col>
+	
+	  </Row>
     </>
   );
 };
