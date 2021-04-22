@@ -63,7 +63,8 @@ export const UpdateArticleModal = (props) => {
       "load",
       function () {
         var image = new Image();
-        image.height = 100;
+        image.height = 400;
+        image.width = 300;
         image.title = "Name";
         image.src = this.result;
         document.getElementById("input-file").appendChild(image);
@@ -134,7 +135,7 @@ export const UpdateArticleModal = (props) => {
         Update Article
       </Button>
 
-      <Modal show={articleUpdateShow} onHide={handleClose}>
+      <Modal show={articleUpdateShow} onHide={handleClose} size = "xl">
         <Modal.Header closeButton>
           <Modal.Title>Update Article</Modal.Title>
         </Modal.Header>
@@ -142,42 +143,66 @@ export const UpdateArticleModal = (props) => {
           <div>
             <form>
               <input
+                style={{width: "300px"}}
                 id="input-headline"
                 value={articleUpdateHeadline}
                 placeholder="Headline"
                 onChange={(e) => setArticleUpdateHeadline(e.target.value)}
               />
+              {' '}
               <input
+                style={{width: "150px"}}
                 id="input-category"
                 value={articleUpdateCategory}
                 placeholder="Category"
                 onChange={(e) => setArticleUpdateCategory(e.target.value)}
               />
+              {' '}
               <input
+                style={{width: "300px"}}
                 id="input-summary"
                 value={articleUpdateSummary}
                 placeholder="Summary"
                 onChange={(e) => setArticleUpdateSummary(e.target.value)}
+              />             
+               <input
+                id="input-caption"
+                value={articleUpdateCaption}
+                placeholder="Caption"
+                onChange={(e) => setArticleUpdateCaption(e.target.value)}
               />
-              <br />
+              
+            <br/>
+            <br/>
+            <br/>
+              {' '}
               <textarea
                 id="input-content"
+                width="300%"
+                style = {{width: "1100px"}}
                 value={articleUpdateContent}
                 placeholder="Content"
                 onChange={(e) => setArticleUpdateContent(e.target.value)}
               />
+              {' '}
               <input
                 id="input-file"
                 name="article-image"
                 type="file"
                 onChange={(e) => previewImage(e)}
               />
+              {' '}
+              <br/>
+              <br/>
               <input
                 id="input-caption"
+                style={{width: "250px"}}
                 value={articleUpdateCaption}
                 placeholder="Caption"
                 onChange={(e) => setArticleUpdateCaption(e.target.value)}
               />
+            <br/>
+            <br/>
 
               <img
                 src={articleUpdateImage}
