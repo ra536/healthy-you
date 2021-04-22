@@ -271,15 +271,14 @@ const Results = (props) => {
                   <Container fluid="md">
                       <Row>
                         <Col>
-                        <Image src={featuredDoctor.profile_picture} rounded />
+                        <Image src={featuredDoctor.profile_picture} fluid />
                         </Col>
                         <Col>
                       
-                        <h3>{featuredDoctor.doctor_name}</h3>
+                        <h6>{featuredDoctor.doctor_name}</h6>
                         <h6>{featuredDoctor.phone}</h6>
+                        <h6>{featuredDoctor.specialty}</h6>
                         <br />
-                        <h6>Specialty: {featuredDoctor.specialty}</h6>
-                        <h6>Phone:</h6>
 
                         <Button
                           variant="success"

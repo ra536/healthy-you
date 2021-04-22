@@ -175,7 +175,7 @@ const Home = () => {
             </>
             );
           })}
-          <Button variant="secondary"  href="/latestArticles/100" block>See More</Button>
+          <Button  variant="link"  href="/latestArticles/100" block>See More</Button>
           <br />
         </Container>
 
@@ -199,7 +199,7 @@ const Home = () => {
           />
           <div align="center">
           <br />
-          <Button  variant="secondary" href="/category/Health">More Health Articles </Button>
+          <Button  variant="link" href="/category/Health">More Health Articles </Button>
           </div>
           
           
@@ -213,7 +213,7 @@ const Home = () => {
           />
           <div align="center">
           <br />
-          <Button variant="secondary"  href="/category/Wellness">More Wellness Articles</Button>
+          <Button  variant="link"  href="/category/Wellness">More Wellness Articles</Button>
           </div>
           <hr />
           <CategoryCarousel
@@ -223,7 +223,7 @@ const Home = () => {
           />
           <div align="center">
           <br />
-          <Button variant="secondary" href="/category/Fitness">More Fitness Articles</Button>
+          <Button  variant="link" href="/category/Fitness">More Fitness Articles</Button>
           </div>
           <hr />
           <CategoryCarousel
@@ -233,7 +233,7 @@ const Home = () => {
           />
           <div align="center">
           <br />
-          <Button variant="secondary"  href="/category/Food">More Food Articles</Button>
+          <Button  variant="link"  href="/category/Food">More Food Articles</Button>
           </div>
           <br />
         </div>
