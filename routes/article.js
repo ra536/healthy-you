@@ -6,6 +6,7 @@ const { array } = require("yup/lib/locale");
 const articles = require("../db/models/article.js");
 const writer = require("../db/models/writer.js");
 const { Sequelize, Op } = require("sequelize");
+const { sequelize } = require("../db/models/writer.js");
 // var upload = multer({ dest: './uploads' })
 
 router.use(express.json());
@@ -437,6 +438,29 @@ router.post("/pageView", async (req, res) => {
       status: "success",
       data: {
         page_views: req.body.page_views,
+      },
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+router.post("/mostViewed", async (req, res) => {
+  try {
+    const count = req.body.count;
+    console.log(req.body);
+
+    const articleResults = await articles.findAll({
+      order: [
+        [Sequelize.fn('max', Sequelize.col('page_views')), 'DESC']
+      ],
+      limit: count,
+    });
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        data: articleResults,
       },
     });
   } catch (error) {
