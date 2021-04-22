@@ -11,32 +11,58 @@ const appointment = db.define(
       primaryKey: true,
     },
     practice_id: {
-      type: DataTypes.UUID,
-      allowNull: false,
-    },
-    location_id: {
-      type: DataTypes.UUID,
-      allowNull: false,
+        type: DataTypes.UUID,
+        allowNull: false
     },
     doctor_id: {
       type: DataTypes.UUID,
       allowNull: false,
     },
     user_id: {
-      type: DataTypes.UUID,
-      allowNull: false,
+        type: DataTypes.UUID,
+        allowNull: true
     },
-    date: {
+    first_name:{
       type: DataTypes.STRING,
-      allowNull: false,
     },
-    time: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+    last_name: {
+      type: DataTypes.STRING,
+    },
+    dob: {
+      type: DataTypes.DATE
+    },
+    reason: {
+      type: DataTypes.STRING,
+    },
+    gender: {
+      type: DataTypes.STRING,
+    },
+    seen: {
+      type: DataTypes.STRING,
+    },
+    insurance: {
+      type: DataTypes.STRING,
+    },
+    // date: {
+    //     type: DataTypes.STRING,
+    //     allowNull: false
+    // },
+    // time: {
+    //     type: DataTypes.ARRAY(DataTypes.STRING),
+    //     defaultValue: []
+    // },
+    start_time: {
+        type: DataTypes.DATE,
+        allowNull: false
+    },
+    end_time: {
+        type: DataTypes.DATE,
+        allowNull: false
     },
     status: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: "Unpublished"
     },
     reviewStatus: {
       type: DataTypes.STRING,

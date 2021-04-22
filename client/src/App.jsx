@@ -21,6 +21,9 @@ import ArticleCategory from "./routes/Category";
 import ReviewSuccess from "./routes/ReviewSuccess";
 import Blog from "./routes/Blog";
 import UserDashboard from "./routes/UserDashboard";
+import Author from "./routes/ArticlesBy";
+import Category from "./routes/ArticleCategory";
+import LatestArticles from "./routes/LatestArticles";
 
 const App = () => {
   const { loggedIn, setLoggedIn, setRole, setId } = useContext(AuthContext);
@@ -40,7 +43,7 @@ const App = () => {
             setId(response.data.doctor_id);
           } else if (response.data.role === "Writer") {
             setId(response.data.writer_id);
-          } else {
+          } else if(response.data.role === "User"){
             setId(response.data.user_id);
           }
         } else {
@@ -90,10 +93,17 @@ const App = () => {
             requiredRoles={["Writer"]}
           />{" "}
           <Route path="/article/:id" component={Article} />
-          <Route path="/book-appointment" component={Appointment} />
+          <ProtectedRoute 
+            path="/book-appointment/:doctorID" 
+            component={Appointment} 
+            requiredRoles={["User", "Admin", "Doctor", "Writer"]}
+          />
           <Route exact path="/category/Blog" component={Blog} />
           <Route path="/category/:id" component={ArticleCategory} />
           <Route path="/reviewSuccess" component={ReviewSuccess} />
+          <Route path="/author/:id/:count" component={Author}/>
+          <Route path="/sameCategory/:id/:count" component={Category}/>
+          <Route path="/LatestArticles/:count" component={LatestArticles}/>
         </Switch>
       </div>
     </AppContextProvider>

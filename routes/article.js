@@ -2,8 +2,10 @@ const express = require("express");
 
 const router = express.Router();
 const multer = require("multer");
+const { array } = require("yup/lib/locale");
 const articles = require("../db/models/article.js");
 const writer = require("../db/models/writer.js");
+const { Sequelize, Op } = require("sequelize");
 // var upload = multer({ dest: './uploads' })
 
 router.use(express.json());
@@ -45,6 +47,9 @@ router.post("/findWriter", async (req, res) => {
 router.get("/random", async (req, res) => {
   try {
     const randomResults = await articles.findOne({
+      order: [
+        Sequelize.fn('RANDOM'),
+      ],
       raw: true,
     });
     const writerResult = await writer.findByPk(randomResults.writer_id);
@@ -69,8 +74,10 @@ router.post("/find", async (req, res) => {
       },
       raw: true,
     });
+    
     const writerResult = await writer.findByPk(testResults[0].writer_id);
-    console.log(writerResult);
+    console.log("writer results", writerResult);
+    
     res.status(200).json({
       status: "success",
       data: testResults,
@@ -294,5 +301,148 @@ router.post("/category", async (req, res) => {
     console.log(error.message);
   }
 });
+
+router.post("/numCategory", async (req, res) => {
+  try {
+    const name = req.body.category;
+    const num = req.body.num;
+    console.log(req.body);
+
+    const articleResults = await articles.findAll({
+      where: {
+        category: name,
+      },
+      limit: num,
+      raw: true,
+    });
+
+    console.log(articleResults);
+
+    res.status(200).json({
+      status: "success",
+      data: articleResults,
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+
+router.post("/latest", async (req, res) => {
+  try {
+    const count = req.body.numOfArticles;
+    const articleResults = await articles.findAll({
+      //offset: skip,
+      order: [
+        ["created_at", "DESC"]
+      ],
+      limit: count,
+      raw: true,
+    })
+
+    res.status(200).json({
+      status: "success",
+      data: articleResults,
+    });
+
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+router.post("/author", async (req, res) => {
+  try {
+    const id = req.body.article_id;
+    const count = req.body.numOfArticles;
+    console.log(req.body);
+
+    const results = await articles.findOne({
+      where: {
+        article_id: id,
+      },
+      raw: true,
+    });
+
+    const writer = results.writer_id;
+
+    const articleResults = await articles.findAll({
+      where: {
+        writer_id: writer,
+        article_id: {
+          [Op.ne]: id,
+        }
+      },
+      limit: count,
+    })
+
+    console.log(articleResults)
+
+    res.status(200).json({
+      status: "success",
+      data: articleResults,
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+router.post("/sameCategory", async (req, res) => {
+  try {
+    const id = req.body.article_id;
+    const count = req.body.numOfArticles;
+    console.log(req.body);
+
+    const results = await articles.findOne({
+      where: {
+        article_id: id,
+      },
+      raw: true,
+    });
+
+    const category = results.category;
+
+    const articleResults = await articles.findAll({
+      where: {
+        category: category,
+        article_id: {
+          [Op.ne]: id,
+        }
+      },
+      limit: count,
+    })
+
+    
+    console.log(articleResults)
+
+    res.status(200).json({
+      status: "success",
+      data: articleResults,
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+router.post("/pageView", async (req, res) => {
+  try {
+    const id = req.body.id;
+    console.log(req.body);
+
+    const articleResults = await articles.findByPk(req.body.id);
+
+    console.log(articleResults);
+    articleResults.page_views += 1
+    await articleResults.save();
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        page_views: req.body.page_views,
+      },
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 
 module.exports = router;

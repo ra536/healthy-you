@@ -59,7 +59,20 @@ router.post("/findOne", async (req, res) => {
     // console.log("THERE IS AN ERROR!");
   }
 });
-
+router.get("/getFeatured", async (req,res) => {
+  try {
+    const results = await doctor.findAll({
+      raw: true,
+    })
+    console.log(results)
+    res.status(200).json({
+      status: "success",
+      data: results,
+    });
+  } catch (error) {
+    
+  }
+});
 router.get("/random", async (req, res) => {
   try {
     const randomResults = await doctor.findOne({
@@ -200,6 +213,24 @@ router.post("/updateProfilePic", isAuthAndDoctor, async (req, res) => {
     });
   } catch (err) {
     // console.log(err);
+  }
+});
+
+router.post("/getDoctorName", async (req, res) => {
+  try {
+    const doctorResult = await doctor.findOne({
+      where: {
+        doctor_id: req.body.doctor_id,
+      },
+      raw: true,
+    });
+    res.status(200).json({
+      status: "success",
+      data: {
+        doctor_name: doctorResult.doctor_name
+      },
+    });
+  } catch (err) {
   }
 });
 

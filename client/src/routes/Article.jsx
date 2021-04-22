@@ -7,6 +7,7 @@ import "moment-timezone";
 import TopNavBar from "../components/TopNavBar";
 import SocialShareButtons from "../components/SocialShareButtons";
 import "bootstrap/dist/css/bootstrap.css";
+import HomeSideBar from "../components/HomeSideBar";
 
 const Article = (props) => {
   let { id } = useParams();
@@ -20,6 +21,8 @@ const Article = (props) => {
   const [publishDate, setPublishDate] = useState("");
   const [author, setAuthor] = useState("");
   const [writerID, setWriterID] = useState(null);
+  const [numViews, setNumViews] = useState(0);
+
 
   const link =
     "https://healthy-you-project.herokuapp.com/article/87918716-f71f-4548-aea3-ad0496d44c9a";
@@ -31,6 +34,12 @@ const Article = (props) => {
         const response = await ArticleAPI.post("/find", {
           article_id: id,
         });
+
+        const views = await ArticleAPI.post("/pageView",{
+          id: id,
+        });
+        console.log("data", views.data.data[0])
+
         setHeadline(response.data.data[0].headline);
         setCategory(response.data.data[0].category);
         setSummary(response.data.data[0].summary);
@@ -38,6 +47,7 @@ const Article = (props) => {
         setImage(response.data.data[0].image_data);
         setCaption(response.data.data[0].image_caption);
         setPublishDate(response.data.data[0].createdAt);
+        setNumViews(response.data.data[0].page_views);
         setAuthor(
           response.data.writer.firstName + " " + response.data.writer.lastName
         );
@@ -56,19 +66,20 @@ const Article = (props) => {
     // Return different webpage, depending on the validity of the ID provided
     <>
       <TopNavBar />
-      <Container>
+      <Container style={{  width: "65%", display: "inline-block"  }}>
         <h1>{headline}</h1>
         Category: <a href={"/category/" + category}>{category}</a>
         <br />
         <br />
         <a href={"/writer-profile/" + writerID}>{author}</a> |{" "}
-        <Moment format="dddd MMMM Do, YYYY [at] h:mm A">{publishDate}</Moment>
+        <Moment format="dddd MMMM Do, YYYY [at] h:mm A">{publishDate}</Moment> |{" "}
+        {numViews} views
         <br />
         <br />
         <SocialShareButtons link={link} />
         <br />
         <br />
-        <img src={image} alt="" />
+        <img src={image} width="100%" alt="" />
         <p>
           <i>Above: {caption}</i>
         </p>
@@ -82,6 +93,14 @@ const Article = (props) => {
         <br />
         <br />
       </Container>
+      <Container
+          id="Right Sidebar"
+          style={{ width: "35%", display: "inline-block" }}
+        >
+          <br />
+          <HomeSideBar />
+          <br />
+        </Container>
     </>
   );
 };
