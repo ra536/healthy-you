@@ -1,11 +1,16 @@
 import React, { useEffect, useState, useContext } from "react";
 import UserAPI from "../apis/UserAPI";
 import { useParams } from "react-router-dom";
-import { Container } from "react-bootstrap";
+import { Container, Table, Button, Tabs, Tab } from "react-bootstrap";
 import TopNavBar from "../components/TopNavBar";
 import SendReviewLinks from "../components/SendReviewLinks";
 import DisplayAllReviews from "../components/DisplayAllReviews";
+import AdminUsersTab from "../components/AdminUsersTab";
+import AdminManageSpecialty from "../components/AdminManageSpecialty";
+import AdminInsuranceTab from "../components/AdminInsuranceTab";
+import AdminSpecialtyTab from "../components/AdminSpecialtyTab";
 import { AdminContextProvider } from "../context/AdminContext";
+
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 
@@ -40,10 +45,32 @@ const AdminDashboard = (props) => {
     <>
       <AdminContextProvider>
         <TopNavBar />
-        <Container>
+        <Container fluid>
           <h1>Admin Dashboard</h1>
-          <SendReviewLinks />
-          <DisplayAllReviews />
+          <div >
+          
+            <Tabs defaultActiveKey="main" id="uncontrolled-tab" >
+            <Tab eventKey="main" title="Main" >
+                hi
+              </Tab>
+              <Tab eventKey="users" title="Users" >
+                <AdminUsersTab/>
+              </Tab>
+              <Tab eventKey="reviews" title="Reviews">
+                <SendReviewLinks />
+                <DisplayAllReviews />
+              </Tab>
+              <Tab eventKey="specialties" title="Specialties">
+                <AdminSpecialtyTab />
+              </Tab>
+              <Tab eventKey="insurances" title="Insurances" >
+                <AdminInsuranceTab />
+              </Tab>
+              <Tab eventKey="appointments" title="Appointments" >
+                
+              </Tab>
+            </Tabs>
+          </div>
         </Container>
       </AdminContextProvider>
     </>
