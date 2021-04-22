@@ -447,15 +447,15 @@ router.post("/pageView", async (req, res) => {
 
 router.post("/mostViewed", async (req, res) => {
   try {
-    const count = req.body.count;
+    const count = req.body.numOfArticles;
     console.log(req.body);
-
     const articleResults = await articles.findAll({
       order: [
-        [Sequelize.fn('max', Sequelize.col('page_views')), 'DESC']
+        ["page_views", "DESC"]
       ],
       limit: count,
     });
+    console.log("most viewed articles:", articleResults)
 
     res.status(200).json({
       status: "success",
