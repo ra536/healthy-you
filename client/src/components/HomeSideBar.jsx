@@ -9,6 +9,7 @@ import FeaturedAPI from "../apis/FeaturedAPI";
 const HomeSideBar = (props) => {
 
   const [featuredDoctors, setFeaturedDoctors] = useState([]);
+  const [featuredArticles, setFeaturedArticles] = useState([]);
 
    useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
@@ -20,6 +21,14 @@ const HomeSideBar = (props) => {
       } catch (err) {
         console.log(err);
       }
+      try {
+        const response = await FeaturedAPI.post("/findFeaturedArticles", {});
+        console.log(response.data.data)
+        setFeaturedArticles(response.data.data);
+      } catch (err) {
+        console.log(err);
+      }
+      
     };
     fetchData();
   }, []);
@@ -70,7 +79,9 @@ const HomeSideBar = (props) => {
       </Row>
       <br />
       <Row>
-        <Col> Recent Articles </Col>
+        <Col> 
+          <h3>Popular Articles</h3>
+        </Col>
       </Row>
       <br />
       <Row>
