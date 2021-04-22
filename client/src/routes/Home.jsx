@@ -70,7 +70,7 @@ const Home = () => {
       }
       try {
         const response = await ArticleAPI.post("/latest", {
-          numOfArticles: 6,
+          numOfArticles: 8,
         });
         console.log(response.data.data);
         setLatestArticles(response.data.data);
