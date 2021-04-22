@@ -234,4 +234,18 @@ router.post("/getDoctorName", async (req, res) => {
   }
 });
 
+router.get("/getAllDoctors", async (req, res) => {
+  try {
+    const doctorResult = await doctor.findAll({
+      raw: true
+    });
+    res.status(200).json({
+      status: "success",
+      data: doctorResult
+
+    });
+  } catch (err) {
+  }
+});
+
 module.exports = router;
