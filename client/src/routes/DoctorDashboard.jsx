@@ -190,7 +190,7 @@ const DoctorDashboard = (props) => {
   }
   
   return (
-    <>
+    <> 
       <TopNavBar />
       <Container>
         <a href={"/doctor-profile/" + doctorID}>View your profile</a>
