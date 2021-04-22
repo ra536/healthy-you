@@ -75,48 +75,26 @@ const HomeSideBar = (props) => {
       <br />
       <Row>
         <Col>
+          <h3>Featured Doctors</h3>
           <ul className="list-unstyled">
-            <Media as="li">
+            {featuredDoctors.map((doctor) => {
+              return (
+                <>
+                <Media as="li">
               <img
                 width={64}
-                height={64}
                 className="mr-3"
-                src="holder.js/64x64"
+                src={doctor.profile_picture}
                 alt="Generic placeholder"
               />
               <Media.Body>
-                <h5>Expert Name</h5>
-                <p>Expert Description</p>
+                <h6>{doctor.doctor_name}</h6>
+                <p>{doctor.specialty}</p>
               </Media.Body>
             </Media>
-
-            <Media as="li">
-              <img
-                width={64}
-                height={64}
-                className="mr-3"
-                src="holder.js/64x64"
-                alt="Generic placeholder"
-              />
-              <Media.Body>
-                <h5>Expert Name</h5>
-                <p>Expert Description</p>
-              </Media.Body>
-            </Media>
-
-            <Media as="li">
-              <img
-                width={64}
-                height={64}
-                className="mr-3"
-                src="holder.js/64x64"
-                alt="Generic placeholder"
-              />
-              <Media.Body>
-                <h5>Expert Name</h5>
-                <p>Expert Description</p>
-              </Media.Body>
-            </Media>
+                </>
+              );
+            })}
           </ul>
         </Col>
       </Row>

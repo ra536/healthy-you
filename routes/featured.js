@@ -28,10 +28,14 @@ router.post("/findFeaturedDoctors", async (req, res) => {
         },
         raw: true,
     })
-    allOfType.forEach(async (obj) => {
-        const newDoctor = await doctors.findByPk(obj.item_id);
+    for(i=0; i < allOfType.length; ++i){
+        const newDoctor = await doctors.findByPk(allOfType[i].item_id);
         doctorArray.push(newDoctor);
-    })
+    }
+    // allOfType.forEach(async (obj) => {
+    //     const newDoctor = await doctors.findByPk(obj.item_id);
+    //     doctorArray.push(newDoctor.data.data);
+    // })
     console.log(doctorArray);
     res.status(200).json({
         status: "success",
