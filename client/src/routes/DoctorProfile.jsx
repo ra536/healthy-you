@@ -29,7 +29,7 @@ import star from "./stars/Star.png";
 import Moment from "react-moment";
 import "moment-timezone";
 
-// import axios from "axios";
+
 import TopNavBar from "../components/TopNavBar";
 
 const DoctorProfile = (props) => {
