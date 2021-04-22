@@ -252,4 +252,23 @@ router.put("/bookAppt", async (req, res) => {
   }
 });
 
+router.post("/getAllUsersAppts", async (req, res) => {
+  try {
+    const appointmentResults = await appointment.findAll({
+      raw: true,
+      where: {
+        user_id: req.body.user_id
+      }
+    });
+    // console.log(appointmentResults);
+    res.status(200).json({
+      status: "success",
+      data: appointmentResults
+    })
+  }
+  catch (err) {
+    console.error(err);
+  }
+});
+
 module.exports = router;
