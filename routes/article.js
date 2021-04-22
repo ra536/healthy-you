@@ -459,9 +459,7 @@ router.post("/mostViewed", async (req, res) => {
 
     res.status(200).json({
       status: "success",
-      data: {
-        data: articleResults,
-      },
+      data: articleResults,
     });
   } catch (error) {
     console.log(error.message);
