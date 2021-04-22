@@ -187,21 +187,30 @@ router.post("/leaveReview", async (req, res) => {
 
 router.post("/sendInvite", async (req, res) => {
   const { emails, ids } = req.body;
-  console.log(ids);
   // Generate test SMTP service account from ethereal.email
   // Only needed if you don't have a real mail account for testing
   //   const testAccount = await nodemailer.createTestAccount();
 
   // create reusable transporter object using the default SMTP transport
+  // const transporter = nodemailer.createTransport({
+  //   host: "smtp.ethereal.email",
+  //   port: 587,
+  //   secure: false, // true for 465, false for other ports
+  //   auth: {
+  //     user: "ella.aufderhar@ethereal.email", // generated ethereal user TODO move to .env
+  //     pass: "6PqvP2DFtPZbxxcwYA", // generated ethereal password TODO move to .env
+  //   },
+  // });
+
+  // gmail transporter
   const transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
-    secure: false, // true for 465, false for other ports
+    service: "gmail",
     auth: {
-      user: "ella.aufderhar@ethereal.email", // generated ethereal user TODO move to .env
-      pass: "6PqvP2DFtPZbxxcwYA", // generated ethereal password TODO move to .env
+      user: "healthy.you.511@gmail.com",
+      pass: "qJsRjjg(u&4g$A",
     },
   });
+
   const emailResponse = [];
   for (let i = 0; i < emails.length; i += 1) {
     const mailOptions = {
