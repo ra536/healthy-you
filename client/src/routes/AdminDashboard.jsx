@@ -6,6 +6,7 @@ import TopNavBar from "../components/TopNavBar";
 import SendReviewLinks from "../components/SendReviewLinks";
 import DisplayAllReviews from "../components/DisplayAllReviews";
 import { AdminContextProvider } from "../context/AdminContext";
+import ManageFeatured from "../components/ManageFeatured";
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 
@@ -44,6 +45,7 @@ const AdminDashboard = (props) => {
           <h1>Admin Dashboard</h1>
           <SendReviewLinks />
           <DisplayAllReviews />
+          <ManageFeatured />
         </Container>
       </AdminContextProvider>
     </>

@@ -1,11 +1,38 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Row, Col, Media, Card, Button, ButtonGroup} from "react-bootstrap";
 import ad250 from "./ads/ad250.jpg";
 import newMag from "./newMag.JPG";
 import magazine from "./magazines/magazine.jpg";
 import "bootstrap/dist/css/bootstrap.css";
+import FeaturedAPI from "../apis/FeaturedAPI";
 
 const HomeSideBar = (props) => {
+
+  const [featuredDoctors, setFeaturedDoctors] = useState([]);
+  const [featuredArticles, setFeaturedArticles] = useState([]);
+
+   useEffect(() => {
+    // Define a function fetchData that calls APIs which is then called in useEffect
+    const fetchData = async () => {
+      try {
+        const response = await FeaturedAPI.post("/findFeaturedDoctors", {});
+        console.log(response.data.data)
+        setFeaturedDoctors(response.data.data);
+      } catch (err) {
+        console.log(err);
+      }
+      try {
+        const response = await FeaturedAPI.post("/findFeaturedArticles", {});
+        console.log(response.data.data)
+        setFeaturedArticles(response.data.data);
+      } catch (err) {
+        console.log(err);
+      }
+      
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
      <Card border="" style={{ width: '18rem' }}>
@@ -52,53 +79,33 @@ const HomeSideBar = (props) => {
       </Row>
       <br />
       <Row>
-        <Col> Recent Articles </Col>
+        <Col> 
+          <h3>Popular Articles</h3>
+        </Col>
       </Row>
       <br />
       <Row>
         <Col>
+          <h3>Featured Doctors</h3>
           <ul className="list-unstyled">
-            <Media as="li">
+            {featuredDoctors.map((doctor) => {
+              return (
+                <>
+                <Media as="li">
               <img
                 width={64}
-                height={64}
                 className="mr-3"
-                src="holder.js/64x64"
+                src={doctor.profile_picture}
                 alt="Generic placeholder"
               />
               <Media.Body>
-                <h5>Expert Name</h5>
-                <p>Expert Description</p>
+                <h6>{doctor.doctor_name}</h6>
+                <p>{doctor.specialty}</p>
               </Media.Body>
             </Media>
-
-            <Media as="li">
-              <img
-                width={64}
-                height={64}
-                className="mr-3"
-                src="holder.js/64x64"
-                alt="Generic placeholder"
-              />
-              <Media.Body>
-                <h5>Expert Name</h5>
-                <p>Expert Description</p>
-              </Media.Body>
-            </Media>
-
-            <Media as="li">
-              <img
-                width={64}
-                height={64}
-                className="mr-3"
-                src="holder.js/64x64"
-                alt="Generic placeholder"
-              />
-              <Media.Body>
-                <h5>Expert Name</h5>
-                <p>Expert Description</p>
-              </Media.Body>
-            </Media>
+                </>
+              );
+            })}
           </ul>
         </Col>
       </Row>

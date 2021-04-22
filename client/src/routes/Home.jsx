@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { Container, Row, Col, Carousel, Card, Image, Badge, Button} from "react-bootstrap";
+import { Container, Row, Col, Carousel, Card, Image, Badge, Button } from "react-bootstrap";
 import ArticleAPI from "../apis/ArticleAPI";
+import FeaturedAPI from "../apis/FeaturedAPI";
 
 // bootstrap styles library (gives automatic styling)
 import "bootstrap/dist/css/bootstrap.css";
@@ -31,6 +32,8 @@ const Home = () => {
   const [featuredAuthor3, setFeaturedAuthor3] = useState("");
 
   const [latestArticles, setLatestArticles] = useState([]);
+
+  const [featuredArticles, setFeaturedArticles] = useState([]);
 
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
@@ -74,6 +77,16 @@ const Home = () => {
       } catch (err) {
         console.log(err);
       }
+
+      try {
+        const response = await FeaturedAPI.post("/findFeaturedArticles", {
+
+        });
+        console.log(response.data.data);
+        setFeaturedArticles(response.data.data);
+      } catch (err) {
+        console.log(err);
+      }
     };
     fetchData();
   }, []);
@@ -99,55 +112,25 @@ const Home = () => {
             interval={10000}
             style={{ width: "80%", display: "inline-block" }}
           >
-            <Carousel.Item>
-              <Link to={"/article/" + featuredArticle.article_id}
-              style={{ textDecoration: "none", color: "black" }}>
-              <img src={featuredArticle.image_data} width="100%"/>
-              <Carousel.Caption>
-                
-                
-              </Carousel.Caption>
-              <div backgroundColor="black">
-                <h1 color="black">{featuredArticle.headline}</h1>
-                <p>{featuredArticle.summary}</p>
-                </div>
-                <br />
-              </Link>
-              
-              
-            </Carousel.Item>
-            <Carousel.Item>
-              <Link to={"/article/" + featuredArticle2.article_id}
-              style={{ textDecoration: "none", color: "black" }}>
-              <img src={featuredArticle2.image_data} width="100%"/>
-              <Carousel.Caption>
-                
-              </Carousel.Caption>
-              <div backgroundColor="black">
-                  <h1>{featuredArticle2.headline}</h1>
-                  <p>{featuredArticle2.summary}</p>
-                </div>
-                <br />
-              </Link>
-            </Carousel.Item>
-
-            <Carousel.Item>
-              <Link to={"/article/" + featuredArticle3.article_id}
-              style={{ textDecoration: "none", color: "black" }}>
-              <img src={featuredArticle3.image_data} width="100%"/>
-              <Carousel.Caption>
-                
-              </Carousel.Caption>
-              <div backgroundColor="black">
-                  <h1>{featuredArticle3.headline}</h1>
-                  <p>{featuredArticle3.summary}</p>
-                </div>
-                <br />
-              </Link>
-            </Carousel.Item>
-            </Carousel>
+            {featuredArticles.map((article) => {
+              console.log(article);
+              return (
+                <Carousel.Item>
+                  <Link to={"/article/" + article.article_id}
+                    style={{ textDecoration: "none", color: "black" }}>
+                    <img src={article.image_data} width="100%" />
+                    <div>
+                      <h1 color="black">{article.headline}</h1>
+                      <p>{article.summary}</p>
+                    </div>
+                    <br />
+                  </Link>
+                </Carousel.Item>
+              )
+            })}
+          </Carousel>
         </div>
-        
+
         <br />
 
         <HealthGuide />
@@ -160,19 +143,19 @@ const Home = () => {
           <div align="left">
             <h2>The Latest</h2>
           </div>
-          
+
           {latestArticles.map((article) => {
             return (
               <>
-              <Row>
-              <ArticleComponent
-                article={article}
-                type="horizontal"
-              />
-            </Row>
+                <Row>
+                  <ArticleComponent
+                    article={article}
+                    type="horizontal"
+                  />
+                </Row>
 
-            <hr />
-            </>
+                <hr />
+              </>
             );
           })}
           <Button href="/latestArticles/100" block>See More</Button>
@@ -198,22 +181,22 @@ const Home = () => {
             category="Health"
           />
           <div align="center">
-          <br />
-          <Button href="/category/Health">More Health Articles</Button>
+            <br />
+            <Button href="/category/Health">More Health Articles</Button>
           </div>
-          
-          
+
+
           <hr />
-          
+
           <CategoryCarousel
             article={featuredArticle}
             writer={featuredAuthor}
             category="Wellness"
-            
+
           />
           <div align="center">
-          <br />
-          <Button href="/category/Wellness">More Wellness Articles</Button>
+            <br />
+            <Button href="/category/Wellness">More Wellness Articles</Button>
           </div>
           <hr />
           <CategoryCarousel
@@ -222,8 +205,8 @@ const Home = () => {
             category="Fitness"
           />
           <div align="center">
-          <br />
-          <Button href="/category/Fitness">More Fitness Articles</Button>
+            <br />
+            <Button href="/category/Fitness">More Fitness Articles</Button>
           </div>
           <hr />
           <CategoryCarousel
@@ -232,14 +215,14 @@ const Home = () => {
             category="Food"
           />
           <div align="center">
-          <br />
-          <Button href="/category/Food">More Food Articles</Button>
+            <br />
+            <Button href="/category/Food">More Food Articles</Button>
           </div>
           <br />
         </div>
 
         <AdBreak />
-        <br/>
+        <br />
       </div>
     </div>
   );
