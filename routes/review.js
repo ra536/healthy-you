@@ -229,8 +229,8 @@ router.post("/sendInvite", async (req, res) => {
     status: "sent!",
     data: emailResponse,
   });
-  console.log("Successfully emailed review!");
-  console.log(emails.length);
+  // console.log("Successfully emailed review!");
+  // console.log(emails.length);
 });
 
 module.exports = router;
