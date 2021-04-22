@@ -38,9 +38,6 @@ const UserDashboard = (props) => {
       <Container>
         <h1>User Dashboard</h1>
         <br />
-        <h1>User ID:</h1>
-        {id}
-        <br />
         <UserApptTable user_id={id}/>
       </Container>
     </>
