@@ -9,7 +9,7 @@ const AdminManageWriters = (props) => {
 
     const [expandedRows, setExpandedRows] = useState([]);
     const [expandState, setExpandState] = useState({});
-console.log(userList)
+
     const handleExpandRow = (event, userId) => {
         const currentExpandedRows = expandedRows;
         const isRowExpanded = currentExpandedRows.includes(userId);
@@ -43,15 +43,11 @@ console.log(userList)
         return (Intl.DateTimeFormat("en-US", { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).format(dt));
     }
 
-    const handleClick = (data) => {
-        console.log(data.target.value);
-    }
-
     return (
         <div style={{ margin: 0 }}>
             <Table striped bordered hover>
                 <thead>
-                    <tr onClick={handleClick}>
+                    <tr>
                         <th>#</th>
                         <th>First Name</th>
                         <th>Last Name</th>
@@ -65,7 +61,7 @@ console.log(userList)
                     {userList.map((userList, index) => {
                         return (
                             <>
-                            <tr key={index}>
+                            <tr key={index} onClick={event => handleExpandRow(event, index)}>
                                 <td>{index}</td>
                                 <td>{userList.firstName}</td>
                                 <td>{userList.lastName}</td>
