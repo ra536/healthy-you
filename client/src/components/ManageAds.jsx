@@ -45,6 +45,7 @@ const ManageAds = (props) => {
                 link: link,
                 image: image,
             })
+            setResults([...results, result.data.data]);
         } catch (err) {
             console.log(err);
         }
@@ -54,6 +55,18 @@ const ManageAds = (props) => {
         setSize(e.target.value);
         console.log(e.target.value);
         e.preventDefault();
+    };
+
+    const handleDelete = async (e) => {
+        try {
+            const response = await AdAPI.post("/delete", {
+                ad_id: e.target.id,
+            });
+            console.log(response.data.data);
+            setResults(results.filter((item) => item.ad_id !== e.target.id));
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     useEffect(() => {
@@ -104,6 +117,7 @@ const ManageAds = (props) => {
                         <th>Size</th>
                         <th>Link</th>
                         <th>Image</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -114,6 +128,7 @@ const ManageAds = (props) => {
                                     <td>{obj.type}</td>
                                     <td>{obj.ad_link}</td>
                                     <td><img width="200px" src={obj.ad_image}></img></td>
+                                    <td><Button variant="danger" id={obj.ad_id} onClick={handleDelete}>Delete</Button></td>
                                 </tr>
                             </>
                         );

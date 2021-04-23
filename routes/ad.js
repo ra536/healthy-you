@@ -33,4 +33,13 @@ router.post("/create", async (req, res) => {
     })
 })
 
+router.post("/delete", async (req, res) => {
+    const delAd = await ad.findByPk(req.body.ad_id);
+    await delAd.destroy();
+    res.status(200).json({
+        status: "success",
+        data: delAd,
+    })
+})
+
 module.exports = router;
