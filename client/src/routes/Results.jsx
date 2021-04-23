@@ -256,18 +256,18 @@ const Results = (props) => {
 
             <Card style={{ width:"60%"}}>
               <Card.Body>
-                <Card.Title><h3>Doctor Finder</h3></Card.Title>
-                <h6>Featured Listing</h6>
+                <h3>Doctor Finder</h3>
               </Card.Body>
             </Card>
 
             <div style={{ width: "60%" }}>
-        
               <Link
                 to={"/doctor-profile/" + featuredDoctor.doctor_id}
                 style={{ textDecoration: "none", color: "black" }}
               >
                 <ListGroup.Item>
+                  <h6>Featured Listing</h6>
+                  <hr />
                   <Container fluid="md">
                       <Row>
                         <Col>
@@ -355,66 +355,28 @@ const Results = (props) => {
             <br />
             <br />
             <div align="center">
+              <hr />
               <h3>Magazine</h3>
+              <hr />
             </div>
             <div align="center" style={{ width: "60%" }}>
-              <ButtonGroup vertical>
                 <Card.Img variant="top" src={newMag} />
 
-                <Button variant="outline-info" size="md" href ="https://issuu.com/healthwellnessfitness">
+                <Button variant="link" size="md" href ="https://issuu.com/healthwellnessfitness">
                   Subscribe
                 </Button>
 
-                <Button variant="outline-info" size="md" href="https://issuu.com/healthwellnessfitness/docs/1-56-compressed">
+                <Button variant="link" size="md" href="https://issuu.com/healthwellnessfitness/docs/1-56-compressed">
                   Read Issue
                 </Button>
-
-
-              </ButtonGroup>
             </div>
-            <br />
+            <hr />
             <Card.Img variant="top" src={adLong} style={{ width: "60%" }} />
             <br />
             <br />
             <br />
             <br />
-            <div align="center" style={{ width: "60%" }}>
-              <h3>Featured Listings</h3>
-            </div>
-            <Card.Img
-              variant="top"
-              src={featuredDoctor.profile_picture}
-              style={{ width: "60%" }}
-            />
-            <div style={{ width: "60%" }}>
-              <Link
-                to={"/doctor-profile/" + featuredDoctor.doctor_id}
-                style={{ textDecoration: "none", color: "black" }}
-              >
-                <ListGroup.Item>
-                  <Container fluid="md">
-                    <Row>
-                      <Col>
-                        <h3>{featuredDoctor.doctor_name}</h3>
-                        <h6>Morristown, NJ</h6>
-                        <h6>{featuredDoctor.phone}</h6>
-                        <br />
-                        <h6>Specialty: {featuredDoctor.specialty}</h6>
-                        <h6>Location: Morris County</h6>
 
-                        <Button
-                          variant="info"
-                          size="lg"
-                          href="/book-appointment"
-                        >
-                          Book now
-                        </Button>
-                      </Col>
-                    </Row>
-                  </Container>
-                </ListGroup.Item>
-              </Link>
-            </div>
             
             <br />
           </Col>
