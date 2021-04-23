@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ExclamationTriangle } from 'react-bootstrap-icons';
 import ReviewAPI from "../apis/ReviewAPI";
-import { Container } from "react-bootstrap";
+import { Container, Button} from "react-bootstrap";
 import TopNavBar from "../components/TopNavBar";
 import { useHistory } from "react-router-dom";
 // import TestAPI from '../apis/TestAPI';
@@ -105,17 +105,32 @@ const Review = (props) => {
     return (
       <>
       <TopNavBar />
+      <div align = "center">
       <Container>
+        
         <h1>Review</h1>
-        <span>Leave a review for your recent visit with:<br /><h3>{doctor}</h3></span><br/>
-        <form onSubmit={handleSubmit}>
-          <h5>Name</h5>
-          <input type="text" placeholder="Name" onChange={(e) => setName(e.target.value)}></input>
-          <br /><br />
+        
+        <span><h5>Leave a review for your recent visit with:</h5>
+        <h1 style={{ color: 'DodgerBlue' }}>{doctor}</h1>
+        </span>
+        <br/>
 
-          <h5>Review</h5>
-          <textarea placeholder="Review" onChange={(e) => setReview(e.target.value)}/>
+        <form>
+          <h3>Name</h3>
+          <input type="text" placeholder="Name" onChange={(e) => setName(e.target.value)} style = {{width: "500px"}}></input>
           <br /><br />
+        
+          <h3>Review</h3>
+          
+          <textarea
+                id="input-content"
+                width="300%"
+                style = {{width: "500px"}}
+                value={review}
+                placeholder="Content"
+                onChange={(e) => setReview(e.target.value)}
+              />
+          <br/><br/>
           
           <h5>Overall Rating</h5>
           {[1, 2, 3, 4, 5].map((number) => {
@@ -127,8 +142,8 @@ const Review = (props) => {
             )
           })}
 
-          <br /><br />
-
+          <br />
+          
           <h5>Bedside Manner</h5>
           {[1, 2, 3, 4, 5].map((number) => {
             return (
@@ -158,12 +173,19 @@ const Review = (props) => {
               </>
             )
           })}
-
+          
+          <br/>
           <br />
-          <input type="submit" value="Leave Review" />
+          <Button variant = "primary">
+            Leave Review
+          </Button>
+          <br />
         </form>
+        <br/>
       </Container>
+      </div>
       </>
+      
     );
   }
 

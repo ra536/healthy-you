@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import ArticleAPI from "../apis/ArticleAPI";
 import { AppContext } from "../context/AppContext";
-import { Button, Modal } from "react-bootstrap";
+import { Button, FormControl, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 
 export const InsertArticleModal = (props) => {
@@ -25,7 +25,8 @@ export const InsertArticleModal = (props) => {
       "load",
       function () {
         var image = new Image();
-        image.height = 100;
+        image.height = 200;
+        image.width = 300;
         image.title = "Name";
         image.src = this.result;
         document.getElementById("input-file").appendChild(image);
@@ -101,50 +102,79 @@ export const InsertArticleModal = (props) => {
       <Button variant="primary" onClick={handleShow}>
         [+] Insert Article
       </Button>
-
-      <Modal show={articleInsertShow} onHide={handleClose}>
+      
+      <Modal show={articleInsertShow} 
+      onHide={handleClose}
+      size = "xl"
+      
+      >
+        
         <Modal.Header closeButton>
           <Modal.Title>Insert Article</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form>
+            
+            
             <input
+              style={{width: "300px"}}
               id="input-headline"
               value={headline}
               placeholder="Headline"
               onChange={(e) => setHeadline(e.target.value)}
             />
+            {' '}
             <input
+              style={{width: "150px"}}
               id="input-category"
               value={category}
               placeholder="Category"
               onChange={(e) => setCategory(e.target.value)}
             />
+            {' '}
             <input
+              style={{width: "300px"}}
               id="input-summary"
               value={summary}
               placeholder="Summary"
               onChange={(e) => setSummary(e.target.value)}
             />
+            {' '}
+
+            {' '}
             <br />
+            <br/>
+            <br/>
             <textarea
               id="input-content"
-              width="100%"
+              width="300%"
+              style = {{width: "1100px"}}
               value={content}
               placeholder="Content"
               onChange={(e) => setContent(e.target.value)}
             />
+            {' '}
+
+            {' '}
+            <br/>
+            <br/>
+            <input
+              style={{width: "250px"}}
+              id="input-caption"
+              value={caption}
+              placeholder="Caption"
+              onChange={(e) => setCaption(e.target.value)}
+              />
+
+            <br/>
+
+            <br/>
+            
             <input
               id="input-file"
               name="article-image"
               type="file"
               onChange={(e) => previewImage(e)}
-            />
-            <input
-              id="input-caption"
-              value={caption}
-              placeholder="Caption"
-              onChange={(e) => setCaption(e.target.value)}
             />
 
             <img src={image} alt="" width="200px" id="preview"></img>
@@ -159,6 +189,7 @@ export const InsertArticleModal = (props) => {
           </Button>
         </Modal.Footer>
       </Modal>
+      
     </>
   );
 };

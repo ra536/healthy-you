@@ -36,7 +36,7 @@ const InputNewArticle = (props) => {
       "load",
       function () {
         var image = new Image();
-        image.height = 100;
+        image.height = 200;
         image.title = "Name";
         image.src = this.result;
         document.getElementById("input-file").appendChild(image);

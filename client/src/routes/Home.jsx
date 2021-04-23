@@ -70,7 +70,7 @@ const Home = () => {
       }
       try {
         const response = await ArticleAPI.post("/latest", {
-          numOfArticles: 6,
+          numOfArticles: 8,
         });
         console.log(response.data.data);
         setLatestArticles(response.data.data);
@@ -167,7 +167,7 @@ const Home = () => {
               </>
             );
           })}
-          <Button href="/latestArticles/100" block>See More</Button>
+          <Button  variant="link"  href="/latestArticles/100" block>See More</Button>
           <br />
         </Container>
 
@@ -190,8 +190,8 @@ const Home = () => {
             category="Health"
           />
           <div align="center">
-            <br />
-            <Button href="/category/Health">More Health Articles</Button>
+          <br />
+          <Button  variant="link" href="/category/Health">More Health Articles </Button>
           </div>
 
 
@@ -204,8 +204,8 @@ const Home = () => {
 
           />
           <div align="center">
-            <br />
-            <Button href="/category/Wellness">More Wellness Articles</Button>
+          <br />
+          <Button  variant="link"  href="/category/Wellness">More Wellness Articles</Button>
           </div>
           <hr />
           <CategoryCarousel
@@ -214,8 +214,8 @@ const Home = () => {
             category="Fitness"
           />
           <div align="center">
-            <br />
-            <Button href="/category/Fitness">More Fitness Articles</Button>
+          <br />
+          <Button  variant="link" href="/category/Fitness">More Fitness Articles</Button>
           </div>
           <hr />
           <CategoryCarousel
@@ -224,8 +224,8 @@ const Home = () => {
             category="Food"
           />
           <div align="center">
-            <br />
-            <Button href="/category/Food">More Food Articles</Button>
+          <br />
+          <Button  variant="link"  href="/category/Food">More Food Articles</Button>
           </div>
           <br />
         </div>
