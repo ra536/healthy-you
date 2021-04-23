@@ -21,4 +21,16 @@ router.post("/getAll", async (req, res) => {
       }
 });
 
+router.post("/create", async (req, res) => {
+    const newAd = await ad.create({
+        type: req.body.size,
+        ad_image: req.body.image,
+        ad_link: req.body.link,
+    });
+    res.status(200).json({
+        status: "success",
+        data: newAd,
+    })
+})
+
 module.exports = router;
