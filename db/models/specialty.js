@@ -12,6 +12,10 @@ const specialty = db.define("specialty", {
     allowNull: false,
     unique: true,
   },
+  category: {
+    type: DataTypes.STRING,
+    allowNull: false
+  }
 });
 
 module.exports = specialty;
