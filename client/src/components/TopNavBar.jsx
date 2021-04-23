@@ -56,7 +56,7 @@ const TopNavBar = () => {
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/category/Blog">Blog</Nav.Link>
               <Nav.Link href="/results">Directory</Nav.Link>
-              <Nav.Link href="#contact-us">Contact Us</Nav.Link>
+              <Nav.Link href="/contact-us">Contact Us</Nav.Link>
               {loggedIn ? (
                 <NavDropdown
                   title="Account"
