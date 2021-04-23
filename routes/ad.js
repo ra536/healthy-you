@@ -42,4 +42,22 @@ router.post("/delete", async (req, res) => {
     })
 })
 
+router.post("/getAdsBySize", async (req, res) => {
+    try {
+        const adResults = await ad.findAll({
+          where: {
+              type: req.body.size
+          },
+          raw: true,
+        });
+        // console.log(appointmentResults);
+        res.status(200).json({
+          status: "success",
+          data: adResults,
+        });
+      } catch (err) {
+        // console.error(err.message);
+      } 
+})
+
 module.exports = router;
