@@ -6,12 +6,14 @@ import AdAPI from "../apis/AdAPI";
 
 const TopFeaturedAds = (props) => {
   const [ads, setAds] = useState([]);
+  const [ad, setAd] = useState({ ad_image: ad1000, type: "1000x300", ad_link: "/"});
 useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
     const fetchData = async () => {
       try {
         const response = await AdAPI.post("/getAdsBySize", { size: "1000x300"});
         setAds(response.data.data);
+        setAd(response.data.data[0])
         console.log(response.data.data);
         console.log(response.data.data[0].ad_image);
       } catch (err) {
@@ -23,15 +25,9 @@ useEffect(() => {
   return (
     <>
       <div align="center" display="inline">
-        <Carousel
-          controls={false}
-          indicators={false}
-          style={{ width: "500px", display: "inline-block" }}
-        >
-          <Carousel.Item>
-            <img className="d-block w-100" src={ads[0].ad_image} alt="First slide" />
-          </Carousel.Item>
-        </Carousel>{" "}
+            <a href={ad.ad_link}>
+            <img className="d-block w-100" width={1000} height={300} src={ad.ad_image} alt="First slide" />
+            </a>
       </div>
     </>
   );

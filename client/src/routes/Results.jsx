@@ -34,11 +34,14 @@ import onehstar from "./stars/OneHStar.png";
 import onestar from "./stars/OneStar.png";
 import hstar from "./stars/HStar.png";
 import star from "./stars/Star.png";
+import AdAPI from "../apis/AdAPI";
 
 const Results = (props) => {
   const { results, setResults } = useContext(AppContext);
 
   const [featuredDoctor, setFeaturedDoctor] = useState("");
+  const [ads, setAds] = useState([]);
+    const [ad1, setAd1] = useState({ ad_image: adLong, type: "300x600", ad_link: "/"});
 
   const determineStars = (rating) => {
     //alert(rating);
@@ -137,6 +140,16 @@ const Results = (props) => {
         );
         setFeaturedDoctor(response.data.data);
         console.log(response.data.data);
+      } catch (err) {
+        console.log(err);
+      }
+
+      try {
+        const response = await AdAPI.post("/getAdsBySize", { size: "300x600"});
+        setAds(response.data.data);
+        setAd1(response.data.data[0]);
+        console.log(response.data.data);
+        console.log(response.data.data[0].ad_image);
       } catch (err) {
         console.log(err);
       }
@@ -371,7 +384,7 @@ const Results = (props) => {
                 </Button>
             </div>
             <hr />
-            <Card.Img variant="top" src={adLong} style={{ width: "60%" }} />
+            <Card.Img variant="top" src={ad1.ad_image} width={300} height={600} />
             <br />
             <br />
             <br />
