@@ -8,6 +8,24 @@ import { AdminContext } from "../context/AdminContext";
 const AdminManageDoctors = (props) => {
     const [userList, setUserList] = useState([]);
 
+    const [expandedRows, setExpandedRows] = useState([]);
+    const [expandState, setExpandState] = useState({});
+
+    const handleExpandRow = (event, userId) => {
+        const currentExpandedRows = expandedRows;
+        const isRowExpanded = currentExpandedRows.includes(userId);
+
+        let obj = {};
+        isRowExpanded ? (obj[userId] = false) : (obj[userId] = true);
+        setExpandState(obj);
+
+        const newExpandedRows = isRowExpanded ?
+            currentExpandedRows.filter(id => id !== userId) :
+            currentExpandedRows.concat(userId);
+
+        setExpandedRows(newExpandedRows);
+    }
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -32,7 +50,7 @@ const AdminManageDoctors = (props) => {
 
     return (
         <div style={{ margin: 0 }}>
-            <Table striped bordered hover>
+            <Table responsive striped bordered hover>
                 <thead>
                     <tr onClick={handleClick}>
                         <th>#</th>
@@ -49,15 +67,45 @@ const AdminManageDoctors = (props) => {
                 <tbody>
                     {userList.map((userList, index) => {
                         return (
-                            <tr key={index}>
-                                <td>{index}</td>
-                                <td>{userList.firstName}</td>
-                                <td>{userList.lastName}</td>
-                                <td>{userList.email}</td>
-                                <td>{userList.state}</td>
-                                <td>{userList.city}</td>
-                                <td>{formatDT(userList.createdAt)}</td>
-                            </tr>
+                            <>
+                                <tr key={index} onClick={event => handleExpandRow(event, index)}>
+                                    <td>{index}</td>
+                                    <td>{userList.firstName}</td>
+                                    <td>{userList.lastName}</td>
+                                    <td>{userList.email}</td>
+                                    <td>{userList.state}</td>
+                                    <td>{userList.city}</td>
+                                    <td>{formatDT(userList.createdAt)}</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <>
+                                    {
+                                        expandedRows.includes(index) ?
+                                            <tr key={index}>
+                                                <td colSpan="10">
+                                                    <div style={{ backgroundColor: '#687980', color: '#FFF', padding: '10px', width: "100%" }}>
+                                                        <h2> Details </h2>
+                                                        <ul>
+                                                            <li>
+                                                                <span><b>Full Name:</b></span> {' '}
+                                                                <span> {userList.firstName} {' '} {userList.lastName}</span>
+                                                            </li>
+                                                            <li>
+                                                                <span><b>Specialties:</b></span> {' '}
+                                                                <span> {userList.specialty.map((specialty, i) => `${specialty}`).join(', ')}  </span>
+                                                            </li>
+                                                            <li>
+                                                                <span><b>Practices:</b></span> {' '}
+                                                                <span> TODO  </span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr> : null
+                                    }
+                                </>
+                            </>
                         );
                     })}
                 </tbody>

@@ -7,6 +7,24 @@ import { AdminContext } from "../context/AdminContext";
 const AdminManageSpecialty = (props) => {
     const [allSpecialties, setAllSpecialties] = useState([""]);
 
+    const [expandedRows, setExpandedRows] = useState([]);
+    const [expandState, setExpandState] = useState({});
+
+    const handleExpandRow = (event, userId) => {
+        const currentExpandedRows = expandedRows;
+        const isRowExpanded = currentExpandedRows.includes(userId);
+
+        let obj = {};
+        isRowExpanded ? (obj[userId] = false) : (obj[userId] = true);
+        setExpandState(obj);
+
+        const newExpandedRows = isRowExpanded ?
+            currentExpandedRows.filter(id => id !== userId) :
+            currentExpandedRows.concat(userId);
+
+        setExpandedRows(newExpandedRows);
+    }
+
     useEffect(() => {
         if (props.data.length > 1) {
             var temp = []
@@ -37,7 +55,7 @@ const AdminManageSpecialty = (props) => {
 
     return (
         <div style={{ margin: 0, marginBottom: 100, height: 1075, overflow: "auto" }}>
-            <Table striped bordered hover>
+            <Table responsive striped bordered hover>
                 <thead>
                     <tr>
                         <th>#</th>
@@ -47,10 +65,30 @@ const AdminManageSpecialty = (props) => {
                 <tbody>
                     {allSpecialties.map((allSpecialties, index) => {
                         return (
-                            <tr key={index}>
-                                <td>{index}</td>
-                                <td>{allSpecialties.specialty}</td>
-                            </tr>
+                            <>
+                                <tr key={index} onClick={event => handleExpandRow(event, index)}>
+                                    <td>{index}</td>
+                                    <td>{allSpecialties.specialty}</td>
+                                </tr>
+                                <>
+                                    {
+                                        expandedRows.includes(index) ?
+                                            <tr key={index}>
+                                                <td colSpan="2">
+                                                    <div style={{ backgroundColor: '#687980', color: '#FFF', padding: '10px', width: "100%" }}>
+                                                        <h2> Details </h2>
+                                                        <ul>
+                                                            <li key={index}>
+                                                                <span><b></b></span> {' '}
+                                                                <span> </span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr> : null
+                                    }
+                                </>
+                            </>
                         );
                     })}
                 </tbody>

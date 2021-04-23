@@ -7,6 +7,24 @@ import { AdminContext } from "../context/AdminContext";
 const AdminManageWriters = (props) => {
     const [userList, setUserList] = useState([]);
 
+    const [expandedRows, setExpandedRows] = useState([]);
+    const [expandState, setExpandState] = useState({});
+console.log(userList)
+    const handleExpandRow = (event, userId) => {
+        const currentExpandedRows = expandedRows;
+        const isRowExpanded = currentExpandedRows.includes(userId);
+
+        let obj = {};
+        isRowExpanded ? (obj[userId] = false) : (obj[userId] = true);
+        setExpandState(obj);
+
+        const newExpandedRows = isRowExpanded ?
+            currentExpandedRows.filter(id => id !== userId) :
+            currentExpandedRows.concat(userId);
+
+        setExpandedRows(newExpandedRows);
+    }
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -46,6 +64,7 @@ const AdminManageWriters = (props) => {
                 <tbody>
                     {userList.map((userList, index) => {
                         return (
+                            <>
                             <tr key={index}>
                                 <td>{index}</td>
                                 <td>{userList.firstName}</td>
@@ -54,7 +73,26 @@ const AdminManageWriters = (props) => {
                                 <td>{userList.state}</td>
                                 <td>{userList.city}</td>
                                 <td>{formatDT(userList.createdAt)}</td>
-                            </tr>
+                                </tr>
+                                <>
+                                    {
+                                        expandedRows.includes(index) ?
+                                            <tr key={index}>
+                                                <td colSpan="7">
+                                                    <div style={{ backgroundColor: '#687980', color: '#FFF', padding: '10px', width: "100%" }}>
+                                                        <h2> Details </h2>
+                                                        <ul>
+                                                            <li key={index}>
+                                                                <span><b>Full Name:</b></span> {' '}
+                                                                <span>{userList.firstName} {' '} {userList.lastName}</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr> : null
+                                    }
+                                </>
+                            </>
                         );
                     })}
                 </tbody>

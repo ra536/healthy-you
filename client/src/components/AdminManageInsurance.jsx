@@ -11,6 +11,24 @@ const AdminManageSpecialty = (props) => {
 
     const [insurances, setInsurances] = useState([]);
 
+    const [expandedRows, setExpandedRows] = useState([]);
+    const [expandState, setExpandState] = useState({});
+
+    const handleExpandRow = (event, userId) => {
+        const currentExpandedRows = expandedRows;
+        const isRowExpanded = currentExpandedRows.includes(userId);
+
+        let obj = {};
+        isRowExpanded ? (obj[userId] = false) : (obj[userId] = true);
+        setExpandState(obj);
+
+        const newExpandedRows = isRowExpanded ?
+            currentExpandedRows.filter(id => id !== userId) :
+            currentExpandedRows.concat(userId);
+
+        setExpandedRows(newExpandedRows);
+    }
+
     useEffect(() => {
         if (props.data.length > 1) {
             var temp = []
@@ -52,10 +70,30 @@ const AdminManageSpecialty = (props) => {
                 <tbody>
                     {insurances.map((insurances, index) => {
                         return (
-                            <tr key={index}>
+                            <>
+                            <tr key={index} onClick={event => handleExpandRow(event, index)}>
                                 <td>{index}</td>
                                 <td>{insurances.insurance}</td>
-                            </tr>
+                                </tr>
+                                <>
+                                    {
+                                        expandedRows.includes(index) ?
+                                            <tr key={index}>
+                                                <td colSpan="8">
+                                                    <div style={{ backgroundColor: '#687980', color: '#FFF', padding: '10px', width: "100%" }}>
+                                                        <h2> Details </h2>
+                                                        <ul>
+                                                            <li key={index}>
+                                                                <span><b></b></span> {' '}
+                                                                <span> </span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr> : null
+                                    }
+                                </>
+                            </>
                         );
                     })}
                 </tbody>
