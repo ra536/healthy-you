@@ -45,7 +45,7 @@ const AdminDashboard = (props) => {
     <>
       <AdminContextProvider>
         <TopNavBar />
-        <Container fluid>
+        <Container>
           <h1>Admin Dashboard</h1>
           <div >
           
