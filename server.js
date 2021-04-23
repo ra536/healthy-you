@@ -155,6 +155,7 @@ app.use(passport.session());
 app.use("/api/v1/doctor", require("./routes/doctor"));
 app.use("/api/v1/practice", require("./routes/practice"));
 app.use("/api/v1/specialty", require("./routes/specialty"));
+app.use("/api/v1/insurance", require("./routes/insurance"));
 app.use("/api/v1/user", require("./routes/user"));
 app.use("/api/v1/article", require("./routes/article"));
 app.use("/api/v1/writer", require("./routes/writer"));
@@ -163,6 +164,7 @@ app.use("/api/v1/register/", require("./routes/register"));
 app.use("/api/v1/login/", require("./routes/login"));
 app.use("/api/v1/review", require("./routes/review"));
 app.use("/api/v1/appointment", require('./routes/appointment'));
+app.use("/api/v1/featured", require('./routes/featured'));
 // app.use("/api/v1/image", require('./routes/image'));
 
 // Code to upload/save files into 'uploads' folder -- maybe move this later
