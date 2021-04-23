@@ -56,7 +56,7 @@ router.post("/findOne", async (req, res) => {
   }
 });
 
-router.get("getAllWriters", async (req, res) => {
+router.get("/getAllWriters", async (req, res) => {
   try {
     const writerResult = await writers.findAll({
       raw: true
