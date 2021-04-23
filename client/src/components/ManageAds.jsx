@@ -90,13 +90,13 @@ const ManageAds = (props) => {
                 <select value={size} onChange={handleChange}>
                     {sizeList.map((aSize) => {
                         return (
-                        <option
-                        key={"add " + aSize}
-                        value={aSize}
-                    >
-                        {aSize}
-                    </option>
-                    );
+                            <option
+                                key={"add " + aSize}
+                                value={aSize}
+                            >
+                                {aSize}
+                            </option>
+                        );
                     })}
                 </select>
                 <input type="text" placeholder="Link" onChange={(e) => setLink(e.target.value)}></input>
