@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 const { Sequelize, Op } = require("sequelize");
@@ -197,8 +198,8 @@ router.post("/sendInvite", async (req, res) => {
   //   port: 587,
   //   secure: false, // true for 465, false for other ports
   //   auth: {
-  //     user: "ella.aufderhar@ethereal.email", // generated ethereal user TODO move to .env
-  //     pass: "6PqvP2DFtPZbxxcwYA", // generated ethereal password TODO move to .env
+  //     user: process.env.ETHEREAL_EMAIL, // generated ethereal user
+  //     pass: process.env.ETHEREAL_PASSWORD, // generated ethereal password
   //   },
   // });
 
@@ -206,17 +207,17 @@ router.post("/sendInvite", async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "healthy.you.511@gmail.com",
-      pass: "qJsRjjg(u&4g$A",
+      user: process.env.EMAIL,
+      pass: process.env.EMAIL_PASSWORD,
     },
   });
 
   const emailResponse = [];
   for (let i = 0; i < emails.length; i += 1) {
     const mailOptions = {
-      from: '"Fred Foo 👻" <ra536@njit.edu>', // sender address
+      from: '"Healthy You" <ra536@njit.edu>', // sender address
       to: emails[i], // list of receivers
-      subject: "Hello there!", // Subject line
+      subject: "Please leave a review for your last appointment!", // Subject line
       text: ids[i], // plain text body
       html: ids[i],
     };
@@ -229,7 +230,7 @@ router.post("/sendInvite", async (req, res) => {
     status: "sent!",
     data: emailResponse,
   });
-  // console.log("Successfully emailed review!");
+  console.log("Successfully emailed review!");
   // console.log(emails.length);
 });
 
