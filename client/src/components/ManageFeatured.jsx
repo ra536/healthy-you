@@ -60,11 +60,13 @@ const ManageFeatured = (props) => {
 
     return (
         <>
-            <h2>Manage Featured Doctors and Articles</h2>
+            <br />
             <form>
                 <input type="text" placeholder="Type" onChange={(e) => setType(e.target.value)}></input>
+                {" "}
                 <input type="text" placeholder="ID" onChange={(e) => setTypeID(e.target.value)}></input>
-                <button type="submit" onClick={handleSubmit}>Submit</button>
+                {" "}
+                <Button variant="primary" onClick={handleSubmit}>Submit</Button>
             </form>
             <br />
             <Table striped bordered hover>

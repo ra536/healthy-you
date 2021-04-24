@@ -85,7 +85,7 @@ const ManageAds = (props) => {
 
     return (
         <>
-            <h2>Manage Ads</h2>
+        <br />
             <form>
                 <select value={size} onChange={handleChange}>
                     {sizeList.map((aSize) => {
@@ -99,14 +99,17 @@ const ManageAds = (props) => {
                         );
                     })}
                 </select>
+                {" "}
                 <input type="text" placeholder="Link" onChange={(e) => setLink(e.target.value)}></input>
+                {" "}
                 <input
                     id="input-file"
                     name="article-image"
                     type="file"
                     onChange={(e) => previewImage(e)}
                 />
-                <button type="submit" onClick={handleSubmit}>Submit</button>
+                {" "}
+                <Button variant="primary" onClick={handleSubmit}>Submit</Button>
                 <br />
                 <img src={image} alt="" width="200px" id="preview"></img>
 

@@ -87,4 +87,22 @@ router.post("/getUser", async (req, res) => {
   }
 });
 
+router.get("/getAllUsers", async (req, res) => {
+  try {
+    const getAllUsers = await user.findAll({
+      where:{
+        role: "User"
+      },
+      raw: true,
+    });
+    console.log(getAllUsers);
+    res.status(200).json({
+      status: "success",
+      data: getAllUsers,
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
 module.exports = router;
