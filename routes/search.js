@@ -18,9 +18,11 @@ router.post("/search", async (req, res) => {
         [Op.substring]: req.body.doctor_name,
       };
     }
-    // if (req.body.rating !== "") {
-    //   whereClauseDoctors.rating = { [Op.gte]: req.body.rating };
-    // }
+    if (req.body.category !== "") {
+      const cat = [];
+      cat.push(req.body.category);
+      whereClauseDoctors.category = { [Op.overlap]: cat };
+    }
     if (req.body.specialty !== "") {
       const spec = [];
       spec.push(req.body.specialty);
