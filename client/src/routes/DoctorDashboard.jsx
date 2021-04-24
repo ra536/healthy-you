@@ -13,6 +13,8 @@ import CreateAppt from '../components/CreateAppt';
 import ApptCalendar from '../components/ApptCalendar';
 import ApptInfo from '../components/ApptInfo';
 import NotPublishedAppts from '../components/NotPublishedAppts';
+import AddCategory from "../components/AddCategory";
+import RemoveCategory from "../components/RemoveCategory";
 
 const DoctorDashboard = (props) => {
   let { doctorID } = useParams();
@@ -30,6 +32,7 @@ const DoctorDashboard = (props) => {
   const [canceledAppt, setCanceledAppt] = useState();
 
   const { specialties, setSpecialties } = useContext(AppContext);
+  const { categories, setCategories } = useContext(AppContext);
 
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
@@ -50,6 +53,11 @@ const DoctorDashboard = (props) => {
         } else {
           setSpecialties(response.data.data.specialty);
         }
+        if(response.data.data.category === null){
+          setCategories(["Add category"])
+        } else {
+          setCategories(response.data.data.category)
+        }
         setRating(response.data.data.rating);
         setName(response.data.data.doctor_name);
         setProfilePicture(response.data.data.profile_picture);
@@ -61,7 +69,7 @@ const DoctorDashboard = (props) => {
       }
     };
     fetchData();
-  }, [doctorID, setSpecialties]);
+  }, [doctorID, setSpecialties, setCategories]);
 
   const previewImage = async (e) => {
     var reader = new FileReader();
@@ -269,6 +277,25 @@ const DoctorDashboard = (props) => {
         </form>
 
         <br />
+        <h1>Category</h1>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Category Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {categories.map((categories, index) => {
+              return (
+                <tr key={index}>
+                  <td>{categories}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </Table>
+        <AddCategory doctorID={doctorID} />
+        <RemoveCategory doctorID={doctorID} />
         <br />
         <h1>Specialties</h1>
         <Table striped bordered hover>
