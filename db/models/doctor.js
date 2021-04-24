@@ -82,6 +82,10 @@ const doctor = db.define(
       type: DataTypes.ARRAY(DataTypes.STRING),
       defaultValue: [],
     },
+    category: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      defaultValue: [],
+    },
     phone: {
       type: DataTypes.STRING,
       validate: {

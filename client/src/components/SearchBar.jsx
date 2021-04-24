@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 //import SearchAPI from '../apis/SearchAPI'
 import { useHistory } from "react-router-dom";
 import SpecialtyAPI from "../apis/SpecialtyAPI";
+import CategoryAPI from "../apis/CategoryAPI";
 import TopNavBar from "../components/TopNavBar";
 import { Container } from "react-bootstrap";
 import {
@@ -24,8 +25,10 @@ const SearchBar = () => {
   const [location, setLocation] = useState("");
   const [doctor_name, setDoctor] = useState("");
   const [specialty, setSpecialty] = useState("");
-  const [rating, setRating] = useState("");
+  const [category, setCategory] = useState("");
   const [allSpecialties, setAllSpecialties] = useState([""]);
+  const [filterSpecialties, setFilterSpecialties] = useState([]);
+  const [allCategories, setCategories] = useState([]);
 
   const history = useHistory();
 
@@ -33,7 +36,10 @@ const SearchBar = () => {
     const fetchData = async () => {
       try {
         const response = await SpecialtyAPI.get("/findAll");
-        console.log(response);
+        const categoryResponse = await CategoryAPI.get("/findAll");
+        // console.log(response);
+        // console.log(categoryResponse.data.data)
+        setCategories(categoryResponse.data.data);
         setAllSpecialties(response.data.data);
         setSpecialty("");
       } catch (err) {
@@ -49,6 +55,25 @@ const SearchBar = () => {
     e.preventDefault();
   };
 
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+    filter(e.target.value);
+    e.preventDefault();
+  };
+
+  const filter = (data) => {
+    var temp = [];
+    var index = 0;
+    for(var i = 0; i < allSpecialties.length; i++){
+      if(allSpecialties[i].category == data){
+        // console.log(allSpecialties[i].specialty)
+        temp[index] = allSpecialties[i].specialty
+        index += 1;
+      }
+    }
+    setFilterSpecialties(temp);
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -57,14 +82,12 @@ const SearchBar = () => {
         search:
           "practice=" +
           practice +
-          "&doctor=" +
-          doctor_name +
           "&specialty=" +
           specialty +
           "&location=" +
           location +
-          "&rating=" +
-          rating,
+          "&category=" +
+          category,
       });
       window.location.reload();
     } catch (err) {
@@ -74,64 +97,90 @@ const SearchBar = () => {
 
   return (
     <div>
-        <div align="center">
-          <h1 align="center"> Doctor Directory</h1>
-          <h6>A comprehensive resource
-          guide including our annual Top Doctors list as well as other medical
+      <div align="center">
+        <h1 align="center"> Doctor Directory</h1>
+        <h6>A comprehensive resource
+        guide including our annual Top Doctors list as well as other medical
           professionals.</h6>
-        </div>
-        <br />
-        <div align="center">
-          <h2>Search</h2>
-        </div>
-        <div align="center">
-        <form>
-          <input 
-            id="search-practice"
-            value={practice}
-            placeholder="Practice"
-            onChange={(e) => setPractice(e.target.value)}
-          />{" "}
-          <select value={specialty} onChange={handleChange}>
-            <option value="" selected="selected">
-              {" "}
-            </option>
-            {allSpecialties.map((specialties) => {
-              return (
-                <option
-                  key={specialties.specialty}
-                  value={specialties.specialty}
-                >
-                  {specialties.specialty}
+      </div>
+      <br />
+      <div align="center">
+        <h2>Search</h2>
+      </div>
+      <div align="center" style={{width:"50%", margin:"auto",}}>
+
+        <Form >
+          <Form.Group >
+            <Form.Label>Category</Form.Label>
+            <Form.Control
+              as="select"
+              custom
+              value={category} onChange={handleCategoryChange}
+            >
+              <option value="" selected="selected">
+                {" "}
+              </option>
+              {allCategories.map((categories) => {
+                return (
+                  <option
+                    key={categories.category}
+                    value={categories.category}
+                  >
+                    {categories.category}
+                  </option>
+                );
+              })}
+            </Form.Control>
+          </Form.Group>
+
+          {category == "Doctor" || category == "Dentist" ?
+            <Form.Group >
+              <Form.Label>Specialty</Form.Label>
+              <Form.Control
+                as="select"
+                custom
+                value={specialty} onChange={handleChange}
+              >
+                <option value="" selected="selected">
+                  {" "}
                 </option>
-              );
-            })}
-          </select>{" "}
-          {/*<input
-            id="search-doctor"
-            value={doctor_name}
-            placeholder="Doctor"
-            onChange={(e) => setDoctor(e.target.value)}
-          />
-          <input
-            id="search-rating"
-            value={rating}
-            placeholder="Rating"
-            onChange={(e) => setRating(e.target.value)}
-          />*/}
-          <input
-            id="search-location"
-            value={location}
-            placeholder="Location"
-            onChange={(e) => setLocation(e.target.value)}
-          />{" "}
-          <Button variant="primary" onClick={handleSubmit}>
+                {filterSpecialties.map((specialties) => {
+                  return (
+                    <option
+                      key={specialties}
+                      value={specialties}
+                    >
+                      {specialties}
+                    </option>
+                  );
+                })}
+              </Form.Control>
+            </Form.Group>
+            : null}
+
+          <Form.Group >
+            <Form.Label>Practice</Form.Label>
+            <Form.Control
+              id="search-practice"
+              value={practice}
+              onChange={(e) => setPractice(e.target.value)}
+            />
+          </Form.Group>{" "}
+          <Form.Group >
+            <Form.Label>Location</Form.Label>
+            <Form.Control
+              id="search-location"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+            />
+          </Form.Group>{" "}
+          <Button variant="primary" onClick={handleSubmit} block>
             Search
           </Button>
-        </form>
-        </div>
-        <br />
-        <hr />
+        </Form>
+      </div>
+      <br />
+      <hr />
     </div>
   );
 };

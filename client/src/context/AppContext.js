@@ -55,6 +55,16 @@ export const AppContextProvider = (props) => {
     // setArticles(newArticles); // Data transferring, just array not mutable...
   };
 
+  const [categories, setCategories] = useState([]);
+
+  const addCategory = (category) => {
+    setCategories([...categories, category]);
+  };
+
+  const removeCategory = (category) => {
+    setCategories(categories.filter((item) => item !== category));
+  };
+
   const [articleDeleteShow, setArticleDeleteShow] = useState(false);
   const [articleDeleteHeadline, setArticleDeleteHeadline] = useState("");
   const [articleDeleteID, setArticleDeleteID] = useState("");
@@ -115,6 +125,10 @@ export const AppContextProvider = (props) => {
         setSpecialties,
         addSpecialty,
         removeSpecialty,
+        categories,
+        setCategories,
+        addCategory,
+        removeCategory,
       }}
     >
       {props.children}
