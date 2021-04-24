@@ -84,22 +84,16 @@ const Results = (props) => {
           whereClause["practice"] = params.practice;
         }
 
-        if (params.doctor == null) {
-          whereClause["doctor_name"] = "";
-        } else {
-          whereClause["doctor_name"] = params.doctor;
-        }
-
         if (params.location == null) {
           whereClause["location"] = "";
         } else {
           whereClause["location"] = params.location;
         }
 
-        if (params.rating == null) {
-          whereClause["rating"] = "";
+        if (params.category == null) {
+          whereClause["category"] = "";
         } else {
-          whereClause["rating"] = params.rating;
+          whereClause["category"] = params.category;
         }
 
         if (params.specialty == null) {
@@ -216,7 +210,7 @@ const Results = (props) => {
             {results.map((results, index) => {
               return (
                 <Link
-                  to={"/doctor-profile/" + results.doctor.doctor_id}
+                  to={"/doctor-profile/" + results.doctor_id}
                   style={{ textDecoration: "none", color: "black" }}
                 >
                   <ListGroup.Item>
@@ -225,19 +219,19 @@ const Results = (props) => {
                         <Col>
                           <Card.Img
                             variant="top"
-                            src={results.doctor.profile_picture}
+                            src={results.profile_picture}
                           />
                         </Col>
                         <Col>
-                          <h4>{results.doctor.doctor_name}</h4>
+                          <h4>{results.doctor_name}</h4>
                           <Image
-                            src={determineStars(results.doctor.rating)}
+                            src={determineStars(results.rating)}
                             className=""
                             style={{ width: "60%" }}
                           /><br /><br />
-                          <h6>Specialty: {results.doctor.specialty}</h6>
-                          <h6>Location: Morristown, NJ</h6>
-                          <h6>Phone: {results.doctor.phone}</h6>
+                          <h6>Specialty: {results.specialty.map((specialty, i) => `${specialty}`).join(', ')} </h6>
+                          <h6>Location: {results.practices.map((practices, i) => `${practices.location}`).join(', ')} </h6>
+                          <h6>Phone: {results.phone}</h6>
                           <br />
 
                           <Button

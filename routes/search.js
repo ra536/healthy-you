@@ -11,13 +11,13 @@ router.post("/search", async (req, res) => {
   try {
     const whereClausePractice = {};
     const whereClauseDoctors = {};
-    if (req.body.doctor_name !== "") {
-      whereClauseDoctors.doctor_name = {
-        [Op.substring]: req.body.doctor_name,
-      };
-    }
-    if (req.body.rating !== "") {
-      whereClauseDoctors.rating = { [Op.gte]: req.body.rating };
+    const optionalInclude = [{model: practice}];
+    const include = {};
+    
+    if (req.body.category !== "") {
+      const cat = [];
+      cat.push(req.body.category);
+      whereClauseDoctors.category = { [Op.overlap]: cat };
     }
     if (req.body.specialty !== "") {
       const spec = [];
@@ -29,10 +29,11 @@ router.post("/search", async (req, res) => {
     }
     if (req.body.location !== "") {
       whereClausePractice.location = { [Op.substring]: req.body.location };
+      optionalInclude[0] = {model: practice, where: whereClausePractice};
     }
-    const doctorResult = await practice.findAll({
-      include: [{ model: doctor, where: whereClauseDoctors }],
-      where: whereClausePractice,
+    const doctorResult = await doctor.findAll({
+      include: optionalInclude,
+      where: whereClauseDoctors,
     });
     // console.log(doctorResult.dataValues);
     res.status(200).json({

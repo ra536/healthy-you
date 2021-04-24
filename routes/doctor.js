@@ -49,6 +49,7 @@ router.post("/findOne", async (req, res) => {
         bedside: doctorResult.bedside,
         availability: doctorResult.availability,
         specialty: doctorResult.specialty,
+        category: doctorResult.category,
         state: doctorResult.state,
         num_ratings: doctorResult.num_ratings,
       },
@@ -209,6 +210,58 @@ router.post("/updateProfilePic", isAuthAndDoctor, async (req, res) => {
       data: {
         profile_picture: req.body.image,
         doctor_id: req.body.doctor_id,
+      },
+    });
+  } catch (err) {
+    // console.log(err);
+  }
+});
+
+router.post("/addCategory", isAuthAndDoctor, async (req, res) => {
+  try {
+    await doctor.update(
+      {
+        category: Sequelize.fn(
+          "array_append",
+          Sequelize.col("category"),
+          req.body.category
+        ),
+      },
+      {
+        where: { doctor_id: req.body.doctor_id },
+      }
+    );
+    // console.log(req.body);
+    res.status(200).json({
+      status: "success",
+      data: {
+        category: req.body.category,
+        doctor_id: req.body.doctor_id,
+      },
+    });
+  } catch (err) {
+    // console.log(err);
+  }
+});
+
+router.post("/removeCategory", isAuthAndDoctor, async (req, res) => {
+  try {
+    await doctor.update(
+      {
+        category: Sequelize.fn(
+          "array_remove",
+          Sequelize.col("category"),
+          req.body.category
+        ),
+      },
+      {
+        where: { doctor_id: req.body.doctor_id },
+      }
+    );
+    res.status(200).json({
+      status: "success",
+      data: {
+        category: req.body.category,
       },
     });
   } catch (err) {
