@@ -16,6 +16,7 @@ import CategoryCarousel from "../components/CategoryCarousel";
 import food_pic from "./food_pic_front.jpg";
 import food_pic2 from "./food_pic_front.jpg";
 import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
 
 const Home = () => {
   // Store the data retrieved from backend API into context
@@ -219,6 +220,7 @@ const Home = () => {
 
         <AdBreak />
         <br/>
+        <Footer />
       </div>
     </div>
   );
