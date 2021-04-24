@@ -147,7 +147,9 @@ const Results = (props) => {
       try {
         const response = await AdAPI.post("/getAdsBySize", { size: "300x600"});
         setAds(response.data.data);
-        setAd1(response.data.data[0]);
+        if(typeof(response.data.data[0]) == "object"){
+          setAd1(response.data.data[0]);
+        }
         console.log(response.data.data);
         console.log(response.data.data[0].ad_image);
       } catch (err) {
@@ -384,7 +386,7 @@ const Results = (props) => {
                 </Button>
             </div>
             <hr />
-            <Card.Img variant="top" src={ad1.ad_image} width={300} height={600} />
+            <img src={ad1.ad_image} width={300} height={600} />
             <br />
             <br />
             <br />

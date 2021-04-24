@@ -19,7 +19,9 @@ useEffect(() => {
       try {
         const response = await AdAPI.post("/getAdsBySize", { size: "300x600"});
         setAds(response.data.data);
-        setAd1(response.data.data[0]);
+        if(typeof(response.data.data[0]) == "object"){
+            setAd1(response.data.data[0]);
+        }
         console.log(response.data.data);
         console.log(response.data.data[0].ad_image);
       } catch (err) {

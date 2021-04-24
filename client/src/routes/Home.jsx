@@ -230,7 +230,7 @@ const Home = () => {
           <br />
         </div>
 
-        <AdBreak />
+        <AdBreak number={2}/>
         <br />
       </div>
     </div>

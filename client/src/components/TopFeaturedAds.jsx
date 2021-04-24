@@ -13,7 +13,9 @@ useEffect(() => {
       try {
         const response = await AdAPI.post("/getAdsBySize", { size: "1000x300"});
         setAds(response.data.data);
-        setAd(response.data.data[0])
+        if(typeof(response.data.data[0]) == "object"){
+          setAd(response.data.data[0]);
+        }
         console.log(response.data.data);
         console.log(response.data.data[0].ad_image);
       } catch (err) {
@@ -26,9 +28,10 @@ useEffect(() => {
     <>
       <div align="center" display="inline">
             <a href={ad.ad_link}>
-            <img className="d-block w-100" width={1000} height={300} src={ad.ad_image} alt="First slide" />
+            <img width={1000} height={300} src={ad.ad_image} alt="First slide" />
             </a>
       </div>
+      <br />
     </>
   );
 };
