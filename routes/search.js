@@ -13,11 +13,7 @@ router.post("/search", async (req, res) => {
     const whereClauseDoctors = {};
     const optionalInclude = [{model: practice}];
     const include = {};
-    if (req.body.doctor_name !== "") {
-      whereClauseDoctors.doctor_name = {
-        [Op.substring]: req.body.doctor_name,
-      };
-    }
+    
     if (req.body.category !== "") {
       const cat = [];
       cat.push(req.body.category);

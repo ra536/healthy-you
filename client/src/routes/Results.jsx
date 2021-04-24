@@ -81,12 +81,6 @@ const Results = (props) => {
           whereClause["practice"] = params.practice;
         }
 
-        if (params.doctor == null) {
-          whereClause["doctor_name"] = "";
-        } else {
-          whereClause["doctor_name"] = params.doctor;
-        }
-
         if (params.location == null) {
           whereClause["location"] = "";
         } else {

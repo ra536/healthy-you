@@ -37,8 +37,8 @@ const SearchBar = () => {
       try {
         const response = await SpecialtyAPI.get("/findAll");
         const categoryResponse = await CategoryAPI.get("/findAll");
-        console.log(response);
-        console.log(categoryResponse.data.data)
+        // console.log(response);
+        // console.log(categoryResponse.data.data)
         setCategories(categoryResponse.data.data);
         setAllSpecialties(response.data.data);
         setSpecialty("");
@@ -66,7 +66,7 @@ const SearchBar = () => {
     var index = 0;
     for(var i = 0; i < allSpecialties.length; i++){
       if(allSpecialties[i].category == data){
-        console.log(allSpecialties[i].specialty)
+        // console.log(allSpecialties[i].specialty)
         temp[index] = allSpecialties[i].specialty
         index += 1;
       }
@@ -82,8 +82,6 @@ const SearchBar = () => {
         search:
           "practice=" +
           practice +
-          "&doctor=" +
-          doctor_name +
           "&specialty=" +
           specialty +
           "&location=" +
