@@ -174,7 +174,7 @@ const SearchBar = () => {
               onChange={(e) => setLocation(e.target.value)}
             />
           </Form.Group>{" "}
-          <Button variant="primary" onClick={handleSubmit}>
+          <Button variant="primary" onClick={handleSubmit} block>
             Search
           </Button>
         </Form>
