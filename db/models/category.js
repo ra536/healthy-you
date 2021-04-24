@@ -1,21 +1,17 @@
 const { DataTypes } = require("sequelize");
 const db = require("../index");
 
-const specialty = db.define("specialty", {
+const category = db.define("category", {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
-  specialty: {
+  category: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
   },
-  category: {
-    type: DataTypes.STRING,
-    allowNull: false
-  }
 });
 
-module.exports = specialty;
+module.exports = category;
