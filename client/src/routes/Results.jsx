@@ -93,10 +93,10 @@ const Results = (props) => {
           whereClause["location"] = params.location;
         }
 
-        if (params.rating == null) {
-          whereClause["rating"] = "";
+        if (params.category == null) {
+          whereClause["category"] = "";
         } else {
-          whereClause["rating"] = params.rating;
+          whereClause["category"] = params.category;
         }
 
         if (params.specialty == null) {

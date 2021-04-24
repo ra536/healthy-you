@@ -25,11 +25,10 @@ const SearchBar = () => {
   const [location, setLocation] = useState("");
   const [doctor_name, setDoctor] = useState("");
   const [specialty, setSpecialty] = useState("");
-  const [rating, setRating] = useState("");
+  const [category, setCategory] = useState("");
   const [allSpecialties, setAllSpecialties] = useState([""]);
   const [filterSpecialties, setFilterSpecialties] = useState([]);
   const [allCategories, setCategories] = useState([]);
-  const [category, setCategory] = useState("");
 
   const history = useHistory();
 
@@ -89,8 +88,8 @@ const SearchBar = () => {
           specialty +
           "&location=" +
           location +
-          "&rating=" +
-          rating,
+          "&category=" +
+          category,
       });
       window.location.reload();
     } catch (err) {
