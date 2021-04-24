@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Row, Col, Media, Card, Button, ButtonGroup, Form, FormControl, Container} from "react-bootstrap";
 import ad300 from "../components/ads/ad300.jpg";
+import AdAPI from "../apis/AdAPI";
 
 
 
@@ -8,6 +9,28 @@ import "bootstrap/dist/css/bootstrap.css";
 
 
 const BlogSideBar = (props) => {
+
+  const [ads, setAds] = useState([]);
+  const [ad1, setAd1] = useState({ ad_image: ad300, type: "300x600", ad_link: "/"})
+    
+useEffect(() => {
+    // Define a function fetchData that calls APIs which is then called in useEffect
+    const fetchData = async () => {
+      try {
+        const response = await AdAPI.post("/getAdsBySize", { size: "300x600"});
+        setAds(response.data.data);
+        if(typeof(response.data.data[0]) == "object"){
+            setAd1(response.data.data[0]);
+        }
+        console.log(response.data.data);
+        console.log(response.data.data[0].ad_image);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
+
     return(
         <>
        
@@ -43,7 +66,7 @@ const BlogSideBar = (props) => {
                                 <p>Hyperthyroidism is the production of too much thyroxine hormone. It can increase metabolism.
                                 Symptoms include unexpected weight loss, rapid or irregular heartbeat, sweating, and irritability, although the elderly often experience no symptoms.</p>
                                 <br />
-                                <img src={ad300} alt="ad300" width={250} mode='fit' />
+                                <img src={ad1.ad_image} alt="ad300" width={300} height={600} />
 
                             </Col>
                             
@@ -57,81 +80,6 @@ const BlogSideBar = (props) => {
 
 
         </>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     );
 };
