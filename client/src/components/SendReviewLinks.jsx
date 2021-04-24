@@ -2,6 +2,7 @@ import React, {useState, useEffect, useContext} from "react";
 import DoctorAPI from "../apis/DoctorAPI";
 import ReviewAPI from "../apis/ReviewAPI";
 import "bootstrap/dist/css/bootstrap.css";
+import { Button } from "react-bootstrap";
 import { AdminContext } from "../context/AdminContext";
 
 const SendReviewLinks = (props) => {
@@ -79,7 +80,7 @@ const [allDoctors, setAllDoctors] = useState([""]);
 
   return (
     <>
-    <form onSubmit={handleSubmit}>
+    <form>
         <span>Select a doctor:</span><br />
         <select name="Doctor Pick" onChange={handleChange}>
             <option value="" selected="selected">
@@ -99,7 +100,7 @@ const [allDoctors, setAllDoctors] = useState([""]);
 
         </textarea>
         <br />
-        <input type="submit" value="Send Review Links"/>
+        <Button variant="primary" onClick={handleSubmit}>Send Review Links</Button>
         </form> 
     </>
   );
