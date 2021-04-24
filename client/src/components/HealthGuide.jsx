@@ -17,12 +17,12 @@ const HealthGuide = (props) => {
             <Col>
             </Col>
             <Col>
-              <Button variant="success" size="md" block href="/results/?practice=&doctor=&specialty=Family Medicine&location=&rating=">
+              <Button variant="success" size="md" block href="/results/?practice=&doctor=&specialty=&category=Doctor&location=&rating=">
                 Doctor
               </Button>
             </Col>
             <Col>
-              <Button variant="success" size="md" block href="/results/?practice=&doctor=&specialty=Dentistry&location=&rating=">
+              <Button variant="success" size="md" block href="/results/?practice=&doctor=&specialty=&category=Dentist&location=&rating=">
                 Dentist
               </Button>
             </Col>
@@ -34,7 +34,7 @@ const HealthGuide = (props) => {
             <Col>
             </Col>
             <Col>
-              <Button variant="success" size="md" block href="/results/?practice=&doctor=&specialty=Chiropractic&location=&rating=">
+              <Button variant="success" size="md" block href="/results/?practice=&doctor=&specialty=&category=Chiropractic&location=&rating=">
                 Chiropractor
               </Button>
             </Col>
