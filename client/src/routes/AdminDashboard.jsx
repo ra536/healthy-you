@@ -12,6 +12,7 @@ import AdminSpecialtyTab from "../components/AdminSpecialtyTab";
 import { AdminContextProvider } from "../context/AdminContext";
 import ManageFeatured from "../components/ManageFeatured";
 import ManageAds from "../components/ManageAds";
+import Footer from "../components/Footer";
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 
@@ -50,7 +51,7 @@ const AdminDashboard = (props) => {
           <h1>Admin Dashboard</h1>
           <div >
           
-            <Tabs defaultActiveKey="main" id="uncontrolled-tab" >
+            <Tabs defaultActiveKey="reviews" id="uncontrolled-tab" >
               <Tab eventKey="users" title="Users" >
                 <AdminUsersTab/>
               </Tab>
@@ -77,6 +78,9 @@ const AdminDashboard = (props) => {
           </div>
         </Container>
       </AdminContextProvider>
+      <br />
+      <br />
+      <Footer />
     </>
   );
 };

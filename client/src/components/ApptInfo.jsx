@@ -81,7 +81,7 @@ const ApptInfo = (props) => {
     }
 
     return (
-        <div style={{ height: 250 }}>
+        <div>
             <h1>Appointment Info</h1>
             {apptInfo.map((apptInfo, index) => {
                 return (

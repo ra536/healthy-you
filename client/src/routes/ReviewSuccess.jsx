@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { CheckCircle } from "react-bootstrap-icons";
 import { Container } from "react-bootstrap";
 import TopNavBar from "../components/TopNavBar";
+import Footer from "../components/Footer";
 
 const ReviewSuccess = () => {
 
@@ -16,6 +17,30 @@ const ReviewSuccess = () => {
             <CheckCircle size={100} color="forestgreen"/>
             </div>
         </Container>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <Footer />
         </>
     )
 }

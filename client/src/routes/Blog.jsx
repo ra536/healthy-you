@@ -11,6 +11,7 @@ import ArticleComponent from "../components/ArticleComponent";
 import "bootstrap/dist/css/bootstrap.css";
 import blogPage from "./BlogPage.jpg";
 import AdAPI from "../apis/AdAPI";
+import Footer from "../components/Footer";
 
 const Blog = (props) => {
     const [articles, setArticles] = useState([]);
@@ -172,10 +173,10 @@ Symptoms include unexpected weight loss, rapid or irregular heartbeat, sweating,
 
 
                     </Container>
-
-
-
-
+                    <br />
+                    <br />
+                    <br />
+                    <Footer />
         </>
     );
 };

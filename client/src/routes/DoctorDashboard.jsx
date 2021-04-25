@@ -15,6 +15,7 @@ import ApptInfo from '../components/ApptInfo';
 import NotPublishedAppts from '../components/NotPublishedAppts';
 import AddCategory from "../components/AddCategory";
 import RemoveCategory from "../components/RemoveCategory";
+import Footer from "../components/Footer";
 
 const DoctorDashboard = (props) => {
   let { doctorID } = useParams();
@@ -334,6 +335,8 @@ const DoctorDashboard = (props) => {
         <ApptCalendar doctorID={doctorID} newAppt={appt} appt_id={getApptID} canceledAppt={canceledAppt} route="Dashboard"/>
         <ApptInfo apptID={apptID} onCancel={getCanceledApptID}/>
       </Container>
+      <br />
+      <Footer />
     </>
   );
 };

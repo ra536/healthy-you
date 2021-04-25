@@ -8,6 +8,7 @@ import TopNavBar from "../components/TopNavBar";
 import SocialShareButtons from "../components/SocialShareButtons";
 import "bootstrap/dist/css/bootstrap.css";
 import HomeSideBar from "../components/HomeSideBar";
+import Footer from "../components/Footer";
 
 const Article = (props) => {
   let { id } = useParams();
@@ -101,6 +102,7 @@ const Article = (props) => {
           <HomeSideBar />
           <br />
         </Container>
+        <Footer />
     </>
   );
 };

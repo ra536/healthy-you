@@ -31,6 +31,7 @@ import "moment-timezone";
 
 
 import TopNavBar from "../components/TopNavBar";
+import Footer from "../components/Footer";
 
 const DoctorProfile = (props) => {
   let { doctorID } = useParams();
@@ -356,6 +357,7 @@ const DoctorProfile = (props) => {
           </div>
         </Col>
       </Row>
+      <Footer />
     </>
   );
 };

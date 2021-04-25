@@ -16,6 +16,7 @@ import ArticleComponent from "../components/ArticleComponent";
 
 // import axios from "axios";
 import TopNavBar from "../components/TopNavBar";
+import Footer from "../components/Footer";
 
 const WriterProfile = (props) => {
   let { writerID } = useParams();
@@ -117,6 +118,7 @@ const WriterProfile = (props) => {
           );
         })}
       </Container>
+      <Footer />
     </>
   );
 };

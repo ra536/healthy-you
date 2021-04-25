@@ -8,6 +8,7 @@ import { Container } from "react-bootstrap";
 import { InsertArticleModal } from "../components/InsertArticleModal";
 import "bootstrap/dist/css/bootstrap.css";
 import TopNavBar from "../components/TopNavBar";
+import Footer from "../components/Footer";
 
 const WriterDashboard = (props) => {
   let { id } = useParams();
@@ -38,6 +39,10 @@ const WriterDashboard = (props) => {
 
         <ArticleList id={id} />
       </Container>
+      <br />
+      <br />
+      <br />
+      <Footer />
     </>
   );
 };
