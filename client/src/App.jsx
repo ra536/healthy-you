@@ -25,6 +25,7 @@ import Author from "./routes/ArticlesBy";
 import Category from "./routes/ArticleCategory";
 import LatestArticles from "./routes/LatestArticles";
 import ContactUs from "./routes/ContactUs";
+import Subscribe from "./routes/SubscriberForm";
 
 const App = () => {
   const { loggedIn, setLoggedIn, setRole, setId } = useContext(AuthContext);
@@ -107,6 +108,7 @@ const App = () => {
           <Route path="/sameCategory/:id/:count" component={Category}/>
           <Route path="/LatestArticles/:count" component={LatestArticles}/>
           <Route path="/contact-us" component={ContactUs} />
+          <Route path="/subscribe" component={Subscribe}/>
         </Switch>
       </div>
     </AppContextProvider>
