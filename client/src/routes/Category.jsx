@@ -8,6 +8,7 @@ import BlogSideBar from "../components/BlogSideBar";
 import "bootstrap/dist/css/bootstrap.css";
 import ArticleComponent from "../components/ArticleComponent";
 import TopNavBar from "../components/TopNavBar";
+import Footer from "../components/Footer";
 
 const ArticleCategory = (props) => {
   let { id } = useParams();
@@ -106,7 +107,7 @@ const ArticleCategory = (props) => {
           <BlogSideBar />
         </div>
       </Container>
-      
+      <Footer />
     </>
     
   );

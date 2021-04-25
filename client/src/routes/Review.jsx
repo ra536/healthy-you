@@ -4,6 +4,7 @@ import ReviewAPI from "../apis/ReviewAPI";
 import { Container, Button} from "react-bootstrap";
 import TopNavBar from "../components/TopNavBar";
 import { useHistory } from "react-router-dom";
+import Footer from "../components/Footer";
 // import TestAPI from '../apis/TestAPI';
 // import InputTest from '../components/InputTest';
 // import { TestContext } from '../context/TestContext';
@@ -176,13 +177,14 @@ const Review = (props) => {
           
           <br/>
           <br />
-          <Button variant = "primary">
+          <Button variant = "primary" onClick={handleSubmit}>
             Leave Review
           </Button>
           <br />
         </form>
         <br/>
       </Container>
+      <Footer />
       </div>
       </>
       
@@ -201,6 +203,27 @@ const Review = (props) => {
       <ExclamationTriangle size={100} color="darkkhaki"/>
       </div>
     </Container>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <Footer />
     </>
   );
 };

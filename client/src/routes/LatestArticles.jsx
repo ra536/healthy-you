@@ -6,6 +6,7 @@ import { ListGroup, Container, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import ArticleComponent from "../components/ArticleComponent";
 import TopNavBar from "../components/TopNavBar";
+import Footer from "../components/Footer";
 
 const LatestArticles = () => {
     let { count } = useParams();
@@ -54,6 +55,10 @@ const LatestArticles = () => {
             );
             })}
         </Container>
+        <br />
+        <br />
+        <br />
+        <Footer />
         </>
     );
 

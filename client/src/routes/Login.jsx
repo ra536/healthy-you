@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { Container } from "react-bootstrap";
 import TopNavBar from "../components/TopNavBar";
+import Footer from "../components/Footer";
 
 const Login = () => {
   const { loggedIn } = useContext(AuthContext);
@@ -16,6 +17,18 @@ const Login = () => {
         <h1>Login</h1>
         <LoginForm />
       </Container>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <Footer />
     </div>
   );
 };

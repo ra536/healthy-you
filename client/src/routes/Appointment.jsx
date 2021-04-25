@@ -36,6 +36,7 @@ import fivestar from "./fivestar.png";
 
 import axios from "axios";
 import TopNavBar from "../components/TopNavBar";
+import Footer from "../components/Footer";
 
 
 const schema = yup.object().shape({
@@ -448,6 +449,7 @@ const Appointment = (props) => {
                 </Col>
               </Row>
             </Container>
+            <Footer />
           </div>
         );
       }}

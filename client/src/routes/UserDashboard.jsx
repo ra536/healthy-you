@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import TopNavBar from "../components/TopNavBar";
 import UserApptTable from '../components/UserApptTable';
+import Footer from "../components/Footer";
 
 const UserDashboard = (props) => {
   let { userID } = useParams();
@@ -40,6 +41,24 @@ const UserDashboard = (props) => {
         <br />
         <UserApptTable user_id={id}/>
       </Container>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <Footer />
     </>
   );
 };

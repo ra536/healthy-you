@@ -32,6 +32,7 @@ import "moment-timezone";
 
 // import axios from "axios";
 import TopNavBar from "../components/TopNavBar";
+import Footer from "../components/Footer";
 
 const ContactUs = (props) => {
 
@@ -79,11 +80,24 @@ const ContactUs = (props) => {
   <Button variant="primary" type="submit" block>
     Submit
   </Button>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
 </Form>
 	</Col>
 
 	  </Row>
 	  </Container>
+      <Footer />
     </>
   );
 };

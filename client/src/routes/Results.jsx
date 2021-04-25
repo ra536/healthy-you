@@ -35,6 +35,7 @@ import onestar from "./stars/OneStar.png";
 import hstar from "./stars/HStar.png";
 import star from "./stars/Star.png";
 import AdAPI from "../apis/AdAPI";
+import Footer from "../components/Footer";
 
 const Results = (props) => {
   const { results, setResults } = useContext(AppContext);
@@ -405,6 +406,7 @@ const Results = (props) => {
       </div>
       <br />
       <br />
+      <Footer />
     </div>
   );
 };
