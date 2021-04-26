@@ -80,13 +80,6 @@ const Appointment = (props) => {
     const fetchData = async () => {
       try {
         if (loggedIn) {
-          const response = await UserAPI.post("/findOne", {
-            user_id: id,
-          });
-          console.log(response.data.data);
-          setFirstName(response.data.data.firstName)
-          setLastName(response.data.data.lastName)
-
           const insuranceResponse = await InsuranceAPI.get("/findAll");
           // console.log(insuranceResponse.data.data);
           getPopularCarriers(insuranceResponse.data.data);
