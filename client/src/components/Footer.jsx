@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "./img/logo.png";
+import pnj from "./img/pnj.png";
 import { Container, Col, Row } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.css";
 import { SocialIcon } from "react-social-icons";
@@ -13,12 +14,16 @@ const Footer = (props) => {
                     <Row>
 
                         <Col>
-                            <img src={logo} alt="logo" width={200} height={200} mode="fit" />
+                            <br />
+                            <img src={logo} alt="logo" width="80%" mode="fit" />
 
 
                             <p style={{ color: 'white' }}>
                             &#169; 2021 GMF MEDIA GROUP, LLC
                             </p>
+                            <br />
+
+                            <img src={pnj} alt="pnj" width="50%" mode="fit" />
 
                             <p style={{ color: 'white' }}>
                                 WEB SITE DESIGN: PNJ DIGITAL <br /> (<a href="">www.pnjdigital.com</a>)</p>

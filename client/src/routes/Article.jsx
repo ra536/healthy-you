@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ArticleAPI from "../apis/ArticleAPI";
-import { Container } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import Moment from "react-moment";
 import "moment-timezone";
 import TopNavBar from "../components/TopNavBar";
@@ -67,7 +67,9 @@ const Article = (props) => {
     // Return different webpage, depending on the validity of the ID provided
     <>
       <TopNavBar />
-      <Container style={{  width: "65%", display: "inline-block"  }}>
+      <Container>
+      <Row>
+            <Col xs={12} md={8}>
         <h1>{headline}</h1>
         Category: <a href={"/category/" + category}>{category}</a>
         <br />
@@ -93,14 +95,14 @@ const Article = (props) => {
         <br />
         <br />
         <br />
-      </Container>
-      <Container
-          id="Right Sidebar"
-          style={{ width: "35%", display: "inline-block" }}
-        >
+        </Col>
+            <Col xs={6} md={4}>
+            
           <br />
           <HomeSideBar />
           <br />
+          </Col>
+          </Row>
         </Container>
         <Footer />
     </>
