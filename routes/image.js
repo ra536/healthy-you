@@ -52,7 +52,7 @@ router.post("/getCategoryImage", async (req, res) => {
         // console.log(appointmentResults);
         res.status(200).json({
           status: "success",
-          data: imageResult,
+          data: imageResult.image,
         });
       } catch (err) {
         // console.error(err.message);

@@ -10,12 +10,13 @@ import "bootstrap/dist/css/bootstrap.css";
 import ArticleComponent from "../components/ArticleComponent";
 import TopNavBar from "../components/TopNavBar";
 import Footer from "../components/Footer";
+import sky from "./Sky.jpg";
 
 const ArticleCategory = (props) => {
   let { id } = useParams();
 
   const [articles, setArticles] = useState([]);
-  const [image, setImage] = useState([]);
+  const [image, setImage] = useState(sky);
 
   // const [headlineList, setHeadlineList] = useState([]);
   // const [categoryList, setCategoryList] = useState([]);
@@ -86,7 +87,7 @@ const ArticleCategory = (props) => {
 
         </Badge>
         <br /><br />
-        <Image src={image.image} width="75%"></Image>
+        <Image src={image} width="75%"></Image>
 
       </div>
       <br />
