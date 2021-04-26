@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useContext, Col, Form, FormControl, Button, } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import ad300 from "../components/ads/ad300.jpg";
 import { useParams } from "react-router-dom";
 import ArticleAPI from "../apis/ArticleAPI";
-import { ListGroup, Container, Row, Badge } from "react-bootstrap";
+import { ListGroup, Container, Row, Badge, Col } from "react-bootstrap";
 import BlogSideBar from "../components/BlogSideBar";
 
 import "bootstrap/dist/css/bootstrap.css";
@@ -64,15 +64,15 @@ const ArticleCategory = (props) => {
       <TopNavBar />
       <div align="center">
         <Badge variant="primary">
-        
+
           <h1>
-          &nbsp;
+            &nbsp;
           {id}
           &nbsp;
           </h1>
-       
+
         </Badge>
-        
+
 
 
       </div>
@@ -80,36 +80,39 @@ const ArticleCategory = (props) => {
 
 
 
-      
-      <Container style={{ width: "65%", display: "inline-block" }}>
 
-     
-        {articles.map((article) => {
-          return (
-            <>
-              <hr />
-              <Row>
-                <ArticleComponent
-                  article={article}
-                  writer="Anonymous Writer"
-                  type="horizontal"
-                />
-                {/* {getAuthorName(article.writer_id)} */}
-              </Row>
-            </>
-          );
-        })}
-      
+      <Container>
+        <Row>
+          <Col xs={12} md={8}>
+
+
+
+            {articles.map((article) => {
+              return (
+                <>
+                  <hr />
+                  <Container>
+                    <Row>
+                      <ArticleComponent
+                        article={article}
+                        writer="Anonymous Writer"
+                        type="horizontal"
+                      />
+                    </Row>
+                  </Container>
+                </>
+              );
+            })}
+          </Col>
+          <Col xs={6} md={4}>
+              <BlogSideBar />
+          </Col>
+        </Row>
       </Container>
-      
-      <Container style={{ width: "35%", display: "inline-block"}}>
-        <div >
-          <BlogSideBar />
-        </div>
-      </Container>
+      <br />
       <Footer />
     </>
-    
+
   );
 };
 
