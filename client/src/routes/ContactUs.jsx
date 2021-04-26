@@ -15,7 +15,7 @@ const schema = yup.object().shape({
   email: yup.string().email().required(),
   name: yup.string().required(),
   subject: yup.string().required("Please enter a subject for the email!"),
-  message: yup.string().required("Please enter a body for the email!"),
+  body: yup.string().required("Please enter a body for the email!"),
 });
 
 const ContactUs = () => {
@@ -38,7 +38,7 @@ const ContactUs = () => {
               }}
               validationSchema={schema}
               onSubmit={async (data, { setErrors }) => {
-                // console.log(data);
+                console.log(data);
                 try {
                   const response = await ContactAPI.post("/", {
                     email: data.email,
@@ -129,18 +129,6 @@ const ContactUs = () => {
                       </Form.Group>
                     </Form.Row>
                     <Button type="submit">Submit</Button>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
                   </Form>
                 );
               }}
@@ -148,6 +136,18 @@ const ContactUs = () => {
           </Col>
         </Row>
       </Container>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <Footer />
     </>
   );
