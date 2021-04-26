@@ -9,7 +9,7 @@ const SendReviewLinks = (props) => {
   const [allDoctors, setAllDoctors] = useState([""]);
   const [doctor, setDoctor] = useState("");
   const [emailInput, setEmailInput] = useState("");
-  const { addReview } = useContext(AdminContext);
+  const { addReviews } = useContext(AdminContext);
 
   const handleChange = (e) => {
     setDoctor(e.target.value);
@@ -54,7 +54,6 @@ const SendReviewLinks = (props) => {
 
   //   e.preventDefault();
   // };
-  // jkk24@njit.edu, jeff1k345@gmail.com, jeff1k246@gmail.com
   const handleSubmit = async (e) => {
     e.preventDefault();
     var emails = emailInput.split(/,\s+/);
@@ -70,9 +69,15 @@ const SendReviewLinks = (props) => {
           ids: response.data.ids,
           emails: emails,
         });
-        console.log(res.data.status);
+        // console.log(res.data);
       } catch (err) {
         console.log(err);
+      }
+      console.log(response.data.data);
+      if (response.data.data.length > 0) {
+        for (var i = 0; i < response.data.data.length; i++) {
+          addReviews(response.data.data[i]);
+        }
       }
     } catch (err) {
       console.log(err);
@@ -96,8 +101,9 @@ const SendReviewLinks = (props) => {
 
   return (
     <>
-    <form>
-        <span>Select a doctor:</span><br />
+      <form>
+        <span>Select a doctor:</span>
+        <br />
         <select name="Doctor Pick" onChange={handleChange}>
           <option value="" selected="selected">
             {" "}
@@ -118,8 +124,10 @@ const SendReviewLinks = (props) => {
         <br />
         <textarea onChange={(e) => setEmailInput(e.target.value)}></textarea>
         <br />
-        <Button variant="primary" onClick={handleSubmit}>Send Review Links</Button>
-        </form> 
+        <Button variant="primary" onClick={handleSubmit}>
+          Send Review Links
+        </Button>
+      </form>
     </>
   );
 };

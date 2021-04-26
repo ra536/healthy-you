@@ -5,7 +5,7 @@ export const AdminContext = createContext();
 export const AdminContextProvider = (props) => {
   const [allReviews, setAllReviews] = useState([]);
 
-  const addReview = (review) => {
+  const addReviews = (review) => {
     setAllReviews([...allReviews, review]);
   };
 
@@ -14,7 +14,7 @@ export const AdminContextProvider = (props) => {
       value={{
         allReviews,
         setAllReviews,
-        addReview,
+        addReviews,
       }}
     >
       {props.children}
