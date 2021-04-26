@@ -56,10 +56,10 @@ const HomeSideBar = (props) => {
 
   return (
     <>
+      
      <Card border="" style={{ width: '18rem' }}>
     <Card.Body>
-      <Row>
-        <Col>
+
         <div>
           <iframe
             title="Title"
@@ -73,17 +73,11 @@ const HomeSideBar = (props) => {
           >
           </iframe>
         </div>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
+
         <a href={ad1.ad_link}>
           <img src={ad1.ad_image} alt="ad250" width={250} height={250} />
           </a>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
+
         <hr />
         <h3>Magazine</h3>
         <hr />
@@ -99,12 +93,6 @@ const HomeSideBar = (props) => {
                 <hr />
                 </div>
 
-
-
-        </Col>
-      </Row>
-      <Row>
-        <Col> 
         <hr />
           <h3>Popular Articles</h3>
           <hr />
@@ -120,10 +108,8 @@ const HomeSideBar = (props) => {
               );
             })}
           </ul> 
-        </Col>
-      </Row>
-      <Row>
-        <Col>
+
+
         <hr />
           <h3>Featured Doctors</h3>
           <hr />
@@ -150,18 +136,16 @@ const HomeSideBar = (props) => {
               );
             })}
           </ul>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
+
+
         <a href={ad2.ad_link}>
           <img src={ad2.ad_image} alt="ad250" width={250} height={250} />
           </a>
-        </Col>
-      </Row>
+
 
       </Card.Body>
   </Card>
+
     </>
   );
 };
