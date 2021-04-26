@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import SearchAPI from "../apis/SearchAPI";
-import DoctorAPI from "../apis/DoctorAPI";
+import FeaturedAPI from "../apis/FeaturedAPI";
 import SearchBar from "../components/SearchBar";
 import { AppContext } from "../context/AppContext";
 import queryString from "query-string";
@@ -42,34 +42,38 @@ const Results = (props) => {
 
   const [featuredDoctor, setFeaturedDoctor] = useState("");
   const [ads, setAds] = useState([]);
-    const [ad1, setAd1] = useState({ ad_image: adLong, type: "300x600", ad_link: "/"});
+  const [ad1, setAd1] = useState({
+    ad_image: adLong,
+    type: "300x600",
+    ad_link: "/",
+  });
 
   const determineStars = (rating) => {
     //alert(rating);
-    if(rating > 4.75){
+    if (rating > 4.75) {
       return fivestar;
-    } else if (rating > 4.25 && rating <= 4.75){
+    } else if (rating > 4.25 && rating <= 4.75) {
       return fourhstar;
-    } else if (rating > 3.75 && rating <= 4.25){
+    } else if (rating > 3.75 && rating <= 4.25) {
       return fourstar;
-    } else if (rating > 3.25 && rating <= 3.75){
+    } else if (rating > 3.25 && rating <= 3.75) {
       return threehstar;
-    } else if (rating > 2.75 && rating <= 3.25){
+    } else if (rating > 2.75 && rating <= 3.25) {
       return threestar;
-    } else if (rating > 2.25 && rating <= 2.75){
+    } else if (rating > 2.25 && rating <= 2.75) {
       return twohstar;
-    } else if (rating > 1.75 && rating <= 2.25){
+    } else if (rating > 1.75 && rating <= 2.25) {
       return twostar;
-    } else if (rating > 1.25 && rating <= 1.75){
+    } else if (rating > 1.25 && rating <= 1.75) {
       return onehstar;
-    } else if (rating > 0.75 && rating <= 1.25){
+    } else if (rating > 0.75 && rating <= 1.25) {
       return onestar;
-    } else if (rating > 0.25 && rating <= 0.75){
+    } else if (rating > 0.25 && rating <= 0.75) {
       return hstar;
     } else {
       return star;
     }
-  }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -123,26 +127,21 @@ const Results = (props) => {
       }
 
       try {
-        const response = await DoctorAPI.get(
-          "/random"
-          // {
-          //     practice: params.practice,
-          //     doctor_name: params.doctor,
-          //     location: params.location,
-          //     rating: params.rating,
-          //     specialty: params.specialty
-          // }
+        const response = await FeaturedAPI.post("/findFeaturedDoctors");
+        setFeaturedDoctor(
+          response.data.data[
+            Math.floor(Math.random() * response.data.data.length)
+          ]
         );
-        setFeaturedDoctor(response.data.data);
-        console.log(response.data.data);
+        // console.log(Math.floor(Math.random() * response.data.data.length)); always 0 if only 1 doctor
       } catch (err) {
         console.log(err);
       }
 
       try {
-        const response = await AdAPI.post("/getAdsBySize", { size: "300x600"});
+        const response = await AdAPI.post("/getAdsBySize", { size: "300x600" });
         setAds(response.data.data);
-        if(typeof(response.data.data[0]) == "object"){
+        if (typeof response.data.data[0] == "object") {
           setAd1(response.data.data[0]);
         }
         console.log(response.data.data);
@@ -158,7 +157,7 @@ const Results = (props) => {
     <div>
       <TopNavBar />
       <Container fluid="md">
-        <br/>
+        <br />
         <SearchBar />
         <br />
         <Row align="left">
@@ -166,7 +165,6 @@ const Results = (props) => {
             <div align="left">
               <h3>Featured Doctors</h3>
             </div>
-            
 
             <br />
 
@@ -186,16 +184,23 @@ const Results = (props) => {
                     <Col>
                       <h4>{featuredDoctor.doctor_name}</h4>
                       <Image
-                            src={determineStars(featuredDoctor.rating)}
-                            className=""
-                            style={{ width: "60%" }}
-                          /><br /><br />
+                        src={determineStars(featuredDoctor.rating)}
+                        className=""
+                        style={{ width: "60%" }}
+                      />
+                      <br />
+                      <br />
                       <h6>Specialty: {featuredDoctor.specialty}</h6>
                       <h6>Location: Morristown, NJ</h6>
                       <h6>Phone: {featuredDoctor.phone}</h6>
                       <br />
 
-                      <Button variant="success" size="md" block href="/book-appointment">
+                      <Button
+                        variant="success"
+                        size="md"
+                        block
+                        href="/book-appointment"
+                      >
                         Available starting April 8
                       </Button>
                     </Col>
@@ -229,9 +234,21 @@ const Results = (props) => {
                             src={determineStars(results.rating)}
                             className=""
                             style={{ width: "60%" }}
-                          /><br /><br />
-                          <h6>Specialty: {results.specialty.map((specialty, i) => `${specialty}`).join(', ')} </h6>
-                          <h6>Location: {results.practices.map((practices, i) => `${practices.location}`).join(', ')} </h6>
+                          />
+                          <br />
+                          <br />
+                          <h6>
+                            Specialty:{" "}
+                            {results.specialty
+                              .map((specialty, i) => `${specialty}`)
+                              .join(", ")}{" "}
+                          </h6>
+                          <h6>
+                            Location:{" "}
+                            {results.practices
+                              .map((practices, i) => `${practices.location}`)
+                              .join(", ")}{" "}
+                          </h6>
                           <h6>Phone: {results.phone}</h6>
                           <br />
 
@@ -252,7 +269,6 @@ const Results = (props) => {
             })}
           </Col>
 
-         
           <Col align="center">
             <h3>Follow us</h3>
             <SocialIcon url="https://www.facebook.com/hwfmg/" />{" "}
@@ -262,14 +278,11 @@ const Results = (props) => {
             <br />
             <br />
             <br />
-
-
-            <Card style={{ width:"60%"}}>
+            <Card style={{ width: "60%" }}>
               <Card.Body>
                 <h3>Doctor Finder</h3>
               </Card.Body>
             </Card>
-
             <div style={{ width: "60%" }}>
               <Link
                 to={"/doctor-profile/" + featuredDoctor.doctor_id}
@@ -279,12 +292,11 @@ const Results = (props) => {
                   <h6>Featured Listing</h6>
                   <hr />
                   <Container fluid="md">
-                      <Row>
-                        <Col>
+                    <Row>
+                      <Col>
                         <Image src={featuredDoctor.profile_picture} fluid />
-                        </Col>
-                        <Col>
-                      
+                      </Col>
+                      <Col>
                         <h6>{featuredDoctor.doctor_name}</h6>
                         <h6>{featuredDoctor.phone}</h6>
                         <h6>{featuredDoctor.specialty}</h6>
@@ -298,35 +310,30 @@ const Results = (props) => {
                         >
                           Book now
                         </Button>
-                        </Col>
-                      </Row>
+                      </Col>
+                    </Row>
                   </Container>
                 </ListGroup.Item>
               </Link>
-              
             </div>
-                
-           
-
-            
-
-            <Form style={{ width: "60%" }}   >
-              <Form.Control 
+            <Form style={{ width: "60%" }}>
+              <Form.Control
                 type="email"
                 placeholder="Search Doctors"
                 rounded
                 size="sm"
-      
               />
             </Form>
-            
             <div style={{ width: "60%" }}>
-        
               <Accordion>
-
                 <Card>
                   <Card.Header>
-                    <Accordion.Toggle as={Button} variant="link" eventKey="0" size="sm">
+                    <Accordion.Toggle
+                      as={Button}
+                      variant="link"
+                      eventKey="0"
+                      size="sm"
+                    >
                       + SPECIALTY
                     </Accordion.Toggle>
                   </Card.Header>
@@ -342,10 +349,15 @@ const Results = (props) => {
                     </Card.Body>
                   </Accordion.Collapse>
                 </Card>
-                
+
                 <Card>
                   <Card.Header>
-                    <Accordion.Toggle as={Button} variant="link" eventKey="1" size="sm" >
+                    <Accordion.Toggle
+                      as={Button}
+                      variant="link"
+                      eventKey="1"
+                      size="sm"
+                    >
                       + LOCATION
                     </Accordion.Toggle>
                   </Card.Header>
@@ -370,15 +382,23 @@ const Results = (props) => {
               <hr />
             </div>
             <div align="center" style={{ width: "60%" }}>
-                <Card.Img variant="top" src={newMag} />
+              <Card.Img variant="top" src={newMag} />
 
-                <Button variant="link" size="md" href ="https://issuu.com/healthwellnessfitness">
-                  Subscribe
-                </Button>
+              <Button
+                variant="link"
+                size="md"
+                href="https://issuu.com/healthwellnessfitness"
+              >
+                Subscribe
+              </Button>
 
-                <Button variant="link" size="md" href="https://issuu.com/healthwellnessfitness/docs/1-56-compressed">
-                  Read Issue
-                </Button>
+              <Button
+                variant="link"
+                size="md"
+                href="https://issuu.com/healthwellnessfitness/docs/1-56-compressed"
+              >
+                Read Issue
+              </Button>
             </div>
             <hr />
             <img src={ad1.ad_image} width={300} height={600} />
@@ -386,11 +406,8 @@ const Results = (props) => {
             <br />
             <br />
             <br />
-
-            
             <br />
           </Col>
-         
         </Row>
       </Container>
       <br />
