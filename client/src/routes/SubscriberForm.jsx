@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import TopNavBar from "../components/TopNavBar";
 import SubscriberAPI from "../apis/SubscriberAPI";
 import { Formik } from "formik";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Container } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 
 const Subscribe = () =>{
@@ -11,9 +12,15 @@ const Subscribe = () =>{
         firstName: yup.string().required(),
         lastName: yup.string().required(),
     });
+
+    let history = useHistory();
     return(
         <>
         <TopNavBar/>
+        <div align="center">
+        <h1>Subscribe</h1>
+        </div>
+        <Container>
         <Formik
             initialValues={{
                 email: "",
@@ -30,7 +37,8 @@ const Subscribe = () =>{
                     });
                     console.log(response.data)
                     if (response.data.status === "success"){
-                        alert("you have sucessfully subscribed")
+                        alert("You have successfully subscribed")
+                        history.push("/");
                     }
 
                     else{
@@ -64,6 +72,9 @@ const Subscribe = () =>{
                         placeholder="Enter your email!"
                         isInvalid={!!(errors.email && touched.email)}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.email}
+                      </Form.Control.Feedback><br />
                     <Form.Group controlId="formFirstName">
                       <Form.Label> First Name </Form.Label>
                       <Form.Control
@@ -96,11 +107,13 @@ const Subscribe = () =>{
                     </Form.Group>
                     
                     </Form.Group>
-                    <Button type="submit">Submit</Button>
+                    <br />
+                    <Button type="submit" block>Submit</Button>
                   </Form>
                 );
               }}
             </Formik>
+            </Container>
         </>
 
     );
