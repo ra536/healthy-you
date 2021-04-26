@@ -387,7 +387,7 @@ const Results = (props) => {
               <Button
                 variant="link"
                 size="md"
-                href="https://issuu.com/healthwellnessfitness"
+                href="/subscribe"
               >
                 Subscribe
               </Button>
