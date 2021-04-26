@@ -166,6 +166,7 @@ const Appointment = (props) => {
         firstTime: "",
       }}
       validationSchema={schema}
+
       onSubmit={async (data, { setErrors }) => {
         console.log(data);
         console.log(gender);
@@ -220,8 +221,8 @@ const Appointment = (props) => {
                       type="text"
                       name="firstName"
                       values={values.firstName}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
+                      
+                      onBlur={handleChange}
                       placeholder="First name"
                       isInvalid={!!(errors.firstName && touched.firstName)}
                     />
@@ -236,8 +237,8 @@ const Appointment = (props) => {
                       type="text"
                       name="lastName"
                       values={values.lastName}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
+                      
+                      onBlur={handleChange}
                       placeholder="Last name"
                       isInvalid={!!(errors.lastName && touched.lastName)}
                     />
@@ -254,8 +255,8 @@ const Appointment = (props) => {
                       type="text"
                       name="month"
                       values={values.month}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
+                      
+                      onBlur={handleChange}
                       placeholder="MM"
                       isInvalid={!!(errors.month && touched.month)}
                     />
@@ -270,8 +271,8 @@ const Appointment = (props) => {
                       type="text"
                       name="day"
                       values={values.day}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
+                      
+                      onBlur={handleChange}
                       placeholder="DD"
                       isInvalid={!!(errors.day && touched.day)}
                     />
@@ -286,8 +287,8 @@ const Appointment = (props) => {
                       type="text"
                       name="year"
                       values={values.year}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
+                      
+                      onBlur={handleChange}
                       placeholder="YYYY"
                       isInvalid={!!(errors.year && touched.year)}
                     />
@@ -306,8 +307,8 @@ const Appointment = (props) => {
                       type="text"
                       name="reason"
                       values={values.reason}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
+                      
+                      onBlur={handleChange}
                       placeholder="Reason"
                       isInvalid={!!(errors.reason && touched.reason)}
                     />
@@ -403,8 +404,8 @@ const Appointment = (props) => {
                       as="select"
                       custom
                       values={values.gender}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
+                      
+                      onBlur={handleChange}
                       isInvalid={!!(errors.gender && touched.gender)}
                     >
                       <option value=""></option>
@@ -422,8 +423,8 @@ const Appointment = (props) => {
                       as="select"
                       custom
                       values={values.firstTime}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
+                      
+                      onBlur={handleChange}
                       isInvalid={!!(errors.firstTime && touched.firstTime)}
                     >
                       <option value=""></option>
