@@ -17,7 +17,7 @@ const Blog = (props) => {
     const [articles, setArticles] = useState([]);
 
     const [ads, setAds] = useState([]);
-    const [ad1, setAd1] = useState({ ad_image: ad300, type: "300x600", ad_link: "/"});
+    const [ad1, setAd1] = useState({ ad_image: ad300, type: "300x600", ad_link: "/" });
 
     const link =
         "https://healthy-you-project.herokuapp.com/article/87918716-f71f-4548-aea3-ad0496d44c9a";
@@ -45,16 +45,16 @@ const Blog = (props) => {
             }
 
             try {
-                const response = await AdAPI.post("/getAdsBySize", { size: "300x600"});
+                const response = await AdAPI.post("/getAdsBySize", { size: "300x600" });
                 setAds(response.data.data);
-                if(typeof(response.data.data[0]) == "object"){
+                if (typeof (response.data.data[0]) == "object") {
                     setAd1(response.data.data[0]);
                 }
                 console.log(response.data.data);
                 console.log(response.data.data[0].ad_image);
-              } catch (err) {
+            } catch (err) {
                 console.log(err);
-              }
+            }
         }
         fetchData();
     }, []);
@@ -68,115 +68,59 @@ const Blog = (props) => {
                 <Image src={blogPage} width="75%"></Image>
             </div>
             <br />
-            
-                    <Container style={{ width: "65%", display: "inline-block" }}>
+
+            <Container>
+                <Row>
+                    <Col xs={12} md={8}>
+
                         {articles.map((article) => {
 
                             return (
                                 <>
                                     <hr />
-                                    <Row>
-                                        <ArticleComponent article={article} writer="Anonymous Writer" type="horizontal" />
-                                        {/* {getAuthorName(article.writer_id)} */}
-                                    </Row>
+                                    <Container>
+                                        <Row>
+                                            <ArticleComponent article={article} writer="Anonymous Writer" type="horizontal" />
+                                            {/* {getAuthorName(article.writer_id)} */}
+                                        </Row>
+                                    </Container>
                                 </>
                             )
 
                         })}
-                        {articles.map((article) => {
 
-                        return (
-                            <>
-                                <hr />
-                                <Row>
-                                    <ArticleComponent article={article} writer="Anonymous Writer" type="horizontal" />
-                                    {/* {getAuthorName(article.writer_id)} */}
-                                </Row>
-                            </>
-                        )
+                    </Col>
 
-                        })}
-                        {articles.map((article) => {
+                    <Col xs={6} md={4}>
+                        <Form inline>
+                            <FormControl type="text" placeholder="Search" />
+                            <Button variant="outline-success">Search</Button>
+                        </Form>
 
-                        return (
-                            <>
-                                <hr />
-                                <Row>
-                                    <ArticleComponent article={article} writer="Anonymous Writer" type="horizontal" />
-                                    {/* {getAuthorName(article.writer_id)} */}
-                                </Row>
-                            </>
-                        )
 
-                        })}
 
-                    </Container>
 
-                    <Container style={{ width: "35%", display: "inline-block" }}>
-                        <Row>
-                            <Col>
-                                <Form inline>
-                                    <FormControl type="text" placeholder="Search" />
-                                    <Button variant="outline-success">Search</Button>
-                                </Form>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <br />
-                            </Col>
-                        </Row>
-                        
-                        
-                        <Row>
-                            <Col>
-                                <br />
-                                <br />
-                                <h1>Recent Posts</h1>
-                                <br />
-                                <h2>Dental Care Basics</h2>
-                                <p>Think you know everything about proper brushing and flossing techniques? Understand the basics and what you can do to promote oral health.</p>
-                                <br />
-                                <h2>Fat Loss Done Right</h2>
-                                <p>Whether you’re looking to improve your overall health or simply slim down for summer, burning off excess fat can be quite challenging.</p>
-                                <br />
-                                <h2>Hyperthyroid</h2>
-                                <p>Hyperthyroidism is the production of too much thyroxine hormone. It can increase metabolism.
-Symptoms include unexpected weight loss, rapid or irregular heartbeat, sweating, and irritability, although the elderly often experience no symptoms.</p>
-                                <br />
-                                <img src={ad1.ad_image} alt="ad300" width={300} height={600} mode='fit' />
-
-                            </Col>
-                            
-                        </Row>
-                        <Row>
-                            <Col>
-                                <br />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <br />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <br />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <br />
-                            </Col>
-                        </Row>
                         <br />
-
-
+                        <br />
+                        <h1>Recent Posts</h1>
+                        <br />
+                        <h2>Dental Care Basics</h2>
+                        <p>Think you know everything about proper brushing and flossing techniques? Understand the basics and what you can do to promote oral health.</p>
+                        <br />
+                        <h2>Fat Loss Done Right</h2>
+                        <p>Whether you’re looking to improve your overall health or simply slim down for summer, burning off excess fat can be quite challenging.</p>
+                        <br />
+                        <h2>Hyperthyroid</h2>
+                        <p>Hyperthyroidism is the production of too much thyroxine hormone. It can increase metabolism.
+Symptoms include unexpected weight loss, rapid or irregular heartbeat, sweating, and irritability, although the elderly often experience no symptoms.</p>
+                        <br />
+                        <img src={ad1.ad_image} alt="ad300" width={300} height={600} mode='fit' />
+                        <br />
+                    </Col>
+</Row>
                     </Container>
-                    <br />
-                    <br />
-                    <br />
-                    <Footer />
+                <br />
+                <Footer />
         </>
     );
 };
