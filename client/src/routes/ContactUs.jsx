@@ -41,7 +41,7 @@ const ContactUs = () => {
                 console.log(data);
                 try {
                   const response = await ContactAPI.post("/", {
-                    email: data.email,
+                    sender: data.email,
                     name: data.name,
                     subject: data.subject,
                     body: data.body,

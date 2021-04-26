@@ -29,11 +29,11 @@ const transporter = nodemailer.createTransport({
 });
 
 router.post("/", async (req, res) => {
-  const { name, body } = req.body;
+  const { name, sender, body } = req.body;
   try {
     const newEmail = await email
       .create({
-        sender: req.body.email,
+        sender: req.body.sender,
         name: req.body.name,
         subject: req.body.subject,
         message: body,
@@ -49,10 +49,11 @@ router.post("/", async (req, res) => {
   }
   const emailResponse = [];
   const mailOptions = {
-    from: `${name} <${req.body.email}>`, // sender address
-    to: "healthy.you.511@gmail.com",
+    from: name, // sender address
+    to: process.env.EMAIL,
     subject: req.body.subject, // Subject line
     text: body, // plain text body
+    replyTo: sender,
   };
   // send mail with defined transport object
   const info = transporter.sendMail(mailOptions);
