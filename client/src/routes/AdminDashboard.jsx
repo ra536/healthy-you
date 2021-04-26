@@ -13,6 +13,7 @@ import { AdminContextProvider } from "../context/AdminContext";
 import ManageFeatured from "../components/ManageFeatured";
 import ManageAds from "../components/ManageAds";
 import Footer from "../components/Footer";
+import ManageCategoryImages from "../components/ManageCategoryImages";
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 
@@ -72,6 +73,9 @@ const AdminDashboard = (props) => {
               </Tab>
               <Tab eventKey="appointments" title="Appointments" >
                 
+              </Tab>
+              <Tab eventKey="categoryimages" title="Category Images" >
+                <ManageCategoryImages />
               </Tab>
             </Tabs>
           </div>
