@@ -88,6 +88,7 @@ router.post("/getAllInviteCodes", async (req, res) => {
 
 router.post("/create", async (req, res) => {
   const reviewIDs = [];
+  const reviews = [];
   try {
     for (const email of req.body.emails) {
       const newReview = await review
@@ -96,10 +97,13 @@ router.post("/create", async (req, res) => {
           email: email,
           status: "SENT",
         })
-        .then((revObject) => reviewIDs.push(revObject.review_id));
+        .then((revObject) => {
+          reviewIDs.push(revObject.review_id), reviews.push(revObject);
+        });
     }
     res.status(200).json({
       status: "success",
+      data: reviews,
       ids: reviewIDs,
     });
   } catch (err) {
@@ -213,7 +217,8 @@ router.post("/sendInvite", async (req, res) => {
     },
   });
 
-  const base = process.env.REVIEW_BASE_LINK || "http://localhost:3000/leaveReview/";
+  const base =
+    process.env.REVIEW_BASE_LINK || "http://localhost:3000/leaveReview/";
 
   const emailResponse = [];
   for (let i = 0; i < emails.length; i += 1) {

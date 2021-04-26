@@ -33,12 +33,17 @@ const DisplayAllReviews = (props) => {
         review_id: e.target.id,
         doctor_id: e.target.name,
       });
+      try {
+        const response = await ReviewAPI.post("/findAll", {});
+        // console.log(response.data.data);
+        setAllReviews(response.data.data);
+      } catch (err) {
+        console.log(err);
+      }
       console.log(response);
     } catch (err) {
       console.log(err);
     }
-    // create route to approve review
-    // figure out useContext (ask Jeff...)
   };
 
   return (
