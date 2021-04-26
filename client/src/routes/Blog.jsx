@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ArticleAPI from "../apis/ArticleAPI";
-import { Container, Row, Col, Card, Form, FormControl, Button, Image } from "react-bootstrap";
+import { Container, Row, Col, Card, Form, FormControl, Button, Image, Badge } from "react-bootstrap";
 import Moment from "react-moment";
 import "moment-timezone";
 import TopNavBar from "../components/TopNavBar";
@@ -64,9 +64,19 @@ const Blog = (props) => {
         <>
             <TopNavBar />
             <div align="center">
-                <h1>Blog</h1>
+                <Badge variant="primary">
+
+                    <h1>
+                        &nbsp;
+                        Blog
+                        &nbsp;
+                    </h1>
+
+                </Badge>
+                <br /><br />
                 <Image src={blogPage} width="75%"></Image>
             </div>
+
             <br />
 
             <Container>
@@ -117,10 +127,10 @@ Symptoms include unexpected weight loss, rapid or irregular heartbeat, sweating,
                         <img src={ad1.ad_image} alt="ad300" width={300} height={600} mode='fit' />
                         <br />
                     </Col>
-</Row>
-                    </Container>
-                <br />
-                <Footer />
+                </Row>
+            </Container>
+            <br />
+            <Footer />
         </>
     );
 };
