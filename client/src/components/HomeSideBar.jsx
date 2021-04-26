@@ -90,7 +90,7 @@ const HomeSideBar = (props) => {
 
                 <Card.Img variant="top" src={newMag} />
                 <div align="center">
-                <Button variant="link" size="md" href ="https://issuu.com/healthwellnessfitness">
+                <Button variant="link" size="md" href="/subscribe">
                   Subscribe
                 </Button>
                 <Button variant="link" size="md" href="https://issuu.com/healthwellnessfitness/docs/1-56-compressed">
