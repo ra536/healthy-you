@@ -7,7 +7,7 @@ import AddSpecialty from "../components/AddSpecialty";
 import RemoveSpecialty from "../components/RemoveSpecialty";
 import { AppContext } from "../context/AppContext";
 import { useParams } from "react-router-dom";
-import { Container, Table } from "react-bootstrap";
+import { Container, Table, Tab, Tabs } from "react-bootstrap";
 import TopNavBar from "../components/TopNavBar";
 import CreateAppt from '../components/CreateAppt';
 import ApptCalendar from '../components/ApptCalendar';
@@ -54,7 +54,7 @@ const DoctorDashboard = (props) => {
         } else {
           setSpecialties(response.data.data.specialty);
         }
-        if(response.data.data.category === null){
+        if (response.data.data.category === null) {
           setCategories(["Add category"])
         } else {
           setCategories(response.data.data.category)
@@ -197,143 +197,165 @@ const DoctorDashboard = (props) => {
     console.log(data);
     setCanceledAppt(data);
   }
-  
+
   return (
     <>
       <TopNavBar />
       <Container>
-        <a href={"/doctor-profile/" + doctorID}>View your profile</a>
         <h1>Doctor Dashboard</h1>
-        <br />
-        <h1>Name</h1>
-        {name}
-        <br />
-        <form>
-          <input
-            id="input-new-name"
-            value={updatedName}
-            placeholder="Name"
-            onChange={(e) => setUpdatedName(e.target.value)}
-          />
-          <button type="submit" onClick={handleSubmitName}>
-            Save
-          </button>
-        </form>
+        <Tabs defaultActiveKey="main" id="uncontrolled-tab" >
+          <Tab eventKey="main" title="Main" >
+            <br />
+            <a href={"/doctor-profile/" + doctorID}>View your profile</a>
+            <h1>Name</h1>
+            <hr />
+            {name}
+            <br />
+            <form>
+              <input
+                id="input-new-name"
+                value={updatedName}
+                placeholder="Name"
+                onChange={(e) => setUpdatedName(e.target.value)}
+              />
+              <button type="submit" onClick={handleSubmitName}>
+                Save
+              </button>
+            </form>
+            <br />
+            <br />
+            <h1>Profile Picture</h1>
+            <hr />
+            <img src={profilePicture} alt="" width="200px" id="preview"></img>
+            <form>
+              <input
+                id="input-file"
+                name="article-image"
+                type="file"
+                onChange={(e) => previewImage(e)}
+              />
+              <br />
+              <button type="submit" onClick={handleSubmitProfilePic}>
+                Save
+              </button>
+            </form>
+            <img src={newImage} alt="" width="200px" id="preview"></img>
+            <br />
+            <br />
+            <h1>Phone Number</h1>
+            <hr />
+            {phone}
+            <br />
+            <form>
+              <input
+                id="input-new-phone"
+                value={updatedPhone}
+                placeholder="Phone Number"
+                onChange={(e) => setUpdatedPhone(e.target.value)}
+              />
+              <button type="submit" onClick={handleSubmitPhone}>
+                Save
+              </button>
+            </form>
 
-        <br />
-        <br />
-        <h1>Profile Picture</h1>
-        <img src={profilePicture} alt="" width="200px" id="preview"></img>
-        <form>
-          <input
-            id="input-file"
-            name="article-image"
-            type="file"
-            onChange={(e) => previewImage(e)}
-          />
-          <br />
-          <button type="submit" onClick={handleSubmitProfilePic}>
-            Save
-          </button>
-        </form>
-        <img src={newImage} alt="" width="200px" id="preview"></img>
-        <br />
-        <br />
-        <h1>Phone Number</h1>
-        {phone}
-        <br />
-        <form>
-          <input
-            id="input-new-phone"
-            value={updatedPhone}
-            placeholder="Phone Number"
-            onChange={(e) => setUpdatedPhone(e.target.value)}
-          />
-          <button type="submit" onClick={handleSubmitPhone}>
-            Save
-          </button>
-        </form>
+            <br />
+            <br />
+            <h1>Biography</h1>
+            <hr />
+            {bio}
+            <br />
+            <form>
+              <textarea
+                rows="10"
+                cols="75"
+                id="input-bio"
+                value={updatedBio}
+                //placeholder={bio}
+                onChange={(e) => setUpdatedBio(e.target.value)}
+              />
+              <br />
+              <button type="submit" onClick={handleSubmitBio}>
+                Save Changes
+              </button>
+              <button type="submit" onClick={handleClearBio}>
+                Clear
+              </button>
+            </form>
 
-        <br />
-        <br />
-        <h1>Biography</h1>
-        {bio}
-        <br />
-        <form>
-          <textarea
-            rows="10"
-            cols="75"
-            id="input-bio"
-            value={updatedBio}
-            //placeholder={bio}
-            onChange={(e) => setUpdatedBio(e.target.value)}
-          />
-          <br />
-          <button type="submit" onClick={handleSubmitBio}>
-            Save Changes
-          </button>
-          <button type="submit" onClick={handleClearBio}>
-            Clear
-          </button>
-        </form>
-
-        <br />
-        <h1>Category</h1>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>Category Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {categories.map((categories, index) => {
-              return (
-                <tr key={index}>
-                  <td>{categories}</td>
+            <br />
+            <h1>Rating</h1>
+            <hr />
+            {rating}
+          </Tab>
+          <Tab eventKey="specialty" title="Specialty">
+            <br />
+            <h1>Category</h1>
+            <hr />
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>Category Name</th>
                 </tr>
-              );
-            })}
-          </tbody>
-        </Table>
-        <AddCategory doctorID={doctorID} />
-        <RemoveCategory doctorID={doctorID} />
-        <br />
-        <h1>Specialties</h1>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>Specialty Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {specialties.map((specialties, index) => {
-              return (
-                <tr key={index}>
-                  <td>{specialties}</td>
+              </thead>
+              <tbody>
+                {categories.map((categories, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{categories}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </Table>
+            <AddCategory doctorID={doctorID} />
+            <RemoveCategory doctorID={doctorID} />
+            <br />
+            <h1>Specialties</h1>
+            <hr />
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>Specialty Name</th>
                 </tr>
-              );
-            })}
-          </tbody>
-        </Table>
-        <AddSpecialty doctorID={doctorID} />
-        <RemoveSpecialty doctorID={doctorID} />
-        <br />
-        <h1>Rating</h1>
-        {rating}
-        <br />
-        <h1>Reviews</h1>
-        <br />
-        <h1>Practices</h1>
-        <PracticeList doctorID={doctorID} />
-        <InputNewPractice doctorID={doctorID} />
-        <RemovePractice doctorID={doctorID} />
-        <br />
-        <h1>Appointments</h1>
-        <hr/>
-        <CreateAppt doctorID={doctorID} newAppt={getAppt}/>
-        <NotPublishedAppts doctorID={doctorID} newAppt={getAppt} reload={appt}/>
-        <ApptCalendar doctorID={doctorID} newAppt={appt} appt_id={getApptID} canceledAppt={canceledAppt} route="Dashboard"/>
-        <ApptInfo apptID={apptID} onCancel={getCanceledApptID}/>
+              </thead>
+              <tbody>
+                {specialties.map((specialties, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{specialties}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </Table>
+            <AddSpecialty doctorID={doctorID} />
+            <RemoveSpecialty doctorID={doctorID} />
+            <br />
+          </Tab>
+          <Tab eventKey="practice" title="Practice">
+            <br />
+            <h1>Practices</h1>
+            <hr />
+            <PracticeList doctorID={doctorID} />
+            <InputNewPractice doctorID={doctorID} />
+            <RemovePractice doctorID={doctorID} />
+            <br />
+          </Tab>
+          <Tab eventKey="reviews" title="Reviews">
+            <br />
+            <h1>Reviews</h1>
+          </Tab>
+          <Tab eventKey="appointments" title="Appointments" >
+            <br />
+            <h1>Appointments</h1>
+            <hr />
+            <CreateAppt doctorID={doctorID} newAppt={getAppt} />
+            <NotPublishedAppts doctorID={doctorID} newAppt={getAppt} reload={appt} />
+            <ApptCalendar doctorID={doctorID} newAppt={appt} appt_id={getApptID} canceledAppt={canceledAppt} route="Dashboard" />
+            <br />
+            <ApptInfo apptID={apptID} onCancel={getCanceledApptID} />
+          </Tab>
+        </Tabs>
       </Container>
       <br />
       <Footer />

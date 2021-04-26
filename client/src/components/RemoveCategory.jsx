@@ -37,7 +37,7 @@ const RemoveCategory = (props) => {
                 "/removeCategory",
                 {
                     category: category,
-                    doctorID: props.doctorID,
+                    doctor_id: props.doctorID,
                 },
                 {
                     withCredentials: true,
@@ -58,7 +58,7 @@ const RemoveCategory = (props) => {
     };
 
     return (
-        <form>
+        <div>
             <form onSubmit={handleSubmit}>
                 <select value={category} onChange={handleChange}>
                     {categories.map((categories) => {
@@ -71,7 +71,7 @@ const RemoveCategory = (props) => {
                 </select>
                 <input type="submit" value="Remove" />
             </form>
-        </form>
+        </div>
     );
 };
 
