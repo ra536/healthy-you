@@ -1,8 +1,8 @@
 const express = require("express");
 
 const router = express.Router();
-const { Sequelize, Op } = require("sequelize");
 const nodemailer = require("nodemailer");
+const email = require("../db/models/email");
 
 // Generate test SMTP service account from ethereal.email
 // Only needed if you don't have a real mail account for testing
@@ -28,13 +28,30 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-router.post("/sendInvite", async (req, res) => {
-  const { name, email, subject, body } = req.body;
+router.post("/", async (req, res) => {
+  const { name, body } = req.body;
+  try {
+    const newEmail = await email
+      .create({
+        sender: req.body.email,
+        name: req.body.name,
+        subject: req.body.subject,
+        message: body,
+      })
+      .then(() =>
+        res.status(200).json({
+          status: "success",
+          data: newEmail,
+        })
+      );
+  } catch (err) {
+    //
+  }
   const emailResponse = [];
   const mailOptions = {
-    from: `${name} <${email}>`, // sender address
+    from: `${name} <${req.body.email}>`, // sender address
     to: "healthy.you.511@gmail.com",
-    subject: subject, // Subject line
+    subject: req.body.subject, // Subject line
     text: body, // plain text body
   };
   // send mail with defined transport object
