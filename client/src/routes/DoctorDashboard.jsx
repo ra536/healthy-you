@@ -205,6 +205,7 @@ const DoctorDashboard = (props) => {
         <h1>Doctor Dashboard</h1>
         <Tabs defaultActiveKey="main" id="uncontrolled-tab" >
           <Tab eventKey="main" title="Main" >
+            <br />
             <a href={"/doctor-profile/" + doctorID}>View your profile</a>
             <h1>Name</h1>
             <hr />
@@ -287,6 +288,7 @@ const DoctorDashboard = (props) => {
             {rating}
           </Tab>
           <Tab eventKey="specialty" title="Specialty">
+            <br />
             <h1>Category</h1>
             <hr />
             <Table striped bordered hover>
@@ -331,6 +333,7 @@ const DoctorDashboard = (props) => {
             <br />
           </Tab>
           <Tab eventKey="practice" title="Practice">
+            <br />
             <h1>Practices</h1>
             <hr />
             <PracticeList doctorID={doctorID} />
@@ -339,15 +342,17 @@ const DoctorDashboard = (props) => {
             <br />
           </Tab>
           <Tab eventKey="reviews" title="Reviews">
+            <br />
             <h1>Reviews</h1>
           </Tab>
           <Tab eventKey="appointments" title="Appointments" >
-
+            <br />
             <h1>Appointments</h1>
             <hr />
             <CreateAppt doctorID={doctorID} newAppt={getAppt} />
             <NotPublishedAppts doctorID={doctorID} newAppt={getAppt} reload={appt} />
             <ApptCalendar doctorID={doctorID} newAppt={appt} appt_id={getApptID} canceledAppt={canceledAppt} route="Dashboard" />
+            <br />
             <ApptInfo apptID={apptID} onCancel={getCanceledApptID} />
           </Tab>
         </Tabs>
