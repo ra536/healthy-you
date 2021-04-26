@@ -32,6 +32,7 @@ router.post("/findAllForDoctor", async (req, res) => {
     const reviewResults = await review.findAll({
       where: {
         doctor_id: req.body.doctor_id,
+        status: "APPROVED",
       },
       raw: true,
     });
