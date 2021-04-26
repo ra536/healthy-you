@@ -37,7 +37,10 @@ try {
       <br />
       <br />
       <div align="center">
+      <a href={ad2.ad_link}>
         <img src={ad2.ad_image} alt="ad728" width={728} height={90} mode="fit" />
+      </a>
+        
       </div>
       <br />
     </>
@@ -48,7 +51,9 @@ try {
       <br />
       <br />
       <div align="center">
+        <a href={ad1.ad_link}>
         <img src={ad1.ad_image} alt="ad728" width={728} height={90} mode="fit" />
+        </a>
       </div>
       <br />
     </>

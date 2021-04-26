@@ -167,7 +167,8 @@ app.use("/api/v1/review", require("./routes/review"));
 app.use("/api/v1/appointment", require("./routes/appointment"));
 app.use("/api/v1/featured", require("./routes/featured"));
 app.use("/api/v1/ad", require("./routes/ad"));
-app.use("/api/v1/subscriber", require("./routes/subscriber"));
+app.use("/api/v1/subscriber", require('./routes/subscriber'));
+app.use("/api/v1/image", require('./routes/image'));
 app.use("/api/v1/contact", require("./routes/contact"));
 // app.use("/api/v1/image", require('./routes/image'));
 
