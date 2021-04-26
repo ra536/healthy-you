@@ -13,7 +13,7 @@ const schema = yup.object().shape({
   email: yup.string().email().required(),
   name: yup.string().required(),
   subject: yup.string().required("Please enter a subject for the email!"),
-  message: yup.string().required("Please enter a body for the email!"),
+  message: yup.required("Please enter a body for the email!"),
 });
 
 const ContactUs = () => {
@@ -31,64 +31,12 @@ const ContactUs = () => {
         // console.log(data);
         try {
           const response = await ContactAPI.post("/", {
-            password: data.password,
             email: data.email,
-            firstName: data.firstName,
-            lastName: data.lastName,
-            city: data.city,
-            state: data.state,
-            birthdate: data.birthdate,
-            inviteCode: data.inviteCode,
+            name: data.name,
+            subject: data.subject,
+            body: data.body,
           });
           console.log(response.data);
-          if (response.data.status === "success") {
-            // alert("Account successfully created!");
-            try {
-              console.log(
-                "This is the role I'm logging in with: " + response.data.role
-              );
-              const loginResponse = await LoginAPI.post(
-                "/",
-                {
-                  email: data.email,
-                  password: data.password,
-                  role: response.data.role,
-                },
-                {
-                  withCredentials: true,
-                }
-              );
-              if (loginResponse.data.status === "success") {
-                if (loginResponse.data.user.role === "Doctor") {
-                  setLoggedIn(true);
-                  setRole(loginResponse.data.user.role);
-                  history.push(
-                    "/doctor-dashboard/" + loginResponse.data.user.doctor_id
-                  );
-                } else if (loginResponse.data.user.role === "Writer") {
-                  setLoggedIn(true);
-                  setRole(loginResponse.data.user.role);
-                  history.push(
-                    "/writer-dashboard/" + loginResponse.data.user.writer_id
-                  );
-                } else {
-                  setLoggedIn(true);
-                  setRole(loginResponse.data.user.role);
-                  history.push("/");
-                }
-              }
-            } catch (err) {
-              console.log(err);
-            }
-          } else {
-            if (response.data.target === "email") {
-              setErrors({ email: response.data.status[0].message });
-              console.log(response.data.status[0].message);
-            } else {
-              setErrors({ inviteCode: response.data.status });
-              console.log(response.data.target);
-            }
-          }
         } catch (err) {
           console.log(err);
         }
