@@ -102,7 +102,6 @@ const App = () => {
           />
           <Route exact path="/category/Blog" component={Blog} />
           <Route path="/category/:id" component={ArticleCategory} />
-          <Route path="/admin-dashboard" component={AdminDashboard} />
           <Route path="/reviewSuccess" component={ReviewSuccess} />
           <Route path="/author/:id/:count" component={Author}/>
           <Route path="/sameCategory/:id/:count" component={Category}/>
