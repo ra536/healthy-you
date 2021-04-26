@@ -2,8 +2,9 @@ import React, { useEffect, useState, useContext } from "react";
 import ad300 from "../components/ads/ad300.jpg";
 import { useParams } from "react-router-dom";
 import ArticleAPI from "../apis/ArticleAPI";
-import { ListGroup, Container, Row, Badge, Col } from "react-bootstrap";
+import { ListGroup, Container, Row, Badge, Col, Image } from "react-bootstrap";
 import BlogSideBar from "../components/BlogSideBar";
+import ImageAPI from "../apis/ImageAPI";
 
 import "bootstrap/dist/css/bootstrap.css";
 import ArticleComponent from "../components/ArticleComponent";
@@ -14,6 +15,7 @@ const ArticleCategory = (props) => {
   let { id } = useParams();
 
   const [articles, setArticles] = useState([]);
+  const [image, setImage] = useState([]);
 
   // const [headlineList, setHeadlineList] = useState([]);
   // const [categoryList, setCategoryList] = useState([]);
@@ -38,6 +40,17 @@ const ArticleCategory = (props) => {
         setArticles(response.data.data);
       } catch (error) {
         console.log(error);
+      }
+
+      try {
+        const response = await ImageAPI.post("/getCategoryImage", {
+          category: id,
+        });
+        setImage(response.data.data);
+        console.log(response.data.data);
+
+      } catch (err){
+        console.log(err);
       }
     };
     fetchData();
@@ -72,8 +85,8 @@ const ArticleCategory = (props) => {
           </h1>
 
         </Badge>
-
-
+        <br /><br />
+        <Image src={image.image} width="75%"></Image>
 
       </div>
       <br />
