@@ -212,14 +212,16 @@ router.post("/sendInvite", async (req, res) => {
     },
   });
 
+  const base = process.env.REVIEW_BASE_LINK || "http://localhost:3000/leaveReview/";
+
   const emailResponse = [];
   for (let i = 0; i < emails.length; i += 1) {
     const mailOptions = {
       from: '"Healthy You" <ra536@njit.edu>', // sender address
       to: emails[i], // list of receivers
       subject: "Please leave a review for your last appointment!", // Subject line
-      text: `Click this link to leave a review for the doctor from your latest appointment: <a href="http://localhost:3000/leaveReview/${ids[i]}"> Leave a review! </a>`, // plain text body
-      html: `Click this link to leave a review for the doctor from your latest appointment: <a href="http://localhost:3000/leaveReview/${ids[i]}"> Leave a review! </a>`,
+      text: `Click this link to leave a review for the doctor from your latest appointment: <a href="${base}${ids[i]}"> Leave a review! </a>`, // plain text body
+      html: `Click this link to leave a review for the doctor from your latest appointment: <a href="${base}${ids[i]}"> Leave a review! </a>`,
     };
     // send mail with defined transport object
     const info = transporter.sendMail(mailOptions);
