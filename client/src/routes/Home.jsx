@@ -85,10 +85,10 @@ const Home = () => {
         });
         console.log(response.data.data);
         setFeaturedArticles(response.data.data);
-      } catch (err){
+      } catch (err) {
         console.log(err);
       }
-      
+
       try {
         const response = await ArticleAPI.post("/mostViewed", {
           numOfArticles: 3,
@@ -145,40 +145,42 @@ const Home = () => {
 
         <HealthGuide />
 
-        <Container
-          id="Latest Articles"
-          style={{ width: "65%", display: "inline-block" }}
-        >
-          <br />
-          <div align="left">
-            <h2>The Latest</h2>
-          </div>
+        <Container>
+          <Row>
+            <Col xs={12} md={8}>
 
-          {latestArticles.map((article) => {
-            return (
-              <>
-                <Row>
-                  <ArticleComponent
-                    article={article}
-                    type="horizontal"
-                  />
-                </Row>
+              <br />
+              <div align="left">
+                <h2>The Latest</h2>
+              </div>
 
-                <hr />
-              </>
-            );
-          })}
-          <Button  variant="link"  href="/latestArticles/100" block>See More</Button>
-          <br />
-        </Container>
+              {latestArticles.map((article) => {
+                return (
+                  <>
+                    <Container>
+                      <Row>
+                        <ArticleComponent
+                          article={article}
+                          type="horizontal"
+                        />
+                      </Row>
+                    </Container>
 
-        <Container
-          id="Right Sidebar"
-          style={{ width: "35%", display: "inline-block" }}
-        >
-          <br />
-          <HomeSideBar />
-          <br />
+                    <hr />
+                  </>
+                );
+              })}
+              <Button variant="link" href="/latestArticles/100" block>See More</Button>
+              <br />
+            </Col>
+            <Col xs={6} md={4}>
+
+
+              <br />
+              <HomeSideBar />
+              <br />
+            </Col>
+          </Row>
         </Container>
 
         <AdBreak />
@@ -191,8 +193,8 @@ const Home = () => {
             category="Health"
           />
           <div align="center">
-          <br />
-          <Button  variant="link" href="/category/Health">More Health Articles </Button>
+            <br />
+            <Button variant="link" href="/category/Health">More Health Articles </Button>
           </div>
 
 
@@ -205,8 +207,8 @@ const Home = () => {
 
           />
           <div align="center">
-          <br />
-          <Button  variant="link"  href="/category/Wellness">More Wellness Articles</Button>
+            <br />
+            <Button variant="link" href="/category/Wellness">More Wellness Articles</Button>
           </div>
           <hr />
           <CategoryCarousel
@@ -215,8 +217,8 @@ const Home = () => {
             category="Fitness"
           />
           <div align="center">
-          <br />
-          <Button  variant="link" href="/category/Fitness">More Fitness Articles</Button>
+            <br />
+            <Button variant="link" href="/category/Fitness">More Fitness Articles</Button>
           </div>
           <hr />
           <CategoryCarousel
@@ -225,13 +227,13 @@ const Home = () => {
             category="Food"
           />
           <div align="center">
-          <br />
-          <Button  variant="link"  href="/category/Food">More Food Articles</Button>
+            <br />
+            <Button variant="link" href="/category/Food">More Food Articles</Button>
           </div>
           <br />
         </div>
 
-        <AdBreak number={2}/>
+        <AdBreak number={2} />
         <br />
         <Footer />
       </div>
