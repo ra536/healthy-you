@@ -60,8 +60,6 @@ const Appointment = (props) => {
   const [show, setShow] = useState(false);
   const doctorID = props.location.pathname.split("/")[2];
   const [selectedApptID, setApptID] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
   const [gender, setGender] = useState("Gender");
   const [allInsurance, setAllInsurance] = useState([]);
   const [popular, setPopular] = useState([]);
@@ -82,8 +80,10 @@ const Appointment = (props) => {
         if (loggedIn) {
           const insuranceResponse = await InsuranceAPI.get("/findAll");
           // console.log(insuranceResponse.data.data);
-          getPopularCarriers(insuranceResponse.data.data);
-          getAllCarriers(insuranceResponse.data.data);
+          var sortedList = sortByKey(insuranceResponse.data.data, "insurance")
+          // console.log(sortedList)
+          getPopularCarriers(sortedList);
+          getAllCarriers(sortedList);
         }
       } catch (err) {
         console.log(err);
@@ -96,6 +96,14 @@ const Appointment = (props) => {
     console.log(appt_id);
     setApptID(appt_id);
   }
+
+  const sortByKey = (data, key) => {
+    return data.sort(function(a,b){
+        var x = a[key];
+        var y = b[key];
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0))
+    });
+}
 
   const getPopularCarriers = (data) => {
     var temp = [{ insurance: "Popular carriers", disabled: true, fontSize: 25, color: "grey" }]
