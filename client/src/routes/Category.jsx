@@ -12,7 +12,7 @@ import TopNavBar from "../components/TopNavBar";
 import Footer from "../components/Footer";
 import sky from "./Sky.jpg";
 
-const ArticleCategory = (props) => {
+const Category = (props) => {
   let { id } = useParams();
 
   const [articles, setArticles] = useState([]);
@@ -130,4 +130,4 @@ const ArticleCategory = (props) => {
   );
 };
 
-export default ArticleCategory;
+export default Category;
