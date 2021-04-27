@@ -279,25 +279,23 @@ const Results = (props) => {
             <SocialIcon url="https://twitter.com/HWFMagazine1/" />{" "}
             <SocialIcon url="https://www.instagram.com/healthwellnessfitnessmag/" />{" "}
             <SocialIcon url="https://www.linkedin.com/company/health-wellness-&-fitness" />
-            <br />
-            <br />
-            <br />
+            <hr />
 
             <h3>Doctor Finder</h3>
 
-            <div style={{ width: "80%" }}>
+            <div style={{ width: "90%" }}>
               
                 <ListGroup.Item>
                   <h6>Featured Listing</h6>
                   <hr />
-                  <Container fluid="md">
+                  <Container>
                     <Row>
                       <Col>
                       <Link
                 to={"/doctor-profile/" + featuredDoctor.doctor_id}
                 style={{ textDecoration: "none", color: "black" }}
               >
-                        <Image src={featuredDoctor.profile_picture} fluid />
+                        <Image src={featuredDoctor.profile_picture} width ="100%"/>
                         </Link>
                       </Col>
                       <Col>
@@ -306,17 +304,13 @@ const Results = (props) => {
                             {featuredDoctor.category?.map((category, i) => <a href={"/results/?practice=&specialty=&location=&category=" + category}>{category}</a>)}{" "}
                             {featuredDoctor.specialty?.map((specialty, i) => <a href={"/results/?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a>)}{" "}
                           </h6>
-                          <h6>
-                            {featuredDoctor.practices
-                              ?.map((practices, i) => `${practices.name} - ${practices.location}`)
-                              .join(", ")}{" "}
-                          </h6>
                       </Col>
                     </Row>
                   </Container>
                 </ListGroup.Item>
               
             </div>
+            <br />
             <Form style={{ width: "60%" }}>
               <Form.Control
                 type="email"
@@ -325,14 +319,11 @@ const Results = (props) => {
                 size="sm"
               />
             </Form>
-            <div style={{ width: "60%" }}>
-            </div>
-            <br />
             <br />
             <div align="center">
               <hr />
             </div>
-            <div align="center" style={{ width: "60%" }}>
+            <div align="center">
               <Card.Img variant="top" src={newMag} />
 
               <Button
@@ -355,16 +346,12 @@ const Results = (props) => {
             <a href={ad1.ad_link}>
               <img src={ad1.ad_image} width={300} height={600} />
             </a>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
             </Card.Body>
             </Card>
           </Col>
         </Row>
       </Container>
+      <br />
       <Footer />
     </div>
   );
