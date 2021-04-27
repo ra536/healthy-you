@@ -96,7 +96,6 @@ const SearchBar = () => {
   };
 
   return (
-    <div>
       <div align="center" style={{width:"50%", margin:"auto",}}>
 
         <Form >
@@ -169,9 +168,6 @@ const SearchBar = () => {
           </Button>
         </Form>
       </div>
-      <br />
-      <hr />
-    </div>
   );
 };
 
