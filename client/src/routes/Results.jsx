@@ -226,6 +226,7 @@ const Results = (props) => {
                           <Card.Img
                             variant="top"
                             src={results.profile_picture}
+                            width={"30%"}
                           />
                         </Col>
                         <Col>
@@ -401,7 +402,9 @@ const Results = (props) => {
               </Button>
             </div>
             <hr />
-            <img src={ad1.ad_image} width={300} height={600} />
+            <a href={ad1.ad_link}>
+              <img src={ad1.ad_image} width={300} height={600} />
+            </a>
             <br />
             <br />
             <br />
