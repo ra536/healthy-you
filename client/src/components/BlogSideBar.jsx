@@ -93,7 +93,7 @@ const BlogSideBar = (props) => {
             <hr />
             <h3>Recent Posts</h3>
             <hr />
-            {popular.map((article) => {
+            {recent.map((article) => {
                 return (
                     <>
                     <Link to={"/article/" + article.article_id} style={{ textDecoration: "none", color: "black" }}>
