@@ -165,12 +165,12 @@ const Results = (props) => {
   return (
     <div>
       <TopNavBar />
-      <Container fluid="md">
+      <Container>
         <br />
         <SearchBar />
         <br />
         <Row align="left">
-          <Col align="left">
+          <Col align="left" xs={12} md={8}>
             <div align="left">
               <h3>Featured Doctors</h3>
             </div>
@@ -180,26 +180,22 @@ const Results = (props) => {
               <ListGroup.Item>
                 <Container fluid="md">
                   <Row>
-                    <Col>
+                    <Col md={4}>
                     <Link
               to={"/doctor-profile/" + featuredDoctor.doctor_id}
               style={{ textDecoration: "none", color: "black" }}
             >
-                      <Card.Img
+                      <Image
                         variant="top"
                         src={featuredDoctor.profile_picture}
+                        width="100%"
                       />
                       </Link>
                     </Col>
                     <Col>
                       <h5>{featuredDoctor.doctor_name}</h5>
-                      <Image
-                        src={determineStars(featuredDoctor.rating)}
-                        className=""
-                        style={{ width: "50%" }}
-                      />
-                      <br />
-                      <br />
+                      <hr />
+
                       <h6>
                             {featuredDoctor.category.map((category, i) => <a href={"/results/?practice=&specialty=&location=&category=" + category}>{category}</a>)}{" "}
                             {featuredDoctor.specialty
@@ -210,6 +206,11 @@ const Results = (props) => {
                               .map((practices, i) => `${practices.name} - ${practices.location}`)
                               .join(", ")}{" "}
                           </h6>
+                          <Image
+                        src={determineStars(featuredDoctor.rating)}
+                        className=""
+                        style={{ width: "40%" }}
+                      />
                       <br />
                     </Col>
                   </Row>
@@ -229,27 +230,21 @@ const Results = (props) => {
                   <ListGroup.Item>
                     <Container fluid="md">
                       <Row>
-                        <Col>
+                        <Col md={4}>
                         <Link
                   to={"/doctor-profile/" + results.doctor_id}
                   style={{ textDecoration: "none", color: "black" }}
                 >
-                          <Card.Img
+                          <Image
                             variant="top"
                             src={results.profile_picture}
-                            width={"30%"}
+                            width={"100%"}
                           />
                           </Link>
                         </Col>
                         <Col>
-                          <h4>{results.doctor_name}</h4>
-                          <Image
-                            src={determineStars(results.rating)}
-                            className=""
-                            style={{ width: "60%" }}
-                          />
-                          <br />
-                          <br />
+                          <h5>{results.doctor_name}</h5>
+                          <hr />
                           <h6>
                             {results.category.map((category, i) => <a href={"/results/?practice=&specialty=&location=&category=" + category}>{category}</a>)}{" "}
                             {results.specialty
@@ -260,6 +255,11 @@ const Results = (props) => {
                               .map((practices, i) => `${practices.name} - ${practices.location}`)
                               .join(", ")}{" "}
                           </h6>
+                          <Image
+                            src={determineStars(results.rating)}
+                            className=""
+                            style={{ width: "40%" }}
+                          />
                           <br />
 
                         </Col>
@@ -272,6 +272,8 @@ const Results = (props) => {
           </Col>
 
           <Col align="center">
+            <Card border="">
+              <Card.Body>
             <h3>Follow us</h3>
             <SocialIcon url="https://www.facebook.com/hwfmg/" />{" "}
             <SocialIcon url="https://twitter.com/HWFMagazine1/" />{" "}
@@ -280,12 +282,10 @@ const Results = (props) => {
             <br />
             <br />
             <br />
-            <Card style={{ width: "60%" }}>
-              <Card.Body>
-                <h3>Doctor Finder</h3>
-              </Card.Body>
-            </Card>
-            <div style={{ width: "60%" }}>
+
+            <h3>Doctor Finder</h3>
+
+            <div style={{ width: "80%" }}>
               
                 <ListGroup.Item>
                   <h6>Featured Listing</h6>
@@ -360,6 +360,8 @@ const Results = (props) => {
             <br />
             <br />
             <br />
+            </Card.Body>
+            </Card>
           </Col>
         </Row>
       </Container>
