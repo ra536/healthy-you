@@ -1,10 +1,11 @@
 const express = require("express");
 
 const router = express.Router();
-const { Sequelize } = require("sequelize");
+const { Sequelize, Op } = require("sequelize");
 const doctors = require("../db/models/doctor");
 const featured = require("../db/models/featured");
 const articles = require("../db/models/article");
+const practice = require("../db/models/practice");
 const { isAuthAndDoctor } = require("../passport");
 
 router.use(express.json());
@@ -33,6 +34,41 @@ router.post("/findFeaturedDoctors", async (req, res) => {
         const newDoctor = await doctors.findByPk(allOfType[i].item_id);
         doctorArray.push(newDoctor);
     }
+    // allOfType.forEach(async (obj) => {
+    //     const newDoctor = await doctors.findByPk(obj.item_id);
+    //     doctorArray.push(newDoctor.data.data);
+    // })
+    console.log(doctorArray);
+    res.status(200).json({
+        status: "success",
+        data: doctorArray,
+    })
+})
+
+router.post("/findFeaturedDoctorsPractices", async (req, res) => {
+    const typeArray = [];
+    const allOfType = await featured.findAll({
+        attributes: ['item_id'],
+        where: {
+            type: "doctor",
+        },
+        raw: true,
+    });
+
+    for(i=0; i < allOfType.length; ++i){
+        typeArray.push(allOfType[i].item_id);
+    }
+
+    const doctorArray = await doctors.findAll({
+        where: {
+            doctor_id: {
+                [Op.in]: typeArray
+            }
+        },
+        include: {
+            model: practice
+        }
+    })
     // allOfType.forEach(async (obj) => {
     //     const newDoctor = await doctors.findByPk(obj.item_id);
     //     doctorArray.push(newDoctor.data.data);
