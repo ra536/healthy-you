@@ -327,14 +327,14 @@ const Results = (props) => {
                 </ListGroup.Item>
               </Link>
             </div>
-            <Form style={{ width: "60%" }}>
+            {/* <Form style={{ width: "60%" }}>
               <Form.Control
                 type="email"
                 placeholder="Search Doctors"
                 rounded
                 size="sm"
               />
-            </Form>
+            </Form> */}
             <div style={{ width: "60%" }}>
               <Accordion>
                 <Card>
@@ -345,40 +345,12 @@ const Results = (props) => {
                       eventKey="0"
                       size="sm"
                     >
-                      + SPECIALTY
+                      + SEARCH
                     </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey="0">
                     <Card.Body>
-                      Allergy and immunology | Anesthesiology | Dermatology |
-                      Diagnostic radiology | Emergency medicine | Family
-                      medicine | Internal medicine | Medical genetics |
-                      Neurology | Nuclear medicine | Obstetrics and gynecology |
-                      Ophthalmology | Pathology | Pediatrics | Physical medicine
-                      and rehabilitation | Preventive medicine | Psychiatry |
-                      Radiation oncology | Surgery| Urology
-                    </Card.Body>
-                  </Accordion.Collapse>
-                </Card>
-
-                <Card>
-                  <Card.Header>
-                    <Accordion.Toggle
-                      as={Button}
-                      variant="link"
-                      eventKey="1"
-                      size="sm"
-                    >
-                      + LOCATION
-                    </Accordion.Toggle>
-                  </Card.Header>
-                  <Accordion.Collapse eventKey="1">
-                    <Card.Body>
-                      Harrison, NJ | Kearny, NJ | East Orange, NJ | Irvington,
-                      NJ | Hillside, NJ | Orange, NJ | North Arlington, NJ |
-                      Belleville, NJ | South Orange, NJ | Bloomfield, NJ |
-                      Jersey City, NJ | Maplewood, NJ | Elizabeth, NJ | Union,
-                      NJ | Bayonne, NJ
+                      <SearchBar />
                     </Card.Body>
                   </Accordion.Collapse>
                 </Card>
