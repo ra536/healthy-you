@@ -85,8 +85,14 @@ const BlogSideBar = (props) => {
             <Card border="" >
                 <Card.Body>
             <Form inline>
-                <FormControl type="text" placeholder="Search" style={{width:"100%"}}/>
-                <Button variant="outline-success" block>Search</Button>
+            <Form.Control
+                    placeholder="Search"
+                    type="text"
+                    name="s"
+                    values={filterText}
+                    onChange={handleChange}
+                />
+                <Button variant="outline-success" onClick={handleSubmit} block>Search</Button>
             </Form>
 
 <hr />

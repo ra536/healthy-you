@@ -170,7 +170,7 @@ const Results = (props) => {
         <SearchBar />
         <br />
         <Row align="left">
-          <Col align="left" xs={12} md={8}>
+          <Col align="left">
             <div align="left">
               <h3>Featured Doctors</h3>
             </div>
@@ -316,20 +316,17 @@ const Results = (props) => {
               
             </div>
             <br />
-            <Form style={{ width: "60%" }}>
-              <Form.Control
-                type="email"
-                placeholder="Search Doctors"
-                rounded
-                size="sm"
-              />
-            </Form>
+            <hr />
+            <div style={{ width: "100%" }}>
+              <SearchBar />
+
+            </div>
             <br />
             <div align="center">
               <hr />
             </div>
             <div align="center">
-              <Card.Img variant="top" src={newMag} />
+              <Image variant="top" src={newMag} width={"75%"} />
 
               <Button
                 variant="link"
