@@ -124,7 +124,9 @@ const Blog = (props) => {
                         <p>Hyperthyroidism is the production of too much thyroxine hormone. It can increase metabolism.
 Symptoms include unexpected weight loss, rapid or irregular heartbeat, sweating, and irritability, although the elderly often experience no symptoms.</p>
                         <br />
-                        <img src={ad1.ad_image} alt="ad300" width={300} height={600} mode='fit' />
+                        <a href={ad1.ad_link}>
+                            <img src={ad1.ad_image} alt="ad300" width={300} height={600} mode='fit' />
+                        </a>
                         <br />
                     </Col>
                 </Row>
