@@ -119,7 +119,7 @@ const ArticleCategory = (props) => {
             })}
           </Col>
           <Col xs={6} md={4}>
-              <BlogSideBar />
+              <BlogSideBar category={id}/>
           </Col>
         </Row>
       </Container>

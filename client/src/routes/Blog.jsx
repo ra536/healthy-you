@@ -12,6 +12,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import blogPage from "./BlogPage.jpg";
 import AdAPI from "../apis/AdAPI";
 import Footer from "../components/Footer";
+import BlogSideBar from "../components/BlogSideBar";
 
 const Blog = (props) => {
     const [articles, setArticles] = useState([]);
@@ -102,32 +103,7 @@ const Blog = (props) => {
                     </Col>
 
                     <Col xs={6} md={4}>
-                        <Form inline>
-                            <FormControl type="text" placeholder="Search" />
-                            <Button variant="outline-success">Search</Button>
-                        </Form>
-
-
-
-
-                        <br />
-                        <br />
-                        <h1>Recent Posts</h1>
-                        <br />
-                        <h2>Dental Care Basics</h2>
-                        <p>Think you know everything about proper brushing and flossing techniques? Understand the basics and what you can do to promote oral health.</p>
-                        <br />
-                        <h2>Fat Loss Done Right</h2>
-                        <p>Whether you’re looking to improve your overall health or simply slim down for summer, burning off excess fat can be quite challenging.</p>
-                        <br />
-                        <h2>Hyperthyroid</h2>
-                        <p>Hyperthyroidism is the production of too much thyroxine hormone. It can increase metabolism.
-Symptoms include unexpected weight loss, rapid or irregular heartbeat, sweating, and irritability, although the elderly often experience no symptoms.</p>
-                        <br />
-                        <a href={ad1.ad_link}>
-                            <img src={ad1.ad_image} alt="ad300" width={300} height={600} mode='fit' />
-                        </a>
-                        <br />
+                       <BlogSideBar category="Blog"/> 
                     </Col>
                 </Row>
             </Container>

@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Row, Col, Media, Card, Button, ButtonGroup, Form, FormControl, Container } from "react-bootstrap";
 import ad300 from "../components/ads/ad300.jpg";
 import AdAPI from "../apis/AdAPI";
-
+import ArticleAPI from "../apis/ArticleAPI";
+import { Link } from "react-router-dom";
+import newMag from "./newMag.JPG"
 
 
 import "bootstrap/dist/css/bootstrap.css";
@@ -12,6 +14,9 @@ const BlogSideBar = (props) => {
 
     const [ads, setAds] = useState([]);
     const [ad1, setAd1] = useState({ ad_image: ad300, type: "300x600", ad_link: "/" })
+    const [popular, setPopular] = useState([]);
+    const [recent, setRecent] = useState([]);
+    const category = props.category;
 
     useEffect(() => {
         // Define a function fetchData that calls APIs which is then called in useEffect
@@ -27,6 +32,26 @@ const BlogSideBar = (props) => {
             } catch (err) {
                 console.log(err);
             }
+
+            try {
+                const response = await ArticleAPI.post("/mostViewedCategory", {
+                    numOfArticles: 3,
+                    category: category,
+                });
+                setPopular(response.data.data);
+            } catch (err){
+                console.log(err);
+            }
+
+            try {
+                const response = await ArticleAPI.post("/latestCategory", {
+                    numOfArticles: 3,
+                    category: category
+                })
+                setRecent(response.data.data);
+            } catch (err){
+                console.log(err);
+            }
         };
         fetchData();
     }, []);
@@ -34,32 +59,56 @@ const BlogSideBar = (props) => {
     return (
         <>
 
-
+            <Card border="" >
+                <Card.Body>
             <Form inline>
-                <FormControl type="text" placeholder="Search" />
-                <Button variant="outline-success">Search</Button>
+                <FormControl type="text" placeholder="Search" style={{width:"100%"}}/>
+                <Button variant="outline-success" block>Search</Button>
             </Form>
 
+<hr />
+                <Card.Img variant="top" src={newMag} />
+                <div align="center">
+                <Button variant="link" size="md" href="/subscribe">
+                  Subscribe
+                </Button>
+                <Button variant="link" size="md" href="https://issuu.com/healthwellnessfitness/docs/1-56-compressed">
+                  Read Issue
+                </Button>
+                </div>
 
-            <br />
-            <br />
-            <h1>Recent Posts</h1>
-            <br />
-            <h2>Dental Care Basics</h2>
-            <p>Think you know everything about proper brushing and flossing techniques? Understand the basics and what you can do to promote oral health.</p>
-            <br />
-            <h2>Fat Loss Done Right</h2>
-            <p>Whether you’re looking to improve your overall health or simply slim down for summer, burning off excess fat can be quite challenging.</p>
-            <br />
-            <h2>Hyperthyroid</h2>
-            <p>Hyperthyroidism is the production of too much thyroxine hormone. It can increase metabolism.
-                                Symptoms include unexpected weight loss, rapid or irregular heartbeat, sweating, and irritability, although the elderly often experience no symptoms.</p>
-            <br />
+            <hr />
+            <h3>Popular Posts</h3>
+            <hr />
+            {popular.map((article) => {
+                return (
+                    <>
+                    <Link to={"/article/" + article.article_id} style={{ textDecoration: "none", color: "black" }}>
+                    <h6>{article.headline}</h6>
+                    </Link>
+                    <hr />
+                    </>
+                );
+            })}
+            <hr />
+            <h3>Recent Posts</h3>
+            <hr />
+            {recent.map((article) => {
+                return (
+                    <>
+                    <Link to={"/article/" + article.article_id} style={{ textDecoration: "none", color: "black" }}>
+                    <h6>{article.headline}</h6>
+                    </Link>
+                    <hr />
+                    </>
+                );
+            })}
             <a href={ad1.ad_link}>
                 <img src={ad1.ad_image} alt="ad300" width={300} height={600} />
             </a>
             <br />
-
+            </Card.Body>
+            </Card>
 
 
         </>
