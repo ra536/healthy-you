@@ -4,7 +4,7 @@ import ad300 from "../components/ads/ad300.jpg";
 import AdAPI from "../apis/AdAPI";
 import ArticleAPI from "../apis/ArticleAPI";
 import { Link } from "react-router-dom";
-
+import newMag from "./newMag.JPG"
 
 
 import "bootstrap/dist/css/bootstrap.css";
@@ -59,15 +59,24 @@ const BlogSideBar = (props) => {
     return (
         <>
 
-
+            <Card border="" >
+                <Card.Body>
             <Form inline>
-                <FormControl type="text" placeholder="Search" />
-                <Button variant="outline-success">Search</Button>
+                <FormControl type="text" placeholder="Search" style={{width:"100%"}}/>
+                <Button variant="outline-success" block>Search</Button>
             </Form>
 
+<hr />
+                <Card.Img variant="top" src={newMag} />
+                <div align="center">
+                <Button variant="link" size="md" href="/subscribe">
+                  Subscribe
+                </Button>
+                <Button variant="link" size="md" href="https://issuu.com/healthwellnessfitness/docs/1-56-compressed">
+                  Read Issue
+                </Button>
+                </div>
 
-            <br />
-            <br />
             <hr />
             <h3>Popular Posts</h3>
             <hr />
@@ -98,7 +107,8 @@ const BlogSideBar = (props) => {
                 <img src={ad1.ad_image} alt="ad300" width={300} height={600} />
             </a>
             <br />
-
+            </Card.Body>
+            </Card>
 
 
         </>
