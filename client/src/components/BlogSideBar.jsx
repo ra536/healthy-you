@@ -39,6 +39,7 @@ const BlogSideBar = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+          if(id == null) id = "Blog"
           history.push({
             pathname: "/category/" + id + "/",
             search:
