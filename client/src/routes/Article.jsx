@@ -9,6 +9,8 @@ import SocialShareButtons from "../components/SocialShareButtons";
 import "bootstrap/dist/css/bootstrap.css";
 import HomeSideBar from "../components/HomeSideBar";
 import Footer from "../components/Footer";
+import ListGroup from 'react-bootstrap/ListGroup'
+import ArticleComponent from "../components/ArticleComponent";
 
 const Article = (props) => {
   let { id } = useParams();
@@ -27,6 +29,8 @@ const Article = (props) => {
 
   // const link =
   //   "https://healthy-you-project.herokuapp.com/article/87918716-f71f-4548-aea3-ad0496d44c9a";
+  const [sameAuthor, setSameAuthor] = useState([]);
+  const [sameCategory, setSameCategory] = useState([]);
 
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
@@ -39,6 +43,19 @@ const Article = (props) => {
         const views = await ArticleAPI.post("/pageView", {
           id: id,
         });
+
+        const relatedAuthor = await ArticleAPI.post("/author", {
+          article_id: id,
+          numOfArticles: 3
+        })
+
+        const relatedCategory = await ArticleAPI.post("/sameCategory", {
+          article_id: id,
+          numOfArticles: 3
+        })
+
+        console.log("data", views.data.data[0])
+
         setHeadline(response.data.data[0].headline);
         setCategory(response.data.data[0].category);
         setSummary(response.data.data[0].summary);
@@ -47,12 +64,17 @@ const Article = (props) => {
         setCaption(response.data.data[0].image_caption);
         setPublishDate(response.data.data[0].createdAt);
         setNumViews(response.data.data[0].page_views);
-        setAuthor(
-          response.data.writer.firstName + " " + response.data.writer.lastName
-        );
+        // setAuthor(
+        //   response.data.writer.firstName + " " + response.data.writer.lastName
+        // );
         setWriterID(response.data.data[0].writer_id);
         setLink("https://healthy-you-project.herokuapp.com/article/" + id);
         console.log(response.data.data[0]);
+
+
+        setSameAuthor(relatedAuthor.data.data);
+        setSameCategory(relatedCategory.data.data);
+
       } catch (err) {
         console.log(err);
       }
@@ -95,6 +117,37 @@ const Article = (props) => {
             </p>
             <br />
             <br />
+            <hr />
+            <h3>Other {category} Articles</h3>
+            {sameCategory.map((art) => {
+              return (
+                <Container>
+                  <Row>
+
+
+                    <ArticleComponent type="horizontal" article={art} />
+
+                  </Row>
+                  <br />
+                </Container>
+              )
+            })}
+            <hr />
+            <h3>Articles from the Same Author</h3>
+            {sameAuthor.map((art) => {
+              return (
+                <Container>
+                  <Row>
+
+
+                    <ArticleComponent type="horizontal" article={art} />
+
+                  </Row>
+                  <br />
+                </Container>
+              )
+            })}
+            
             <br />
           </Col>
           <Col xs={6} md={4}>

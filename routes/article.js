@@ -334,6 +334,11 @@ router.post("/latest", async (req, res) => {
     const count = req.body.numOfArticles;
     const articleResults = await articles.findAll({
       //offset: skip,
+      where: {
+        [Op.not]: [
+          {category: ["Blog"]},
+        ]
+      },
       order: [
         ["created_at", "DESC"]
       ],
