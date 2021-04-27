@@ -466,5 +466,55 @@ router.post("/mostViewed", async (req, res) => {
   }
 });
 
+router.post("/mostViewedCategory", async (req, res) => {
+  try {
+    const count = req.body.numOfArticles;
+    const category = req.body.category;
+    console.log(req.body);
+    const articleResults = await articles.findAll({
+      where: {
+        category: category,
+      },
+      order: [
+        ["page_views", "DESC"]
+      ],
+      limit: count,
+    });
+    console.log("most viewed articles:", articleResults)
+
+    res.status(200).json({
+      status: "success",
+      data: articleResults,
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+router.post("/latestCategory", async (req, res) => {
+  try {
+    const count = req.body.numOfArticles;
+    const category = req.body.category;
+    const articleResults = await articles.findAll({
+      where: {
+        category: category,
+      },
+      order: [
+        ["created_at", "DESC"]
+      ],
+      limit: count,
+      raw: true,
+    })
+
+    res.status(200).json({
+      status: "success",
+      data: articleResults,
+    });
+
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 
 module.exports = router;
