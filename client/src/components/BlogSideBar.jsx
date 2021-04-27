@@ -2,16 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Row, Col, Media, Card, Button, ButtonGroup, Form, FormControl, Container } from "react-bootstrap";
 import ad300 from "../components/ads/ad300.jpg";
 import AdAPI from "../apis/AdAPI";
-
-
-
 import "bootstrap/dist/css/bootstrap.css";
-
+import { useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const BlogSideBar = (props) => {
-
     const [ads, setAds] = useState([]);
     const [ad1, setAd1] = useState({ ad_image: ad300, type: "300x600", ad_link: "/" })
+    const [filterText, setFilterText] = useState("");
+    
+    let { id } = useParams();
+    const history = useHistory();
 
     useEffect(() => {
         // Define a function fetchData that calls APIs which is then called in useEffect
@@ -31,16 +32,36 @@ const BlogSideBar = (props) => {
         fetchData();
     }, []);
 
+    const handleChange = (data) => {
+        setFilterText(data.target.value)
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+          history.push({
+            pathname: "/category/" + id + "/",
+            search:
+              "s=" + filterText
+          });
+          window.location.reload();
+        } catch (err) {
+          console.log(err);
+        }
+      };
+
     return (
         <>
-
-
             <Form inline>
-                <FormControl type="text" placeholder="Search" />
-                <Button variant="outline-success">Search</Button>
+                <Form.Control
+                    placeholder="Search"
+                    type="text"
+                    name="day"
+                    values={filterText}
+                    onChange={handleChange}
+                />
+                <Button variant="outline-success" onClick={handleSubmit}>Search</Button>
             </Form>
-
-
             <br />
             <br />
             <h1>Recent Posts</h1>
@@ -59,9 +80,6 @@ const BlogSideBar = (props) => {
                 <img src={ad1.ad_image} alt="ad300" width={300} height={600} />
             </a>
             <br />
-
-
-
         </>
 
     );
