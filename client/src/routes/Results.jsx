@@ -130,7 +130,7 @@ const Results = (props) => {
         const response = await FeaturedAPI.post("/findFeaturedDoctors");
         setFeaturedDoctor(
           response.data.data[
-            Math.floor(Math.random() * response.data.data.length)
+          Math.floor(Math.random() * response.data.data.length)
           ]
         );
         // console.log(Math.floor(Math.random() * response.data.data.length)); always 0 if only 1 doctor
@@ -156,6 +156,16 @@ const Results = (props) => {
   return (
     <div>
       <TopNavBar />
+      <div align="center">
+        <h1 align="center"> Doctor Directory</h1>
+        <h6>A comprehensive resource
+        guide including our annual Top Doctors list as well as other medical
+          professionals.</h6>
+      </div>
+      <br />
+      <div align="center">
+        <h2>Search</h2>
+      </div>
       <Container fluid="md">
         <br />
         <SearchBar />
