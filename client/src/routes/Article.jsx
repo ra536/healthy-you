@@ -147,7 +147,6 @@ const Article = (props) => {
                 </Container>
               )
             })}
-            
             <br />
           </Col>
           <Col xs={6} md={4}>
