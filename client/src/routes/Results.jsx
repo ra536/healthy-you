@@ -41,6 +41,7 @@ const Results = (props) => {
   const { results, setResults } = useContext(AppContext);
 
   const [featuredDoctor, setFeaturedDoctor] = useState("");
+  const [featuredDoctors, setFeaturedDoctors] = useState([]);
   const [ads, setAds] = useState([]);
   const [ad1, setAd1] = useState({
     ad_image: adLong,
@@ -127,7 +128,7 @@ const Results = (props) => {
       }
 
       try {
-        const response = await FeaturedAPI.post("/findFeaturedDoctors");
+        const response = await FeaturedAPI.post("/findFeaturedDoctorsPractices");
         setFeaturedDoctor(
           response.data.data[
             Math.floor(Math.random() * response.data.data.length)
@@ -149,6 +150,14 @@ const Results = (props) => {
       } catch (err) {
         console.log(err);
       }
+
+      try {
+        const response = await FeaturedAPI.post("/findFeaturedDoctorsPractices");
+        console.log(response.data.data);
+        setFeaturedDoctors(response.data.data);
+      } catch (err){
+        console.log(err);
+      }
     };
     fetchData();
   }, [props.location.search, setResults]);
@@ -156,58 +165,60 @@ const Results = (props) => {
   return (
     <div>
       <TopNavBar />
-      <Container fluid="md">
+      <Container>
         <br />
         <SearchBar />
         <br />
         <Row align="left">
-          <Col align="left">
+          <Col align="left" xs={12} md={8}>
             <div align="left">
               <h3>Featured Doctors</h3>
             </div>
-
-            <br />
-
-            <Link
-              to={"/doctor-profile/" + featuredDoctor.doctor_id}
-              style={{ textDecoration: "none", color: "black" }}
-            >
+            {featuredDoctors.map((featuredDoctor) => {
+              return (
+              
               <ListGroup.Item>
                 <Container fluid="md">
                   <Row>
-                    <Col>
-                      <Card.Img
+                    <Col md={4}>
+                    <Link
+              to={"/doctor-profile/" + featuredDoctor.doctor_id}
+              style={{ textDecoration: "none", color: "black" }}
+            >
+                      <Image
                         variant="top"
                         src={featuredDoctor.profile_picture}
+                        width="100%"
                       />
+                      </Link>
                     </Col>
                     <Col>
-                      <h4>{featuredDoctor.doctor_name}</h4>
-                      <Image
+                      <h5>{featuredDoctor.doctor_name}</h5>
+                      <hr />
+
+                      <h6>
+                            {featuredDoctor.category.map((category, i) => <a href={"/results/?practice=&specialty=&location=&category=" + category}>{category}</a>)}{" "}
+                            {featuredDoctor.specialty
+                              .map((specialty, i) => <a href={"/results/?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a>)}{" "}
+                          </h6>
+                          <h6>
+                            {featuredDoctor.practices
+                              .map((practices, i) => `${practices.name} - ${practices.location}`)
+                              .join(", ")}{" "}
+                          </h6>
+                          <Image
                         src={determineStars(featuredDoctor.rating)}
                         className=""
-                        style={{ width: "60%" }}
+                        style={{ width: "40%" }}
                       />
                       <br />
-                      <br />
-                      <h6>Specialty: {featuredDoctor.specialty}</h6>
-                      <h6>Location: Morristown, NJ</h6>
-                      <h6>Phone: {featuredDoctor.phone}</h6>
-                      <br />
-
-                      <Button
-                        variant="success"
-                        size="md"
-                        block
-                        href="/book-appointment"
-                      >
-                        Available starting April 8
-                      </Button>
                     </Col>
                   </Row>
                 </Container>
               </ListGroup.Item>
-            </Link>
+            
+            );
+            })}
 
             <br />
             <div align="left">
@@ -215,108 +226,96 @@ const Results = (props) => {
             </div>
             {results.map((results, index) => {
               return (
-                <Link
-                  to={"/doctor-profile/" + results.doctor_id}
-                  style={{ textDecoration: "none", color: "black" }}
-                >
+                
                   <ListGroup.Item>
                     <Container fluid="md">
                       <Row>
-                        <Col>
-                          <Card.Img
+                        <Col md={4}>
+                        <Link
+                  to={"/doctor-profile/" + results.doctor_id}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                          <Image
                             variant="top"
                             src={results.profile_picture}
-                            width={"30%"}
+                            width={"100%"}
                           />
+                          </Link>
                         </Col>
                         <Col>
-                          <h4>{results.doctor_name}</h4>
+                          <h5>{results.doctor_name}</h5>
+                          <hr />
+                          <h6>
+                            {results.category.map((category, i) => <a href={"/results/?practice=&specialty=&location=&category=" + category}>{category}</a>)}{" "}
+                            {results.specialty
+                              .map((specialty, i) => <a href={"/results/?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a>)}{" "}
+                          </h6>
+                          <h6>
+                            {results.practices
+                              .map((practices, i) => `${practices.name} - ${practices.location}`)
+                              .join(", ")}{" "}
+                          </h6>
                           <Image
                             src={determineStars(results.rating)}
                             className=""
-                            style={{ width: "60%" }}
+                            style={{ width: "40%" }}
                           />
                           <br />
-                          <br />
-                          <h6>
-                            Specialty:{" "}
-                            {results.specialty
-                              .map((specialty, i) => `${specialty}`)
-                              .join(", ")}{" "}
-                          </h6>
-                          <h6>
-                            Location:{" "}
-                            {results.practices
-                              .map((practices, i) => `${practices.location}`)
-                              .join(", ")}{" "}
-                          </h6>
-                          <h6>Phone: {results.phone}</h6>
-                          <br />
 
-                          <Button
-                            variant="success"
-                            size="md"
-                            href="/book-appointment"
-                            block
-                          >
-                            Available starting April 8
-                          </Button>
                         </Col>
                       </Row>
                     </Container>
                   </ListGroup.Item>
-                </Link>
+                
               );
             })}
           </Col>
 
           <Col align="center">
+            <Card border="">
+              <Card.Body>
             <h3>Follow us</h3>
             <SocialIcon url="https://www.facebook.com/hwfmg/" />{" "}
             <SocialIcon url="https://twitter.com/HWFMagazine1/" />{" "}
             <SocialIcon url="https://www.instagram.com/healthwellnessfitnessmag/" />{" "}
             <SocialIcon url="https://www.linkedin.com/company/health-wellness-&-fitness" />
-            <br />
-            <br />
-            <br />
-            <Card style={{ width: "60%" }}>
-              <Card.Body>
-                <h3>Doctor Finder</h3>
-              </Card.Body>
-            </Card>
-            <div style={{ width: "60%" }}>
-              <Link
-                to={"/doctor-profile/" + featuredDoctor.doctor_id}
-                style={{ textDecoration: "none", color: "black" }}
-              >
+            <hr />
+
+            <h3>Doctor Finder</h3>
+
+            <div style={{ width: "90%" }}>
+              
                 <ListGroup.Item>
                   <h6>Featured Listing</h6>
                   <hr />
-                  <Container fluid="md">
+                  <Container>
                     <Row>
                       <Col>
-                        <Image src={featuredDoctor.profile_picture} fluid />
+                      <Link
+                to={"/doctor-profile/" + featuredDoctor.doctor_id}
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                        <Image src={featuredDoctor.profile_picture} width ="100%"/>
+                        </Link>
                       </Col>
                       <Col>
                         <h6>{featuredDoctor.doctor_name}</h6>
-                        <h6>{featuredDoctor.phone}</h6>
-                        <h6>{featuredDoctor.specialty}</h6>
-                        <br />
-
-                        <Button
-                          variant="success"
-                          size="sm"
-                          block
-                          href="/book-appointment"
-                        >
-                          Book now
-                        </Button>
+                        <h6>
+                            {featuredDoctor.category?.map((category, i) => <a href={"/results/?practice=&specialty=&location=&category=" + category}>{category}</a>)}{" "}
+                            {featuredDoctor.specialty?.map((specialty, i) => <a href={"/results/?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a>)}{" "}
+                          </h6>
+<h6>
+                            {featuredDoctor.practices
+                              ?.map((practices, i) => `${practices.name} - ${practices.location}`)
+                              .join(", ")}{" "}
+                          </h6>
                       </Col>
                     </Row>
                   </Container>
                 </ListGroup.Item>
-              </Link>
+              
             </div>
+            <br />
             <Form style={{ width: "60%" }}>
               <Form.Control
                 type="email"
@@ -325,64 +324,11 @@ const Results = (props) => {
                 size="sm"
               />
             </Form>
-            <div style={{ width: "60%" }}>
-              <Accordion>
-                <Card>
-                  <Card.Header>
-                    <Accordion.Toggle
-                      as={Button}
-                      variant="link"
-                      eventKey="0"
-                      size="sm"
-                    >
-                      + SPECIALTY
-                    </Accordion.Toggle>
-                  </Card.Header>
-                  <Accordion.Collapse eventKey="0">
-                    <Card.Body>
-                      Allergy and immunology | Anesthesiology | Dermatology |
-                      Diagnostic radiology | Emergency medicine | Family
-                      medicine | Internal medicine | Medical genetics |
-                      Neurology | Nuclear medicine | Obstetrics and gynecology |
-                      Ophthalmology | Pathology | Pediatrics | Physical medicine
-                      and rehabilitation | Preventive medicine | Psychiatry |
-                      Radiation oncology | Surgery| Urology
-                    </Card.Body>
-                  </Accordion.Collapse>
-                </Card>
-
-                <Card>
-                  <Card.Header>
-                    <Accordion.Toggle
-                      as={Button}
-                      variant="link"
-                      eventKey="1"
-                      size="sm"
-                    >
-                      + LOCATION
-                    </Accordion.Toggle>
-                  </Card.Header>
-                  <Accordion.Collapse eventKey="1">
-                    <Card.Body>
-                      Harrison, NJ | Kearny, NJ | East Orange, NJ | Irvington,
-                      NJ | Hillside, NJ | Orange, NJ | North Arlington, NJ |
-                      Belleville, NJ | South Orange, NJ | Bloomfield, NJ |
-                      Jersey City, NJ | Maplewood, NJ | Elizabeth, NJ | Union,
-                      NJ | Bayonne, NJ
-                    </Card.Body>
-                  </Accordion.Collapse>
-                </Card>
-              </Accordion>
-            </div>
-            <br />
-            <br />
             <br />
             <div align="center">
               <hr />
-              <h3>Magazine</h3>
-              <hr />
             </div>
-            <div align="center" style={{ width: "60%" }}>
+            <div align="center">
               <Card.Img variant="top" src={newMag} />
 
               <Button
@@ -405,26 +351,11 @@ const Results = (props) => {
             <a href={ad1.ad_link}>
               <img src={ad1.ad_image} width={300} height={600} />
             </a>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+            </Card.Body>
+            </Card>
           </Col>
         </Row>
       </Container>
-      <br />
-      <br />
-      <div align="center">
-        <ButtonGroup aria-label="Basic example">
-          <Button variant="outline-info">1</Button>
-          <Button variant="outline-info">2</Button>
-          <Button variant="outline-info">3</Button>
-          <Button variant="outline-info">...</Button>
-          <Button variant="outline-info">More</Button>
-        </ButtonGroup>
-      </div>
-      <br />
       <br />
       <Footer />
     </div>

@@ -48,6 +48,7 @@ router.post("/findOne", async (req, res) => {
         wait_time: doctorResult.wait_time,
         bedside: doctorResult.bedside,
         availability: doctorResult.availability,
+        category: doctorResult.category,
         specialty: doctorResult.specialty,
         category: doctorResult.category,
         state: doctorResult.state,

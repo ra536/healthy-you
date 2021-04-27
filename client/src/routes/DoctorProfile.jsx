@@ -38,6 +38,7 @@ const DoctorProfile = (props) => {
   const [name, setName] = useState();
   const [cityState, setCityState] = useState();
   const [specialties, setSpecialties] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [locations, setLocations] = useState([]);
@@ -95,6 +96,7 @@ const DoctorProfile = (props) => {
         setName(response.data.data.doctor_name);
         setCityState(response.data.data.city + ", " + response.data.data.state);
         setSpecialties(response.data.data.specialty);
+        setCategories(response.data.data.category);
         setPhone(response.data.data.phone);
         setEmail(response.data.data.email);
         setProfilePicture(response.data.data.profile_picture);
@@ -207,10 +209,17 @@ const DoctorProfile = (props) => {
           <Card style={{ width: "30rem" }}>
             <Card.Body>
               <Card.Title>{name}</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                {cityState}
-              </Card.Subtitle>
+              <hr />
               <br></br>
+              <Card.Title>Categories</Card.Title>
+              {categories.map((categories, index) => {
+                return (
+                  <ListGroup key={index}>
+                    <ListGroup.Item>{categories}</ListGroup.Item>
+                  </ListGroup>
+                );
+              })}
+              <br />
               <Card.Title>Specialties</Card.Title>
               {specialties.map((specialties, index) => {
                 return (
@@ -223,14 +232,6 @@ const DoctorProfile = (props) => {
               <Card.Title>About Me</Card.Title>
               <Card.Text>{bio}</Card.Text>
               <br></br>
-              <Card.Title>Contact Information</Card.Title>
-              <Card.Text>
-                Phone: {phone}
-                <br></br>
-                Email: {email}
-                <br></br>
-              </Card.Text>
-              <br />
               <Card.Title>Locations</Card.Title>
               {locations.map((locations, index) => {
                 return (
@@ -240,7 +241,7 @@ const DoctorProfile = (props) => {
                       <br></br>
                       {locations.location}
                       <br></br>
-                      {locations.website}
+                      <a href={locations.website}>{locations.website}</a>
                       <br></br>
                       {locations.phone}
                     </ListGroup.Item>
@@ -252,8 +253,6 @@ const DoctorProfile = (props) => {
               <Button size="lg" block href={"/book-appointment/" + doctorID}>
                 Book now
               </Button>
-              <br />
-              <div align="center">Next availability: Thursday, April 8</div>
             </Card.Body>
           </Card>
         </Col>
@@ -348,10 +347,6 @@ const DoctorProfile = (props) => {
         <br></br>
         <Col>
           <div align="center">
-            <br />
-            <Button variant="primary" size="lg" href={"/book-appointment/" + doctorID}>
-              Book Appointment Now
-            </Button>
             <br />
             <br />
           </div>
