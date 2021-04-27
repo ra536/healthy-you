@@ -171,6 +171,8 @@ const Results = (props) => {
         <br />
         <SearchBar />
         <br />
+        <hr/>
+        <br />
         <Row align="left">
           <Col align="left">
             <div align="left">
@@ -212,7 +214,7 @@ const Results = (props) => {
                         block
                         href="/book-appointment"
                       >
-                        Available starting April 8
+                        View Profile
                       </Button>
                     </Col>
                   </Row>
@@ -270,7 +272,7 @@ const Results = (props) => {
                             href="/book-appointment"
                             block
                           >
-                            Available starting April 8
+                            View Profile
                           </Button>
                         </Col>
                       </Row>
