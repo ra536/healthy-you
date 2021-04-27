@@ -97,7 +97,7 @@ const SearchBar = () => {
 
   return (
       <div align="center" style={{width:"50%", margin:"auto",}}>
-
+        <h1 align="center">Health Guide</h1>
         <Form >
           <Form.Group >
             <Form.Label>Category</Form.Label>
