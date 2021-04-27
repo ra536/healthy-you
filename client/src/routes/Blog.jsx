@@ -97,10 +97,10 @@ const Blog = (props) => {
                 <Row>
                     <Col xs={12} md={8}>
 
-                        {articles.map((article) => {
+                        {articles.map((article, index) => {
 
                             return (
-                                <>
+                                <div key={index}>
                                     <hr />
                                     <Container>
                                         <Row>
@@ -108,7 +108,7 @@ const Blog = (props) => {
                                             {/* {getAuthorName(article.writer_id)} */}
                                         </Row>
                                     </Container>
-                                </>
+                                </div>
                             )
 
                         })}
