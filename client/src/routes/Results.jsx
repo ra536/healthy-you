@@ -239,7 +239,11 @@ const Results = (props) => {
                           <br />
                           <br />
                           <h6>
-                            Specialty:{" "}
+                            Categories:{" "}
+                            {results.category.map((category, i) => `${category}`).join(", ")}{" "}
+                          </h6>
+                          <h6>
+                            Specialties:{" "}
                             {results.specialty
                               .map((specialty, i) => `${specialty}`)
                               .join(", ")}{" "}
@@ -247,7 +251,7 @@ const Results = (props) => {
                           <h6>
                             Location:{" "}
                             {results.practices
-                              .map((practices, i) => `${practices.location}`)
+                              .map((practices, i) => `${practices.name} - ${practices.location}`)
                               .join(", ")}{" "}
                           </h6>
                           <h6>Phone: {results.phone}</h6>

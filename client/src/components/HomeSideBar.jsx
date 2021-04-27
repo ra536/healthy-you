@@ -123,7 +123,7 @@ const HomeSideBar = (props) => {
               />
               <Media.Body>
                 <h6>{doctor.doctor_name}</h6>
-                <p>{doctor.specialty}</p>
+                <p>{doctor.category}<br />{doctor.specialty}</p>
               </Media.Body>
             </Media>
             </Link>
