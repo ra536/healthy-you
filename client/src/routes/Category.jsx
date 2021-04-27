@@ -5,6 +5,7 @@ import ArticleAPI from "../apis/ArticleAPI";
 import { ListGroup, Container, Row, Badge, Col, Image } from "react-bootstrap";
 import BlogSideBar from "../components/BlogSideBar";
 import ImageAPI from "../apis/ImageAPI";
+import queryString from "query-string";
 
 import "bootstrap/dist/css/bootstrap.css";
 import ArticleComponent from "../components/ArticleComponent";
@@ -12,7 +13,7 @@ import TopNavBar from "../components/TopNavBar";
 import Footer from "../components/Footer";
 import sky from "./Sky.jpg";
 
-const ArticleCategory = (props) => {
+const Category = (props) => {
   let { id } = useParams();
 
   const [articles, setArticles] = useState([]);
@@ -25,11 +26,23 @@ const ArticleCategory = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await ArticleAPI.post("/category", {
-          category: id,
-        });
+        var whereClause = {category: id};
+        const search = props.location.search;
+        const params = queryString.parse(search);
+        // console.log(params);
 
-        console.log("response:", response.data.data);
+        if (params.s == null) {
+          whereClause["filter"] = "";
+        } else {
+          whereClause["filter"] = params.s;
+        }
+        // console.log(whereClause);
+
+        const response = await ArticleAPI.post("/category", 
+          whereClause
+        );
+
+        // console.log("response:", response.data.data);
         // const articleJson = response.data.data;
         // const jsonLength = Object.keys(articleJson).length;
 
@@ -55,7 +68,7 @@ const ArticleCategory = (props) => {
       }
     };
     fetchData();
-  }, []);
+  }, [props.location.search]);
 
   // const getAuthorName = async (writer_id) => {
   //     console.log("RUNNING AUTHOR");
@@ -78,32 +91,22 @@ const ArticleCategory = (props) => {
       <TopNavBar />
       <div align="center">
         <Badge variant="primary">
-
           <h1>
             &nbsp;
           {id}
           &nbsp;
           </h1>
-
         </Badge>
         <br /><br />
         <Image src={image} width="75%"></Image>
-
       </div>
       <br />
-
-
-
-
       <Container>
         <Row>
           <Col xs={12} md={8}>
-
-
-
-            {articles.map((article) => {
+            {articles.map((article, index) => {
               return (
-                <>
+                <div key={index}>
                   <hr />
                   <Container>
                     <Row>
@@ -114,7 +117,7 @@ const ArticleCategory = (props) => {
                       />
                     </Row>
                   </Container>
-                </>
+                </div>
               );
             })}
           </Col>
@@ -130,4 +133,4 @@ const ArticleCategory = (props) => {
   );
 };
 
-export default ArticleCategory;
+export default Category;

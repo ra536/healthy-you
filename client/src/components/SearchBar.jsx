@@ -96,17 +96,6 @@ const SearchBar = () => {
   };
 
   return (
-    <div>
-      <div align="center">
-        <h1 align="center"> Doctor Directory</h1>
-        <h6>A comprehensive resource
-        guide including our annual Top Doctors list as well as other medical
-          professionals.</h6>
-      </div>
-      <br />
-      <div align="center">
-        <h2>Search</h2>
-      </div>
       <div align="center" style={{width:"50%", margin:"auto",}}>
 
         <Form >
@@ -179,9 +168,6 @@ const SearchBar = () => {
           </Button>
         </Form>
       </div>
-      <br />
-      <hr />
-    </div>
   );
 };
 

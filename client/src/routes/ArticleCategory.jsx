@@ -8,7 +8,7 @@ import ArticleComponent from "../components/ArticleComponent";
 import TopNavBar from "../components/TopNavBar";
 
 
-const Category = () => {
+const ArticleCategory = () => {
     let { id, count } = useParams();
 
     const [articles, setArticles] = useState([]);
@@ -62,4 +62,4 @@ const Category = () => {
 
 };
 
-export default Category;
+export default ArticleCategory;

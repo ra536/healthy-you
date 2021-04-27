@@ -8,15 +8,19 @@ import newMag from "./newMag.JPG"
 
 
 import "bootstrap/dist/css/bootstrap.css";
-
+import { useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const BlogSideBar = (props) => {
-
     const [ads, setAds] = useState([]);
     const [ad1, setAd1] = useState({ ad_image: ad300, type: "300x600", ad_link: "/" })
     const [popular, setPopular] = useState([]);
     const [recent, setRecent] = useState([]);
     const category = props.category;
+    const [filterText, setFilterText] = useState("");
+    
+    let { id } = useParams();
+    const history = useHistory();
 
     useEffect(() => {
         // Define a function fetchData that calls APIs which is then called in useEffect
@@ -55,6 +59,25 @@ const BlogSideBar = (props) => {
         };
         fetchData();
     }, []);
+
+    const handleChange = (data) => {
+        setFilterText(data.target.value)
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+          if(id == null) id = "Blog"
+          history.push({
+            pathname: "/category/" + id + "/",
+            search:
+              "s=" + filterText
+          });
+          window.location.reload();
+        } catch (err) {
+          console.log(err);
+        }
+      };
 
     return (
         <>
@@ -109,8 +132,6 @@ const BlogSideBar = (props) => {
             <br />
             </Card.Body>
             </Card>
-
-
         </>
 
     );
