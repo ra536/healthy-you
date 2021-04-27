@@ -157,10 +157,11 @@ const Results = (props) => {
     <div>
       <TopNavBar />
       <div align="center">
-        <h1 align="center"> Doctor Directory</h1>
+        <h1 align="center"> Health Guide</h1>
         <h6>A comprehensive resource
         guide including our annual Top Doctors list as well as other medical
           professionals.</h6>
+          <hr/>
       </div>
       <br />
       <div align="center">
