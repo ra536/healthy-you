@@ -363,19 +363,6 @@ const Results = (props) => {
           </Col>
         </Row>
       </Container>
-      <br />
-      <br />
-      <div align="center">
-        <ButtonGroup aria-label="Basic example">
-          <Button variant="outline-info">1</Button>
-          <Button variant="outline-info">2</Button>
-          <Button variant="outline-info">3</Button>
-          <Button variant="outline-info">...</Button>
-          <Button variant="outline-info">More</Button>
-        </ButtonGroup>
-      </div>
-      <br />
-      <br />
       <Footer />
     </div>
   );
