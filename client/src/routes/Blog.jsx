@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import queryString from "query-string";
 import ArticleAPI from "../apis/ArticleAPI";
 import { Container, Row, Col, Card, Form, FormControl, Button, Image, Badge } from "react-bootstrap";
 import Moment from "react-moment";
@@ -12,6 +13,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import blogPage from "./BlogPage.jpg";
 import AdAPI from "../apis/AdAPI";
 import Footer from "../components/Footer";
+import BlogSideBar from "../components/BlogSideBar";
 
 const Blog = (props) => {
     const [articles, setArticles] = useState([]);
@@ -25,9 +27,21 @@ const Blog = (props) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await ArticleAPI.post("/category", {
-                    category: "Blog"
-                })
+                var whereClause = { category: "Blog" };
+                const search = props.location.search;
+                const params = queryString.parse(search);
+                // console.log(params);
+
+                if (params.s == null) {
+                    whereClause["filter"] = "";
+                } else {
+                    whereClause["filter"] = params.s;
+                }
+                console.log(whereClause);
+
+                const response = await ArticleAPI.post("/category",
+                    whereClause
+                );
 
                 console.log("response:", response.data.data)
                 // const articleJson = response.data.data;
@@ -102,32 +116,7 @@ const Blog = (props) => {
                     </Col>
 
                     <Col xs={6} md={4}>
-                        <Form inline>
-                            <FormControl type="text" placeholder="Search" />
-                            <Button variant="outline-success">Search</Button>
-                        </Form>
-
-
-
-
-                        <br />
-                        <br />
-                        <h1>Recent Posts</h1>
-                        <br />
-                        <h2>Dental Care Basics</h2>
-                        <p>Think you know everything about proper brushing and flossing techniques? Understand the basics and what you can do to promote oral health.</p>
-                        <br />
-                        <h2>Fat Loss Done Right</h2>
-                        <p>Whether you’re looking to improve your overall health or simply slim down for summer, burning off excess fat can be quite challenging.</p>
-                        <br />
-                        <h2>Hyperthyroid</h2>
-                        <p>Hyperthyroidism is the production of too much thyroxine hormone. It can increase metabolism.
-Symptoms include unexpected weight loss, rapid or irregular heartbeat, sweating, and irritability, although the elderly often experience no symptoms.</p>
-                        <br />
-                        <a href={ad1.ad_link}>
-                            <img src={ad1.ad_image} alt="ad300" width={300} height={600} mode='fit' />
-                        </a>
-                        <br />
+                        <BlogSideBar/>
                     </Col>
                 </Row>
             </Container>
