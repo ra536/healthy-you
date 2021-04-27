@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Row, Col, Media, Card, Button, ButtonGroup} from "react-bootstrap";
+import { Row, Col, Media, Card, Button, ButtonGroup, Container, Image, ListGroup} from "react-bootstrap";
 import ad250 from "./ads/ad250.jpg";
 import newMag from "./newMag.JPG";
 import magazine from "./magazines/magazine.jpg";
@@ -21,7 +21,7 @@ const HomeSideBar = (props) => {
     // Define a function fetchData that calls APIs which is then called in useEffect
     const fetchData = async () => {
       try {
-        const response = await FeaturedAPI.post("/findFeaturedDoctors", {});
+        const response = await FeaturedAPI.post("/findFeaturedDoctorsPractices", {});
         console.log(response.data.data)
         setFeaturedDoctors(response.data.data);
       } catch (err) {
@@ -109,31 +109,46 @@ const HomeSideBar = (props) => {
         <hr />
           <h3>Featured Doctors</h3>
           <hr />
-          <ul className="list-unstyled">
-            {featuredDoctors.map((doctor) => {
+          {featuredDoctors.map((featuredDoctor) => {
               return (
-                <>
-                <Link to={"/doctor-profile/" + doctor.doctor_id} style={{ textDecoration: "none", color: "black" }}>
-                <Media as="li">
-              <img
-                width={64}
-                className="mr-3"
-                src={doctor.profile_picture}
-                alt="Generic placeholder"
-              />
-              <Media.Body>
-                <h6>{doctor.doctor_name}</h6>
-                <p>{doctor.category}<br />{doctor.specialty}</p>
-              </Media.Body>
-            </Media>
-            </Link>
-            <hr />
-                </>
-              );
+                <Container>
+                  <Row>
+                    <Col md={4}>
+                    <Link
+              to={"/doctor-profile/" + featuredDoctor.doctor_id}
+              style={{ textDecoration: "none", color: "black" }}
+            >
+                      <Image
+                        variant="top"
+                        src={featuredDoctor.profile_picture}
+                        width="100%"
+                      />
+                      </Link>
+                    </Col>
+                    <Col>
+                      <h6>{featuredDoctor.doctor_name}</h6>
+                      <hr />
+
+                      <h6>
+                            {featuredDoctor.category.map((category, i) => <a href={"/results/?practice=&specialty=&location=&category=" + category}>{category}</a>)}{" "}
+                            {featuredDoctor.specialty
+                              .map((specialty, i) => <a href={"/results/?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a>)}{" "}
+                          </h6>
+                          <h6>
+                            {featuredDoctor.practices
+                              .map((practices, i) => `${practices.name} - ${practices.location}`)
+                              .join(", ")}{" "}
+                          </h6>
+                    </Col>
+                  </Row>
+                  <hr />
+                </Container>
+                
+            
+            );
             })}
-          </ul>
 
-
+          <br />
         <a href={ad2.ad_link}>
           <img src={ad2.ad_image} alt="ad250" width={250} height={250} />
           </a>

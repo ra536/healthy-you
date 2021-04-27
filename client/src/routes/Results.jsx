@@ -304,6 +304,11 @@ const Results = (props) => {
                             {featuredDoctor.category?.map((category, i) => <a href={"/results/?practice=&specialty=&location=&category=" + category}>{category}</a>)}{" "}
                             {featuredDoctor.specialty?.map((specialty, i) => <a href={"/results/?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a>)}{" "}
                           </h6>
+<h6>
+                            {featuredDoctor.practices
+                              ?.map((practices, i) => `${practices.name} - ${practices.location}`)
+                              .join(", ")}{" "}
+                          </h6>
                       </Col>
                     </Row>
                   </Container>
