@@ -11,13 +11,12 @@ import "bootstrap/dist/css/bootstrap.css";
 import ArticleComponent from "../components/ArticleComponent";
 import TopNavBar from "../components/TopNavBar";
 import Footer from "../components/Footer";
-import sky from "./Sky.jpg";
 
 const Category = (props) => {
   let { id } = useParams();
 
   const [articles, setArticles] = useState([]);
-  const [image, setImage] = useState(sky);
+  const [image, setImage] = useState(null);
 
   // const [headlineList, setHeadlineList] = useState([]);
   // const [categoryList, setCategoryList] = useState([]);

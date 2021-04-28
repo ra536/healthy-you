@@ -133,7 +133,7 @@ const BlogSideBar = (props) => {
                 );
             })}
             <a href={ad1.ad_link}>
-                <img src={ad1.ad_image} alt="ad300" width={300} height={600} />
+                <img src={ad1.ad_image} alt="ad300" style={{ maxWidth:"100%", height: "auto"}}/>
             </a>
             <br />
             </Card.Body>
