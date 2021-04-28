@@ -9,6 +9,9 @@ router.use(express.json());
 router.get("/findAll", async (req, res) => {
   try {
     const specialtyResults = await specialties.findAll({
+      order: [
+        ['specialty', 'ASC']
+      ],
       raw: true,
     });
     // console.log(specialtyResults);

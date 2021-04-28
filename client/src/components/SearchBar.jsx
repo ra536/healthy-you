@@ -122,7 +122,7 @@ const SearchBar = () => {
             </Form.Control>
           </Form.Group>
 
-          {category == "Doctor" || category == "Dentist" ?
+          {category == "Doctor" || category == "Dentist" || category == "Eye Care" ?
             <Form.Group >
               <Form.Label>Specialty</Form.Label>
               <Form.Control
