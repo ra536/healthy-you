@@ -75,7 +75,7 @@ const HomeSideBar = (props) => {
         </div>
 
         <a href={ad1.ad_link}>
-          <img src={ad1.ad_image} alt="ad250" width={250} height={250} />
+          <img src={ad1.ad_image} alt="ad250" style={{ maxWidth:"100%", height: "auto"}}/>
           </a>
 
         <hr />
@@ -154,7 +154,7 @@ const HomeSideBar = (props) => {
 
           <br />
         <a href={ad2.ad_link}>
-          <img src={ad2.ad_image} alt="ad250" width={250} height={250} />
+          <img src={ad2.ad_image} alt="ad250" style={{ maxWidth:"100%", height: "auto"}} />
           </a>
 
 

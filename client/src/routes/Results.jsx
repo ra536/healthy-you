@@ -350,7 +350,7 @@ const Results = (props) => {
             </Col>
             <hr />
             <a href={ad1.ad_link}>
-              <img src={ad1.ad_image} width={300} height={600} />
+              <img src={ad1.ad_image} style={{ maxWidth:"100%", height: "auto"}}/>
             </a>
             </Container>
             </Card.Body>

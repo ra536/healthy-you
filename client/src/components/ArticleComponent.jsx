@@ -71,15 +71,17 @@ const ArticleComponent = (props) => {
         </Col>
 
         <Col>
-          <Link
+          
+            <a href={"/category/" + articleInfo.category}>{articleInfo.category}</a>
+            
+            <Link
             to={"/article/" + articleInfo.article_id}
             style={{ textDecoration: "none", color: "black" }}
           >
-            <a href="/">{articleInfo.category}</a>
             <h4>{articleInfo.headline}</h4>
 
             {articleInfo.summary}
-          </Link>
+            </Link>
         </Col>
       </>
     );
