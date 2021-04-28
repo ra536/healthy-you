@@ -146,6 +146,7 @@ const DoctorProfile = (props) => {
     <>
       <TopNavBar />
       <br />
+      <Container>
       <Row>
         <Col>
           <br></br>
@@ -206,7 +207,7 @@ const DoctorProfile = (props) => {
 		</Row>
         </Col>
         <Col>
-          <Card style={{ width: "30rem" }}>
+          <Card>
             <Card.Body>
               <Card.Title>{name}</Card.Title>
               <hr />
@@ -257,6 +258,7 @@ const DoctorProfile = (props) => {
           </Card>
         </Col>
       </Row>
+      </Container>
       <br></br>
 
 

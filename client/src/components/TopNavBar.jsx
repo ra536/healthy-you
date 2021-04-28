@@ -47,7 +47,7 @@ const TopNavBar = () => {
         <Navbar bg="light" variant="light" expand="lg">
           <Navbar.Brand>
             <Nav.Link href="/">
-              <Image vertical-align="top" height="100px" src={hwf_logo} />
+              <img style={{ maxWidth:"100%", height: "auto"}} src={hwf_logo} />
             </Nav.Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -57,7 +57,7 @@ const TopNavBar = () => {
               <Nav.Link href="/category/Blog">Blog</Nav.Link>
               <Nav.Link href="/results">Directory</Nav.Link>
               <Nav.Link href="/subscribe">Subscribe</Nav.Link>
-              <Nav.Link href="/contact-us">Contact Us</Nav.Link>
+              <Nav.Link href="/contact-us">Contact</Nav.Link>
               {loggedIn ? (
                 <NavDropdown
                   title="Account"
