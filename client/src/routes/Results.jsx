@@ -196,6 +196,7 @@ const Results = (props) => {
                       </Link>
                     </Col>
                     <Col>
+                      <hr />
                       <h5>{featuredDoctor.doctor_name}</h5>
                       <hr />
 
@@ -246,6 +247,7 @@ const Results = (props) => {
                           </Link>
                         </Col>
                         <Col>
+                          <hr />
                           <h5>{results.doctor_name}</h5>
                           <hr />
                           <h6>
@@ -286,7 +288,7 @@ const Results = (props) => {
 
             <h3>Doctor Finder</h3>
 
-            <div style={{ width: "80%" }}>
+            <div>
               
                 <ListGroup.Item>
                   <h6>Featured Listing</h6>
@@ -300,8 +302,9 @@ const Results = (props) => {
               >
                         <Image src={featuredDoctor.profile_picture} width ="80%"/>
                         </Link>
-
+                        <hr />
                         <h6>{featuredDoctor.doctor_name}</h6>
+                        <hr />
                         <h6>
                             {featuredDoctor.category?.map((category, i) => <a href={"/results/?practice=&specialty=&location=&category=" + category}>{category}</a>)}{" "}
                             {featuredDoctor.specialty?.map((specialty, i) => <a href={"/results/?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a>)}{" "}
