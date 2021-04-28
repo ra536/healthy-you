@@ -9,6 +9,12 @@ import FeaturedAPI from "../apis/FeaturedAPI";
 import { Link } from "react-router-dom";
 import AdAPI from "../apis/AdAPI";
 
+import doctor_image from "../routes/defaults/Doctors.jpg";
+import dentist_image from "../routes/defaults/Dentist.jpg";
+import chiropractor_image from "../routes/defaults/Chiropractors.jpg";
+import acupuncture_image from "../routes/defaults/Acupuncture.jpg";
+import personal_trainer_image from "../routes/defaults/PersonalTrainers.jpg"
+
 const HomeSideBar = (props) => {
 
   const [featuredDoctors, setFeaturedDoctors] = useState([]);
@@ -16,6 +22,30 @@ const HomeSideBar = (props) => {
   const [ads, setAds] = useState([]);
   const [ad1, setAd1] = useState({ ad_image: ad250, type: "250x250", ad_link: "/"});
   const [ad2, setAd2] = useState({ ad_image: ad250, type: "250x250", ad_link: "/"});
+
+  const determineProfile = (doctor) => {
+    if (doctor.profile_picture != null){
+      return doctor.profile_picture;
+    }
+
+    if (doctor.category?.includes("Chiropractors")){
+      return chiropractor_image;
+    }
+
+    if (doctor.category?.includes("Acupuncture")){
+      return acupuncture_image;
+    }
+
+    if (doctor.category?.includes("Gym") || doctor.category?.includes("Personal Trainers")){
+      return personal_trainer_image;
+    }
+
+    if (doctor.category?.includes("Dentist")){
+      return dentist_image;
+    }
+
+    return doctor_image;
+  }
 
    useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
@@ -124,7 +154,7 @@ const HomeSideBar = (props) => {
             >
                       <Image
                         variant="top"
-                        src={featuredDoctor.profile_picture}
+                        src={determineProfile(featuredDoctor)}
                         width="100%"
                       />
                       </Link>
