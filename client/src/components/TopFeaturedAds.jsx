@@ -28,7 +28,7 @@ useEffect(() => {
     <>
       <div align="center" display="inline">
             <a href={ad.ad_link}>
-            <img width={1000} height={300} src={ad.ad_image} alt="First slide" />
+            <img style={{ maxWidth:"100%", height: "auto"}} src={ad.ad_image} alt="First slide" />
             </a>
       </div>
       <br />

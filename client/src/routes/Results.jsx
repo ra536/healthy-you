@@ -271,6 +271,7 @@ const Results = (props) => {
                       </Link>
                     </Col>
                     <Col>
+                      <hr />
                       <h5>{featuredDoctor.doctor_name}</h5>
                       <hr />
 
@@ -321,6 +322,7 @@ const Results = (props) => {
                           </Link>
                         </Col>
                         <Col>
+                          <hr />
                           <h5>{results.doctor_name}</h5>
                           <hr />
                           <h6>
@@ -361,23 +363,23 @@ const Results = (props) => {
 
             <h3>Doctor Finder</h3>
 
-            <div style={{ width: "80%" }}>
+            <div>
               
                 <ListGroup.Item>
                   <h6>Featured Listing</h6>
                   <hr />
                   <Container>
                     <Row>
-                      <Col align="right">
+                      <Col align="center">
                       <Link
                 to={"/doctor-profile/" + featuredDoctor.doctor_id}
                 style={{ textDecoration: "none", color: "black" }}
               >
-                        <Image src={featuredDoctor.profile_picture} width ="50%"/>
+                        <Image src={featuredDoctor.profile_picture} width ="80%"/>
                         </Link>
-                      </Col>
-                      <Col align="left">
+                        <hr />
                         <h6>{featuredDoctor.doctor_name}</h6>
+                        <hr />
                         <h6>
                             {featuredDoctor.category?.map((category, i) => <a href={"/results/?practice=&specialty=&location=&category=" + category}>{category}</a>)}{" "}
                             {featuredDoctor.specialty?.map((specialty, i) => <a href={"/results/?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a>)}{" "}
@@ -394,7 +396,6 @@ const Results = (props) => {
               
             </div>
             <br />
-            <hr />
             <div style={{ width: "100%" }}>
               <SearchBar />
 
@@ -425,7 +426,7 @@ const Results = (props) => {
             </Col>
             <hr />
             <a href={ad1.ad_link}>
-              <img src={ad1.ad_image} width={300} height={600} />
+              <img src={ad1.ad_image} style={{ maxWidth:"100%", height: "auto"}}/>
             </a>
             </Container>
             </Card.Body>
