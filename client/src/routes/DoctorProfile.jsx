@@ -294,24 +294,11 @@ const DoctorProfile = (props) => {
 
       <Container>
         <Card>
-          <Card.Body>
-            <blockquote className="blockquote mb-0 text-center">
-              <p>
-                {" "}
-                "Doctor Farhad really helped me to achieve a natural look after
-                my surgery. I would highly recommend him for anyone that is
-                interested in plastic surgery."{" "}
-              </p>
-              <footer className="blockquote-footer">
-                Karen K. <cite title="Source Title"></cite>
-              </footer>
-            </blockquote>
-          </Card.Body>
           <Accordion>
             <Card>
               <Card.Header className="text-center">
                 <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                  Read More ({numRatings} reviews)
+                  Read Reviews ({numRatings == null ? 0 : numRatings})
                 </Accordion.Toggle>
               </Card.Header>
               <Accordion.Collapse eventKey="0">
