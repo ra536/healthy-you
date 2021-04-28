@@ -84,7 +84,7 @@ const HealthGuide = (props) => {
     {categories.filter((word, index) => (index + 1) % 2).map((category) => {
       return (
         <>
-        <Button href={"/results/?practice=&doctor=&specialty=&category="+category.category+"&location=&rating="} variant="outline-success">{category.category}</Button><br /><br />
+        <Button href={"/results/?practice=&doctor=&specialty=&category="+category.category+"&location=&rating="} variant="success">{category.category}</Button><br /><br />
         </>
       );
     })}
@@ -93,7 +93,7 @@ const HealthGuide = (props) => {
     {categories.filter((word, index) => (index) % 2).map((category) => {
       return (
         <>
-        <Button href={"/results/?practice=&doctor=&specialty=&category="+category.category+"&location=&rating="} variant="outline-success">{category.category}</Button><br /><br />
+        <Button href={"/results/?practice=&doctor=&specialty=&category="+category.category+"&location=&rating="} variant="success">{category.category}</Button><br /><br />
         </>
       );
     })}
