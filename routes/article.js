@@ -287,9 +287,9 @@ router.post("/category", async (req, res) => {
       where: {
         category: req.body.category,
         [Op.or]:{
-          headline: {[Op.substring]: req.body.filter},
-          summary: {[Op.substring]: req.body.filter},
-          content: {[Op.substring]: req.body.filter}
+          headline: {[Op.iLike]: '%'+req.body.filter+'%'},
+          summary: {[Op.iLike]: '%'+req.body.filter+'%'},
+          content: {[Op.iLike]: '%'+req.body.filter+'%'}
         }
       },
       raw: true,
