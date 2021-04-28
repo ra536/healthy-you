@@ -23,9 +23,6 @@ const HealthGuide = (props) => {
       } catch (err) {
         console.log(err);
       }
-
-      setLeftCategories(categories.filter((word, index) => index % 2))
-      setRightCategories(categories.filter((word, index) => (index + 1) % 2))
     };
     fetchData();
   }, []);
@@ -81,14 +78,10 @@ const HealthGuide = (props) => {
             <Modal.Title>Pick a Category</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {console.log("LEFT")}
-            {console.log(leftCategories)}
-            {console.log("RIGHT")}
-      {console.log(rightCategories)}
       <Container>
         <Row>
       <Col align="right">
-    {leftCategories.map((category) => {
+    {categories.filter((word, index) => index % 2).map((category) => {
       return (
         <>
         <Button href={"/results/?practice=&doctor=&specialty=&category="+category.category+"&location=&rating="} variant="outline-success">{category.category}</Button><br /><br />
@@ -97,7 +90,7 @@ const HealthGuide = (props) => {
     })}
     </Col>
     <Col>
-    {rightCategories.map((category) => {
+    {categories.filter((word, index) => (index + 1) % 2).map((category) => {
       return (
         <>
         <Button href={"/results/?practice=&doctor=&specialty=&category="+category.category+"&location=&rating="} variant="outline-success">{category.category}</Button><br /><br />
