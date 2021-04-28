@@ -81,7 +81,7 @@ const HealthGuide = (props) => {
       <Container>
         <Row>
       <Col align="right">
-    {categories.filter((word, index) => index % 2).map((category) => {
+    {categories.filter((word, index) => (index + 1) % 2).map((category) => {
       return (
         <>
         <Button href={"/results/?practice=&doctor=&specialty=&category="+category.category+"&location=&rating="} variant="outline-success">{category.category}</Button><br /><br />
@@ -90,7 +90,7 @@ const HealthGuide = (props) => {
     })}
     </Col>
     <Col>
-    {categories.filter((word, index) => (index + 1) % 2).map((category) => {
+    {categories.filter((word, index) => (index) % 2).map((category) => {
       return (
         <>
         <Button href={"/results/?practice=&doctor=&specialty=&category="+category.category+"&location=&rating="} variant="outline-success">{category.category}</Button><br /><br />
