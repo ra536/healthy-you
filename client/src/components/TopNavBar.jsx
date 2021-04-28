@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Navbar, Nav, Image, NavDropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import { AuthContext } from "../context/AuthContext";
-import hwf_logo from "./img/hwf_logo.png";
+import hwf_logo from "./img/hwf_high.png";
 import LoginAPI from "../apis/LoginAPI";
 
 const TopNavBar = () => {
