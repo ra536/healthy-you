@@ -193,7 +193,7 @@ const Results = (props) => {
   }, [props.location.search, setResults]);
 
   const nextPage = () => {
-    if (page + 1 < numOfPages.length) {
+    if (page + 1 <= numOfPages.length) {
       changePage(page + 1)
     }
   }
