@@ -33,6 +33,12 @@ import "moment-timezone";
 import TopNavBar from "../components/TopNavBar";
 import Footer from "../components/Footer";
 
+import doctor_image from "./defaults/Doctors.jpg";
+import dentist_image from "./defaults/Dentist.jpg";
+import chiropractor_image from "./defaults/Chiropractors.jpg";
+import acupuncture_image from "./defaults/Acupuncture.jpg";
+import personal_trainer_image from "./defaults/PersonalTrainers.jpg"
+
 const DoctorProfile = (props) => {
   let { doctorID } = useParams();
   const [name, setName] = useState();
@@ -77,6 +83,30 @@ const DoctorProfile = (props) => {
     } else {
       return star;
     }
+  }
+
+  const determineProfile = (picture) => {
+    if (picture != null){
+      return picture;
+    }
+
+    if (categories?.includes("Chiropractors")){
+      return chiropractor_image;
+    }
+
+    if (categories?.includes("Acupuncture")){
+      return acupuncture_image;
+    }
+
+    if (categories?.includes("Gym") || categories?.includes("Personal Trainers")){
+      return personal_trainer_image;
+    }
+
+    if (categories?.includes("Dentist")){
+      return dentist_image;
+    }
+
+    return doctor_image;
   }
 
   useEffect(() => {
@@ -151,10 +181,10 @@ const DoctorProfile = (props) => {
         <Col>
           <br></br>
           <Image
-            src={profilePicture}
+            src={determineProfile(profilePicture)}
             className="mx-auto d-block"
             style={{ width: "50%" }}
-            roundedCircle
+            rounded
           />
           <br></br>
 		            <Col md={8}>
