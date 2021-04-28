@@ -293,15 +293,14 @@ const Results = (props) => {
                   <hr />
                   <Container>
                     <Row>
-                      <Col align="right">
+                      <Col align="center">
                       <Link
                 to={"/doctor-profile/" + featuredDoctor.doctor_id}
                 style={{ textDecoration: "none", color: "black" }}
               >
-                        <Image src={featuredDoctor.profile_picture} width ="50%"/>
+                        <Image src={featuredDoctor.profile_picture} width ="80%"/>
                         </Link>
-                      </Col>
-                      <Col align="left">
+
                         <h6>{featuredDoctor.doctor_name}</h6>
                         <h6>
                             {featuredDoctor.category?.map((category, i) => <a href={"/results/?practice=&specialty=&location=&category=" + category}>{category}</a>)}{" "}
@@ -319,7 +318,6 @@ const Results = (props) => {
               
             </div>
             <br />
-            <hr />
             <div style={{ width: "100%" }}>
               <SearchBar />
 
