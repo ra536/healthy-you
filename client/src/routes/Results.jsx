@@ -170,6 +170,8 @@ const Results = (props) => {
         <h1 align="center">Health Guide</h1>
         <SearchBar />
         <br />
+        <hr />
+        <br />
         <Row align="left">
           <Col align="left">
             <div align="left">
