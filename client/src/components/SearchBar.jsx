@@ -87,7 +87,8 @@ const SearchBar = () => {
           "&location=" +
           location +
           "&category=" +
-          category,
+          category +
+          "&page=1"
       });
       window.location.reload();
     } catch (err) {

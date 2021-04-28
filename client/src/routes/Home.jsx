@@ -121,6 +121,7 @@ const Home = () => {
         <div align="center" display="inline">
           <Carousel
             interval={10000}
+            indicators={false}
             style={{ width: "80%", display: "inline-block" }}
           >
             {featuredArticles.map((article) => {

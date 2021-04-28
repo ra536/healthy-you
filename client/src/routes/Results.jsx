@@ -5,7 +5,7 @@ import SearchBar from "../components/SearchBar";
 import { AppContext } from "../context/AppContext";
 import queryString from "query-string";
 import { Container, Image } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   Accordion,
   Button,
@@ -15,6 +15,7 @@ import {
   Form,
   Row,
   Col,
+  Pagination
 } from "react-bootstrap";
 import { SocialIcon } from "react-social-icons";
 import magazine from "../components/magazines/magazine.jpg";
@@ -53,6 +54,17 @@ const Results = (props) => {
     type: "300x600",
     ad_link: "/",
   });
+
+  const history = useHistory();
+
+  const numResultsPerPage = 8;
+  const [page, setPage] = useState(1);
+  const [numOfPages, setNumPages] = useState([1]);
+
+  const [practice, setPractice] = useState("");
+  const [specialty, setSpecialty] = useState("");
+  const [location, setLocation] = useState("");
+  const [category, setCategory] = useState("");
 
   const determineStars = (rating) => {
     //alert(rating);
@@ -116,25 +128,38 @@ const Results = (props) => {
         if (params.practice == null) {
           whereClause["practice"] = "";
         } else {
+          setPractice(params.practice);
           whereClause["practice"] = params.practice;
         }
 
         if (params.location == null) {
           whereClause["location"] = "";
         } else {
+          setLocation(params.location);
           whereClause["location"] = params.location;
         }
 
         if (params.category == null) {
           whereClause["category"] = "";
         } else {
+          setCategory(params.category);
           whereClause["category"] = params.category;
         }
 
         if (params.specialty == null) {
           whereClause["specialty"] = "";
         } else {
+          setSpecialty(params.specialty);
           whereClause["specialty"] = params.specialty;
+        }
+
+        // console.log(typeof parseInt(params.page))
+        // console.log(parseInt(params.page))
+        if (parseInt(params.page) > 1) {
+          setPage(parseInt(params.page));
+        }
+        else {
+          setPage(1);
         }
 
         console.log(whereClause);
@@ -142,16 +167,21 @@ const Results = (props) => {
         const response = await SearchAPI.post(
           "/search",
           whereClause
-          // {
-          //     practice: params.practice,
-          //     doctor_name: params.doctor,
-          //     location: params.location,
-          //     rating: params.rating,
-          //     specialty: params.specialty
-          // }
         );
         setResults(response.data.data);
         console.log(response.data.data);
+
+        var temp = []
+        for (var i = 0; i < Math.ceil(response.data.data.length / numResultsPerPage); i++) {
+          temp[i] = i + 1;
+        }
+        setNumPages(temp);
+
+        // if user entered a number larger than total number of pages, bring them to last page
+        if (parseInt(params.page) > temp.length) {
+          setPage(temp.length)
+        }
+
       } catch (err) {
         console.log(err);
       }
@@ -190,6 +220,51 @@ const Results = (props) => {
     };
     fetchData();
   }, [props.location.search, setResults]);
+
+  const nextPage = () => {
+    if (page + 1 <= numOfPages.length) {
+      changePage(page + 1)
+    }
+  }
+
+  const prevPage = () => {
+    if (page - 1 > 0) {
+      changePage(page - 1)
+    }
+  }
+
+  const firstPage = () => {
+    if (page != 1) {
+      changePage(1)
+    }
+  }
+
+  const lastPage = () => {
+    if (page != numOfPages.length) {
+      changePage(numOfPages.length)
+    }
+  }
+
+  const onClickPageNum = (data) => {
+    changePage(data)
+  }
+
+  const changePage = (pageNum) => {
+    history.push({
+      pathname: "/results/",
+      search:
+        "practice=" +
+        practice +
+        "&specialty=" +
+        specialty +
+        "&location=" +
+        location +
+        "&category=" +
+        category +
+        "&page=" +
+        pageNum
+    });
+  }
 
   return (
     <div>
@@ -257,7 +332,7 @@ const Results = (props) => {
             <div align="left">
               <h3>Search Results</h3>
             </div>
-            {results.map((results, index) => {
+            {results.slice((page - 1) * numResultsPerPage, numResultsPerPage * page).map((results, index) => {
               return (
                 
                   <ListGroup.Item>
@@ -391,6 +466,57 @@ const Results = (props) => {
           </Col>
           
         </Row>
+        <Pagination style={{ margin: 10, justifyContent:"center", display:"flex" }}>
+          <Pagination.First onClick={firstPage} />
+          <Pagination.Prev onClick={prevPage} />
+          {(page == 1)
+              ? null
+              : (page == numOfPages.length && page-3 > 1 )
+              ? <>
+                <Pagination.Ellipsis />
+                <Pagination.Item onClick={() => onClickPageNum((page - 3))}>{page - 3}</Pagination.Item>
+                <Pagination.Item onClick={() => onClickPageNum(page - 2)}>{page - 2}</Pagination.Item>
+                <Pagination.Item onClick={() => onClickPageNum((page - 1))}>{page - 1}</Pagination.Item>
+              </>
+              : (page-3 == 1)
+              ? <>
+                <Pagination.Item onClick={() => onClickPageNum(page - 3)}>{page - 3}</Pagination.Item>
+                <Pagination.Item onClick={() => onClickPageNum(page - 2)}>{page - 2}</Pagination.Item>
+                <Pagination.Item onClick={() => onClickPageNum((page - 1))}>{page - 1}</Pagination.Item>
+              </>
+              : (page-3>0 && numOfPages.length > page)
+              ? <>
+              <Pagination.Ellipsis />
+                <Pagination.Item onClick={() => onClickPageNum(page - 3)}>{page - 3}</Pagination.Item>
+                <Pagination.Item onClick={() => onClickPageNum(page - 2)}>{page - 2}</Pagination.Item>
+                <Pagination.Item onClick={() => onClickPageNum((page - 1))}>{page - 1}</Pagination.Item>
+              </>
+              : (page-2>0 && page-1>0)
+              ? <>
+                <Pagination.Item onClick={() => onClickPageNum(page - 2)}>{page - 2}</Pagination.Item>
+                <Pagination.Item onClick={() => onClickPageNum((page - 1))}>{page - 1}</Pagination.Item>
+              </>
+              : (page > 2) 
+              ? <>
+                <Pagination.Ellipsis />
+                <Pagination.Item onClick={() => onClickPageNum(page - 1)}>{page - 1}</Pagination.Item>
+              </>
+              :
+              <>
+                <Pagination.Item onClick={() => onClickPageNum((page - 1))}>{page - 1}</Pagination.Item>
+              </>
+          }
+          {numOfPages.slice(page - 1, (page) + 3).map((n, index) => {
+            return (
+              <>
+                <Pagination.Item active={page == n} onClick={() => onClickPageNum(n)} key={index} style={{zIndex: "0"}}>{n}</Pagination.Item>
+              </>
+            );
+          })}
+          {(page + 3 < numOfPages.length) ? <Pagination.Ellipsis /> : null}
+          <Pagination.Next onClick={nextPage} />
+          <Pagination.Last onClick={lastPage} />
+        </Pagination>
       </Container>
       <br />
       <Footer />
