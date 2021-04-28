@@ -9,6 +9,9 @@ router.get("/findAll", async (req, res) => {
   try {
     const categoriesRes = await categories.findAll({
       raw: true,
+      order: [
+        ['category', 'ASC']
+      ]
     });
     res.status(200).json({
       status: "success",
