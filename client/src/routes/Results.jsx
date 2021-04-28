@@ -167,6 +167,7 @@ const Results = (props) => {
       <TopNavBar />
       <Container>
         <br />
+        <h1 align="center">Health Guide</h1>
         <SearchBar />
         <br />
         <Row align="left">
@@ -283,22 +284,22 @@ const Results = (props) => {
 
             <h3>Doctor Finder</h3>
 
-            <div style={{ width: "90%" }}>
+            <div style={{ width: "80%" }}>
               
                 <ListGroup.Item>
                   <h6>Featured Listing</h6>
                   <hr />
                   <Container>
                     <Row>
-                      <Col>
+                      <Col align="right">
                       <Link
                 to={"/doctor-profile/" + featuredDoctor.doctor_id}
                 style={{ textDecoration: "none", color: "black" }}
               >
-                        <Image src={featuredDoctor.profile_picture} width ="100%"/>
+                        <Image src={featuredDoctor.profile_picture} width ="50%"/>
                         </Link>
                       </Col>
-                      <Col>
+                      <Col align="left">
                         <h6>{featuredDoctor.doctor_name}</h6>
                         <h6>
                             {featuredDoctor.category?.map((category, i) => <a href={"/results/?practice=&specialty=&location=&category=" + category}>{category}</a>)}{" "}
@@ -322,9 +323,9 @@ const Results = (props) => {
 
             </div>
             <br />
-            <div align="center">
-              <hr />
-            </div>
+            <hr />
+            <Container>
+            <Col md={8}>
             <div align="center">
               <Image variant="top" src={newMag} width={"75%"} />
 
@@ -344,13 +345,16 @@ const Results = (props) => {
                 Read Issue
               </Button>
             </div>
+            </Col>
             <hr />
             <a href={ad1.ad_link}>
               <img src={ad1.ad_image} width={300} height={600} />
             </a>
+            </Container>
             </Card.Body>
             </Card>
           </Col>
+          
         </Row>
       </Container>
       <br />
