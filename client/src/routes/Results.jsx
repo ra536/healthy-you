@@ -36,6 +36,11 @@ import hstar from "./stars/HStar.png";
 import star from "./stars/Star.png";
 import AdAPI from "../apis/AdAPI";
 import Footer from "../components/Footer";
+import doctor_image from "./defaults/Doctors.jpg";
+import dentist_image from "./defaults/Dentist.jpg";
+import chiropractor_image from "./defaults/Chiropractors.jpg";
+import acupuncture_image from "./defaults/Acupuncture.jpg";
+import personal_trainer_image from "./defaults/PersonalTrainers.jpg";
 
 const Results = (props) => {
   const { results, setResults } = useContext(AppContext);
@@ -75,6 +80,30 @@ const Results = (props) => {
       return star;
     }
   };
+
+  const determineProfile = (doctor) => {
+    if (doctor.profile_picture != null){
+      return doctor.profile_picture;
+    }
+
+    if (doctor.category?.includes("Chiropractors")){
+      return chiropractor_image;
+    }
+
+    if (doctor.category?.includes("Acupuncture")){
+      return acupuncture_image;
+    }
+
+    if (doctor.category?.includes("Gym") || doctor.category?.includes("Personal Trainers")){
+      return personal_trainer_image;
+    }
+
+    if (doctor.category?.includes("Dentist")){
+      return dentist_image;
+    }
+
+    return doctor_image;
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -190,7 +219,7 @@ const Results = (props) => {
             >
                       <Image
                         variant="top"
-                        src={featuredDoctor.profile_picture}
+                        src={determineProfile(featuredDoctor)}
                         width="100%"
                       />
                       </Link>
@@ -241,7 +270,7 @@ const Results = (props) => {
                 >
                           <Image
                             variant="top"
-                            src={results.profile_picture}
+                            src={determineProfile(results)}
                             width={"100%"}
                           />
                           </Link>
@@ -300,7 +329,10 @@ const Results = (props) => {
                 to={"/doctor-profile/" + featuredDoctor.doctor_id}
                 style={{ textDecoration: "none", color: "black" }}
               >
-                        <Image src={featuredDoctor.profile_picture} width ="80%"/>
+                       <Image
+                            src={determineProfile(featuredDoctor)}
+                            width={"80%"}
+                          /> 
                         </Link>
                         <hr />
                         <h6>{featuredDoctor.doctor_name}</h6>
