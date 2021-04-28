@@ -2,10 +2,11 @@ import React, { useEffect, useState, useContext } from "react";
 import ad300 from "../components/ads/ad300.jpg";
 import { useParams } from "react-router-dom";
 import ArticleAPI from "../apis/ArticleAPI";
-import { ListGroup, Container, Row, Badge, Col, Image } from "react-bootstrap";
+import { ListGroup, Container, Row, Badge, Col, Image, Pagination } from "react-bootstrap";
 import BlogSideBar from "../components/BlogSideBar";
 import ImageAPI from "../apis/ImageAPI";
 import queryString from "query-string";
+import { useHistory } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.css";
 import ArticleComponent from "../components/ArticleComponent";
@@ -22,6 +23,14 @@ const Category = (props) => {
   // const [categoryList, setCategoryList] = useState([]);
   // const [summaryList, setSummaryList] = useState("");
 
+  const history = useHistory();
+
+  const numResultsPerPage = 8;
+  const [page, setPage] = useState(1);
+  const [numOfPages, setNumPages] = useState([1]);
+
+  const [filter, setFilter] = useState("");
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -33,6 +42,7 @@ const Category = (props) => {
         if (params.s == null) {
           whereClause["filter"] = "";
         } else {
+          setFilter(params.s);
           whereClause["filter"] = params.s;
         }
         // console.log(whereClause);
@@ -51,6 +61,27 @@ const Category = (props) => {
         //     setSummaryList( prevArray => [...prevArray, articleJson[i].summary])
         // }
         setArticles(response.data.data);
+
+        // console.log(typeof parseInt(params.page))
+        // console.log(parseInt(params.page))
+        if (parseInt(params.page) > 1) {
+          setPage(parseInt(params.page));
+        }
+        else {
+          setPage(1);
+        }
+
+        var temp = []
+        for (var i = 0; i < Math.ceil(response.data.data.length / numResultsPerPage); i++) {
+          temp[i] = i + 1;
+        }
+        setNumPages(temp);
+
+        // if user entered a number larger than total number of pages, bring them to last page
+        if (parseInt(params.page) > temp.length) {
+          setPage(temp.length)
+        }
+
       } catch (error) {
         console.log(error);
       }
@@ -85,6 +116,45 @@ const Category = (props) => {
   //     }
   // };
 
+  const nextPage = () => {
+    if (page + 1 <= numOfPages.length) {
+      changePage(page + 1)
+    }
+  }
+
+  const prevPage = () => {
+    if (page - 1 > 0) {
+      changePage(page - 1)
+    }
+  }
+
+  const firstPage = () => {
+    if (page != 1) {
+      changePage(1)
+    }
+  }
+
+  const lastPage = () => {
+    if (page != numOfPages.length) {
+      changePage(numOfPages.length)
+    }
+  }
+
+  const onClickPageNum = (data) => {
+    changePage(data + 1)
+  }
+
+  const changePage = (pageNum) => {
+    history.push({
+      pathname: "/category/" + id + "/",
+      search:
+        "s=" +
+        filter +
+        "&page=" +
+        pageNum
+    });
+  }
+
   return (
     <>
       <TopNavBar />
@@ -103,7 +173,7 @@ const Category = (props) => {
       <Container>
         <Row>
           <Col xs={12} md={8}>
-            {articles.map((article, index) => {
+            {articles.slice((page - 1) * numResultsPerPage, numResultsPerPage * page).map((article, index) => {
               return (
                 <div key={index}>
                   <hr />
@@ -124,6 +194,34 @@ const Category = (props) => {
               <BlogSideBar category={id}/>
           </Col>
         </Row>
+        <Pagination style={{ margin: 10 }}>
+          <Pagination.First onClick={firstPage} />
+          <Pagination.Prev onClick={prevPage} />
+          {/* each page shows (prev page, curr page, next 3 pages)... page 1 shows (curr page [1], next 3 pages). */}
+          {/* ex: page 1: (_1_, 2, 3, 4) | page 2: (1, _2_, 3, 4, 5) | page 3: ([...], 2, _3_, 4, 5, 6) */}
+          {/* if page > 2: show ellipsis (...) and previous page #, if page 1: do not show ellipsis (...). else: show previous page # (so page 2) */}
+          {(page == 1)
+            ? null
+            : (page > 2)
+              ? <>
+                <Pagination.Ellipsis />
+                <Pagination.Item onClick={() => onClickPageNum(page - 2)}>{page - 1}</Pagination.Item>
+              </>
+              : <>
+                <Pagination.Item onClick={() => onClickPageNum(page - 2)}>{page - 1}</Pagination.Item>
+              </>
+          }
+          {numOfPages.slice(page - 1, (page) + 3).map((n, index) => {
+            return (
+              <>
+                <Pagination.Item active={page == n} onClick={() => onClickPageNum(n - 1)} key={index}>{n}</Pagination.Item>
+              </>
+            );
+          })}
+          {(page + 3 < numOfPages.length) ? <Pagination.Ellipsis /> : null}
+          <Pagination.Next onClick={nextPage} />
+          <Pagination.Last onClick={lastPage} />
+        </Pagination>
       </Container>
       <br />
       <Footer />
