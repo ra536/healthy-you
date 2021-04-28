@@ -71,7 +71,9 @@ const BlogSideBar = (props) => {
           history.push({
             pathname: "/category/" + id + "/",
             search:
-              "s=" + filterText
+              "s=" + 
+              filterText +
+              "&page=1"
           });
           window.location.reload();
         } catch (err) {
