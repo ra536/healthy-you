@@ -509,7 +509,7 @@ const Results = (props) => {
           {numOfPages.slice(page - 1, (page) + 3).map((n, index) => {
             return (
               <>
-                <Pagination.Item active={page == n} onClick={() => onClickPageNum(n)} key={index}>{n}</Pagination.Item>
+                <Pagination.Item active={page == n} onClick={() => onClickPageNum(n)} key={index} style={{zIndex: "0"}}>{n}</Pagination.Item>
               </>
             );
           })}
