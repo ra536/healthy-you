@@ -217,7 +217,7 @@ const Results = (props) => {
   }
 
   const onClickPageNum = (data) => {
-    changePage(data + 1)
+    changePage(data)
   }
 
   const changePage = (pageNum) => {
@@ -437,24 +437,47 @@ const Results = (props) => {
         <Pagination style={{ margin: 10, justifyContent:"center", display:"flex" }}>
           <Pagination.First onClick={firstPage} />
           <Pagination.Prev onClick={prevPage} />
-          {/* each page shows (prev page, curr page, next 3 pages)... page 1 shows (curr page [1], next 3 pages). */}
-          {/* ex: page 1: (_1_, 2, 3, 4) | page 2: (1, _2_, 3, 4, 5) | page 3: ([...], 2, _3_, 4, 5, 6) */}
-          {/* if page > 2: show ellipsis (...) and previous page #, if page 1: do not show ellipsis (...). else: show previous page # (so page 2) */}
           {(page == 1)
-            ? null
-            : (page > 2)
+              ? null
+              : (page == numOfPages.length && page-3 > 1 )
               ? <>
                 <Pagination.Ellipsis />
-                <Pagination.Item onClick={() => onClickPageNum(page - 2)}>{page - 1}</Pagination.Item>
+                <Pagination.Item onClick={() => onClickPageNum((page - 3))}>{page - 3}</Pagination.Item>
+                <Pagination.Item onClick={() => onClickPageNum(page - 2)}>{page - 2}</Pagination.Item>
+                <Pagination.Item onClick={() => onClickPageNum((page - 1))}>{page - 1}</Pagination.Item>
               </>
-              : <>
-                <Pagination.Item onClick={() => onClickPageNum(page - 2)}>{page - 1}</Pagination.Item>
+              : (page-3 == 1)
+              ? <>
+                <Pagination.Item onClick={() => onClickPageNum(page - 3)}>{page - 3}</Pagination.Item>
+                <Pagination.Item onClick={() => onClickPageNum(page - 2)}>{page - 2}</Pagination.Item>
+                <Pagination.Item onClick={() => onClickPageNum((page - 1))}>{page - 1}</Pagination.Item>
+              </>
+              : (page-3>0 && numOfPages.length > page)
+              ? <>
+              <Pagination.Ellipsis />
+                <Pagination.Item onClick={() => onClickPageNum(page - 3)}>{page - 3}</Pagination.Item>
+                <Pagination.Item onClick={() => onClickPageNum(page - 2)}>{page - 2}</Pagination.Item>
+                <Pagination.Item onClick={() => onClickPageNum((page - 1))}>{page - 1}</Pagination.Item>
+              </>
+              : (page-2>0 && page-1>0)
+              ? <>
+                <Pagination.Item onClick={() => onClickPageNum(page - 2)}>{page - 2}</Pagination.Item>
+                <Pagination.Item onClick={() => onClickPageNum((page - 1))}>{page - 1}</Pagination.Item>
+              </>
+              : (page > 2) 
+              ? <>
+                <Pagination.Ellipsis />
+                <Pagination.Item onClick={() => onClickPageNum(page - 1)}>{page - 1}</Pagination.Item>
+              </>
+              :
+              <>
+                <Pagination.Item onClick={() => onClickPageNum((page - 1))}>{page - 1}</Pagination.Item>
               </>
           }
           {numOfPages.slice(page - 1, (page) + 3).map((n, index) => {
             return (
               <>
-                <Pagination.Item active={page == n} onClick={() => onClickPageNum(n - 1)} key={index}>{n}</Pagination.Item>
+                <Pagination.Item active={page == n} onClick={() => onClickPageNum(n)} key={index}>{n}</Pagination.Item>
               </>
             );
           })}
