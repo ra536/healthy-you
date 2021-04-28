@@ -230,9 +230,9 @@ const Results = (props) => {
                       <hr />
 
                       <h6>
-                            {featuredDoctor.category.map((category, i) => <a href={"/results/?practice=&specialty=&location=&category=" + category}>{category}</a>)}{" "}
+                            {featuredDoctor.category.map((category, i) => <><a href={"/results/?practice=&specialty=&location=&category=" + category}>{category}</a> |</>)}{" "}
                             {featuredDoctor.specialty
-                              .map((specialty, i) => <a href={"/results/?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a>)}{" "}
+                              .map((specialty, i) => <><a href={"/results/?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a> |</>)}{" "}
                           </h6>
                           <h6>
                             {featuredDoctor.practices
@@ -280,9 +280,9 @@ const Results = (props) => {
                           <h5>{results.doctor_name}</h5>
                           <hr />
                           <h6>
-                            {results.category.map((category, i) => <a href={"/results/?practice=&specialty=&location=&category=" + category}>{category}</a>)}{" "}
+                            {results.category.map((category, i) => <><a href={"/results/?practice=&specialty=&location=&category=" + category}>{category}</a> |</>)}{" "}
                             {results.specialty
-                              .map((specialty, i) => <a href={"/results/?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a>)}{" "}
+                              .map((specialty, i) => <><a href={"/results/?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a> |</>)}{" "}
                           </h6>
                           <h6>
                             {results.practices
@@ -338,8 +338,8 @@ const Results = (props) => {
                         <h6>{featuredDoctor.doctor_name}</h6>
                         <hr />
                         <h6>
-                            {featuredDoctor.category?.map((category, i) => <a href={"/results/?practice=&specialty=&location=&category=" + category}>{category}</a>)}{" "}
-                            {featuredDoctor.specialty?.map((specialty, i) => <a href={"/results/?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a>)}{" "}
+                            {featuredDoctor.category?.map((category, i) => <><a href={"/results/?practice=&specialty=&location=&category=" + category}>{category}</a> |</>)}{" "}
+                            {featuredDoctor.specialty?.map((specialty, i) => <><a href={"/results/?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a> |</>)}{" "}
                           </h6>
                           <h6>
                             {featuredDoctor.practices
