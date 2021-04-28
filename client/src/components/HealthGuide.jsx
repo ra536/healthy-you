@@ -10,6 +10,8 @@ const HealthGuide = (props) => {
   const handleShow = () => setShow(true);
 
   const [categories, setCategories] = useState([]);
+  const [leftCategories, setLeftCategories] = useState([]);
+  const [rightCategories, setRightCategories] = useState([]);
 
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
@@ -21,6 +23,9 @@ const HealthGuide = (props) => {
       } catch (err) {
         console.log(err);
       }
+
+      setLeftCategories(categories.filter((word, index) => index % 2))
+      setRightCategories(categories.filter((word, index) => (index + 1) % 2))
     };
     fetchData();
   }, []);
@@ -76,13 +81,32 @@ const HealthGuide = (props) => {
             <Modal.Title>Pick a Category</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-    {categories.map((category) => {
+            {console.log("LEFT")}
+            {console.log(leftCategories)}
+            {console.log("RIGHT")}
+      {console.log(rightCategories)}
+      <Container>
+        <Row>
+      <Col align="right">
+    {leftCategories.map((category) => {
       return (
         <>
-        <Button href={"/results/?practice=&doctor=&specialty=&category="+category.category+"&location=&rating="} variant="outline-success">{category.category}</Button>{' '}
+        <Button href={"/results/?practice=&doctor=&specialty=&category="+category.category+"&location=&rating="} variant="outline-success">{category.category}</Button><br /><br />
         </>
       );
     })}
+    </Col>
+    <Col>
+    {rightCategories.map((category) => {
+      return (
+        <>
+        <Button href={"/results/?practice=&doctor=&specialty=&category="+category.category+"&location=&rating="} variant="outline-success">{category.category}</Button><br /><br />
+        </>
+      );
+    })}
+    </Col>
+    </Row>
+    </Container>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
