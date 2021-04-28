@@ -261,7 +261,9 @@ const DoctorProfile = (props) => {
               })}
               <br />
               <Card.Title>About Me</Card.Title>
-              <Card.Text>{bio}</Card.Text>
+              <ListGroup>
+                {bio != null ? <ListGroup.Item>{bio}</ListGroup.Item> : <></>}
+              </ListGroup>
               <br></br>
               <Card.Title>Locations</Card.Title>
               {locations.map((locations, index) => {
