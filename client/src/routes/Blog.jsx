@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import queryString from "query-string";
 import ArticleAPI from "../apis/ArticleAPI";
 import { Container, Row, Col, Card, Form, FormControl, Button, Image, Badge } from "react-bootstrap";
 import Moment from "react-moment";
@@ -26,9 +27,21 @@ const Blog = (props) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await ArticleAPI.post("/category", {
-                    category: "Blog"
-                })
+                var whereClause = { category: "Blog" };
+                const search = props.location.search;
+                const params = queryString.parse(search);
+                // console.log(params);
+
+                if (params.s == null) {
+                    whereClause["filter"] = "";
+                } else {
+                    whereClause["filter"] = params.s;
+                }
+                console.log(whereClause);
+
+                const response = await ArticleAPI.post("/category",
+                    whereClause
+                );
 
                 console.log("response:", response.data.data)
                 // const articleJson = response.data.data;
@@ -84,10 +97,10 @@ const Blog = (props) => {
                 <Row>
                     <Col xs={12} md={8}>
 
-                        {articles.map((article) => {
+                        {articles.map((article, index) => {
 
                             return (
-                                <>
+                                <div key={index}>
                                     <hr />
                                     <Container>
                                         <Row>
@@ -95,7 +108,7 @@ const Blog = (props) => {
                                             {/* {getAuthorName(article.writer_id)} */}
                                         </Row>
                                     </Container>
-                                </>
+                                </div>
                             )
 
                         })}

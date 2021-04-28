@@ -90,7 +90,9 @@ const HomeSideBar = (props) => {
                 </div>
 
         <hr />
+        <div align="center">
           <h3>Popular Articles</h3>
+          </div>
           <hr />
           <ul className="list-unstyled">
             {popularArticles.map((article) => {
@@ -107,7 +109,9 @@ const HomeSideBar = (props) => {
 
 
         <hr />
+        <div align="center">
           <h3>Featured Doctors</h3>
+          </div>
           <hr />
           {featuredDoctors.map((featuredDoctor) => {
               return (
