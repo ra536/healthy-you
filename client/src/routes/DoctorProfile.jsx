@@ -33,6 +33,12 @@ import "moment-timezone";
 import TopNavBar from "../components/TopNavBar";
 import Footer from "../components/Footer";
 
+import doctor_image from "./defaults/Doctors.jpg";
+import dentist_image from "./defaults/Dentist.jpg";
+import chiropractor_image from "./defaults/Chiropractors.jpg";
+import acupuncture_image from "./defaults/Acupuncture.jpg";
+import personal_trainer_image from "./defaults/PersonalTrainers.jpg"
+
 const DoctorProfile = (props) => {
   let { doctorID } = useParams();
   const [name, setName] = useState();
@@ -77,6 +83,30 @@ const DoctorProfile = (props) => {
     } else {
       return star;
     }
+  }
+
+  const determineProfile = (picture) => {
+    if (picture != null){
+      return picture;
+    }
+
+    if (categories?.includes("Chiropractors")){
+      return chiropractor_image;
+    }
+
+    if (categories?.includes("Acupuncture")){
+      return acupuncture_image;
+    }
+
+    if (categories?.includes("Gym") || categories?.includes("Personal Trainers")){
+      return personal_trainer_image;
+    }
+
+    if (categories?.includes("Dentist")){
+      return dentist_image;
+    }
+
+    return doctor_image;
   }
 
   useEffect(() => {
@@ -151,10 +181,10 @@ const DoctorProfile = (props) => {
         <Col>
           <br></br>
           <Image
-            src={profilePicture}
+            src={determineProfile(profilePicture)}
             className="mx-auto d-block"
             style={{ width: "50%" }}
-            roundedCircle
+            rounded
           />
           <br></br>
 		            <Col md={8}>
@@ -231,7 +261,9 @@ const DoctorProfile = (props) => {
               })}
               <br />
               <Card.Title>About Me</Card.Title>
-              <Card.Text>{bio}</Card.Text>
+              <ListGroup>
+                {bio != null ? <ListGroup.Item>{bio}</ListGroup.Item> : <></>}
+              </ListGroup>
               <br></br>
               <Card.Title>Locations</Card.Title>
               {locations.map((locations, index) => {
@@ -264,24 +296,11 @@ const DoctorProfile = (props) => {
 
       <Container>
         <Card>
-          <Card.Body>
-            <blockquote className="blockquote mb-0 text-center">
-              <p>
-                {" "}
-                "Doctor Farhad really helped me to achieve a natural look after
-                my surgery. I would highly recommend him for anyone that is
-                interested in plastic surgery."{" "}
-              </p>
-              <footer className="blockquote-footer">
-                Karen K. <cite title="Source Title"></cite>
-              </footer>
-            </blockquote>
-          </Card.Body>
           <Accordion>
             <Card>
               <Card.Header className="text-center">
                 <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                  Read More ({numRatings} reviews)
+                  Read Reviews ({numRatings == null ? 0 : numRatings})
                 </Accordion.Toggle>
               </Card.Header>
               <Accordion.Collapse eventKey="0">

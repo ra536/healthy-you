@@ -49,6 +49,7 @@ const Home = () => {
       } catch (err) {
         console.log(err);
       }
+      console.log(food_pic);
       try {
         const response = await ArticleAPI.get("/random");
         console.log(response.data.data);
