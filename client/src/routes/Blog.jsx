@@ -188,7 +188,7 @@ const Blog = (props) => {
                        <BlogSideBar category="Blog"/> 
                     </Col>
                 </Row>
-                <Pagination style={{ margin: 10 }}>
+                <Pagination style={{ margin: 10, justifyContent:"center", display:"flex" }}>
                 <Pagination.First onClick={firstPage} />
                 <Pagination.Prev onClick={prevPage} />
                 {/* each page shows (prev page, curr page, next 3 pages)... page 1 shows (curr page [1], next 3 pages). */}
