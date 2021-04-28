@@ -282,12 +282,15 @@ router.post("/update", async (req, res) => {
 
 router.post("/category", async (req, res) => {
   try {
-    const name = req.body.category;
-    console.log(req.body);
-
+    // console.log(req.body);
     const articleResults = await articles.findAll({
       where: {
-        category: name,
+        category: req.body.category,
+        [Op.or]:{
+          headline: {[Op.substring]: req.body.filter},
+          summary: {[Op.substring]: req.body.filter},
+          content: {[Op.substring]: req.body.filter}
+        }
       },
       raw: true,
     });

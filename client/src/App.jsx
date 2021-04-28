@@ -17,12 +17,12 @@ import WriterProfile from "./routes/WriterProfile";
 import { AuthContext } from "./context/AuthContext";
 import LoginAPI from "./apis/LoginAPI";
 import Appointment from "./routes/Appointment";
-import ArticleCategory from "./routes/Category";
+import ArticleCategory from "./routes/ArticleCategory";
 import ReviewSuccess from "./routes/ReviewSuccess";
 import Blog from "./routes/Blog";
 import UserDashboard from "./routes/UserDashboard";
 import Author from "./routes/ArticlesBy";
-import Category from "./routes/ArticleCategory";
+import Category from "./routes/Category";
 import LatestArticles from "./routes/LatestArticles";
 import ContactUs from "./routes/ContactUs";
 import Subscribe from "./routes/SubscriberForm";
@@ -101,10 +101,10 @@ const App = () => {
             requiredRoles={["User", "Admin", "Doctor", "Writer"]}
           />
           <Route exact path="/category/Blog" component={Blog} />
-          <Route path="/category/:id" component={ArticleCategory} />
+          <Route path="/category/:id" component={Category} />
           <Route path="/reviewSuccess" component={ReviewSuccess} />
           <Route path="/author/:id/:count" component={Author}/>
-          <Route path="/sameCategory/:id/:count" component={Category}/>
+          <Route path="/sameCategory/:id/:count" component={ArticleCategory}/>
           <Route path="/LatestArticles/:count" component={LatestArticles}/>
           <Route path="/contact-us" component={ContactUs} />
           <Route path="/subscribe" component={Subscribe}/>
