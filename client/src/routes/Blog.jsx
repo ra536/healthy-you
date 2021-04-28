@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import queryString from "query-string";
 import ArticleAPI from "../apis/ArticleAPI";
-import { Container, Row, Col, Card, Form, FormControl, Button, Image, Badge } from "react-bootstrap";
+import { Container, Row, Col, Card, Form, FormControl, Button, Image, Badge, Pagination } from "react-bootstrap";
 import Moment from "react-moment";
 import "moment-timezone";
 import TopNavBar from "../components/TopNavBar";
@@ -14,12 +14,21 @@ import blogPage from "./BlogPage.jpg";
 import AdAPI from "../apis/AdAPI";
 import Footer from "../components/Footer";
 import BlogSideBar from "../components/BlogSideBar";
+import { useHistory } from "react-router-dom";
 
 const Blog = (props) => {
     const [articles, setArticles] = useState([]);
 
     const [ads, setAds] = useState([]);
     const [ad1, setAd1] = useState({ ad_image: ad300, type: "300x600", ad_link: "/" });
+
+    const history = useHistory();
+
+    const numResultsPerPage = 8;
+    const [page, setPage] = useState(1);
+    const [numOfPages, setNumPages] = useState([1]);
+
+    const [filter, setFilter] = useState("");
 
     const link =
         "https://healthy-you-project.herokuapp.com/article/87918716-f71f-4548-aea3-ad0496d44c9a";
@@ -35,6 +44,7 @@ const Blog = (props) => {
                 if (params.s == null) {
                     whereClause["filter"] = "";
                 } else {
+                    setFilter(params.s)
                     whereClause["filter"] = params.s;
                 }
                 console.log(whereClause);
@@ -54,6 +64,26 @@ const Blog = (props) => {
                 // }
                 setArticles(response.data.data)
 
+                // console.log(typeof parseInt(params.page))
+                // console.log(parseInt(params.page))
+                if (parseInt(params.page) > 1) {
+                    setPage(parseInt(params.page));
+                }
+                else {
+                    setPage(1);
+                }
+  
+                var temp = []
+                for (var i = 0; i < Math.ceil(response.data.data.length / numResultsPerPage); i++) {
+                  temp[i] = i + 1;
+                }
+                setNumPages(temp);
+        
+                // if user entered a number larger than total number of pages, bring them to last page
+                if (parseInt(params.page) > temp.length) {
+                  setPage(temp.length)
+                }
+
             } catch (error) {
                 console.log(error)
             }
@@ -72,6 +102,45 @@ const Blog = (props) => {
         }
         fetchData();
     }, []);
+
+    const nextPage = () => {
+        if (page + 1 <= numOfPages.length) {
+          changePage(page + 1)
+        }
+      }
+    
+      const prevPage = () => {
+        if (page - 1 > 0) {
+          changePage(page - 1)
+        }
+      }
+    
+      const firstPage = () => {
+        if (page != 1) {
+          changePage(1)
+        }
+      }
+    
+      const lastPage = () => {
+        if (page != numOfPages.length) {
+          changePage(numOfPages.length)
+        }
+      }
+    
+      const onClickPageNum = (data) => {
+        changePage(data + 1)
+      }
+
+      const changePage = (pageNum) => {
+        history.push({
+          pathname: "/category/Blog/",
+          search:
+            "s=" +
+            filter +
+            "&page=" +
+            pageNum
+        });
+      }
 
     return (
         // Return different webpage, depending on the validity of the ID provided
@@ -97,7 +166,7 @@ const Blog = (props) => {
                 <Row>
                     <Col xs={12} md={8}>
 
-                        {articles.map((article, index) => {
+                        {articles.slice((page - 1) * numResultsPerPage, numResultsPerPage * page).map((article, index) => {
 
                             return (
                                 <div key={index}>
@@ -119,6 +188,34 @@ const Blog = (props) => {
                        <BlogSideBar category="Blog"/> 
                     </Col>
                 </Row>
+                <Pagination style={{ margin: 10 }}>
+                <Pagination.First onClick={firstPage} />
+                <Pagination.Prev onClick={prevPage} />
+                {/* each page shows (prev page, curr page, next 3 pages)... page 1 shows (curr page [1], next 3 pages). */}
+                {/* ex: page 1: (_1_, 2, 3, 4) | page 2: (1, _2_, 3, 4, 5) | page 3: ([...], 2, _3_, 4, 5, 6) */}
+                {/* if page > 2: show ellipsis (...) and previous page #, if page 1: do not show ellipsis (...). else: show previous page # (so page 2) */}
+                {(page == 1)
+                    ? null
+                    : (page > 2)
+                    ? <>
+                        <Pagination.Ellipsis />
+                        <Pagination.Item onClick={() => onClickPageNum(page - 2)}>{page - 1}</Pagination.Item>
+                    </>
+                    : <>
+                        <Pagination.Item onClick={() => onClickPageNum(page - 2)}>{page - 1}</Pagination.Item>
+                    </>
+                }
+                {numOfPages.slice(page - 1, (page) + 3).map((n, index) => {
+                    return (
+                    <>
+                        <Pagination.Item active={page == n} onClick={() => onClickPageNum(n - 1)} key={index}>{n}</Pagination.Item>
+                    </>
+                    );
+                })}
+                {(page + 3 < numOfPages.length) ? <Pagination.Ellipsis /> : null}
+                <Pagination.Next onClick={nextPage} />
+                <Pagination.Last onClick={lastPage} />
+                </Pagination>
             </Container>
             <br />
             <Footer />
