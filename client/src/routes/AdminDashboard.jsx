@@ -6,7 +6,7 @@ import TopNavBar from "../components/TopNavBar";
 import SendReviewLinks from "../components/SendReviewLinks";
 import DisplayAllReviews from "../components/DisplayAllReviews";
 import AdminUsersTab from "../components/AdminUsersTab";
-import AdminManageSpecialty from "../components/AdminManageSpecialty";
+import ManageEmailsTab from "../components/ManageEmailsTab";
 import AdminInsuranceTab from "../components/AdminInsuranceTab";
 import AdminSpecialtyTab from "../components/AdminSpecialtyTab";
 import { AdminContextProvider } from "../context/AdminContext";
@@ -49,11 +49,10 @@ const AdminDashboard = (props) => {
         <TopNavBar />
         <Container>
           <h1>Admin Dashboard</h1>
-          <div >
-          
-            <Tabs defaultActiveKey="reviews" id="uncontrolled-tab" >
-              <Tab eventKey="users" title="Users" >
-                <AdminUsersTab/>
+          <div>
+            <Tabs defaultActiveKey="reviews" id="uncontrolled-tab">
+              <Tab eventKey="users" title="Users">
+                <AdminUsersTab />
               </Tab>
               <Tab eventKey="reviews" title="Reviews">
                 <SendReviewLinks />
@@ -68,14 +67,15 @@ const AdminDashboard = (props) => {
               <Tab eventKey="specialties" title="Specialties">
                 <AdminSpecialtyTab />
               </Tab>
-              <Tab eventKey="insurances" title="Insurances" >
+              <Tab eventKey="insurances" title="Insurances">
                 <AdminInsuranceTab />
               </Tab>
-              <Tab eventKey="appointments" title="Appointments" >
-                
-              </Tab>
-              <Tab eventKey="categoryimages" title="Category Images" >
+              <Tab eventKey="appointments" title="Appointments"></Tab>
+              <Tab eventKey="categoryimages" title="Category Images">
                 <ManageCategoryImages />
+              </Tab>
+              <Tab eventKey="emails" title="Emails">
+                <ManageEmailsTab />
               </Tab>
             </Tabs>
           </div>
