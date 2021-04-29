@@ -147,16 +147,10 @@ const Blog = (props) => {
         <>
             <TopNavBar />
             <div align="center">
-                <Badge variant="primary">
-
                     <h1>
-                        &nbsp;
                         Blog
-                        &nbsp;
                     </h1>
-
-                </Badge>
-                <br /><br />
+                <br />
                 <Image src={blogPage} width="75%"></Image>
             </div>
 

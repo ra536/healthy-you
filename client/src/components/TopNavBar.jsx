@@ -54,6 +54,7 @@ const TopNavBar = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
               <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/about-us">About</Nav.Link>
               <Nav.Link href="/category/Blog">Blog</Nav.Link>
               <Nav.Link href="/results">Directory</Nav.Link>
               <Nav.Link href="/subscribe">Subscribe</Nav.Link>
