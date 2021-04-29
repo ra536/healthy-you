@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import TopNavBar from "../components/TopNavBar";
-import { Container } from "react-bootstrap";
+import { Container, Col , Row} from "react-bootstrap";
+import logo from "../components/img/logo.png";
+import hwf from "../components/img/hwf_logo.png";
 
 const AboutUs = (props) => {
 
@@ -12,8 +14,10 @@ const AboutUs = (props) => {
       <TopNavBar />
       <Container>
           <div align="center">
-          <h1>About Us</h1>
+          <h1>About Health Wellness & Fitness Magazine</h1>
           </div>
+          <br />
+          <hr />
           <p>
 
 
@@ -27,7 +31,26 @@ Quisque sollicitudin ut sapien sed finibus. Integer luctus lacinia ultrices. Sed
 <br/><br/>
 Phasellus sodales ante elit, sit amet venenatis lorem dictum sit amet. Proin quis libero vel leo scelerisque interdum vitae sed magna. Aenean quis leo pellentesque, bibendum sem vitae, luctus purus. Vestibulum bibendum luctus sem in gravida. Sed nec lobortis velit, ut bibendum est. Nulla facilisi. Sed vitae nibh sapien. 
           </p>
+          <hr />
+          <br />
+          <Container>
+              <Row>
+          <Col>
+          <img src={hwf} width="100%"/>{" "}
+          </Col>
+          <Col align="right">
+          <img src={logo} width={"50%"}/>
+          </Col>
+          </Row>
+          </Container>
+          
+          <br />
+          <div align="center">
+          HEALTH WELLNESS & FITNESS MAGAZINE LOGO, A DIVISION OF <a href="http://www.gmfmediagroup.com">GMF MEDIA GROUP, LLC</a>
+          </div>
       </Container>
+      <br />
+      <br />
       <Footer />
     </>
   );
