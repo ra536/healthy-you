@@ -67,4 +67,18 @@ router.post("/", async (req, res) => {
   // console.log(emails.length);
 });
 
+router.get("/getAllEmails", async (req, res) => {
+  try {
+    const response = await email.findAll({
+      raw: true,
+    });
+    res.status(200).json({
+      status: "success",
+      data: response,
+    });
+  } catch (err) {
+    //
+  }
+});
+
 module.exports = router;
