@@ -26,6 +26,7 @@ import Category from "./routes/Category";
 import LatestArticles from "./routes/LatestArticles";
 import ContactUs from "./routes/ContactUs";
 import Subscribe from "./routes/SubscriberForm";
+import AboutUs from "./routes/AboutUs";
 
 const App = () => {
   const { loggedIn, setLoggedIn, setRole, setId } = useContext(AuthContext);
@@ -100,6 +101,7 @@ const App = () => {
             component={Appointment} 
             requiredRoles={["User", "Admin", "Doctor", "Writer"]}
           />
+          <Route exact path="/about-us" component={AboutUs} /> 
           <Route exact path="/category/Blog" component={Blog} />
           <Route path="/category/:id" component={Category} />
           <Route path="/reviewSuccess" component={ReviewSuccess} />

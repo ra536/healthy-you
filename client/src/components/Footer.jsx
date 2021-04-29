@@ -17,6 +17,22 @@ const Footer = (props) => {
 
                         <Col>
                             <Link
+                                to={"/"}
+                                style={{ textDecoration: "none", color: "black" }}
+                            >
+                                <p style={{ color: 'white' }}>
+                                    Home
+                                </p>
+                            </Link>
+                            <Link
+                                to={"/about-us"}
+                                style={{ textDecoration: "none", color: "black" }}
+                            >
+                                <p style={{ color: 'white' }}>
+                                    About Us
+                                </p>
+                            </Link>
+                            <Link
                                 to={"/category/Blog"}
                                 style={{ textDecoration: "none", color: "black" }}
                             >

@@ -159,14 +159,10 @@ const Category = (props) => {
     <>
       <TopNavBar />
       <div align="center">
-        <Badge variant="primary">
           <h1>
-            &nbsp;
           {id}
-          &nbsp;
           </h1>
-        </Badge>
-        <br /><br />
+        <br />
         <Image src={image} width="75%"></Image>
       </div>
       <br />
