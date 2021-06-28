@@ -4,79 +4,50 @@ import ad1000 from "./ads/ad1000.jpeg";
 import "bootstrap/dist/css/bootstrap.css";
 import AdAPI from "../apis/AdAPI";
 
-// Do maps, promises, and fix Database errors
 
 const TopFeaturedAds = (props) => {
+  // Holds advertisement information from the database, defaults to 1000 x 300 blue image.
   const [ads, setAds] = useState([{ ad_image: ad1000, type: "1000x300", ad_link: "/"}]);
+  
+  // Array to simulate database advertisement information. 
   const theAds = [{ ad_image: ad1000, type: "1000x300", ad_link: "/"}, { ad_image: ad1000, type: "1000x300", ad_link: "/"}, 
 			      { ad_image: ad1000, type: "1000x300", ad_link: "/"}, { ad_image: ad1000, type: "1000x300", ad_link: "/"}];
 				  
 useEffect(() => {
 	
-	// Practicing using Promises
-	let p = new Promise((resolve, reject) => {
-		let a = 1 + 4
-		if (a == 2) {
-			resolve('Success')
-		} else {
-			reject('Failed')
+	// Promise used to gather advertisement info from the database.
+	let advertisments = new Promise((resolve, reject) => {
+		try {
+			const response = await AdAPI.post("/getAdsBySize", { size: "1000x300"});
+			resolve(response.data.data);
+		} catch (err) {
+			console.log(err);
+			reject('Could not retrieve 1000px ads.');
 		}
 	})
 	
-	p.then((message) => {
-		console.log('This is in the then: ' + message)
+	advertisments.then((adverts) => {
+		setAds(adverts);
 	}).catch((message) => {
-		console.log('This is in the catch ' + message)
+		console.log(message)
 	})
 	
     // Define a function fetchData that calls APIs which is then called in useEffect
     const fetchData = async () => {
       try {
-		console.log("IM INSIDE THE TRY");
+
         const response = await AdAPI.post("/getAdsBySize", { size: "1000x300"});
-		setAds(response.data.data);
-		console.log("Successful");
-		console.log("response.data.data");
-		console.log(response.data.data);		
+		setAds(response.data.data); // We will use map to traverse this array.		
 		
       } catch (err) {
-		  console.log("An error occured")
 		  console.log(err);
       }
     };
     fetchData();
-	
   }, []);
   
   return (
     <>	
-		<Carousel fade>
-			<Carousel.Item>
-				<a href={"/"}>
-				<img
-				  className="d-block w-100"
-				  src={ad1000}
-				  alt="Advertisement"
-				/>
-				</a>
-			</Carousel.Item>
-			<Carousel.Item>
-				<a href={"/"}>
-				<img
-				  className="d-block w-100"
-				  src={ad1000}
-				  alt="Advertisement"
-				/>
-				</a>
-			</Carousel.Item>
-		</Carousel>
-		
-		
-		
-		
-		
-		
-		
 		<Carousel fade>
 			{theAds.map((adInfo, index) => 
 				<Carousel.Item key={index}>
