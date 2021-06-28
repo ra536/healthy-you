@@ -32,18 +32,18 @@ useEffect(() => {
 		console.log(message)
 	})
 	
+	
     // Define a function fetchData that calls APIs which is then called in useEffect
     const fetchData = async () => {
       try {
-
         const response = await AdAPI.post("/getAdsBySize", { size: "1000x300"});
 		setAds(response.data.data); // We will use map to traverse this array.		
-		
       } catch (err) {
 		  console.log(err);
       }
     };
     fetchData();
+	
   }, []);
   
   return (
