@@ -13,13 +13,14 @@ import HomeSideBar from "../components/HomeSideBar";
 import TopFeaturedAds from "../components/TopFeaturedAds";
 import AdBreak from "../components/AdBreak";
 import CategoryCarousel from "../components/CategoryCarousel";
-
 import food_pic from "./food_pic_front.jpg";
 import food_pic2 from "./food_pic_front.jpg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 
-const Home = () => {
+const Home = () => {   ///// Look up how to set parameter default
+  let { region } = useParams();
+  console.log(region);
   // Store the data retrieved from backend API into context
   const { loggedIn, role } = useContext(AuthContext);
   //const { featuredArticles, setFeaturedArticles } = useContext(ArticleContext);
