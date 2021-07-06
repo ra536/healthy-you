@@ -7,11 +7,7 @@ import AdAPI from "../apis/AdAPI";
 
 const TopFeaturedAds = (props) => {
   // Holds advertisement information from the database, defaults to 1000 x 300 blue image.
-  const [ads, setAds] = useState([{ ad_image: ad1000, type: "1000x300", ad_link: "/"}]);
-  
-  // Array to simulate database advertisement information. CAN DELETE ONCE DATA RETRIEVAL IS WORKING LOCALLY.
-  const theAds = [{ ad_image: ad1000, type: "1000x300", ad_link: "/"}, { ad_image: ad1000, type: "1000x300", ad_link: "/"}, 
-			      { ad_image: ad1000, type: "1000x300", ad_link: "/"}, { ad_image: ad1000, type: "1000x300", ad_link: "/"}];			  
+  const [ads, setAds] = useState([{ ad_image: ad1000, type: "1000x300", ad_link: "/"}]);	  
 
   // Call API to retreieve 1000x300 ad info and store in array.
   useEffect(() => {
@@ -19,11 +15,11 @@ const TopFeaturedAds = (props) => {
 		.then(response => setAds(response.data.data))
   }, []);
   
-  // Display advertisments using a carousel. CHANGE theAds TO ads WHEN DATA RETRIEVAL IS WORKING LOCALLY.
+  // Display advertisments using a carousel.
   return (
     <>	
 		<Carousel fade>
-			{theAds.map((adInfo, index) => 
+			{ads.map((adInfo, index) => 
 				<Carousel.Item key={index}>
 					<a href={adInfo.ad_link}>
 					<img

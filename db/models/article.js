@@ -26,6 +26,9 @@ const article = db.define(
       type: DataTypes.TEXT,
       allowNull: false,
     },
+	region: {
+	  type: DataTypes.STRING,
+	},
     publication_date: {
       type: DataTypes.DATE,
     },

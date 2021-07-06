@@ -9,16 +9,22 @@ import TopNavBar from "../components/TopNavBar";
 import Footer from "../components/Footer";
 
 const LatestArticles = () => {
-    let { count } = useParams();
+    let { count, region } = useParams();   /////////
 
     const [articles, setArticles] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
             try {
+				
+				// Display the parameters gathered in the url.
+				console.log(count);
+				console.log(region);
+				
                 const response = await ArticleAPI.post("/latest",{
                     numOfArticles: count,
                 });
                 
+				
                 console.log("response:", response.data.data);
 
                 setArticles(response.data.data);

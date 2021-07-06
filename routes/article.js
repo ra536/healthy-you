@@ -184,6 +184,7 @@ router.post("/create", async (req, res) => {
         category: req.body.category,
         summary: req.body.summary,
         content: req.body.content,
+		region: req.body.region,
         image_data: req.body.image,
         image_caption: req.body.caption,
         writer_id: req.body.writer_id,
@@ -197,6 +198,7 @@ router.post("/create", async (req, res) => {
           category: article.dataValues.category,
           summary: article.dataValues.summary,
           content: article.dataValues.content,
+		  region: article.dataValues.region,
           publication_date: article.dataValues.publication_date,
           image_data: article.dataValues.image_data,
           image_caption: article.dataValues.caption,
@@ -237,6 +239,7 @@ router.post("/update", async (req, res) => {
       article.category = req.body.category;
       article.summary = req.body.summary;
       article.content = req.body.content;
+	  article.region = req.body.region;
       article.image_data = req.body.image;
       article.image_caption = req.body.caption;
       await article.save();
@@ -247,6 +250,7 @@ router.post("/update", async (req, res) => {
           category: req.body.category,
           summary: req.body.summary,
           content: req.body.content,
+		  region: req.body.region,
           image_data: req.body.image,
           caption: req.body.caption,
           writer_id: req.body.writer_id,
