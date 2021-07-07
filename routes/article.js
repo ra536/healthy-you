@@ -336,12 +336,14 @@ router.post("/numCategory", async (req, res) => {
 });
 
 
-router.post("/latest", async (req, res) => {
+router.post("/latest", async (req, res) => {    //Adding a Region filter for the query
   try {
     const count = req.body.numOfArticles;
+	const articleRegion = req.body.currentRegion;
     const articleResults = await articles.findAll({
       //offset: skip,
       where: {
+		region: articleRegion,
         [Op.not]: [
           {category: ["Blog"]},
         ]
@@ -362,6 +364,7 @@ router.post("/latest", async (req, res) => {
     console.log(error.message);
   }
 });
+
 router.post("/author", async (req, res) => {
   try {
     const id = req.body.article_id;

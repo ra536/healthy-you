@@ -71,8 +71,6 @@ const App = () => {
           <Route path="/results" component={Results} />
           <Route path="/doctor-profile/:doctorID" component={DoctorProfile} />
           <Route path="/writer-profile/:writerID" component={WriterProfile} />
-		  
-		  // Do we hard code a path for each region?
           <ProtectedRoute
             path="/doctor-dashboard/:doctorID"
             component={DoctorDashboard}
@@ -108,10 +106,10 @@ const App = () => {
           <Route path="/reviewSuccess" component={ReviewSuccess} />
           <Route path="/author/:id/:count" component={Author}/>
           <Route path="/sameCategory/:id/:count" component={ArticleCategory}/>
-          <Route path="/LatestArticles/:count/:region" component={LatestArticles}/>   //////////
+          <Route path="/LatestArticles/:count/:region" component={LatestArticles}/> //
           <Route path="/contact-us" component={ContactUs} />
           <Route path="/subscribe" component={Subscribe}/>
-		  <Route exact path="/:region" component={Home} /> ////////////
+		  <Route exact path="/:region" component={Home} /> //
 		  <Route exact path="/" component={Home} />
         </Switch>
       </div>
