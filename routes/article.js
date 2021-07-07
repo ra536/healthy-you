@@ -336,7 +336,7 @@ router.post("/numCategory", async (req, res) => {
 });
 
 
-router.post("/latest", async (req, res) => {    //Adding a Region filter for the query
+router.post("/latest", async (req, res) => {    //Adding a Region filter for the query 
   try {
     const count = req.body.numOfArticles;
 	const articleRegion = req.body.currentRegion;
