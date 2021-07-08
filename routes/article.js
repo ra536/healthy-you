@@ -47,7 +47,13 @@ router.post("/findWriter", async (req, res) => {
 
 router.get("/random", async (req, res) => {
   try {
+    // const articleRegion = req.body.currentRegion;
     const randomResults = await articles.findOne({
+      //where: {
+      //  region: {
+      //    [Op.contains]: [articleRegion]
+      //  },
+      //},
       order: [
         Sequelize.fn('RANDOM'),
       ],
@@ -313,12 +319,16 @@ router.post("/category", async (req, res) => {
 router.post("/numCategory", async (req, res) => {
   try {
     const name = req.body.category;
+    const articleRegion = req.body.currentRegion;
     const num = req.body.num;
     console.log(req.body);
 
     const articleResults = await articles.findAll({
       where: {
         category: name,
+        region: {
+          [Op.contains]: [articleRegion]
+        }
       },
       limit: num,
       raw: true,
@@ -343,7 +353,9 @@ router.post("/latest", async (req, res) => {    //Adding a Region filter for the
     const articleResults = await articles.findAll({
       //offset: skip,
       where: {
-		region: articleRegion,
+		region: {
+			[Op.contains]: [articleRegion]
+		},
         [Op.not]: [
           {category: ["Blog"]},
         ]
@@ -354,12 +366,10 @@ router.post("/latest", async (req, res) => {    //Adding a Region filter for the
       limit: count,
       raw: true,
     })
-
     res.status(200).json({
       status: "success",
       data: articleResults,
     });
-
   } catch (error) {
     console.log(error.message);
   }

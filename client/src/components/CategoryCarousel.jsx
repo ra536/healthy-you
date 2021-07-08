@@ -9,6 +9,7 @@ const CategoryCarousel = (props) => {
   // const articleInfo = props.article;
   // const writerInfo = props.writer;
   const category = props.category;
+  const reg = props.carouselRegion
   const link =
     "https://healthy-you-project.herokuapp.com/article/87918716-f71f-4548-aea3-ad0496d44c9a";
 
@@ -20,6 +21,7 @@ const CategoryCarousel = (props) => {
                 const response = await ArticleAPI.post("/numCategory",{
                     category: category,
                     num: 3,
+                    currentRegion: reg
                 });
                 
                 console.log("response:", response.data.data);
