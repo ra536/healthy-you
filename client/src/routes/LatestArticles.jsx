@@ -22,6 +22,7 @@ const LatestArticles = () => {
 				
                 const response = await ArticleAPI.post("/latest",{
                     numOfArticles: count,
+					currentRegion: region,
                 });
                 
 				

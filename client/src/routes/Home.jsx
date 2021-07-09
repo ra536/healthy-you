@@ -74,6 +74,7 @@ const Home = () => {   ///// Look up how to set parameter default
       try {
         const response = await ArticleAPI.post("/latest", {
           numOfArticles: 8,
+          currentRegion: region
         });
         console.log(response.data.data);
         setLatestArticles(response.data.data);
@@ -103,8 +104,13 @@ const Home = () => {   ///// Look up how to set parameter default
     fetchData();
   }, []);
 
+  var seeMore = "/latestArticles/100/" + region;
   console.log("am I logged in?", loggedIn);
   console.log("what's my role?", role);
+  const healthLink = "/category/Health/" + region;
+  const wellnessLink = "/category/Wellness/"+ region;
+  const fitnessLink = "/category/Fitness/"+ region;
+  const foodLink = "/category/Food/"+ region;
 
   return (
     <div>
@@ -173,7 +179,7 @@ const Home = () => {   ///// Look up how to set parameter default
                   </>
                 );
               })}
-              <Button variant="link" href="/latestArticles/100" block>See More</Button>
+              <Button variant="link" href={seeMore} block>See More</Button>
               <br />
             </Col>
             <Col xs={6} md={4}>
@@ -194,10 +200,11 @@ const Home = () => {   ///// Look up how to set parameter default
             article={featuredArticle}
             writer={featuredAuthor}
             category="Health"
+            carouselRegion = {region}
           />
           <div align="center">
             <br />
-            <Button variant="link" href="/category/Health">More Health Articles </Button>
+            <Button variant="link" href={healthLink}>More Health Articles </Button>
           </div>
 
 
@@ -207,31 +214,33 @@ const Home = () => {   ///// Look up how to set parameter default
             article={featuredArticle}
             writer={featuredAuthor}
             category="Wellness"
-
+            carouselRegion = {region}
           />
           <div align="center">
             <br />
-            <Button variant="link" href="/category/Wellness">More Wellness Articles</Button>
+            <Button variant="link" href={wellnessLink}>More Wellness Articles</Button>
           </div>
           <hr />
           <CategoryCarousel
             article={featuredArticle}
             writer={featuredAuthor}
             category="Fitness"
+            carouselRegion = {region}
           />
           <div align="center">
             <br />
-            <Button variant="link" href="/category/Fitness">More Fitness Articles</Button>
+            <Button variant="link" href={fitnessLink}>More Fitness Articles</Button>
           </div>
           <hr />
           <CategoryCarousel
             article={featuredArticle}
             writer={featuredAuthor}
             category="Food"
+            carouselRegion = {region}
           />
           <div align="center">
             <br />
-            <Button variant="link" href="/category/Food">More Food Articles</Button>
+            <Button variant="link" href={foodLink}>More Food Articles</Button>
           </div>
           <br />
         </div>

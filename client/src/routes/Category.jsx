@@ -7,7 +7,6 @@ import BlogSideBar from "../components/BlogSideBar";
 import ImageAPI from "../apis/ImageAPI";
 import queryString from "query-string";
 import { useHistory } from "react-router-dom";
-
 import "bootstrap/dist/css/bootstrap.css";
 import ArticleComponent from "../components/ArticleComponent";
 import TopNavBar from "../components/TopNavBar";
@@ -15,6 +14,7 @@ import Footer from "../components/Footer";
 
 const Category = (props) => {
   let { id } = useParams();
+  let { region } = useParams();
 
   const [articles, setArticles] = useState([]);
   const [image, setImage] = useState(null);
@@ -37,7 +37,6 @@ const Category = (props) => {
         var whereClause = {category: id};
         const search = props.location.search;
         const params = queryString.parse(search);
-        // console.log(params);
 
         if (params.s == null) {
           whereClause["filter"] = "";
@@ -45,11 +44,12 @@ const Category = (props) => {
           setFilter(params.s);
           whereClause["filter"] = params.s;
         }
-        // console.log(whereClause);
 
-        const response = await ArticleAPI.post("/category", 
-          whereClause
-        );
+        const response = await ArticleAPI.post("/category", {
+          category: whereClause.category,
+          filter: whereClause.filter,
+          currentRegion: region
+        });
 
         // console.log("response:", response.data.data);
         // const articleJson = response.data.data;
@@ -91,7 +91,7 @@ const Category = (props) => {
           category: id,
         });
         setImage(response.data.data);
-        console.log(response.data.data);
+        //console.log(response.data.data);
 
       } catch (err){
         console.log(err);
@@ -146,7 +146,7 @@ const Category = (props) => {
 
   const changePage = (pageNum) => {
     history.push({
-      pathname: "/category/" + id + "/",
+      pathname: "/category/" + id + "/" + region + "/",
       search:
         "s=" +
         filter +
@@ -187,7 +187,7 @@ const Category = (props) => {
             })}
           </Col>
           <Col xs={6} md={4}>
-              <BlogSideBar category={id}/>
+              <BlogSideBar currentRegion={region} category={id}/>
           </Col>
         </Row>
         <Pagination style={{ margin: 10, justifyContent:"center", display:"flex" }}>

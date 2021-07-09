@@ -17,6 +17,7 @@ const BlogSideBar = (props) => {
     const [popular, setPopular] = useState([]);
     const [recent, setRecent] = useState([]);
     const category = props.category;
+    const region = props.currentRegion;
     const [filterText, setFilterText] = useState("");
     
     let { id } = useParams();
@@ -32,7 +33,7 @@ const BlogSideBar = (props) => {
                     setAd1(response.data.data[0]);
                 }
                 console.log(response.data.data);
-                console.log(response.data.data[0].ad_image);
+                //console.log(response.data.data[0].ad_image);
             } catch (err) {
                 console.log(err);
             }
@@ -41,6 +42,7 @@ const BlogSideBar = (props) => {
                 const response = await ArticleAPI.post("/mostViewedCategory", {
                     numOfArticles: 3,
                     category: category,
+                    region: region
                 });
                 setPopular(response.data.data);
             } catch (err){
@@ -50,7 +52,8 @@ const BlogSideBar = (props) => {
             try {
                 const response = await ArticleAPI.post("/latestCategory", {
                     numOfArticles: 3,
-                    category: category
+                    category: category,
+                    region: region
                 })
                 setRecent(response.data.data);
             } catch (err){

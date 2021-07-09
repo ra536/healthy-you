@@ -47,7 +47,13 @@ router.post("/findWriter", async (req, res) => {
 
 router.get("/random", async (req, res) => {
   try {
+    // const articleRegion = req.body.currentRegion;
     const randomResults = await articles.findOne({
+      //where: {
+      //  region: {
+      //    [Op.contains]: [articleRegion]
+      //  },
+      //},
       order: [
         Sequelize.fn('RANDOM'),
       ],
@@ -284,12 +290,19 @@ router.post("/update", async (req, res) => {
 //     }
 // });
 
+
+
+
+
 router.post("/category", async (req, res) => {
   try {
     // console.log(req.body);
     const articleResults = await articles.findAll({
       where: {
         category: req.body.category,
+        region: {
+          [Op.contains]: [req.body.currentRegion]
+        },
         [Op.or]:{
           headline: {[Op.iLike]: '%'+req.body.filter+'%'},
           summary: {[Op.iLike]: '%'+req.body.filter+'%'},
@@ -310,15 +323,23 @@ router.post("/category", async (req, res) => {
   }
 });
 
+
+
+
+
 router.post("/numCategory", async (req, res) => {
   try {
     const name = req.body.category;
+    const articleRegion = req.body.currentRegion;
     const num = req.body.num;
     console.log(req.body);
 
     const articleResults = await articles.findAll({
       where: {
         category: name,
+        region: {
+          [Op.contains]: [articleRegion]
+        }
       },
       limit: num,
       raw: true,
@@ -336,12 +357,16 @@ router.post("/numCategory", async (req, res) => {
 });
 
 
-router.post("/latest", async (req, res) => {
+router.post("/latest", async (req, res) => {    //Adding a Region filter for the query 
   try {
     const count = req.body.numOfArticles;
+	const articleRegion = req.body.currentRegion;
     const articleResults = await articles.findAll({
       //offset: skip,
       where: {
+		region: {
+			[Op.contains]: [articleRegion]
+		},
         [Op.not]: [
           {category: ["Blog"]},
         ]
@@ -352,16 +377,15 @@ router.post("/latest", async (req, res) => {
       limit: count,
       raw: true,
     })
-
     res.status(200).json({
       status: "success",
       data: articleResults,
     });
-
   } catch (error) {
     console.log(error.message);
   }
 });
+
 router.post("/author", async (req, res) => {
   try {
     const id = req.body.article_id;
@@ -482,10 +506,14 @@ router.post("/mostViewedCategory", async (req, res) => {
   try {
     const count = req.body.numOfArticles;
     const category = req.body.category;
+    const articleRegion = req.body.region;
     console.log(req.body);
     const articleResults = await articles.findAll({
       where: {
         category: category,
+        region: {
+          [Op.contains]: [articleRegion]
+        }
       },
       order: [
         ["page_views", "DESC"]
@@ -507,9 +535,13 @@ router.post("/latestCategory", async (req, res) => {
   try {
     const count = req.body.numOfArticles;
     const category = req.body.category;
+    const articleRegion = req.body.region;
     const articleResults = await articles.findAll({
       where: {
         category: category,
+        region: {
+          [Op.contains]: [articleRegion]
+        }
       },
       order: [
         ["created_at", "DESC"]

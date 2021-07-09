@@ -44,12 +44,16 @@ router.post("/delete", async (req, res) => {
 
 router.post("/getAdsBySize", async (req, res) => {
     try {
+		console.log("INSIDE getAdsBySize")
         const adResults = await ad.findAll({
+		
           where: {
               type: req.body.size
           },
           raw: true,
         });
+		console.log("adResults")
+		console.log(adResults)
         // console.log(appointmentResults);
         res.status(200).json({
           status: "success",
