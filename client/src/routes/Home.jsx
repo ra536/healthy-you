@@ -107,6 +107,10 @@ const Home = () => {   ///// Look up how to set parameter default
   var seeMore = "/latestArticles/100/" + region;
   console.log("am I logged in?", loggedIn);
   console.log("what's my role?", role);
+  const healthLink = "/category/Health/" + region;
+  const wellnessLink = "/category/Wellness/"+ region;
+  const fitnessLink = "/category/Fitness/"+ region;
+  const foodLink = "/category/Food/"+ region;
 
   return (
     <div>
@@ -200,7 +204,7 @@ const Home = () => {   ///// Look up how to set parameter default
           />
           <div align="center">
             <br />
-            <Button variant="link" href="/category/Health">More Health Articles </Button>
+            <Button variant="link" href={healthLink}>More Health Articles </Button>
           </div>
 
 
@@ -214,7 +218,7 @@ const Home = () => {   ///// Look up how to set parameter default
           />
           <div align="center">
             <br />
-            <Button variant="link" href="/category/Wellness">More Wellness Articles</Button>
+            <Button variant="link" href={wellnessLink}>More Wellness Articles</Button>
           </div>
           <hr />
           <CategoryCarousel
@@ -225,7 +229,7 @@ const Home = () => {   ///// Look up how to set parameter default
           />
           <div align="center">
             <br />
-            <Button variant="link" href="/category/Fitness">More Fitness Articles</Button>
+            <Button variant="link" href={fitnessLink}>More Fitness Articles</Button>
           </div>
           <hr />
           <CategoryCarousel
@@ -236,7 +240,7 @@ const Home = () => {   ///// Look up how to set parameter default
           />
           <div align="center">
             <br />
-            <Button variant="link" href="/category/Food">More Food Articles</Button>
+            <Button variant="link" href={foodLink}>More Food Articles</Button>
           </div>
           <br />
         </div>

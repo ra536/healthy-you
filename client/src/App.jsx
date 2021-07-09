@@ -101,15 +101,15 @@ const App = () => {
             requiredRoles={["User", "Admin", "Doctor", "Writer"]}
           />
           <Route exact path="/about-us" component={AboutUs} /> 
-          <Route exact path="/category/Blog" component={Blog} />
-          <Route path="/category/:id" component={Category} />
+          <Route exact path="/category/Blog/:region" component={Blog} />
+          <Route path="/category/:id/:region" component={Category} />
           <Route path="/reviewSuccess" component={ReviewSuccess} />
           <Route path="/author/:id/:count" component={Author}/>
           <Route path="/sameCategory/:id/:count" component={ArticleCategory}/>
-          <Route path="/LatestArticles/:count/:region" component={LatestArticles}/> //
+          <Route path="/LatestArticles/:count/:region" component={LatestArticles}/>
           <Route path="/contact-us" component={ContactUs} />
           <Route path="/subscribe" component={Subscribe}/>
-		  <Route exact path="/:region" component={Home} /> //
+		  <Route exact path="/:region" component={Home} />
 		  <Route exact path="/" component={Home} />
         </Switch>
       </div>

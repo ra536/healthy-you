@@ -21,7 +21,7 @@ const Blog = (props) => {
 
     const [ads, setAds] = useState([]);
     const [ad1, setAd1] = useState({ ad_image: ad300, type: "300x600", ad_link: "/" });
-
+    let { region } = useParams();
     const history = useHistory();
 
     const numResultsPerPage = 8;
@@ -49,9 +49,11 @@ const Blog = (props) => {
                 }
                 console.log(whereClause);
 
-                const response = await ArticleAPI.post("/category",
-                    whereClause
-                );
+                const response = await ArticleAPI.post("/category", {
+                    category: whereClause.category,
+                    filter: whereClause.filter,
+                    currentRegion: region
+                });
 
                 console.log("response:", response.data.data)
                 // const articleJson = response.data.data;
@@ -133,7 +135,7 @@ const Blog = (props) => {
 
       const changePage = (pageNum) => {
         history.push({
-          pathname: "/category/Blog/",
+          pathname: "/category/Blog/" + region,
           search:
             "s=" +
             filter +
@@ -179,7 +181,7 @@ const Blog = (props) => {
                     </Col>
 
                     <Col xs={6} md={4}>
-                       <BlogSideBar category="Blog"/> 
+                       <BlogSideBar currentRegion={region} category="Blog"/>
                     </Col>
                 </Row>
                 <Pagination style={{ margin: 10, justifyContent:"center", display:"flex" }}>

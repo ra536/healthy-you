@@ -290,12 +290,19 @@ router.post("/update", async (req, res) => {
 //     }
 // });
 
+
+
+
+
 router.post("/category", async (req, res) => {
   try {
     // console.log(req.body);
     const articleResults = await articles.findAll({
       where: {
         category: req.body.category,
+        region: {
+          [Op.contains]: [req.body.currentRegion]
+        },
         [Op.or]:{
           headline: {[Op.iLike]: '%'+req.body.filter+'%'},
           summary: {[Op.iLike]: '%'+req.body.filter+'%'},
@@ -315,6 +322,10 @@ router.post("/category", async (req, res) => {
     console.log(error.message);
   }
 });
+
+
+
+
 
 router.post("/numCategory", async (req, res) => {
   try {
@@ -495,10 +506,14 @@ router.post("/mostViewedCategory", async (req, res) => {
   try {
     const count = req.body.numOfArticles;
     const category = req.body.category;
+    const articleRegion = req.body.region;
     console.log(req.body);
     const articleResults = await articles.findAll({
       where: {
         category: category,
+        region: {
+          [Op.contains]: [articleRegion]
+        }
       },
       order: [
         ["page_views", "DESC"]
@@ -520,9 +535,13 @@ router.post("/latestCategory", async (req, res) => {
   try {
     const count = req.body.numOfArticles;
     const category = req.body.category;
+    const articleRegion = req.body.region;
     const articleResults = await articles.findAll({
       where: {
         category: category,
+        region: {
+          [Op.contains]: [articleRegion]
+        }
       },
       order: [
         ["created_at", "DESC"]
