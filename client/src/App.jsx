@@ -65,50 +65,50 @@ const App = () => {
     <AppContextProvider>
       <div>
         <Switch>
-          <Route exact path="/register" component={Registration} />
-          <Route exact path="/login" component={Login} loggedIn={loggedIn} />
-          <Route exact path="/search" component={Search} />
-          <Route path="/results" component={Results} />
-          <Route path="/doctor-profile/:doctorID" component={DoctorProfile} />
-          <Route path="/writer-profile/:writerID" component={WriterProfile} />
+          <Route exact path="/register/:region" component={Registration} />
+          <Route exact path="/login/:region" component={Login} loggedIn={loggedIn} />
+          <Route exact path="/search/:region" component={Search} />
+          <Route path="/results/:region" component={Results} />
+          <Route path="/doctor-profile/:doctorID/:region" component={DoctorProfile} />
+          <Route path="/writer-profile/:writerID/:region" component={WriterProfile} />
           <ProtectedRoute
-            path="/doctor-dashboard/:doctorID"
+            path="/doctor-dashboard/:doctorID/:region"
             component={DoctorDashboard}
             requiredRoles={["Doctor"]}
           />
           <ProtectedRoute
-            path="/admin-dashboard/:adminID"
+            path="/admin-dashboard/:adminID/:region"
             component={AdminDashboard}
             requiredRoles={["Admin"]}
           />
           <ProtectedRoute
-            path="/user-dashboard/:userID"
+            path="/user-dashboard/:userID/:region"
             component={UserDashboard}
             requiredRoles={["User"]}
           />
-          <Route path="/leaveReview/:id">
+          <Route path="/leaveReview/:id/:region">
             <Review url={window.location.href} />
           </Route>
           <ProtectedRoute
-            path="/writer-dashboard/:id"
+            path="/writer-dashboard/:id/:region"
             component={WriterDashboard}
             requiredRoles={["Writer"]}
           />{" "}
-          <Route path="/article/:id" component={Article} />
+          <Route path="/article/:id/:region" component={Article} />
           <ProtectedRoute 
-            path="/book-appointment/:doctorID" 
+            path="/book-appointment/:doctorID/:region"
             component={Appointment} 
             requiredRoles={["User", "Admin", "Doctor", "Writer"]}
           />
-          <Route exact path="/about-us" component={AboutUs} /> 
+          <Route exact path="/about-us/:region" component={AboutUs} />
           <Route exact path="/category/Blog/:region" component={Blog} />
           <Route path="/category/:id/:region" component={Category} />
-          <Route path="/reviewSuccess" component={ReviewSuccess} />
-          <Route path="/author/:id/:count" component={Author}/>
-          <Route path="/sameCategory/:id/:count" component={ArticleCategory}/>
+          <Route path="/reviewSuccess/:region" component={ReviewSuccess} />
+          <Route path="/author/:id/:count/:region" component={Author}/>
+          <Route path="/sameCategory/:id/:count/:region" component={ArticleCategory}/>
           <Route path="/LatestArticles/:count/:region" component={LatestArticles}/>
-          <Route path="/contact-us" component={ContactUs} />
-          <Route path="/subscribe" component={Subscribe}/>
+          <Route path="/contact-us/:region" component={ContactUs} />
+          <Route path="/subscribe/:region" component={Subscribe}/>
 		  <Route exact path="/:region" component={Home} />
 		  <Route exact path="/" component={Home} />
         </Switch>

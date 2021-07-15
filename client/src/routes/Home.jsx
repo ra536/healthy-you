@@ -19,7 +19,7 @@ import { Link, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 
 const Home = () => {   ///// Look up how to set parameter default
-  let { region } = useParams();
+  let { region } = useParams(); //Redirect to default if region is null
   console.log(region);
   // Store the data retrieved from backend API into context
   const { loggedIn, role } = useContext(AuthContext);
@@ -123,7 +123,7 @@ const Home = () => {   ///// Look up how to set parameter default
                             <Nav.Link href="/login">Login</Nav.Link>
                         </>
                     } */}
-        <TopNavBar />
+        <TopNavBar currentRegion={region}/>
         <TopFeaturedAds />
         <div align="center" display="inline">
           <Carousel
@@ -135,7 +135,7 @@ const Home = () => {   ///// Look up how to set parameter default
               console.log(article);
               return (
                 <Carousel.Item>
-                  <Link to={"/article/" + article.article_id}
+                  <Link to={"/article/" + article.article_id + "/" + region}
                     style={{ textDecoration: "none", color: "black" }}>
                     <img src={article.image_data} width="100%" />
                     <div>
@@ -152,7 +152,7 @@ const Home = () => {   ///// Look up how to set parameter default
 
         <br />
 
-        <HealthGuide />
+        <HealthGuide currentRegion={region}/>
 
         <Container>
           <Row>
@@ -170,6 +170,7 @@ const Home = () => {   ///// Look up how to set parameter default
                       <Row>
                         <ArticleComponent
                           article={article}
+                          currentRegion={region}
                           type="horizontal"
                         />
                       </Row>
@@ -247,7 +248,7 @@ const Home = () => {   ///// Look up how to set parameter default
 
         <AdBreak number={2} />
         <br />
-        <Footer />
+        <Footer currentRegion={region}/>
       </div>
     </div>
   );

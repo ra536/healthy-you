@@ -5,7 +5,7 @@ import SearchBar from "../components/SearchBar";
 import { AppContext } from "../context/AppContext";
 import queryString from "query-string";
 import { Container, Image } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import {Link, useHistory, useParams} from "react-router-dom";
 import {
   Accordion,
   Button,
@@ -44,6 +44,7 @@ import acupuncture_image from "./defaults/Acupuncture.jpg";
 import personal_trainer_image from "./defaults/PersonalTrainers.jpg";
 
 const Results = (props) => {
+  let { region } = useParams();
   const { results, setResults } = useContext(AppContext);
 
   const [featuredDoctor, setFeaturedDoctor] = useState("");
@@ -268,7 +269,7 @@ const Results = (props) => {
 
   return (
     <div>
-      <TopNavBar />
+      <TopNavBar currentRegion={region}/>
       <Container>
         <br />
         <h1 align="center">Health Guide</h1>
@@ -519,7 +520,7 @@ const Results = (props) => {
         </Pagination>
       </Container>
       <br />
-      <Footer />
+      <Footer currentRegion={region}/>
     </div>
   );
 };

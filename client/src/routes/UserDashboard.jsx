@@ -7,7 +7,7 @@ import UserApptTable from '../components/UserApptTable';
 import Footer from "../components/Footer";
 
 const UserDashboard = (props) => {
-  let { userID } = useParams();
+  let { userID, region } = useParams();
   const [id, setId] = useState(null);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const UserDashboard = (props) => {
 
   return (
     <>
-      <TopNavBar />
+      <TopNavBar currentRegion={region}/>
       <Container>
         <h1>User Dashboard</h1>
         <br />
@@ -58,7 +58,7 @@ const UserDashboard = (props) => {
       <br />
       <br />
       <br />
-      <Footer />
+      <Footer currentRegion={region}/>
     </>
   );
 };

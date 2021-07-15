@@ -18,7 +18,7 @@ require("dotenv").config();
 const nodemailer = require("nodemailer");
 
 const AdminDashboard = (props) => {
-  let { adminID } = useParams();
+  let { adminID, region } = useParams();
   const [id, setId] = useState(null);
 
   // useEffect(() => {
@@ -46,7 +46,7 @@ const AdminDashboard = (props) => {
   return (
     <>
       <AdminContextProvider>
-        <TopNavBar />
+        <TopNavBar currentRegion={region}/>
         <Container>
           <h1>Admin Dashboard</h1>
           <div>
@@ -83,7 +83,7 @@ const AdminDashboard = (props) => {
       </AdminContextProvider>
       <br />
       <br />
-      <Footer />
+      <Footer currentRegion={region}/>
     </>
   );
 };

@@ -13,9 +13,7 @@ import TopNavBar from "../components/TopNavBar";
 import Footer from "../components/Footer";
 
 const Category = (props) => {
-  let { id } = useParams();
-  let { region } = useParams();
-
+  let { id, region } = useParams();
   const [articles, setArticles] = useState([]);
   const [image, setImage] = useState(null);
 
@@ -157,7 +155,7 @@ const Category = (props) => {
 
   return (
     <>
-      <TopNavBar />
+      <TopNavBar currentRegion={region}/>
       <div align="center">
           <h1>
           {id}
@@ -177,6 +175,7 @@ const Category = (props) => {
                     <Row>
                       <ArticleComponent
                         article={article}
+                        currentRegion={region}
                         writer="Anonymous Writer"
                         type="horizontal"
                       />
@@ -244,7 +243,7 @@ const Category = (props) => {
         </Pagination>
       </Container>
       <br />
-      <Footer />
+      <Footer currentRegion={region}/>
     </>
 
   );

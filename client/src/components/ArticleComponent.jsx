@@ -8,6 +8,7 @@ import SocialShareButtons from "./SocialShareButtons";
 require("dotenv").config();
 
 const ArticleComponent = (props) => {
+  const region = props.currentRegion;
   const componentType = props.type;
   const articleInfo = props.article;
   // const writerInfo = props.writer;
@@ -17,7 +18,7 @@ const ArticleComponent = (props) => {
   if (componentType === "featured-large") {
     return (
       <Link
-        to={"/article/" + articleInfo.article_id}
+        to={"/article/" + articleInfo.article_id + "/" + region}
         style={{ textDecoration: "none", color: "black" }}
       >
         <span textAlign="left">
@@ -39,7 +40,7 @@ const ArticleComponent = (props) => {
   if (componentType === "featured-small") {
     return (
       <Link
-        to={"/article/" + articleInfo.article_id}
+        to={"/article/" + articleInfo.article_id + "/" + region}
         style={{ textDecoration: "none", color: "black" }}
       >
         <span align="center">
@@ -56,7 +57,7 @@ const ArticleComponent = (props) => {
       <>
         <Col md="auto">
           <Link
-            to={"/article/" + articleInfo.article_id}
+            to={"/article/" + articleInfo.article_id + "/" + region}
             style={{ textDecoration: "none", color: "black" }}
           >
             <Image
@@ -72,10 +73,10 @@ const ArticleComponent = (props) => {
 
         <Col>
           
-            <a href={"/category/" + articleInfo.category}>{articleInfo.category}</a>
+            <a href={"/category/" + articleInfo.category + "/" + region}>{articleInfo.category}</a>
             
             <Link
-            to={"/article/" + articleInfo.article_id}
+            to={"/article/" + articleInfo.article_id + "/" + region}
             style={{ textDecoration: "none", color: "black" }}
           >
             <h4>{articleInfo.headline}</h4>
@@ -90,7 +91,7 @@ const ArticleComponent = (props) => {
     return (
       <>
         <Link
-          to={"/article/" + articleInfo.article_id}
+          to={"/article/" + articleInfo.article_id + "/" + region}
           style={{ textDecoration: "none", color: "black" }}
         >
           <Image

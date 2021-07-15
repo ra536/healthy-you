@@ -19,7 +19,7 @@ import TopNavBar from "../components/TopNavBar";
 import Footer from "../components/Footer";
 
 const WriterProfile = (props) => {
-  let { writerID } = useParams();
+  let { writerID, region } = useParams();
   const [name, setName] = useState();
   const [cityState, setCityState] = useState();
   const [email, setEmail] = useState("");
@@ -73,7 +73,7 @@ const WriterProfile = (props) => {
   }, []);
   return (
     <>
-      <TopNavBar />
+      <TopNavBar currentRegion={region}/>
       <br />
       <Row>
         <Col>
@@ -109,6 +109,7 @@ const WriterProfile = (props) => {
               <Row>
                 <ArticleComponent
                   article={articles}
+                  currentRegion={region}
                   writer={author}
                   type="horizontal"
                 />
@@ -118,7 +119,7 @@ const WriterProfile = (props) => {
           );
         })}
       </Container>
-      <Footer />
+      <Footer currentRegion={region}/>
     </>
   );
 };

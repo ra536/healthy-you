@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import CategoryAPI from "../apis/CategoryAPI";
 
 const HealthGuide = (props) => {
+  const region = props.currentRegion;
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -27,6 +28,11 @@ const HealthGuide = (props) => {
     fetchData();
   }, []);
 
+  // Button Paths
+  const docPath = "/results/" + region + "/?practice=&doctor=&specialty=&category=Doctor&location=&rating="
+  const dentistPath = "/results/" + region + "/?practice=&doctor=&specialty=&category=Dentist&location=&rating="
+  const chiroPath = "/results/" + region + "/?practice=&doctor=&specialty=&category=Chiropractic&location=&rating="
+
   return (
     <div style={{ backgroundColor: "#F8F8F8" }}>
       <Container id="health-guide">
@@ -41,12 +47,12 @@ const HealthGuide = (props) => {
             <Col>
             </Col>
             <Col>
-              <Button variant="success" size="md" block href="/results/?practice=&doctor=&specialty=&category=Doctor&location=&rating=">
+              <Button variant="success" size="md" block href={docPath}>
                 Doctor
               </Button>
             </Col>
             <Col>
-              <Button variant="success" size="md" block href="/results/?practice=&doctor=&specialty=&category=Dentist&location=&rating=">
+              <Button variant="success" size="md" block href={dentistPath}>
                 Dentist
               </Button>
             </Col>
@@ -58,7 +64,7 @@ const HealthGuide = (props) => {
             <Col>
             </Col>
             <Col>
-              <Button variant="success" size="md" block href="/results/?practice=&doctor=&specialty=&category=Chiropractic&location=&rating=">
+              <Button variant="success" size="md" block href={chiroPath}>
                 Chiropractor
               </Button>
             </Col>
@@ -84,7 +90,7 @@ const HealthGuide = (props) => {
     {categories.filter((word, index) => (index + 1) % 2).map((category) => {
       return (
         <>
-        <Button href={"/results/?practice=&doctor=&specialty=&category="+category.category+"&location=&rating="} variant="success">{category.category}</Button><br /><br />
+        <Button href={"/results/"+region+"/?practice=&doctor=&specialty=&category="+category.category+"&location=&rating="} variant="success">{category.category}</Button><br /><br />
         </>
       );
     })}
@@ -93,7 +99,7 @@ const HealthGuide = (props) => {
     {categories.filter((word, index) => (index) % 2).map((category) => {
       return (
         <>
-        <Button href={"/results/?practice=&doctor=&specialty=&category="+category.category+"&location=&rating="} variant="success">{category.category}</Button><br /><br />
+        <Button href={"/results/"+region+"/?practice=&doctor=&specialty=&category="+category.category+"&location=&rating="} variant="success">{category.category}</Button><br /><br />
         </>
       );
     })}

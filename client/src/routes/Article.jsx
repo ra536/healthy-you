@@ -13,7 +13,7 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import ArticleComponent from "../components/ArticleComponent";
 
 const Article = (props) => {
-  let { id } = useParams();
+  let { id, region } = useParams();
 
   const [headline, setHeadline] = useState("");
   const [category, setCategory] = useState("");
@@ -87,7 +87,7 @@ const Article = (props) => {
   return (
     // Return different webpage, depending on the validity of the ID provided
     <>
-      <TopNavBar />
+      <TopNavBar currentRegion={region}/>
       <Container>
         <Row>
           <Col xs={12} md={8}>
@@ -125,7 +125,7 @@ const Article = (props) => {
                   <Row>
 
 
-                    <ArticleComponent type="horizontal" article={art} />
+                    <ArticleComponent currentRegion={region} type="horizontal" article={art} />
 
                   </Row>
                   <br />
@@ -140,7 +140,7 @@ const Article = (props) => {
                   <Row>
 
 
-                    <ArticleComponent type="horizontal" article={art} />
+                    <ArticleComponent currentRegion={region} type="horizontal" article={art} />
 
                   </Row>
                   <br />
@@ -156,7 +156,7 @@ const Article = (props) => {
           </Col>
         </Row>
       </Container>
-      <Footer />
+      <Footer currentRegion={region}/>
     </>
   );
 };

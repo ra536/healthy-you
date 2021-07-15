@@ -7,11 +7,11 @@ import logo from "../components/img/logo.png";
 import hwf from "../components/img/hwf_logo.png";
 
 const AboutUs = (props) => {
-
+    let { region } = useParams();
   return (
     // Return different webpage, depending on the validity of the ID provided
     <>
-      <TopNavBar />
+      <TopNavBar currentRegion={region}/>
       <Container>
           <div align="center">
           <h1>About Health Wellness & Fitness Magazine</h1>
@@ -51,7 +51,7 @@ Phasellus sodales ante elit, sit amet venenatis lorem dictum sit amet. Proin qui
       </Container>
       <br />
       <br />
-      <Footer />
+      <Footer currentRegion={region}/>
     </>
   );
 };

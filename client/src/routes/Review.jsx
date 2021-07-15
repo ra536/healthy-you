@@ -3,7 +3,7 @@ import { ExclamationTriangle } from 'react-bootstrap-icons';
 import ReviewAPI from "../apis/ReviewAPI";
 import { Container, Button} from "react-bootstrap";
 import TopNavBar from "../components/TopNavBar";
-import { useHistory } from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 import Footer from "../components/Footer";
 // import TestAPI from '../apis/TestAPI';
 // import InputTest from '../components/InputTest';
@@ -12,6 +12,7 @@ import Footer from "../components/Footer";
 const Review = (props) => {
   // Store the data retrieved from backend API into context
   // const { tests, setTests } = useContext(TestContext);
+  let { region } = useParams();
   const [codes, setCodes] = useState([]);
   const [name, setName] = useState("");
   const [review, setReview] = useState("");
@@ -105,7 +106,7 @@ const Review = (props) => {
     // pull the corresponding information (doctor, etc.)
     return (
       <>
-      <TopNavBar />
+      <TopNavBar currentRegion={region}/>
       <div align = "center">
       <Container>
         
@@ -184,7 +185,7 @@ const Review = (props) => {
         </form>
         <br/>
       </Container>
-      <Footer />
+      <Footer currentRegion={region}/>
       </div>
       </>
       
@@ -194,7 +195,7 @@ const Review = (props) => {
   return (
     // Return different webpage, depending on the validity of the ID provided
     <>
-    <TopNavBar />
+    <TopNavBar currentRegion={region}/>
     <Container>
       <div align="center">
       <h1>Error</h1>
@@ -223,7 +224,7 @@ const Review = (props) => {
     <br />
     <br />
     <br />
-    <Footer />
+    <Footer currentRegion={region}/>
     </>
   );
 };

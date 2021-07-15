@@ -52,7 +52,7 @@ const schema = yup.object().shape({
 });
 
 const Appointment = (props) => {
-
+  let { region } = useParams();
   let history = useHistory();
 
   const { loggedIn, role, id } = useContext(AuthContext);
@@ -205,7 +205,7 @@ const Appointment = (props) => {
       }) => {
         return (
           <div>
-            <TopNavBar />
+            <TopNavBar currentRegion={region}/>
             <br />
             <div align="center">
               <h3>Book an Appointment Today!</h3>
@@ -451,7 +451,7 @@ const Appointment = (props) => {
                 </Col>
               </Row>
             </Container>
-            <Footer />
+            <Footer currentRegion={region}/>
           </div>
         );
       }}

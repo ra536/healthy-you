@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { Formik } from "formik";
 import Form from "react-bootstrap/Form";
 import ContactAPI from "../apis/ContactAPI";
-import { useHistory } from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 
 import "moment-timezone";
 
@@ -19,10 +19,11 @@ const schema = yup.object().shape({
 });
 
 const ContactUs = () => {
+    let { region } = useParams();
   let history = useHistory();
   return (
     <>
-      <TopNavBar />
+      <TopNavBar currentRegion={region}/>
       <Container>
         <Row>
           <Col>
@@ -148,7 +149,7 @@ const ContactUs = () => {
       <br />
       <br />
       <br />
-      <Footer />
+      <Footer currentRegion={region}/>
     </>
   );
 };

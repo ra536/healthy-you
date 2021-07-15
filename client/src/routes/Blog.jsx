@@ -147,7 +147,7 @@ const Blog = (props) => {
     return (
         // Return different webpage, depending on the validity of the ID provided
         <>
-            <TopNavBar />
+            <TopNavBar currentRegion={region}/>
             <div align="center">
                     <h1>
                         Blog
@@ -169,7 +169,7 @@ const Blog = (props) => {
                                     <hr />
                                     <Container>
                                         <Row>
-                                            <ArticleComponent article={article} writer="Anonymous Writer" type="horizontal" />
+                                            <ArticleComponent currentRegion={region} article={article} writer="Anonymous Writer" type="horizontal" />
                                             {/* {getAuthorName(article.writer_id)} */}
                                         </Row>
                                     </Container>
@@ -236,7 +236,7 @@ const Blog = (props) => {
                 </Pagination>
             </Container>
             <br />
-            <Footer />
+            <Footer currentRegion={region}/>
         </>
     );
 };

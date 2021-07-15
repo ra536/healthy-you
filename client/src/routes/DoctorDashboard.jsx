@@ -18,7 +18,7 @@ import RemoveCategory from "../components/RemoveCategory";
 import Footer from "../components/Footer";
 
 const DoctorDashboard = (props) => {
-  let { doctorID } = useParams();
+  let { doctorID, region } = useParams();
   const [rating, setRating] = useState();
   const [name, setName] = useState();
   const [profilePicture, setProfilePicture] = useState();
@@ -200,7 +200,7 @@ const DoctorDashboard = (props) => {
 
   return (
     <>
-      <TopNavBar />
+      <TopNavBar currentRegion={region}/>
       <Container>
         <h1>Doctor Dashboard</h1>
         <Tabs defaultActiveKey="main" id="uncontrolled-tab" >
@@ -358,7 +358,7 @@ const DoctorDashboard = (props) => {
         </Tabs>
       </Container>
       <br />
-      <Footer />
+      <Footer currentRegion={region}/>
     </>
   );
 };
