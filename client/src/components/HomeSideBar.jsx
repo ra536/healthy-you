@@ -16,7 +16,7 @@ import acupuncture_image from "../routes/defaults/Acupuncture.jpg";
 import personal_trainer_image from "../routes/defaults/PersonalTrainers.jpg"
 
 const HomeSideBar = (props) => {
-
+  const region = props.currentRegion;
   const [featuredDoctors, setFeaturedDoctors] = useState([]);
   const [popularArticles, setPopularArticles] = useState([]);
   const [ads, setAds] = useState([]);
@@ -59,6 +59,7 @@ const HomeSideBar = (props) => {
       }
       try {
         const response = await ArticleAPI.post("/mostViewed", {
+          region: region,
           numOfArticles: 3,
         });
         console.log(response.data.data);
@@ -67,7 +68,7 @@ const HomeSideBar = (props) => {
         console.log(err);
       }
       try {
-        const response = await AdAPI.post("/getAdsBySize", { size: "250x250"});
+        const response = await AdAPI.post("/getAdsBySize", { size: "250x250", region: region});
         setAds(response.data.data);
         if(typeof(response.data.data[0]) == "object"){
           setAd1(response.data.data[0]);
@@ -111,7 +112,7 @@ const HomeSideBar = (props) => {
         <hr />
                 <Card.Img variant="top" src={newMag} />
                 <div align="center">
-                <Button variant="link" size="md" href="/subscribe">
+                <Button variant="link" size="md" href={"/subscribe/" + region}>
                   Subscribe
                 </Button>
                 <Button variant="link" size="md" href="https://issuu.com/healthwellnessfitness/docs/1-56-compressed">
@@ -128,7 +129,7 @@ const HomeSideBar = (props) => {
             {popularArticles.map((article) => {
               return (
                 <>
-                <Link to={"/article/" + article.article_id} style={{ textDecoration: "none", color: "black" }}>
+                <Link to={"/article/" + article.article_id + "/" + region} style={{ textDecoration: "none", color: "black" }}>
                 <h6>{article.headline}</h6>
                 </Link>
                 <hr />
@@ -149,7 +150,7 @@ const HomeSideBar = (props) => {
                   <Row>
                     <Col md={4}>
                     <Link
-              to={"/doctor-profile/" + featuredDoctor.doctor_id}
+              to={"/doctor-profile/" + featuredDoctor.doctor_id + "/" + region}
               style={{ textDecoration: "none", color: "black" }}
             >
                       <Image
@@ -164,9 +165,9 @@ const HomeSideBar = (props) => {
                       <hr />
 
                       <h6>
-                            {featuredDoctor.category.map((category, i) => <><a href={"/results/?practice=&specialty=&location=&category=" + category}>{category}</a> |</>)}{" "}
+                            {featuredDoctor.category.map((category, i) => <><a href={"/results/" + region + "/?practice=&specialty=&location=&category=" + category}>{category}</a> |</>)}{" "}
                             {featuredDoctor.specialty
-                              .map((specialty, i) => <><a href={"/results/?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a> |</>)}{" "}
+                              .map((specialty, i) => <><a href={"/results/" + region + "?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a> |</>)}{" "}
                           </h6>
                           <h6>
                             {featuredDoctor.practices

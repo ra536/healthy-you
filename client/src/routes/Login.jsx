@@ -16,7 +16,7 @@ const Login = () => {
       <TopNavBar currentRegion={region}/>
       <Container>
         <h1>Login</h1>
-        <LoginForm />
+        <LoginForm currentRegion={region}/>
       </Container>
       <br />
       <br />

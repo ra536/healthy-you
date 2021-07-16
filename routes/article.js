@@ -1,12 +1,11 @@
 const express = require("express");
-
 const router = express.Router();
 const multer = require("multer");
-const { array } = require("yup/lib/locale");
 const articles = require("../db/models/article.js");
 const writer = require("../db/models/writer.js");
 const { Sequelize, Op } = require("sequelize");
-const { sequelize } = require("../db/models/writer.js");
+//const { sequelize } = require("../db/models/writer.js");
+//const { array } = require("yup/lib/locale");
 // var upload = multer({ dest: './uploads' })
 
 router.use(express.json());
@@ -14,7 +13,6 @@ router.use(express.json());
 // Test route to get started and gets all test objects from test table in db
 router.post("/", async (req, res) => {
   try {
-    console.log(req.body.writer_id); // TODO - Why is this undefined???
     const testResults = await articles.findAll({
       where: {
         writer_id: req.body.writer_id,
@@ -31,6 +29,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Find the writer's works.
 router.post("/findWriter", async (req, res) => {
   try {
     const writerResult = await writer.findByPk(req.body.writer_id);
@@ -44,6 +43,7 @@ router.post("/findWriter", async (req, res) => {
     });
   }
 });
+
 
 router.get("/random", async (req, res) => {
   try {
@@ -72,6 +72,7 @@ router.get("/random", async (req, res) => {
   }
 });
 
+
 router.post("/find", async (req, res) => {
   try {
     console.log(req.body.article_id); // TODO - Why is this undefined???
@@ -96,6 +97,7 @@ router.post("/find", async (req, res) => {
   }
 });
 
+
 router.post("/findByWriterID", async (req, res) => {
   try {
     const articleResult = await articles.findAll({
@@ -114,6 +116,7 @@ router.post("/findByWriterID", async (req, res) => {
     console.log(err.message);
   }
 });
+
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -154,33 +157,7 @@ router
     console.log(req.body);
   });
 
-// router.route("/uploadbase")
-//     .post((req, res, next) => {
-//         if (req.body.headline != "") {
-//             const article = await articles.create({
-//                 headline: req.body.headline,
-//                 category: req.body.category,
-//                 summary: req.body.summary,
-//                 content: req.body.content,
-//                 image: req.body.image,
-//                 caption: req.body.caption
-//             });
-//             console.log(article.dataValues)
-//             res.status(201).json({
-//                 status: "success",
-//                 data: {
-//                     article_id: article.dataValues.article_id,
-//                     headline: article.dataValues.headline,
-//                     category: article.dataValues.category,
-//                     summary: article.dataValues.summary,
-//                     content: article.dataValues.content,
-//                     publication_date: article.dataValues.publication_date,
-//                     image: article.dataValues.image,
-//                     caption: article.dataValues.caption
-//                 }
-//             })
-//         }
-//     });
+
 
 router.post("/create", async (req, res) => {
   try {
@@ -268,27 +245,7 @@ router.post("/update", async (req, res) => {
   }
 });
 
-// Route to create a test object in DB
-// router.post("/", async (req, res) => {
-//     // Express JSON middleware allows for results to be in body
-//     try {
-//         const tests = await test.create({
-//             test_id: req.body.test_id,
-//             content: req.body.content,
-//         })
-//         console.log(tests.dataValues)
-//         res.status(201).json({
-//             status: "success",
-//             data: {
-//                 test_id: tests.dataValues.test_id,
-//                 content: tests.dataValues.content
-//             }
-//         })
-//     }
-//     catch (err) {
-//         console.log(err)
-//     }
-// });
+
 
 
 
@@ -386,6 +343,7 @@ router.post("/latest", async (req, res) => {    //Adding a Region filter for the
   }
 });
 
+
 router.post("/author", async (req, res) => {
   try {
     const id = req.body.article_id;
@@ -422,6 +380,7 @@ router.post("/author", async (req, res) => {
   }
 });
 
+
 router.post("/sameCategory", async (req, res) => {
   try {
     const id = req.body.article_id;
@@ -446,7 +405,6 @@ router.post("/sameCategory", async (req, res) => {
       },
       limit: count,
     })
-
     
     console.log(articleResults)
 
@@ -458,6 +416,7 @@ router.post("/sameCategory", async (req, res) => {
     console.log(error.message);
   }
 });
+
 
 router.post("/pageView", async (req, res) => {
   try {
@@ -481,11 +440,18 @@ router.post("/pageView", async (req, res) => {
   }
 });
 
+
 router.post("/mostViewed", async (req, res) => {
   try {
     const count = req.body.numOfArticles;
+    const articleRegion = req.body.region;
     console.log(req.body);
     const articleResults = await articles.findAll({
+      where: {
+        region: {
+          [Op.contains]: [articleRegion]
+        }
+      },
       order: [
         ["page_views", "DESC"]
       ],
@@ -501,6 +467,7 @@ router.post("/mostViewed", async (req, res) => {
     console.log(error.message);
   }
 });
+
 
 router.post("/mostViewedCategory", async (req, res) => {
   try {
@@ -531,6 +498,7 @@ router.post("/mostViewedCategory", async (req, res) => {
   }
 });
 
+
 router.post("/latestCategory", async (req, res) => {
   try {
     const count = req.body.numOfArticles;
@@ -560,5 +528,54 @@ router.post("/latestCategory", async (req, res) => {
   }
 });
 
+// Route to create a test object in DB
+// router.post("/", async (req, res) => {
+//     // Express JSON middleware allows for results to be in body
+//     try {
+//         const tests = await test.create({
+//             test_id: req.body.test_id,
+//             content: req.body.content,
+//         })
+//         console.log(tests.dataValues)
+//         res.status(201).json({
+//             status: "success",
+//             data: {
+//                 test_id: tests.dataValues.test_id,
+//                 content: tests.dataValues.content
+//             }
+//         })
+//     }
+//     catch (err) {
+//         console.log(err)
+//     }
+// });
+
+// router.route("/uploadbase")
+//     .post((req, res, next) => {
+//         if (req.body.headline != "") {
+//             const article = await articles.create({
+//                 headline: req.body.headline,
+//                 category: req.body.category,
+//                 summary: req.body.summary,
+//                 content: req.body.content,
+//                 image: req.body.image,
+//                 caption: req.body.caption
+//             });
+//             console.log(article.dataValues)
+//             res.status(201).json({
+//                 status: "success",
+//                 data: {
+//                     article_id: article.dataValues.article_id,
+//                     headline: article.dataValues.headline,
+//                     category: article.dataValues.category,
+//                     summary: article.dataValues.summary,
+//                     content: article.dataValues.content,
+//                     publication_date: article.dataValues.publication_date,
+//                     image: article.dataValues.image,
+//                     caption: article.dataValues.caption
+//                 }
+//             })
+//         }
+//     });
 
 module.exports = router;

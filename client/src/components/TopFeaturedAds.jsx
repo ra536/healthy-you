@@ -7,11 +7,12 @@ import AdAPI from "../apis/AdAPI";
 
 const TopFeaturedAds = (props) => {
   // Holds advertisement information from the database, defaults to 1000 x 300 blue image.
-  const [ads, setAds] = useState([{ ad_image: ad1000, type: "1000x300", ad_link: "/"}]);	  
+  const [ads, setAds] = useState([{ ad_image: ad1000, type: "1000x300", ad_link: "/"}]);
+  const region = props.currentRegion;
 
   // Call API to retreieve 1000x300 ad info and store in array.
   useEffect(() => {
-    AdAPI.post('/getAdsBySize', { size: '1000x300' })
+    AdAPI.post('/getAdsBySize', { size: '1000x300', region: region })
 		.then(response => setAds(response.data.data))
   }, []);
   

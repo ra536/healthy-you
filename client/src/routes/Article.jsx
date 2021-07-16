@@ -151,7 +151,7 @@ const Article = (props) => {
           </Col>
           <Col xs={6} md={4}>
             <br />
-            <HomeSideBar />
+            <HomeSideBar currentRegion={region}/>
             <br />
           </Col>
         </Row>

@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import AdAPI from "../apis/AdAPI";
 
 const AdBreak = (props) => {
+  const region = props.currentRegion;
   const [ads, setAds] = useState([]);
   const [ad1, setAd1] = useState({ ad_image: ad728, type: "728x90", ad_link: "/"});
   const [ad2, setAd2] = useState({ ad_image: ad728, type: "728x90", ad_link: "/"});
@@ -11,7 +12,7 @@ const AdBreak = (props) => {
   useEffect(() => {
     const fetchData = async () => {
 try {
-        const response = await AdAPI.post("/getAdsBySize", { size: "728x90"});
+        const response = await AdAPI.post("/getAdsBySize", { size: "728x90", region: region});
         console.log(response.data.data);
         setAds(response.data.data);
 

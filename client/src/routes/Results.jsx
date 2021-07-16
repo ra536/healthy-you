@@ -46,7 +46,6 @@ import personal_trainer_image from "./defaults/PersonalTrainers.jpg";
 const Results = (props) => {
   let { region } = useParams();
   const { results, setResults } = useContext(AppContext);
-
   const [featuredDoctor, setFeaturedDoctor] = useState("");
   const [featuredDoctors, setFeaturedDoctors] = useState([]);
   const [ads, setAds] = useState([]);
@@ -200,7 +199,7 @@ const Results = (props) => {
       }
 
       try {
-        const response = await AdAPI.post("/getAdsBySize", { size: "300x600" });
+        const response = await AdAPI.post("/getAdsBySize", { size: "300x600", region: region });
         setAds(response.data.data);
         if (typeof response.data.data[0] == "object") {
           setAd1(response.data.data[0]);
@@ -252,7 +251,7 @@ const Results = (props) => {
 
   const changePage = (pageNum) => {
     history.push({
-      pathname: "/results/",
+      pathname: "/results/" + region + "/",
       search:
         "practice=" +
         practice +

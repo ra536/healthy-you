@@ -6,6 +6,7 @@ const { Op } = require("sequelize");
 
 router.use(express.json());
 
+// Used in admin portal to view all ads, so region filtering is not needed.
 router.post("/getAll", async (req, res) => {
     try {
         const adResults = await ad.findAll({
@@ -21,11 +22,14 @@ router.post("/getAll", async (req, res) => {
       }
 });
 
+// Cannot ad region functionality until we insert a section to choose region for ad in admin portal.
+// ADD REGION FUNCTIONALITY
 router.post("/create", async (req, res) => {
     const newAd = await ad.create({
         type: req.body.size,
-        ad_image: req.body.image,
         ad_link: req.body.link,
+        ad_image: req.body.image,
+        //region: req.body.adRegion,
     });
     res.status(200).json({
         status: "success",
@@ -33,6 +37,7 @@ router.post("/create", async (req, res) => {
     })
 })
 
+// No need to add region functionality.
 router.post("/delete", async (req, res) => {
     const delAd = await ad.findByPk(req.body.ad_id);
     await delAd.destroy();
@@ -42,13 +47,17 @@ router.post("/delete", async (req, res) => {
     })
 })
 
+// Chooses appropriate sized ad for page.
 router.post("/getAdsBySize", async (req, res) => {
     try {
 		console.log("INSIDE getAdsBySize")
         const adResults = await ad.findAll({
 		
           where: {
-              type: req.body.size
+              type: req.body.size,
+              region: {
+                  [Op.contains]: [req.body.region]
+              }
           },
           raw: true,
         });

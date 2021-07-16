@@ -95,6 +95,7 @@ const Home = () => {   ///// Look up how to set parameter default
       try {
         const response = await ArticleAPI.post("/mostViewed", {
           numOfArticles: 3,
+          region: region,
         });
         console.log(response.data.data);
       } catch (err) {
@@ -124,7 +125,7 @@ const Home = () => {   ///// Look up how to set parameter default
                         </>
                     } */}
         <TopNavBar currentRegion={region}/>
-        <TopFeaturedAds />
+        <TopFeaturedAds currentRegion={region}/>
         <div align="center" display="inline">
           <Carousel
             interval={10000}
@@ -175,7 +176,6 @@ const Home = () => {   ///// Look up how to set parameter default
                         />
                       </Row>
                     </Container>
-
                     <hr />
                   </>
                 );
@@ -184,16 +184,14 @@ const Home = () => {   ///// Look up how to set parameter default
               <br />
             </Col>
             <Col xs={6} md={4}>
-
-
               <br />
-              <HomeSideBar />
+              <HomeSideBar currentRegion={region}/>
               <br />
             </Col>
           </Row>
         </Container>
 
-        <AdBreak />
+        <AdBreak currentRegion={region}/>
 
         <br />
         <div style={{ backgroundColor: "#F8F8F8" }}>
@@ -246,7 +244,7 @@ const Home = () => {   ///// Look up how to set parameter default
           <br />
         </div>
 
-        <AdBreak number={2} />
+        <AdBreak number={2} currentRegion={region}/>
         <br />
         <Footer currentRegion={region}/>
       </div>
