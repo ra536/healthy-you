@@ -343,11 +343,12 @@ router.post("/latest", async (req, res) => {    //Adding a Region filter for the
   }
 });
 
-
+// Return articles written by the same author. (For current region)
 router.post("/author", async (req, res) => {
   try {
     const id = req.body.article_id;
     const count = req.body.numOfArticles;
+    const articleRegion = req.body.region;
     console.log(req.body);
 
     const results = await articles.findOne({
@@ -364,6 +365,9 @@ router.post("/author", async (req, res) => {
         writer_id: writer,
         article_id: {
           [Op.ne]: id,
+        },
+        region: {
+          [Op.contains]: [articleRegion]
         }
       },
       limit: count,
@@ -380,11 +384,12 @@ router.post("/author", async (req, res) => {
   }
 });
 
-
+// Return articles set in the same category. (For current region)
 router.post("/sameCategory", async (req, res) => {
   try {
     const id = req.body.article_id;
     const count = req.body.numOfArticles;
+    const articleRegion = req.body.region;
     console.log(req.body);
 
     const results = await articles.findOne({
@@ -401,6 +406,9 @@ router.post("/sameCategory", async (req, res) => {
         category: category,
         article_id: {
           [Op.ne]: id,
+        },
+        region: {
+          [Op.contains]: [articleRegion]
         }
       },
       limit: count,
@@ -417,7 +425,7 @@ router.post("/sameCategory", async (req, res) => {
   }
 });
 
-
+// Increment the number of page views for the article.
 router.post("/pageView", async (req, res) => {
   try {
     const id = req.body.id;

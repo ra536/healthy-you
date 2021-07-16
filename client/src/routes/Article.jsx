@@ -36,22 +36,28 @@ const Article = (props) => {
     // Define a function fetchData that calls APIs which is then called in useEffect
     const fetchData = async () => {
       try {
+        // Retrieve the article information.
         const response = await ArticleAPI.post("/find", {
           article_id: id,
         });
 
+        // Increment the article view by 1.
         const views = await ArticleAPI.post("/pageView", {
           id: id,
         });
 
+        // Find three other articles by the same writer.
         const relatedAuthor = await ArticleAPI.post("/author", {
           article_id: id,
-          numOfArticles: 3
+          numOfArticles: 3,
+          region: region
         })
 
+        // Find three other articles in the same category.
         const relatedCategory = await ArticleAPI.post("/sameCategory", {
           article_id: id,
-          numOfArticles: 3
+          numOfArticles: 3,
+          region: region
         })
 
         console.log("data", views.data.data[0])
