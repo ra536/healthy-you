@@ -280,10 +280,7 @@ router.post("/category", async (req, res) => {
   }
 });
 
-
-
-
-
+// Return articles set in the same category. (For current region)
 router.post("/numCategory", async (req, res) => {
   try {
     const name = req.body.category;
@@ -313,7 +310,7 @@ router.post("/numCategory", async (req, res) => {
   }
 });
 
-
+// Return the most recently created articles. (For current region)
 router.post("/latest", async (req, res) => {    //Adding a Region filter for the query 
   try {
     const count = req.body.numOfArticles;
@@ -476,7 +473,7 @@ router.post("/mostViewed", async (req, res) => {
   }
 });
 
-
+// Return the most viewed articles of a particular category. (For current region)
 router.post("/mostViewedCategory", async (req, res) => {
   try {
     const count = req.body.numOfArticles;
@@ -506,7 +503,7 @@ router.post("/mostViewedCategory", async (req, res) => {
   }
 });
 
-
+// Return the latest articles of a particular category. (For current region)
 router.post("/latestCategory", async (req, res) => {
   try {
     const count = req.body.numOfArticles;

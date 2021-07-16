@@ -27,7 +27,10 @@ const BlogSideBar = (props) => {
         // Define a function fetchData that calls APIs which is then called in useEffect
         const fetchData = async () => {
             try {
-                const response = await AdAPI.post("/getAdsBySize", { size: "300x600", region: region });
+                const response = await AdAPI.post("/getAdsBySize", {
+                    size: "300x600",
+                    region: region
+                });
                 setAds(response.data.data);
                 if (typeof (response.data.data[0]) == "object") {
                     setAd1(response.data.data[0]);
@@ -72,7 +75,7 @@ const BlogSideBar = (props) => {
         try {
           if(id == null) id = "Blog"
           history.push({
-            pathname: "/category/" + id + "/",
+            pathname: "/category/" + id + "/" + region + "/",
             search:
               "s=" + 
               filterText +
@@ -117,7 +120,7 @@ const BlogSideBar = (props) => {
             {popular.map((article) => {
                 return (
                     <>
-                    <Link to={"/article/" + article.article_id} style={{ textDecoration: "none", color: "black" }}>
+                    <Link to={"/article/" + article.article_id + "/" + region} style={{ textDecoration: "none", color: "black" }}>
                     <h6>{article.headline}</h6>
                     </Link>
                     <hr />
@@ -130,7 +133,7 @@ const BlogSideBar = (props) => {
             {recent.map((article) => {
                 return (
                     <>
-                    <Link to={"/article/" + article.article_id} style={{ textDecoration: "none", color: "black" }}>
+                    <Link to={"/article/" + article.article_id + "/" + region} style={{ textDecoration: "none", color: "black" }}>
                     <h6>{article.headline}</h6>
                     </Link>
                     <hr />
