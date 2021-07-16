@@ -20,8 +20,9 @@ const HomeSideBar = (props) => {
   const [featuredDoctors, setFeaturedDoctors] = useState([]);
   const [popularArticles, setPopularArticles] = useState([]);
   const [ads, setAds] = useState([]);
-  const [ad1, setAd1] = useState({ ad_image: ad250, type: "250x250", ad_link: "/"});
-  const [ad2, setAd2] = useState({ ad_image: ad250, type: "250x250", ad_link: "/"});
+  const homePath = "/" + region;
+  const [ad1, setAd1] = useState({ ad_image: ad250, type: "250x250", ad_link: homePath});
+  const [ad2, setAd2] = useState({ ad_image: ad250, type: "250x250", ad_link: homePath});
 
   const determineProfile = (doctor) => {
     if (doctor.profile_picture != null){

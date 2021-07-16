@@ -66,7 +66,7 @@ const TopNavBar = (props) => {
       <div style={{ position: "sticky", top: "0", zIndex: "1" }}>
         <Navbar bg="light" variant="light" expand="lg">
           <Navbar.Brand>
-            <Nav.Link href="/">
+            <Nav.Link href={"/" + region}>
               <img style={{ maxWidth:"100%", height: "auto"}} src={hwf_logo} />
             </Nav.Link>
           </Navbar.Brand>

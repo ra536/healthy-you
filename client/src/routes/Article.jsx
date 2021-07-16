@@ -28,7 +28,7 @@ const Article = (props) => {
   const [link, setLink] = useState(null);
 
   // const link =
-  //   "https://healthy-you-project.herokuapp.com/article/87918716-f71f-4548-aea3-ad0496d44c9a";
+  //   "https://healthy-you-project.herokuapp.com/article/87918716-f71f-4548-aea3-ad0496d44c9a/" + region;
   const [sameAuthor, setSameAuthor] = useState([]);
   const [sameCategory, setSameCategory] = useState([]);
 
@@ -74,7 +74,7 @@ const Article = (props) => {
         //   response.data.writer.firstName + " " + response.data.writer.lastName
         // );
         setWriterID(response.data.data[0].writer_id);
-        setLink("https://healthy-you-project.herokuapp.com/article/" + id);
+        setLink("https://healthy-you-project.herokuapp.com/article/" + id + "/" + region);
         console.log(response.data.data[0]);
 
 
@@ -98,10 +98,10 @@ const Article = (props) => {
         <Row>
           <Col xs={12} md={8}>
             <h1>{headline}</h1>
-            Category: <a href={"/category/" + category}>{category}</a>
+            Category: <a href={"/category/" + category + "/" + region}>{category}</a>
             <br />
             <br />
-            <a href={"/writer-profile/" + writerID}>{author}</a> |{" "}
+            <a href={"/writer-profile/" + writerID + "/" + region}>{author}</a> |{" "}
             <Moment format="dddd MMMM Do, YYYY [at] h:mm A">
               {publishDate}
             </Moment>{" "}

@@ -5,9 +5,10 @@ import AdAPI from "../apis/AdAPI";
 
 const AdBreak = (props) => {
   const region = props.currentRegion;
+  const homePath = "/" + region;
   const [ads, setAds] = useState([]);
-  const [ad1, setAd1] = useState({ ad_image: ad728, type: "728x90", ad_link: "/"});
-  const [ad2, setAd2] = useState({ ad_image: ad728, type: "728x90", ad_link: "/"});
+  const [ad1, setAd1] = useState({ ad_image: ad728, type: "728x90", ad_link: homePath});
+  const [ad2, setAd2] = useState({ ad_image: ad728, type: "728x90", ad_link: homePath});
 
   useEffect(() => {
     const fetchData = async () => {

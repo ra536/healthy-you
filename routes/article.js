@@ -245,12 +245,6 @@ router.post("/update", async (req, res) => {
   }
 });
 
-
-
-
-
-
-
 router.post("/category", async (req, res) => {
   try {
     // console.log(req.body);

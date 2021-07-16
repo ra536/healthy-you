@@ -13,13 +13,13 @@ import { useParams } from "react-router-dom";
 
 const BlogSideBar = (props) => {
     const [ads, setAds] = useState([]);
-    const [ad1, setAd1] = useState({ ad_image: ad300, type: "300x600", ad_link: "/" })
     const [popular, setPopular] = useState([]);
     const [recent, setRecent] = useState([]);
     const category = props.category;
     const region = props.currentRegion;
     const [filterText, setFilterText] = useState("");
-    
+    const homePath = "/" + region;
+    const [ad1, setAd1] = useState({ ad_image: ad300, type: "300x600", ad_link: homePath })
     let { id } = useParams();
     const history = useHistory();
 
@@ -106,7 +106,7 @@ const BlogSideBar = (props) => {
 <hr />
                 <Card.Img variant="top" src={newMag} />
                 <div align="center">
-                <Button variant="link" size="md" href="/subscribe">
+                <Button variant="link" size="md" href={"/subscribe/" + region} >
                   Subscribe
                 </Button>
                 <Button variant="link" size="md" href="https://issuu.com/healthwellnessfitness/docs/1-56-compressed">

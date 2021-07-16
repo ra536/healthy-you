@@ -49,10 +49,11 @@ const Results = (props) => {
   const [featuredDoctor, setFeaturedDoctor] = useState("");
   const [featuredDoctors, setFeaturedDoctors] = useState([]);
   const [ads, setAds] = useState([]);
+  const homePath = "/" + region
   const [ad1, setAd1] = useState({
     ad_image: adLong,
     type: "300x600",
-    ad_link: "/",
+    ad_link: homePath,
   });
 
   const history = useHistory();
@@ -289,7 +290,7 @@ const Results = (props) => {
                   <Row>
                     <Col md={4}>
                     <Link
-              to={"/doctor-profile/" + featuredDoctor.doctor_id}
+              to={"/doctor-profile/" + featuredDoctor.doctor_id + "/" + region}
               style={{ textDecoration: "none", color: "black" }}
             >
                       <Image
@@ -305,9 +306,9 @@ const Results = (props) => {
                       <hr />
 
                       <h6>
-                            {featuredDoctor.category.map((category, i) => <><a href={"/results/?practice=&specialty=&location=&category=" + category}>{category}</a> |</>)}{" "}
+                            {featuredDoctor.category.map((category, i) => <><a href={"/results/" + region + "/?practice=&specialty=&location=&category=" + category}>{category}</a> |</>)}{" "}
                             {featuredDoctor.specialty
-                              .map((specialty, i) => <><a href={"/results/?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a> |</>)}{" "}
+                              .map((specialty, i) => <><a href={"/results/" + region + "/?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a> |</>)}{" "}
                           </h6>
                           <h6>
                             {featuredDoctor.practices
@@ -340,7 +341,7 @@ const Results = (props) => {
                       <Row>
                         <Col md={4}>
                         <Link
-                  to={"/doctor-profile/" + results.doctor_id}
+                  to={"/doctor-profile/" + results.doctor_id + "/" + region}
                   style={{ textDecoration: "none", color: "black" }}
                 >
                           <Image
@@ -355,9 +356,9 @@ const Results = (props) => {
                           <h5>{results.doctor_name}</h5>
                           <hr />
                           <h6>
-                            {results.category.map((category, i) => <><a href={"/results/?practice=&specialty=&location=&category=" + category}>{category}</a> |</>)}{" "}
+                            {results.category.map((category, i) => <><a href={"/results/" + region + "/?practice=&specialty=&location=&category=" + category}>{category}</a> |</>)}{" "}
                             {results.specialty
-                              .map((specialty, i) => <><a href={"/results/?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a> |</>)}{" "}
+                              .map((specialty, i) => <><a href={"/results/" + region + "/?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a> |</>)}{" "}
                           </h6>
                           <h6>
                             {results.practices
@@ -401,7 +402,7 @@ const Results = (props) => {
                     <Row>
                       <Col align="center">
                       <Link
-                to={"/doctor-profile/" + featuredDoctor.doctor_id}
+                to={"/doctor-profile/" + featuredDoctor.doctor_id + "/" + region}
                 style={{ textDecoration: "none", color: "black" }}
               >
                        <Image
@@ -413,8 +414,8 @@ const Results = (props) => {
                         <h6>{featuredDoctor.doctor_name}</h6>
                         <hr />
                         <h6>
-                            {featuredDoctor.category?.map((category, i) => <><a href={"/results/?practice=&specialty=&location=&category=" + category}>{category}</a> |</>)}{" "}
-                            {featuredDoctor.specialty?.map((specialty, i) => <><a href={"/results/?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a> |</>)}{" "}
+                            {featuredDoctor.category?.map((category, i) => <><a href={"/results/" + region + "/?practice=&specialty=&location=&category=" + category}>{category}</a> |</>)}{" "}
+                            {featuredDoctor.specialty?.map((specialty, i) => <><a href={"/results/" + region + "/?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a> |</>)}{" "}
                           </h6>
                           <h6>
                             {featuredDoctor.practices
@@ -442,7 +443,7 @@ const Results = (props) => {
               <Button
                 variant="link"
                 size="md"
-                href="/subscribe"
+                href={"/subscribe/" + region}
               >
                 Subscribe
               </Button>
