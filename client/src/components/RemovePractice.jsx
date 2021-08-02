@@ -19,8 +19,6 @@ const RemovePractice = (props) => {
           withCredentials: true,
         }
       );
-      console.log(props.doctorID);
-      console.log(response.data.data);
     } catch (err) {
       console.log(err);
     }

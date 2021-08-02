@@ -30,10 +30,8 @@ const AdminManageDoctors = (props) => {
         const fetchData = async () => {
             try {
                 const response = await DoctorAPI.get("/getAllDoctors");
-                console.log(response.data.data);
                 setUserList(response.data.data);
             } catch (err) {
-                console.log(err);
             }
         };
         fetchData();
@@ -45,7 +43,6 @@ const AdminManageDoctors = (props) => {
     }
 
     const handleClick = (data) => {
-        console.log(data.target.value);
     }
 
     return (

@@ -56,9 +56,7 @@ router.post("/findOne", async (req, res) => {
       },
     });
   } catch (err) {
-    // console.log(req.body);
-    // console.log(err)
-    // console.log("THERE IS AN ERROR!");
+      console.log(err)
   }
 });
 router.get("/getFeatured", async (req,res) => {
@@ -66,7 +64,6 @@ router.get("/getFeatured", async (req,res) => {
     const results = await doctor.findAll({
       raw: true,
     })
-    console.log(results)
     res.status(200).json({
       status: "success",
       data: results,
@@ -80,7 +77,6 @@ router.get("/random", async (req, res) => {
     const randomResults = await doctor.findOne({
       raw: true,
     });
-    console.log(randomResults);
     res.status(200).json({
       status: "success",
       data: randomResults,
@@ -104,7 +100,6 @@ router.post("/addSpecialty", isAuthAndDoctor, async (req, res) => {
         where: { doctor_id: req.body.doctor_id },
       }
     );
-    // console.log(req.body);
     res.status(200).json({
       status: "success",
       data: {
@@ -113,7 +108,7 @@ router.post("/addSpecialty", isAuthAndDoctor, async (req, res) => {
       },
     });
   } catch (err) {
-    // console.log(err);
+      console.log(err);
   }
 });
 
@@ -138,7 +133,7 @@ router.post("/removeSpecialty", isAuthAndDoctor, async (req, res) => {
       },
     });
   } catch (err) {
-    // console.log(err);
+      console.log(err);
   }
 });
 
@@ -148,7 +143,6 @@ router.post("/updateName", isAuthAndDoctor, async (req, res) => {
       { doctor_name: req.body.name },
       { where: { doctor_id: req.body.doctor_id } }
     );
-    // console.log(req.body);
     res.status(200).json({
       status: "success",
       data: {
@@ -157,7 +151,7 @@ router.post("/updateName", isAuthAndDoctor, async (req, res) => {
       },
     });
   } catch (err) {
-    // console.log(err);
+      console.log(err);
   }
 });
 
@@ -167,7 +161,6 @@ router.post("/updatePhone", isAuthAndDoctor, async (req, res) => {
       { phone: req.body.phone },
       { where: { doctor_id: req.body.doctor_id } }
     );
-    // console.log(req.body);
     res.status(200).json({
       status: "success",
       data: {
@@ -176,7 +169,7 @@ router.post("/updatePhone", isAuthAndDoctor, async (req, res) => {
       },
     });
   } catch (err) {
-    // console.log(err);
+      console.log(err);
   }
 });
 
@@ -186,7 +179,6 @@ router.post("/updateBio", isAuthAndDoctor, async (req, res) => {
       { bio: req.body.bio },
       { where: { doctor_id: req.body.doctor_id } }
     );
-    // console.log(req.body);
     res.status(200).json({
       status: "success",
       data: {
@@ -195,7 +187,7 @@ router.post("/updateBio", isAuthAndDoctor, async (req, res) => {
       },
     });
   } catch (err) {
-    // console.log(err);
+      console.log(err);
   }
 });
 
@@ -205,7 +197,6 @@ router.post("/updateProfilePic", isAuthAndDoctor, async (req, res) => {
       { profile_picture: req.body.image },
       { where: { doctor_id: req.body.doctor_id } }
     );
-    // console.log(req.body)
     res.status(200).json({
       status: "success",
       data: {
@@ -214,7 +205,7 @@ router.post("/updateProfilePic", isAuthAndDoctor, async (req, res) => {
       },
     });
   } catch (err) {
-    // console.log(err);
+      console.log(err);
   }
 });
 
@@ -232,7 +223,6 @@ router.post("/addCategory", isAuthAndDoctor, async (req, res) => {
         where: { doctor_id: req.body.doctor_id },
       }
     );
-    // console.log(req.body);
     res.status(200).json({
       status: "success",
       data: {
@@ -241,7 +231,7 @@ router.post("/addCategory", isAuthAndDoctor, async (req, res) => {
       },
     });
   } catch (err) {
-    // console.log(err);
+      console.log(err);
   }
 });
 
@@ -266,7 +256,7 @@ router.post("/removeCategory", isAuthAndDoctor, async (req, res) => {
       },
     });
   } catch (err) {
-    // console.log(err);
+      console.log(err);
   }
 });
 
@@ -285,6 +275,7 @@ router.post("/getDoctorName", async (req, res) => {
       },
     });
   } catch (err) {
+      console.log(err)
   }
 });
 
@@ -299,6 +290,7 @@ router.get("/getAllDoctors", async (req, res) => {
 
     });
   } catch (err) {
+      console.log(err)
   }
 });
 

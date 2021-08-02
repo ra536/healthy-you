@@ -27,6 +27,7 @@ import LatestArticles from "./routes/LatestArticles";
 import ContactUs from "./routes/ContactUs";
 import Subscribe from "./routes/SubscriberForm";
 import AboutUs from "./routes/AboutUs";
+import HomeDefault from "./routes/HomeDefault";
 
 const App = () => {
   const { loggedIn, setLoggedIn, setRole, setId } = useContext(AuthContext);
@@ -38,7 +39,6 @@ const App = () => {
         const response = await LoginAPI.get("/user", {
           withCredentials: true,
         });
-        console.log(response.data.role);
         if (Object.keys(response.data).length > 0) {
           setLoggedIn(true);
           setRole(response.data.role);
@@ -110,7 +110,7 @@ const App = () => {
           <Route path="/contact-us/:region" component={ContactUs} />
           <Route path="/subscribe/:region" component={Subscribe}/>
 		  <Route exact path="/:region" component={Home} />
-		  <Route exact path="/" component={Home} />
+		  <Route exact path="/" component={HomeDefault} />
         </Switch>
       </div>
     </AppContextProvider>

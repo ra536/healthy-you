@@ -34,7 +34,6 @@ const AdminDashboard = (props) => {
   //           withCredentials: true,
   //         }
   //       );
-  //       console.log(response.data.data);
   //       setId(response.data.data.user_id);
   //     } catch (err) {
   //       console.log(err);
@@ -77,6 +76,7 @@ const AdminDashboard = (props) => {
               <Tab eventKey="emails" title="Emails">
                 <ManageEmailsTab />
               </Tab>
+
             </Tabs>
           </div>
         </Container>

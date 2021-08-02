@@ -31,7 +31,6 @@ const ManageFeatured = (props) => {
             const response = await FeaturedAPI.post("/delete", {
                 featured_id: e.target.id,
             });
-            console.log(response.data.data);
             setResults(results.filter((item) => item.featured_id !== e.target.id));
         } catch (err) {
             console.log(err);
@@ -48,8 +47,6 @@ const ManageFeatured = (props) => {
                     }
                 );
                 setResults(response.data.data);
-                console.log("Featured thing");
-                console.log(response.data.data);
             } catch (err) {
                 console.log(err);
             }
@@ -78,15 +75,15 @@ const ManageFeatured = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {results.map((obj) => {
+                    {results.map((obj, index) => {
                         return (
-                            <>
+                            <React.Fragment key={index}>
                                 <tr>
                                     <td>{obj.type}</td>
                                     <td>{obj.item_id}</td>
                                     <td><Button variant="danger" id={obj.featured_id} onClick={handleDelete}>Delete</Button></td>
                                 </tr>
-                            </>
+                            </React.Fragment>
                         );
                     })}
                 </tbody>

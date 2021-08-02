@@ -14,14 +14,14 @@ router.post("/getDoctor", async (req, res) => {
   try {
     const findReview = await review.findByPk(req.body.review_id);
     const doctor_id = findReview.doctor_id;
-    console.log("\n\n\n", doctor_id);
+    //console.log("\n\n\n", doctor_id);
     const findDoctor = await doctor.findByPk(doctor_id);
-    console.log("\n\n\nFOUND!!!");
+    //console.log("\n\n\nFOUND!!!");
     res.status(200).json({
       status: "success",
       data: findDoctor,
     });
-    console.log("SENT!!!");
+    //console.log("SENT!!!");
   } catch (err) {
     //
   }
@@ -109,7 +109,7 @@ router.post("/create", async (req, res) => {
   } catch (err) {
     res.send(err);
   }
-  console.log("Successfully created reviews!");
+  //console.log("Successfully created reviews!");
 });
 
 router.post("/approve", async (req, res) => {
@@ -172,7 +172,7 @@ router.post("/approve", async (req, res) => {
 router.post("/leaveReview", async (req, res) => {
   try {
     const result = await review.findByPk(req.body.review_id);
-    console.log(result);
+    //console.log(result);
     result.name = req.body.name;
     result.full_review = req.body.review;
     result.overall_rating = req.body.overall;
@@ -238,7 +238,7 @@ router.post("/sendInvite", async (req, res) => {
     status: "sent!",
     data: emailResponse,
   });
-  console.log("Successfully emailed review!");
+  //console.log("Successfully emailed review!");
   // console.log(emails.length);
 });
 

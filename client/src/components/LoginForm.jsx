@@ -25,7 +25,6 @@ const LoginForm = (props) => {
       }}
       validationSchema={schema}
       onSubmit={async (data, { setErrors }) => {
-        console.log(data);
         try {
           const response = await LoginAPI.post(
             "/",
@@ -38,7 +37,6 @@ const LoginForm = (props) => {
               withCredentials: true,
             }
           );
-          console.log(response.data);
           if (response.data.status === "success") {
             // alert("You have successfully logged in!");
             if (response.data.user.role === "Doctor") {
@@ -66,7 +64,7 @@ const LoginForm = (props) => {
             }
           }
         } catch (err) {
-          console.log(err);
+          console.log(err)
         }
       }}
     >

@@ -12,30 +12,34 @@ router.post("/getAll", async (req, res) => {
         const adResults = await ad.findAll({
           raw: true,
         });
-        // console.log(appointmentResults);
         res.status(200).json({
           status: "success",
           data: adResults,
         });
       } catch (err) {
-        // console.error(err.message);
+        console.error(err.message);
       }
 });
 
 // Cannot ad region functionality until we insert a section to choose region for ad in admin portal.
 // ADD REGION FUNCTIONALITY
 router.post("/create", async (req, res) => {
-    const newAd = await ad.create({
-        type: req.body.size,
-        ad_link: req.body.link,
-        ad_image: req.body.image,
-        //region: req.body.adRegion,
-    });
-    res.status(200).json({
-        status: "success",
-        data: newAd,
-    })
-})
+    try {
+        const newAd = await ad.create({
+            type: req.body.size,
+            ad_link: req.body.link,
+            ad_image: req.body.image,
+            region: req.body.region,
+            categories: req.body.categories,
+        });
+        res.status(200).json({
+            status: "success",
+            data: newAd,
+        });
+    }   catch (err) {
+        console.error(err.message);
+    }
+});
 
 // No need to add region functionality.
 router.post("/delete", async (req, res) => {
@@ -49,27 +53,35 @@ router.post("/delete", async (req, res) => {
 
 // Chooses appropriate sized ad for page.
 router.post("/getAdsBySize", async (req, res) => {
+    //console.log("INSIDE getAdsBySize");
     try {
-		console.log("INSIDE getAdsBySize")
-        const adResults = await ad.findAll({
-		
+        //console.log("Inside the try of getAdsBySize");
+        //console.log(typeof req.body.region);
+        let region = req.body.region;
+        //console.log(typeof region);
+        //console.log(typeof [region]);
+		const adResults = await ad.findAll({
           where: {
               type: req.body.size,
-              region: {
-                  [Op.contains]: [req.body.region]
-              }
+               region: {
+                  [Op.contains]: [region]
+               }
           },
           raw: true,
         });
-		console.log("adResults")
-		console.log(adResults)
+		//console.log("ADRESULTS");
+		//console.log(adResults);
+		//console.log("adResults")
+		//console.log(adResults)
         // console.log(appointmentResults);
         res.status(200).json({
           status: "success",
           data: adResults,
         });
       } catch (err) {
-        // console.error(err.message);
+        //console.log("Inside the catch of get Ads by Size");
+        console.error(err);
+        console.error(err.message);
       } 
 })
 

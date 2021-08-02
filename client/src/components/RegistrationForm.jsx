@@ -40,7 +40,6 @@ const RegistrationForm = () => {
       }}
       validationSchema={schema}
       onSubmit={async (data, { setErrors }) => {
-        // console.log(data);
         try {
           const response = await RegisterAPI.post("/", {
             password: data.password,
@@ -52,7 +51,6 @@ const RegistrationForm = () => {
             birthdate: data.birthdate,
             inviteCode: data.inviteCode,
           });
-          console.log(response.data);
           if (response.data.status === "success") {
             // alert("Account successfully created!");
             try {
@@ -95,10 +93,8 @@ const RegistrationForm = () => {
           } else {
             if (response.data.target === "email") {
               setErrors({ email: response.data.status[0].message });
-              console.log(response.data.status[0].message);
             } else {
               setErrors({ inviteCode: response.data.status });
-              console.log(response.data.target);
             }
           }
         } catch (err) {

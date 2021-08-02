@@ -29,10 +29,8 @@ const AdminManageWriters = (props) => {
         const fetchData = async () => {
             try {
                 const response = await WriterAPI.get("/getAllWriters");
-                console.log(response.data.data);
                 setUserList(response.data.data);
             } catch (err) {
-                console.log(err);
             }
         };
         fetchData();

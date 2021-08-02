@@ -16,8 +16,6 @@ const LatestArticles = () => {
             try {
 				
 				// Display the parameters gathered in the url.
-				console.log(count);
-				console.log(region);
 				
                 const response = await ArticleAPI.post("/latest",{
                     numOfArticles: count,

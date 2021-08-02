@@ -21,7 +21,6 @@ const InputNewDoc = () => {
         profilePic: profilePic,
         bio: bio,
       });
-      console.log(response.data.data);
     } catch (err) {
       console.log(err);
     }

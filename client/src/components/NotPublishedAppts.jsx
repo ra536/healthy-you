@@ -13,7 +13,6 @@ const NotPublishedAppts = (props) => {
                     doctor_id: props.doctorID,
                     status: ["Unpublished"]
                 }));
-                // console.log(response.data.data);
                 setUnsavedAppts(response.data.data);
             }
             catch (err) {
@@ -24,20 +23,17 @@ const NotPublishedAppts = (props) => {
     }, [props]);
 
     const onClickSaveAll = async () => {
-        console.log(unSavedAppts)
         const response = await AppointmentAPI.put("/saveAllAppts", {
             doctor_id: props.doctorID
         },
         {
           withCredentials: true,
         })
-        console.log(response.data.data);
         props.newAppt(unSavedAppts)
         setUnsavedAppts([]);
     }
 
     const onClickSave = async (data) => {
-        console.log(data.appointment_id);
         const response = await AppointmentAPI.put("/saveOneAppt", {
             doctor_id: props.doctorID,
             appointment_id: data.appointment_id
@@ -45,13 +41,11 @@ const NotPublishedAppts = (props) => {
         {
           withCredentials: true,
         })
-        console.log(response.data.data);
         props.newAppt(data)
         setUnsavedAppts(unSavedAppts.filter(item => item.appointment_id !== data.appointment_id))
     }
 
     const onClickRemove = async (id) => {
-        console.log(id)
         try {
             const response = await AppointmentAPI.post("/cancelAppt", {
                 doctor_id: props.doctorID,
@@ -60,7 +54,6 @@ const NotPublishedAppts = (props) => {
             {
               withCredentials: true,
             });
-            console.log(response.data.data)
             setUnsavedAppts(unSavedAppts.filter(item => item.appointment_id !== id))
         }
         catch (err) {

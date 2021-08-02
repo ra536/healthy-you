@@ -10,7 +10,7 @@ const Registration = () => {
     let { region } = useParams();
   const { loggedIn } = useContext(AuthContext);
   return loggedIn === true ? (
-    <Redirect to="/" />
+    <Redirect to={"/" + region} />
   ) : (
     <div>
       <TopNavBar currentRegion={region}/>

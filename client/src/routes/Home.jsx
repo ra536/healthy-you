@@ -20,7 +20,6 @@ import Footer from "../components/Footer";
 
 const Home = () => {   ///// Look up how to set parameter default
   let { region } = useParams(); //Redirect to default if region is null
-  console.log(region);
   // Store the data retrieved from backend API into context
   const { loggedIn, role } = useContext(AuthContext);
   //const { featuredArticles, setFeaturedArticles } = useContext(ArticleContext);
@@ -42,7 +41,6 @@ const Home = () => {   ///// Look up how to set parameter default
     const fetchData = async () => {
       try {
         const response = await ArticleAPI.get("/random");
-        console.log(response.data.data);
         setFeaturedArticle(response.data.data);
         setFeaturedAuthor(
           response.data.writer.firstName + " " + response.data.writer.lastName
@@ -50,10 +48,8 @@ const Home = () => {   ///// Look up how to set parameter default
       } catch (err) {
         console.log(err);
       }
-      console.log(food_pic);
       try {
         const response = await ArticleAPI.get("/random");
-        console.log(response.data.data);
         setFeaturedArticle2(response.data.data);
         setFeaturedAuthor2(
           response.data.writer.firstName + " " + response.data.writer.lastName
@@ -63,7 +59,6 @@ const Home = () => {   ///// Look up how to set parameter default
       }
       try {
         const response = await ArticleAPI.get("/random");
-        console.log(response.data.data);
         setFeaturedArticle3(response.data.data);
         setFeaturedAuthor3(
           response.data.writer.firstName + " " + response.data.writer.lastName
@@ -76,7 +71,6 @@ const Home = () => {   ///// Look up how to set parameter default
           numOfArticles: 8,
           currentRegion: region
         });
-        console.log(response.data.data);
         setLatestArticles(response.data.data);
       } catch (err) {
         console.log(err);
@@ -86,7 +80,6 @@ const Home = () => {   ///// Look up how to set parameter default
         const response = await FeaturedAPI.post("/findFeaturedArticles", {
 
         });
-        console.log(response.data.data);
         setFeaturedArticles(response.data.data);
       } catch (err) {
         console.log(err);
@@ -97,16 +90,12 @@ const Home = () => {   ///// Look up how to set parameter default
           numOfArticles: 3,
           region: region,
         });
-        console.log(response.data.data);
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
   }, []);
-
-  console.log("am I logged in?", loggedIn);
-  console.log("what's my role?", role);
 
   return (
     <div>
@@ -127,10 +116,9 @@ const Home = () => {   ///// Look up how to set parameter default
             indicators={false}
             style={{ width: "80%", display: "inline-block" }}
           >
-            {featuredArticles.map((article) => {
-              console.log(article);
+            {featuredArticles.map((article, index) => {
               return (
-                <Carousel.Item>
+                <Carousel.Item key={index}>
                   <Link to={"/article/" + article.article_id + "/" + region}
                     style={{ textDecoration: "none", color: "black" }}>
                     <img src={article.image_data} width="100%" />
@@ -159,9 +147,9 @@ const Home = () => {   ///// Look up how to set parameter default
                 <h2>The Latest</h2>
               </div>
 
-              {latestArticles.map((article) => {
+              {latestArticles.map((article, index) => {
                 return (
-                  <>
+                  <React.Fragment key={index}>
                     <Container>
                       <Row>
                         <ArticleComponent
@@ -172,7 +160,7 @@ const Home = () => {   ///// Look up how to set parameter default
                       </Row>
                     </Container>
                     <hr />
-                  </>
+                  </React.Fragment>
                 );
               })}
               <Button variant="link" href={"/latestArticles/100/" + region} block>See More</Button>

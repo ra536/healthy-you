@@ -22,7 +22,6 @@ const InputNewArticle = (props) => {
   //     formData.append('name', 'test');
   //     axios.post('http://localhost:8080/upload', formData
   //     ).then(res => {
-  //         console.log(res);
   //         // getFile({ name: res.data.name,
   //         //          path: 'http://localhost:8080' + res.data.path
   //         //        })
@@ -41,8 +40,6 @@ const InputNewArticle = (props) => {
         image.src = this.result;
         document.getElementById("input-file").appendChild(image);
         setImage(this.result);
-        console.log(this.result);
-        console.log(typeof this.result);
       },
       false
     );
@@ -80,8 +77,6 @@ const InputNewArticle = (props) => {
       // const fileUpload = await ArticleAPI.post("/upload", {
       //     image: image
       // })
-      // console.log(fileUpload.data.data);
-
       // const formData = new FormData();
       // formData.append("caption", caption);
       // formData.append("image", image);
@@ -90,11 +85,6 @@ const InputNewArticle = (props) => {
       // submitForm("multipart/form-data", formData, (msg) => console.log(msg));
 
       // uploadFile();
-      console.log(file);
-      console.log(file.name);
-      console.log(image);
-      console.log("WRITER ID");
-      console.log(props.id);
 
       const response = await ArticleAPI.post("/create", {
         headline: headline,
@@ -106,7 +96,6 @@ const InputNewArticle = (props) => {
         writer_id: props.id,
         // doctorID: props.doctorID
       });
-      console.log(response.data.data);
       addArticle(response.data.data);
     } catch (err) {
       console.log(err);

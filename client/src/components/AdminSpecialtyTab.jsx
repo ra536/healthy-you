@@ -16,7 +16,6 @@ const AdminSpecialtyTab = (props) => {
         const fetchData = async () => {
             try {
                 const response = await SpecialtyAPI.get("/findAll");
-                // console.log(response.data.data);
                 setAllSpecialties(response.data.data);
             } catch (err) {
                 console.log(err);

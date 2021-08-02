@@ -31,8 +31,6 @@ export const InsertArticleModal = (props) => {
         image.src = this.result;
         document.getElementById("input-file").appendChild(image);
         setImage(this.result);
-        console.log(this.result);
-        console.log(typeof this.result);
       },
       false
     );
@@ -44,12 +42,6 @@ export const InsertArticleModal = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(file);
-      console.log(file.name);
-      console.log(image);
-      console.log("WRITER ID");
-      console.log(props.id);
-
       const response = await ArticleAPI.post("/create", {
         headline: headline,
         category: category,
@@ -60,7 +52,6 @@ export const InsertArticleModal = (props) => {
         writer_id: props.id,
         // doctorID: props.doctorID
       });
-      console.log(response.data.data);
       addArticle(response.data.data);
     } catch (err) {
       console.log(err);
@@ -74,7 +65,7 @@ export const InsertArticleModal = (props) => {
 
     setArticleInsertShow(false);
 
-    console.log(document.getElementById("input-file").files[0]);
+    //console.log(document.getElementById("input-file").files[0]);
   };
 
   const handleClose = () => {

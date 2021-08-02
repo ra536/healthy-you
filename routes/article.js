@@ -60,8 +60,6 @@ router.get("/random", async (req, res) => {
       raw: true,
     });
     const writerResult = await writer.findByPk(randomResults.writer_id);
-    console.log(randomResults);
-    console.log(writerResult);
     res.status(200).json({
       status: "success",
       data: randomResults,
@@ -75,7 +73,6 @@ router.get("/random", async (req, res) => {
 
 router.post("/find", async (req, res) => {
   try {
-    console.log(req.body.article_id); // TODO - Why is this undefined???
     const testResults = await articles.findAll({
       where: {
         article_id: req.body.article_id,
@@ -84,7 +81,6 @@ router.post("/find", async (req, res) => {
     });
     
     const writerResult = await writer.findByPk(testResults[0].writer_id);
-    console.log("writer results", writerResult);
     
     res.status(200).json({
       status: "success",
@@ -123,7 +119,6 @@ const storage = multer.diskStorage({
     cb(null, "./uploads/");
   },
   filename: (req, file, cb) => {
-    console.log(file);
     cb(null, Date.now() + path.extname(file.originalname));
   },
 });
@@ -140,8 +135,6 @@ const upload = multer({ storage, fileFilter });
 
 router.post("/upload", upload.single("input-file"), (req, res) => {
   try {
-    console.log(req.body.image);
-    console.log("Run upload");
     res.status(201).json({
       status: "success",
       message: "File uploaded successfully",
@@ -154,7 +147,6 @@ router.post("/upload", upload.single("input-file"), (req, res) => {
 router
   .route("/uploadmulter")
   .post(upload.single("image_link"), (req, res, next) => {
-    console.log(req.body);
   });
 
 
@@ -172,7 +164,6 @@ router.post("/create", async (req, res) => {
         image_caption: req.body.caption,
         writer_id: req.body.writer_id,
       });
-      console.log(article.dataValues);
       res.status(201).json({
         status: "success",
         data: {
@@ -202,7 +193,6 @@ router.post("/delete", async (req, res) => {
           article_id: req.body.article_id,
         },
       });
-      console.log(article.dataValues);
       res.status(201).json({
         status: "success",
       });
@@ -216,8 +206,6 @@ router.post("/update", async (req, res) => {
   try {
     if (req.body.headline != "") {
       const article = await articles.findByPk(req.body.article_id);
-      console.log(req.body.headline);
-      console.log(article);
       article.headline = req.body.headline;
       article.category = req.body.category;
       article.summary = req.body.summary;
@@ -247,7 +235,6 @@ router.post("/update", async (req, res) => {
 
 router.post("/category", async (req, res) => {
   try {
-    // console.log(req.body);
     const articleResults = await articles.findAll({
       where: {
         category: req.body.category,
@@ -263,7 +250,6 @@ router.post("/category", async (req, res) => {
       raw: true,
     });
 
-    console.log(articleResults);
 
     res.status(200).json({
       status: "success",
@@ -280,7 +266,6 @@ router.post("/numCategory", async (req, res) => {
     const name = req.body.category;
     const articleRegion = req.body.currentRegion;
     const num = req.body.num;
-    console.log(req.body);
 
     const articleResults = await articles.findAll({
       where: {
@@ -293,7 +278,6 @@ router.post("/numCategory", async (req, res) => {
       raw: true,
     });
 
-    console.log(articleResults);
 
     res.status(200).json({
       status: "success",
@@ -340,7 +324,6 @@ router.post("/author", async (req, res) => {
     const id = req.body.article_id;
     const count = req.body.numOfArticles;
     const articleRegion = req.body.region;
-    console.log(req.body);
 
     const results = await articles.findOne({
       where: {
@@ -364,7 +347,6 @@ router.post("/author", async (req, res) => {
       limit: count,
     })
 
-    console.log(articleResults)
 
     res.status(200).json({
       status: "success",
@@ -381,7 +363,6 @@ router.post("/sameCategory", async (req, res) => {
     const id = req.body.article_id;
     const count = req.body.numOfArticles;
     const articleRegion = req.body.region;
-    console.log(req.body);
 
     const results = await articles.findOne({
       where: {
@@ -404,8 +385,7 @@ router.post("/sameCategory", async (req, res) => {
       },
       limit: count,
     })
-    
-    console.log(articleResults)
+
 
     res.status(200).json({
       status: "success",
@@ -420,11 +400,9 @@ router.post("/sameCategory", async (req, res) => {
 router.post("/pageView", async (req, res) => {
   try {
     const id = req.body.id;
-    console.log(req.body);
 
     const articleResults = await articles.findByPk(req.body.id);
 
-    console.log(articleResults);
     articleResults.page_views += 1
     await articleResults.save();
 
@@ -444,7 +422,6 @@ router.post("/mostViewed", async (req, res) => {
   try {
     const count = req.body.numOfArticles;
     const articleRegion = req.body.region;
-    console.log(req.body);
     const articleResults = await articles.findAll({
       where: {
         region: {
@@ -456,7 +433,6 @@ router.post("/mostViewed", async (req, res) => {
       ],
       limit: count,
     });
-    console.log("most viewed articles:", articleResults)
 
     res.status(200).json({
       status: "success",
@@ -473,7 +449,6 @@ router.post("/mostViewedCategory", async (req, res) => {
     const count = req.body.numOfArticles;
     const category = req.body.category;
     const articleRegion = req.body.region;
-    console.log(req.body);
     const articleResults = await articles.findAll({
       where: {
         category: category,
@@ -486,7 +461,6 @@ router.post("/mostViewedCategory", async (req, res) => {
       ],
       limit: count,
     });
-    console.log("most viewed articles:", articleResults)
 
     res.status(200).json({
       status: "success",
@@ -535,7 +509,6 @@ router.post("/latestCategory", async (req, res) => {
 //             test_id: req.body.test_id,
 //             content: req.body.content,
 //         })
-//         console.log(tests.dataValues)
 //         res.status(201).json({
 //             status: "success",
 //             data: {
@@ -560,7 +533,6 @@ router.post("/latestCategory", async (req, res) => {
 //                 image: req.body.image,
 //                 caption: req.body.caption
 //             });
-//             console.log(article.dataValues)
 //             res.status(201).json({
 //                 status: "success",
 //                 data: {

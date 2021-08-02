@@ -99,14 +99,10 @@ const Category = (props) => {
   }, [props.location.search]);
 
   // const getAuthorName = async (writer_id) => {
-  //     console.log("RUNNING AUTHOR");
-  //     console.log(writer_id)
   //     try {
   //         const response = await ArticleAPI.post("/find", {
   //             writer_id: writer_id
   //         })
-
-  //         console.log("response:", response.data.data)
   //         setArticles(response.data.data)
 
   //     } catch (error) {

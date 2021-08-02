@@ -53,7 +53,6 @@ const HomeSideBar = (props) => {
     const fetchData = async () => {
       try {
         const response = await FeaturedAPI.post("/findFeaturedDoctorsPractices", {});
-        console.log(response.data.data)
         setFeaturedDoctors(response.data.data);
       } catch (err) {
         console.log(err);
@@ -63,13 +62,13 @@ const HomeSideBar = (props) => {
           region: region,
           numOfArticles: 3,
         });
-        console.log(response.data.data);
         setPopularArticles(response.data.data);
       } catch (err) {
         console.log(err);
       }
       try {
-        const response = await AdAPI.post("/getAdsBySize", { size: "250x250", region: region});
+        const response = await AdAPI.post("/getAdsBySize", { size: "250x250", region: region });
+        console.log(response);
         setAds(response.data.data);
         if(typeof(response.data.data[0]) == "object"){
           setAd1(response.data.data[0]);
@@ -77,8 +76,6 @@ const HomeSideBar = (props) => {
         if(typeof(response.data.data[1]) == "object"){
           setAd2(response.data.data[1]);
         }
-        console.log(response.data.data);
-        console.log(response.data.data[0].ad_image);
       } catch (err) {
         console.log(err);
       }
@@ -127,14 +124,14 @@ const HomeSideBar = (props) => {
           </div>
           <hr />
           <ul className="list-unstyled">
-            {popularArticles.map((article) => {
+            {popularArticles.map((article, index) => {
               return (
-                <>
+                <React.Fragment key={index}>
                 <Link to={"/article/" + article.article_id + "/" + region} style={{ textDecoration: "none", color: "black" }}>
                 <h6>{article.headline}</h6>
                 </Link>
                 <hr />
-                </>
+                </React.Fragment>
               );
             })}
           </ul> 
@@ -145,9 +142,9 @@ const HomeSideBar = (props) => {
           <h3>Featured Doctors</h3>
           </div>
           <hr />
-          {featuredDoctors.map((featuredDoctor) => {
+          {featuredDoctors.map((featuredDoctor, index) => {
               return (
-                <Container>
+                <Container key={index} >
                   <Row>
                     <Col md={4}>
                     <Link
@@ -166,13 +163,13 @@ const HomeSideBar = (props) => {
                       <hr />
 
                       <h6>
-                            {featuredDoctor.category.map((category, i) => <><a href={"/results/" + region + "/?practice=&specialty=&location=&category=" + category}>{category}</a> |</>)}{" "}
+                            {featuredDoctor.category.map((category, index) => <React.Fragment key={index}><a href={"/results/" + region + "/?practice=&specialty=&location=&category=" + category}>{category}</a> |</React.Fragment>)}{" "}
                             {featuredDoctor.specialty
-                              .map((specialty, i) => <><a href={"/results/" + region + "?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a> |</>)}{" "}
+                              .map((specialty, index) => <React.Fragment key={index}><a href={"/results/" + region + "?practice=&specialty=" + specialty + "&location=&category="}>{specialty}</a> |</React.Fragment>)}{" "}
                           </h6>
                           <h6>
                             {featuredDoctor.practices
-                              .map((practices, i) => `${practices.name} - ${practices.location}`)
+                              .map((practices) => `${practices.name} - ${practices.location}`)
                               .join(", ")}{" "}
                           </h6>
                     </Col>

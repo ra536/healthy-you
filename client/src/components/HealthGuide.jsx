@@ -19,7 +19,6 @@ const HealthGuide = (props) => {
     const fetchData = async () => {
       try {
         const response = await CategoryAPI.get("/findAll");
-        console.log(response.data.data)
         setCategories(response.data.data);
       } catch (err) {
         console.log(err);
@@ -87,20 +86,20 @@ const HealthGuide = (props) => {
       <Container>
         <Row>
       <Col align="right">
-    {categories.filter((word, index) => (index + 1) % 2).map((category) => {
+    {categories.filter((word, index) => (index + 1) % 2).map((category, index) => {
       return (
-        <>
+        <React.Fragment key={index}>
         <Button href={"/results/"+region+"/?practice=&doctor=&specialty=&category="+category.category+"&location=&rating="} variant="success">{category.category}</Button><br /><br />
-        </>
+        </React.Fragment>
       );
     })}
     </Col>
     <Col>
-    {categories.filter((word, index) => (index) % 2).map((category) => {
+    {categories.filter((word, index) => (index) % 2).map((category, index) => {
       return (
-        <>
+        <React.Fragment key={index}>
         <Button href={"/results/"+region+"/?practice=&doctor=&specialty=&category="+category.category+"&location=&rating="} variant="success">{category.category}</Button><br /><br />
-        </>
+        </React.Fragment>
       );
     })}
     </Col>

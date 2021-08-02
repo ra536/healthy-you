@@ -52,7 +52,6 @@ const ManageCategoryImages = (props) => {
             const response = await ImageAPI.post("/delete", {
                 image_id: e.target.id,
             });
-            console.log(response.data.data);
             setResults(results.filter((item) => item.image_id !== e.target.id));
         } catch (err) {
             console.log(err);

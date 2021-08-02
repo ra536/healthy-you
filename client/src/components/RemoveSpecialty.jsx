@@ -23,7 +23,6 @@ const RemoveSpecialty = (props) => {
             withCredentials: true,
           }
         );
-        //console.log(response.data.data[0].specialty[0])
         setSpecialties(response.data.data[0].specialty);
         setSpecialty(response.data.data[0].specialty[0]);
       } catch (err) {
@@ -53,7 +52,6 @@ const RemoveSpecialty = (props) => {
         }
       );
       //addTest(response.data.data)
-      console.log(response.data.status);
       removeSpecialty(response.data.data.specialty);
     } catch (err) {
       console.log(err);
