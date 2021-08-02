@@ -18,8 +18,8 @@ import food_pic2 from "./food_pic_front.jpg";
 import { Link, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 
-const Home = () => {   ///// Look up how to set parameter default
-    let region = "jersey"; //Redirect to default if region is null
+const Home = () => {   
+    let region = "Essex County"; //Redirect to default if region is null
     console.log(region);
     // Store the data retrieved from backend API into context
     const { loggedIn, role } = useContext(AuthContext);
