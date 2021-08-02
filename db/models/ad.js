@@ -19,6 +19,12 @@ const ad = db.define(
     type: {
         type: DataTypes.STRING,
     },
+    region: {
+        type: DataTypes.ARRAY(DataTypes.TEXT),
+    },
+    categories: {
+        type: DataTypes.ARRAY(DataTypes.TEXT),
+    },
   },
   { underscored: true }
 );

@@ -44,7 +44,6 @@ const Subscribe = () =>{
 
                     else{
                         setErrors({ email: response.data.status[0].message });
-                        console.log(response.data.status[0].message);
                     }
                 } catch (error) {
                     console.log(error)

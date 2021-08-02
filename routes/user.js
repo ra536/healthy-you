@@ -77,7 +77,7 @@ router.post("/getUser", async (req, res) => {
       },
       raw: true,
     });
-    console.log(getUser);
+    //console.log(getUser);
     res.status(200).json({
       status: "success",
       data: getUser,
@@ -95,7 +95,7 @@ router.get("/getAllUsers", async (req, res) => {
       },
       raw: true,
     });
-    console.log(getAllUsers);
+    //console.log(getAllUsers);
     res.status(200).json({
       status: "success",
       data: getAllUsers,

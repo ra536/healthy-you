@@ -31,8 +31,6 @@ const InputNewPractice = (props) => {
           withCredentials: true,
         }
       );
-      console.log(props.doctorID);
-      console.log(response.data.data);
       addPractice(response.data.data);
     } catch (err) {
       console.log(err);

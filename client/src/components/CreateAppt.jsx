@@ -22,7 +22,6 @@ const CreateAppt = (props) => {
                         doctor_id: props.doctorID,
                     }
                 );
-                console.log(response.data.data);
                 setAllPractices(response.data.data);
             } catch (err) {
                 console.log(err);

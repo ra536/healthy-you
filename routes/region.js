@@ -1,12 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const regions = require("../db/models/regions");
+const region = require("../db/models/region");
 
 router.use(express.json());
 
 router.get("/findAll", async (req, res) => {
   try {
-    const regionsResult = await regions.findAll({
+      //console.log("WITHIN REGION API")
+    const regionsResult = await region.findAll({
       raw: true,
       order: [
         ['name', 'DESC']

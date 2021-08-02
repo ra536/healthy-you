@@ -6,19 +6,16 @@ import AdAPI from "../apis/AdAPI";
 const AdBreak = (props) => {
   const region = props.currentRegion;
   const homePath = "/" + region;
-  const [ads, setAds] = useState([]);
+  //const [ads, setAds] = useState([]);
   const [ad1, setAd1] = useState({ ad_image: ad728, type: "728x90", ad_link: homePath});
   const [ad2, setAd2] = useState({ ad_image: ad728, type: "728x90", ad_link: homePath});
 
   useEffect(() => {
     const fetchData = async () => {
 try {
-        const response = await AdAPI.post("/getAdsBySize", { size: "728x90", region: region});
-        console.log(response.data.data);
-        setAds(response.data.data);
+        const response = await AdAPI.post("/getAdsBySize", { size: "728x90", region: region });
+        //setAds(response.data.data);
 
-        console.log(response.data.data[0]);
-        console.log(response.data.data[1]);
         if(typeof(response.data.data[0]) == "object"){
           setAd1(response.data.data[0]);
         }
@@ -31,9 +28,9 @@ try {
       }
     };
     fetchData();
-  }, [])
+  }, [region])
 
-  if(props.number == 2){
+  if(props.number === 2){
     return (
       <>
       <br />

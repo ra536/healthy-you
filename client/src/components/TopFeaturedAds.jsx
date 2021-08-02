@@ -11,13 +11,27 @@ const TopFeaturedAds = (props) => {
   const homePath = "/" + region;
   const [ads, setAds] = useState([{ ad_image: ad1000, type: "1000x300", ad_link: homePath}]);
 
-  // Call API to retreieve 1000x300 ad info and store in array.
+  // Call API to retrieve 1000x300 ad info and store in array.
+
   useEffect(() => {
-    AdAPI.post('/getAdsBySize', { size: '1000x300', region: region })
-		.then(response => setAds(response.data.data))
+    console.log("In The UseEffect");
+    try {
+        AdAPI.post('/getAdsBySize', { size: "1000x300", region: region })
+            .then(response => {
+                setAds(response.data.data);
+                console.log("INSIDE GET ADS BY SIZE CALL");
+            })
+
+    } catch (err) {
+        console.log("IDONT KNOW WHATISHAPPENING");
+        console.log(err);
+    }
+
+
+    console.log("After getAdsBySize");
   }, []);
   
-  // Display advertisments using a carousel.
+  // Display advertisements using a carousel.
   return (
     <>	
 		<Carousel fade>

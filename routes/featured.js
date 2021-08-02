@@ -38,7 +38,7 @@ router.post("/findFeaturedDoctors", async (req, res) => {
     //     const newDoctor = await doctors.findByPk(obj.item_id);
     //     doctorArray.push(newDoctor.data.data);
     // })
-    console.log(doctorArray);
+    //console.log(doctorArray);
     res.status(200).json({
         status: "success",
         data: doctorArray,
@@ -73,7 +73,7 @@ router.post("/findFeaturedDoctorsPractices", async (req, res) => {
     //     const newDoctor = await doctors.findByPk(obj.item_id);
     //     doctorArray.push(newDoctor.data.data);
     // })
-    console.log(doctorArray);
+    //console.log(doctorArray);
     res.status(200).json({
         status: "success",
         data: doctorArray,
@@ -97,7 +97,7 @@ router.post("/findFeaturedArticles", async (req, res) => {
     //     const newDoctor = await doctors.findByPk(obj.item_id);
     //     doctorArray.push(newDoctor.data.data);
     // })
-    console.log(articleArray);
+    //console.log(articleArray);
     res.status(200).json({
         status: "success",
         data: articleArray,

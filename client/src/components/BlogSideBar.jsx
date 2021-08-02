@@ -35,8 +35,6 @@ const BlogSideBar = (props) => {
                 if (typeof (response.data.data[0]) == "object") {
                     setAd1(response.data.data[0]);
                 }
-                console.log(response.data.data);
-                //console.log(response.data.data[0].ad_image);
             } catch (err) {
                 console.log(err);
             }

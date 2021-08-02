@@ -25,7 +25,6 @@ const ApptInfo = (props) => {
                 }));
                 setPracticeInfo(practiceResponse.data.data);
                 setApptInfo(response.data.data);
-                console.log(response.data.data);
                 if(response.data.data[0].status === "Booked"){
                     const userResponse = await (UserAPI.post("/getUser", {
                         user_id: response.data.data[0].user_id
@@ -47,7 +46,6 @@ const ApptInfo = (props) => {
     }, [props.apptID]);
 
     const onClickCancel = async (e) => {
-        console.log(e);
         props.onCancel(e);
         try {
             const response = await (AppointmentAPI.post("/cancelAppt", {
@@ -56,7 +54,6 @@ const ApptInfo = (props) => {
             {
               withCredentials: true,
             }));
-            console.log(response.data.data);
             if (response.data.data === 1) {
                 setApptInfo([]);
             }

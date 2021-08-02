@@ -122,7 +122,6 @@ const DoctorProfile = (props) => {
             withCredentials: false,
           }
         );
-        // console.log(response.data.data);
         setName(response.data.data.doctor_name);
         setCityState(response.data.data.city + ", " + response.data.data.state);
         setSpecialties(response.data.data.specialty);
@@ -149,7 +148,6 @@ const DoctorProfile = (props) => {
             withCredentials: false,
           }
         );
-        console.log(practiceResponse.data.data);
         setLocations(practiceResponse.data.data);
       } catch (err) {
         console.log(err);
@@ -164,7 +162,6 @@ const DoctorProfile = (props) => {
             withCredentials: false,
           }
         );
-        console.log(allReviews.data.data);
         setReviews(allReviews.data.data);
       } catch (err){
         console.log(err);

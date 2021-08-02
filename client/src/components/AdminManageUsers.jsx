@@ -30,7 +30,6 @@ const AdminManageUsers = (props) => {
         const fetchData = async () => {
             try {
                 const response = await UserAPI.get("/getAllUsers");
-                console.log(response.data.data);
                 setUserList(response.data.data);
             } catch (err) {
                 console.log(err);
@@ -62,7 +61,7 @@ const AdminManageUsers = (props) => {
                 <tbody>
                     {userList.map((userList, index) => {
                         return (
-                            <>
+                            <React.Fragment key={index}>
                                 <tr key={index} onClick={event => handleExpandRow(event, index)}>
                                     <td>{index}</td>
                                     <td>{userList.firstName}</td>
@@ -90,7 +89,7 @@ const AdminManageUsers = (props) => {
                                             </tr> : null
                                     }
                                 </>
-                            </>
+                            </React.Fragment>
                         );
                     })}
                 </tbody>

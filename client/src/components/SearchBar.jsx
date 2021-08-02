@@ -37,8 +37,6 @@ const SearchBar = () => {
       try {
         const response = await SpecialtyAPI.get("/findAll");
         const categoryResponse = await CategoryAPI.get("/findAll");
-        // console.log(response);
-        // console.log(categoryResponse.data.data)
         setCategories(categoryResponse.data.data);
         setAllSpecialties(response.data.data);
         setSpecialty("");
@@ -51,7 +49,6 @@ const SearchBar = () => {
 
   const handleChange = (e) => {
     setSpecialty(e.target.value);
-    console.log(e.target.value);
     e.preventDefault();
   };
 
@@ -65,8 +62,7 @@ const SearchBar = () => {
     var temp = [];
     var index = 0;
     for(var i = 0; i < allSpecialties.length; i++){
-      if(allSpecialties[i].category == data){
-        // console.log(allSpecialties[i].specialty)
+      if(allSpecialties[i].category === data){
         temp[index] = allSpecialties[i].specialty
         index += 1;
       }
@@ -122,7 +118,7 @@ const SearchBar = () => {
             </Form.Control>
           </Form.Group>
 
-          {category == "Doctor" || category == "Dentist" || category == "Eye Care" ?
+          {category === "Doctor" || category === "Dentist" || category === "Eye Care" ?
             <Form.Group >
               <Form.Label>Specialty</Form.Label>
               <Form.Control

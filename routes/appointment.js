@@ -75,7 +75,6 @@ router.post("/createAppt", isAuthAndDoctor, async (req, res) => {
         },
       }
     })
-    console.log(checkIfExists)
     if (checkIfExists == 0) {
       const appts = await appointment.create(
         {
@@ -217,7 +216,7 @@ router.put("/saveOneAppt", isAuthAndDoctor, async (req, res) => {
 });
 
 router.put("/bookAppt", async (req, res) => {
-  console.log("INSIDE BOOKAPPT\n\n\n\n\n\n");
+  //console.log("INSIDE BOOKAPPT\n\n\n\n\n\n");
   try {
     const appointmentResults = appointment.update({
       status: "Booked",
@@ -244,9 +243,9 @@ router.put("/bookAppt", async (req, res) => {
         },
       });
     });
-    console.log("\n\n\n\n\n\n\n\n\n\n\n\n");
-    console.log("APPT BOOKED");
-    console.log(appointmentResults);
+    //console.log("\n\n\n\n\n\n\n\n\n\n\n\n");
+    //console.log("APPT BOOKED");
+    //console.log(appointmentResults);
   } catch (err) {
     console.log(err);
   }

@@ -18,7 +18,7 @@ router.get("/findAll", async (req, res) => {
       data: categoriesRes,
     });
   } catch (err) {
-    // console.error(err.message);
+      console.log(err.message);
   }
 });
 

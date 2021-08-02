@@ -17,7 +17,6 @@ const TopNavBar = (props) => {
       const response = await LoginAPI.get("/logout", {
         withCredentials: true,
       });
-      console.log(response);
       setLoggedIn(false);
       setRole(null);
       setId(null);

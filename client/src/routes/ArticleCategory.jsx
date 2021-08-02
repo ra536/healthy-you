@@ -20,8 +20,6 @@ const ArticleCategory = () => {
                     numOfArticles: count,
                     region: region
                 });
-                
-                console.log("response:", response.data.data);
 
                 setArticles(response.data.data);
                 

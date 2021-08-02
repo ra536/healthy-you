@@ -108,13 +108,13 @@ const SendReviewLinks = (props) => {
           <option value="" selected="selected">
             {" "}
           </option>
-          {allDoctors.map((doctor) => {
+          {allDoctors.map((doctor, index) => {
             return (
-              <>
+              <React.Fragment key={index}>
                 <option key={doctor.doctor_name} value={doctor.doctor_id}>
                   {doctor.doctor_name}
                 </option>
-              </>
+              </React.Fragment>
             );
           })}
         </select>

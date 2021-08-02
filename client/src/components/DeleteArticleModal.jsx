@@ -27,9 +27,6 @@ export const DeleteArticleModal = (props) => {
     const response = await ArticleAPI.post("/delete", {
       article_id: articleDeleteID,
     });
-    console.log("DELETE HERE");
-    console.log(articleDeleteID);
-    console.log(response);
     removeArticle(articleDeleteID);
     setArticleDeleteShow(false);
   };

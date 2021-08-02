@@ -65,7 +65,7 @@ const AdminManageSpecialty = (props) => {
                 <tbody>
                     {allSpecialties.map((allSpecialties, index) => {
                         return (
-                            <>
+                            <React.Fragment key={index}>
                                 <tr key={index} onClick={event => handleExpandRow(event, index)}>
                                     <td>{index}</td>
                                     <td>{allSpecialties.specialty}</td>
@@ -88,7 +88,7 @@ const AdminManageSpecialty = (props) => {
                                             </tr> : null
                                     }
                                 </>
-                            </>
+                            </React.Fragment>
                         );
                     })}
                 </tbody>

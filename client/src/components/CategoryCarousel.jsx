@@ -23,13 +23,11 @@ const CategoryCarousel = (props) => {
                     num: 3,
                     currentRegion: region
                 });
-                
-                console.log("response:", response.data.data);
 
                 setArticles(response.data.data);
                 
-            } catch (error) {
-                console.log(error)
+            } catch (err) {
+                console.log(err)
             }
         };
         fetchData();
@@ -46,9 +44,9 @@ const CategoryCarousel = (props) => {
       </div>
       <br />
       <Row>
-        {articles.map((article) => {
+        {articles.map((article, index) => {
           return (
-            <Col>
+            <Col key={index}>
               <ArticleComponent
                 article={article}
                 currentRegion={region}

@@ -95,7 +95,6 @@ export const UpdateArticleModal = (props) => {
         caption: articleUpdateCaption,
         article_id: articleUpdateID,
       });
-      console.log(response.data.data);
       updateArticle(response.data.data); // TODO updateArticle
       // await removeArticle(response.data.data.article_id);
       // await addArticle(response.data.data);
@@ -105,7 +104,6 @@ export const UpdateArticleModal = (props) => {
 
     setArticleUpdateShow(false);
 
-    console.log(document.getElementById("input-file").files[0]);
   };
 
   const handleClose = () => {

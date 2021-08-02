@@ -7,7 +7,6 @@ import AppointmentAPI from '../apis/AppointmentAPI';
 import { AuthContext } from "../context/AuthContext";
 
 const ApptCalendar = (props) => {
-    // console.log(props.doctorID);
 
     const [value, onChange] = useState(new Date());
     const [appts, setAppointments] = useState([]);
@@ -63,7 +62,6 @@ const ApptCalendar = (props) => {
                 ]
             }
         }
-        //console.log(todaysAppts);
         setCurrentDayApts(todaysAppts);
     }
 
@@ -85,12 +83,10 @@ const ApptCalendar = (props) => {
                     doctor_id: props.doctorID,
                     status: status
                 }));
-                // console.log(response.data.data);
                 setAppointments(response.data.data)
                 loadTodaysAppts(response.data.data, selectedDay);
             }
             catch (err) {
-                console.log(err)
             }
         }
         fetchData();
@@ -98,10 +94,8 @@ const ApptCalendar = (props) => {
 
     const handleClick = async (id) => {
         if(role === "Doctor" && props.route === "Dashboard"){
-            // console.log(id);
             props.appt_id(id);
         } else {
-            console.log("USER CLICKED: " + id);
             props.user_appt_selected(id);
         }
         setSelectedAppt(id);

@@ -16,10 +16,8 @@ const AdminInsuranceTab = (props) => {
         const fetchData = async () => {
             try {
                 const response = await InsuranceAPI.get("/findAll");
-                // console.log(response);
                 setInsurances(response.data.data);
             } catch (err) {
-                console.log(err);
             }
         };
         fetchData();

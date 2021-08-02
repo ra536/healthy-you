@@ -63,8 +63,6 @@ router.post("/", async (req, res) => {
     status: "sent!",
     data: emailResponse,
   });
-  console.log("Successfully sent email!");
-  // console.log(emails.length);
 });
 
 router.get("/getAllEmails", async (req, res) => {

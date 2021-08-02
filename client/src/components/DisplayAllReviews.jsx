@@ -17,7 +17,6 @@ const DisplayAllReviews = (props) => {
     const fetchData = async () => {
       try {
         const response = await ReviewAPI.post("/findAll", {});
-        // console.log(response.data.data);
         setAllReviews(response.data.data);
       } catch (err) {
         console.log(err);
@@ -27,7 +26,6 @@ const DisplayAllReviews = (props) => {
   }, [setAllReviews]);
 
   const handleApprove = async (e) => {
-    console.log(e.target.name);
     try {
       const response = await ReviewAPI.post("/approve", {
         review_id: e.target.id,
@@ -35,12 +33,10 @@ const DisplayAllReviews = (props) => {
       });
       try {
         const response = await ReviewAPI.post("/findAll", {});
-        // console.log(response.data.data);
         setAllReviews(response.data.data);
       } catch (err) {
         console.log(err);
       }
-      console.log(response);
     } catch (err) {
       console.log(err);
     }
@@ -79,7 +75,6 @@ const DisplayAllReviews = (props) => {
                 </td>
               );
             }
-            // console.log(status);
             if (status == "SENT") {
               statusElement = (
                 <td style={{ color: "orange" }}>{review.status}</td>

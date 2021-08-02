@@ -20,13 +20,11 @@ const Author = () => {
                     numOfArticles: count,
                     region: region
                 });
-                
-                console.log("response:", response.data.data);
 
                 setArticles(response.data.data);
                 
-            } catch (error) {
-                console.log(error)
+            } catch (err) {
+                console.log(err)
             }
         };
         fetchData();

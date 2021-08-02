@@ -11,6 +11,7 @@ import HomeSideBar from "../components/HomeSideBar";
 import Footer from "../components/Footer";
 import ListGroup from 'react-bootstrap/ListGroup'
 import ArticleComponent from "../components/ArticleComponent";
+import AdBreak from "../components/AdBreak";
 
 const Article = (props) => {
   let { id, region } = useParams();
@@ -26,6 +27,8 @@ const Article = (props) => {
   const [writerID, setWriterID] = useState(null);
   const [numViews, setNumViews] = useState(0);
   const [link, setLink] = useState(null);
+  const [oneThirdAdSpot, setOneThirdAdSpot] = useState(null);
+  const [twoThirdsAdSpot, setTwoThirdsAdSpot] = useState(null);
 
   // const link =
   //   "https://healthy-you-project.herokuapp.com/article/87918716-f71f-4548-aea3-ad0496d44c9a/" + region;
@@ -60,7 +63,7 @@ const Article = (props) => {
           region: region
         })
 
-        console.log("data", views.data.data[0])
+        //console.log("data", views.data.data[0])
 
         setHeadline(response.data.data[0].headline);
         setCategory(response.data.data[0].category);
@@ -75,11 +78,10 @@ const Article = (props) => {
         // );
         setWriterID(response.data.data[0].writer_id);
         setLink("https://healthy-you-project.herokuapp.com/article/" + id + "/" + region);
-        console.log(response.data.data[0]);
-
-
         setSameAuthor(relatedAuthor.data.data);
         setSameCategory(relatedCategory.data.data);
+
+
 
       } catch (err) {
         console.log(err);
@@ -88,7 +90,20 @@ const Article = (props) => {
     fetchData();
   }, [id]);
 
-  console.log(summary); // Make use of unused summary variable
+  useEffect(() => {
+    let lines = content.split("\n");
+    console.log(lines.length/2);
+    let oneThird = (lines.length/2)*(0.33);
+    let twoThirds = (lines.length/2)*(0.66);
+    let roundedOneThird = Math.floor(oneThird);
+    let roundedTwoThirds = Math.floor(twoThirds);
+    setOneThirdAdSpot(roundedOneThird);
+    setTwoThirdsAdSpot(roundedTwoThirds);
+    console.log(oneThird);
+    console.log(twoThirds);
+    console.log(roundedOneThird);
+    console.log(roundedTwoThirds);
+  }, [content] )
 
   return (
     // Return different webpage, depending on the validity of the ID provided
@@ -118,7 +133,25 @@ const Article = (props) => {
             <br />
             <p>
               {content.split("\n").map((i, key) => {
-                return <p key={key}>{i}</p>;
+                if ((key + 1) === (oneThirdAdSpot * 2)) {
+                  return (
+                    <React.Fragment key={key}>
+                      <p>{i}</p>
+                      <AdBreak currentRegion={region}/>
+                      <br/>
+                    </React.Fragment>
+                )
+                } else if ((key) === (twoThirdsAdSpot * 2)) {
+                  return (
+                      <React.Fragment key={key}>
+                        <p>{i}</p>
+                        <AdBreak currentRegion={region}/>
+                        <br/>
+                      </React.Fragment>
+                  )
+                } else {
+                  return <p key={key}>{i}</p>;
+                }
               })}
             </p>
             <br />

@@ -1,8 +1,8 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const db = require("../index");
 
-const regions = db.define(
-  "regions",
+const region = db.define(
+  "region",
   {
 	  uuid: {
 		type: DataTypes.UUID,
@@ -18,4 +18,4 @@ const regions = db.define(
   { underscored: true }
 );
 
-module.exports = regions;
+module.exports = region;

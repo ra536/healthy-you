@@ -7,14 +7,13 @@ const AddSpecialty = (props) => {
   // const [specialties, setSpecialties] = useState([]);
   const [specialty, setSpecialty] = useState("");
   const [allSpecialties, setAllSpecialties] = useState([]);
-  const { specialties, addSpecialty } = useContext(AppContext);
+  const { addSpecialty } = useContext(AppContext); //specialties,
 
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
     const fetchData = async () => {
       try {
         const response = await SpecialtyAPI.get("/findAll");
-        //console.log(response.data.data)
         setAllSpecialties(response.data.data);
         setSpecialty(response.data.data[0].specialty);
       } catch (err) {
@@ -26,7 +25,6 @@ const AddSpecialty = (props) => {
 
   const handleChange = (e) => {
     setSpecialty(e.target.value);
-    console.log(e.target.value);
     e.preventDefault();
   };
 
@@ -44,10 +42,7 @@ const AddSpecialty = (props) => {
         }
       );
       //addTest(response.data.data)
-      console.log("SPECIALTY");
-      console.log(response.data.data);
       addSpecialty(response.data.data.specialty);
-      console.log(specialties);
     } catch (err) {
       console.log(err);
     }
