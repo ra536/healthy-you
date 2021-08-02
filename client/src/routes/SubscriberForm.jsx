@@ -3,10 +3,11 @@ import TopNavBar from "../components/TopNavBar";
 import SubscriberAPI from "../apis/SubscriberAPI";
 import { Formik } from "formik";
 import { Form, Button, Container } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 import * as yup from "yup";
 
 const Subscribe = () =>{
+    let { region } = useParams();
     const schema = yup.object().shape({
         email: yup.string().email().required(),
         firstName: yup.string().required(),
@@ -16,7 +17,7 @@ const Subscribe = () =>{
     let history = useHistory();
     return(
         <>
-        <TopNavBar/>
+        <TopNavBar currentRegion={region}/>
         <div align="center">
         <h1>Subscribe</h1>
         </div>

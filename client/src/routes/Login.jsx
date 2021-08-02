@@ -1,18 +1,19 @@
 import React, { useContext } from "react";
 import LoginForm from "../components/LoginForm";
-import { Redirect } from "react-router-dom";
+import {Redirect, useParams} from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { Container } from "react-bootstrap";
 import TopNavBar from "../components/TopNavBar";
 import Footer from "../components/Footer";
 
 const Login = () => {
+    let { region } = useParams();
   const { loggedIn } = useContext(AuthContext);
   return loggedIn === true ? (
     <Redirect to="/" />
   ) : (
     <div>
-      <TopNavBar />
+      <TopNavBar currentRegion={region}/>
       <Container>
         <h1>Login</h1>
         <LoginForm />
@@ -28,7 +29,7 @@ const Login = () => {
       <br />
       <br />
       <br />
-      <Footer />
+      <Footer currentRegion={region}/>
     </div>
   );
 };

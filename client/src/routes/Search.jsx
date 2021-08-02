@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 //import SearchAPI from '../apis/SearchAPI'
-import { useHistory } from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 import SpecialtyAPI from "../apis/SpecialtyAPI";
 import TopNavBar from "../components/TopNavBar";
 import SearchBar from '../components/SearchBar';
@@ -21,10 +21,11 @@ import doctorPhoto from "./file.jpg";
 import adLong from "../components/ads/ad300.jpg";
 
 const Search = () => {
+    let { region } = useParams();
 
   return (
     <div>
-      <TopNavBar />
+      <TopNavBar currentRegion={region}/>
       <Container>
         <SearchBar/>
       </Container>

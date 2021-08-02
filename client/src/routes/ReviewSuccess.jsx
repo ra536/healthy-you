@@ -3,12 +3,14 @@ import { CheckCircle } from "react-bootstrap-icons";
 import { Container } from "react-bootstrap";
 import TopNavBar from "../components/TopNavBar";
 import Footer from "../components/Footer";
+import {useParams} from "react-router-dom";
 
 const ReviewSuccess = () => {
+    let { region } = useParams();
 
     return (
         <>
-        <TopNavBar />
+        <TopNavBar currentRegion={region}/>
         <Container>
             <div align="center">
             <h1>Thank you for your feedback!</h1>
@@ -40,7 +42,7 @@ const ReviewSuccess = () => {
         <br />
         <br />
         <br />
-        <Footer />
+        <Footer currentRegion={region}/>
         </>
     )
 }

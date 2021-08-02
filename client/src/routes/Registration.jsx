@@ -1,18 +1,19 @@
 import React, { useContext } from "react";
 import RegistrationForm from "../components/RegistrationForm";
-import { Redirect } from "react-router-dom";
+import {Redirect, useParams} from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import TopNavBar from "../components/TopNavBar";
 import { Container } from "react-bootstrap";
 import Footer from "../components/Footer";
 
 const Registration = () => {
+    let { region } = useParams();
   const { loggedIn } = useContext(AuthContext);
   return loggedIn === true ? (
     <Redirect to="/" />
   ) : (
     <div>
-      <TopNavBar />
+      <TopNavBar currentRegion={region}/>
       <Container>
         <h1>Register</h1>
         <RegistrationForm />
@@ -24,7 +25,7 @@ const Registration = () => {
       <br />
       <br />
       <br />
-      <Footer />
+      <Footer currentRegion={region}/>
     </div>
   );
 };

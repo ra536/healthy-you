@@ -40,7 +40,7 @@ import acupuncture_image from "./defaults/Acupuncture.jpg";
 import personal_trainer_image from "./defaults/PersonalTrainers.jpg"
 
 const DoctorProfile = (props) => {
-  let { doctorID } = useParams();
+  let { doctorID, region } = useParams();
   const [name, setName] = useState();
   const [cityState, setCityState] = useState();
   const [specialties, setSpecialties] = useState([]);
@@ -174,7 +174,7 @@ const DoctorProfile = (props) => {
   }, []);
   return (
     <>
-      <TopNavBar />
+      <TopNavBar currentRegion={region}/>
       <br />
       <Container>
       <Row>
@@ -373,7 +373,7 @@ const DoctorProfile = (props) => {
           </div>
         </Col>
       </Row>
-      <Footer />
+      <Footer currentRegion={region}/>
     </>
   );
 };

@@ -8,6 +8,24 @@ import { SocialIcon } from "react-social-icons";
 import { Link } from "react-router-dom";
 
 const Footer = (props) => {
+
+    // Add Region functionality to the Footer.
+    const region = props.currentRegion;
+    const home = "/" + region;
+    const aboutUsPath = "/about-us/" + region;
+    const blogPath = "/category/Blog/" + region;
+    const healthGuidePath = "/results/" + region;
+    const subscribePath = "/subscribe/" + region;
+    const contactUsPath = "/contact-us/" + region;
+    const foodPath = "/category/Food/" + region;
+    const nutritionPath = "/category/Nutrition/" + region;
+    const healthPath = "/category/Health/" + region;
+    const wellnessPath = "/category/Wellness/" + region;
+    const covidPath = "/category/Covid-19/" + region;
+    const newsPath = "/category/News/" + region;
+    const exercisePath = "/category/Exercise/" + region;
+
+
     return (
         <>
             <div style={{ backgroundColor: '#333' }}>
@@ -17,7 +35,7 @@ const Footer = (props) => {
 
                         <Col>
                             <Link
-                                to={"/"}
+                                to={home}
                                 style={{ textDecoration: "none", color: "black" }}
                             >
                                 <p style={{ color: 'white' }}>
@@ -25,7 +43,7 @@ const Footer = (props) => {
                                 </p>
                             </Link>
                             <Link
-                                to={"/about-us"}
+                                to={aboutUsPath}
                                 style={{ textDecoration: "none", color: "black" }}
                             >
                                 <p style={{ color: 'white' }}>
@@ -33,7 +51,7 @@ const Footer = (props) => {
                                 </p>
                             </Link>
                             <Link
-                                to={"/category/Blog"}
+                                to={blogPath}
                                 style={{ textDecoration: "none", color: "black" }}
                             >
                                 <p style={{ color: 'white' }}>
@@ -41,7 +59,7 @@ const Footer = (props) => {
                                 </p>
                             </Link>
                             <Link
-                                to={"/results"}
+                                to={healthGuidePath}
                                 style={{ textDecoration: "none", color: "black" }}
                             >
                                 <p style={{ color: 'white' }}>
@@ -49,7 +67,7 @@ const Footer = (props) => {
                                 </p>
                             </Link>
                             <Link
-                                to={"/subscribe"}
+                                to={subscribePath}
                                 style={{ textDecoration: "none", color: "black" }}
                             >
                                 <p style={{ color: 'white' }}>
@@ -57,7 +75,7 @@ const Footer = (props) => {
                                 </p>
                             </Link>
                             <Link
-                                to={"/contact-us"}
+                                to={contactUsPath}
                                 style={{ textDecoration: "none", color: "black" }}
                             >
                                 <p style={{ color: 'white' }}>
@@ -70,7 +88,7 @@ const Footer = (props) => {
 
                         <Col>
                             <Link
-                                to={"/category/Food"}
+                                to={foodPath}
                                 style={{ textDecoration: "none", color: "black" }}
                             >
                                 <p style={{ color: 'white' }}>
@@ -78,7 +96,7 @@ const Footer = (props) => {
                                 </p>
                             </Link>
                             <Link
-                                to={"/category/Nutrition"}
+                                to={nutritionPath}
                                 style={{ textDecoration: "none", color: "black" }}
                             >
                                 <p style={{ color: 'white' }}>
@@ -86,7 +104,7 @@ const Footer = (props) => {
                                 </p>
                             </Link>
                             <Link
-                                to={"/category/Health"}
+                                to={healthPath}
                                 style={{ textDecoration: "none", color: "black" }}
                             >
                                 <p style={{ color: 'white' }}>
@@ -94,7 +112,7 @@ const Footer = (props) => {
                                 </p>
                             </Link>
                             <Link
-                                to={"/category/Wellness"}
+                                to={wellnessPath}
                                 style={{ textDecoration: "none", color: "black" }}
                             >
                                 <p style={{ color: 'white' }}>
@@ -102,7 +120,7 @@ const Footer = (props) => {
                                 </p>
                             </Link>
                             <Link
-                                to={"/category/Covid-19"}
+                                to={covidPath}
                                 style={{ textDecoration: "none", color: "black" }}
                             >
                                 <p style={{ color: 'white' }}>
@@ -110,7 +128,7 @@ const Footer = (props) => {
                                 </p>
                             </Link>
                             <Link
-                                to={"/category/News"}
+                                to={newsPath}
                                 style={{ textDecoration: "none", color: "black" }}
                             >
                                 <p style={{ color: 'white' }}>
@@ -118,7 +136,7 @@ const Footer = (props) => {
                                 </p>
                             </Link>
                             <Link
-                                to={"/category/Exercise"}
+                                to={exercisePath}
                                 style={{ textDecoration: "none", color: "black" }}
                             >
                                 <p style={{ color: 'white' }}>

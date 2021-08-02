@@ -9,7 +9,7 @@ import TopNavBar from "../components/TopNavBar";
 
 
 const Author = () => {
-    let { id, count } = useParams();
+    let { id, count, region } = useParams();
 
     const [articles, setArticles] = useState([]);
     useEffect(() => {
@@ -34,7 +34,7 @@ const Author = () => {
 
 return(
     <>
-      <TopNavBar />
+      <TopNavBar currentRegion={region}/>
       <Container>
         <div align="center">
           <h1>{id} </h1>
@@ -48,6 +48,7 @@ return(
               <Row>
                 <ArticleComponent
                   article={article}
+                  currentRegion={region}
                   writer="Anonymous Writer"
                   type="horizontal"
                 />

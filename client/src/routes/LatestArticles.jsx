@@ -9,7 +9,7 @@ import TopNavBar from "../components/TopNavBar";
 import Footer from "../components/Footer";
 
 const LatestArticles = () => {
-    let { count, region } = useParams();   /////////
+    let { count, region } = useParams();
 
     const [articles, setArticles] = useState([]);
     useEffect(() => {
@@ -39,7 +39,7 @@ const LatestArticles = () => {
 
     return(
         <>
-        <TopNavBar />
+        <TopNavBar currentRegion={region}/>
         <Container>
             <div align="center">
             <h1> Latest Articles </h1>
@@ -53,6 +53,7 @@ const LatestArticles = () => {
                 <Row>
                     <ArticleComponent
                     article={article}
+                    currentRegion={region}
                     writer="Anonymous Writer"
                     type="horizontal"
                     />
@@ -65,7 +66,7 @@ const LatestArticles = () => {
         <br />
         <br />
         <br />
-        <Footer />
+        <Footer currentRegion={region}/>
         </>
     );
 

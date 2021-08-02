@@ -11,7 +11,7 @@ import TopNavBar from "../components/TopNavBar";
 import Footer from "../components/Footer";
 
 const WriterDashboard = (props) => {
-  let { id } = useParams();
+  let { id, region } = useParams();
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
     const fetchData = async () => {
@@ -28,7 +28,7 @@ const WriterDashboard = (props) => {
 
   return (
     <>
-      <TopNavBar />
+      <TopNavBar currentRegion={region}/>
       <Container>
         <h1>Writer Dashboard</h1>
         <br />
@@ -42,7 +42,7 @@ const WriterDashboard = (props) => {
       <br />
       <br />
       <br />
-      <Footer />
+      <Footer currentRegion={region}/>
     </>
   );
 };
