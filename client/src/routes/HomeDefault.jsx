@@ -18,7 +18,7 @@ import food_pic2 from "./food_pic_front.jpg";
 import { Link, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 
-const Home = () => {   
+const Home = () => {
     let region = "Essex County"; //Redirect to default if region is null
     console.log(region);
     // Store the data retrieved from backend API into context

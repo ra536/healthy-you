@@ -109,13 +109,16 @@ const ManageAds = (props) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                //const regResponse = await RegionAPI.post("/findAll", {});
                 const result = await AdAPI.post("/getAll", {});
-                //setAllRegions(regResponse.data.data);
                 console.log(result.data.data);
                 setResults(result.data.data);
-                console.log(result.data.data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
 
+        const fetchData2 = async () => {
+            try {
                 // Collect an array of all regions in database.
                 const allReg = await RegionAPI.get("/findAll", {});
                 const length = allReg.data.data.length;
@@ -126,7 +129,13 @@ const ManageAds = (props) => {
                 }
                 console.log(arrayOfAllRegions);
                 setAllRegions(arrayOfAllRegions);
+            } catch (err) {
+                console.log(err);
+            }
+        };
 
+        const fetchData3 = async () => {
+            try {
                 // Collect an array of all categories in database.
                 const allCate = await CategoryAPI.get("/findAll", {});
                 const lengthOfCat = allCate.data.data.length;
@@ -141,9 +150,13 @@ const ManageAds = (props) => {
             } catch (err) {
                 console.log(err);
             }
+
         };
+
         console.log("use effect happened!");
         fetchData();
+        fetchData2();
+        fetchData3();
     }, []);
 
     const handleArray = (array) =>{
