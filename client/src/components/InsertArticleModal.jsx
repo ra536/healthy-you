@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import ArticleAPI from "../apis/ArticleAPI";
+import RegionAPI from "../apis/RegionAPI";
 import { AppContext } from "../context/AppContext";
 import { Button, FormControl, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
@@ -15,8 +16,23 @@ export const InsertArticleModal = (props) => {
   const [content, setContent] = useState("");
   const [image, setImage] = useState("");
   const [caption, setCaption] = useState("");
-
+  const [region, setRegion] = useState([]);
+  const [allRegions, setAllRegions] = useState(["one", "two", "three"]);
   const [file, setFile] = useState("");
+
+  const handleRegionChange = (e) => {
+    let arrayOfSelectedOptions = e.target.selectedOptions;
+    let arrayOfSelected = [];
+
+    for (let i = 0; i < arrayOfSelectedOptions.length; i++) {
+      let value = arrayOfSelectedOptions[i].value;
+      arrayOfSelected[i] = value;
+    }
+    console.log(arrayOfSelected);
+    setRegion(arrayOfSelected)
+    //console.log(arrayOfSelectedOptions);
+    e.preventDefault();
+  };
 
   const previewImage = async (e) => {
     var reader = new FileReader();
@@ -50,6 +66,7 @@ export const InsertArticleModal = (props) => {
         image: image,
         caption: caption,
         writer_id: props.id,
+        region: region,
         // doctorID: props.doctorID
       });
       addArticle(response.data.data);
@@ -62,6 +79,7 @@ export const InsertArticleModal = (props) => {
     setContent("");
     setImage("");
     setCaption("");
+    setRegion("");
 
     setArticleInsertShow(false);
 
@@ -84,8 +102,21 @@ export const InsertArticleModal = (props) => {
 
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
-    const fetchData = async () => {};
+    const fetchData = async () => {
+      // Collect an array of all regions in database.
+      const allReg = await RegionAPI.get("/findAll", {});
+      const length = allReg.data.data.length;
+      let arrayOfAllRegions = [];
+      for (let i = 0; i < length; i++) {
+        let value = allReg.data.data[i].name;
+        arrayOfAllRegions[i] = value;
+      }
+      console.log(arrayOfAllRegions);
+      setAllRegions(arrayOfAllRegions);
+    };
     fetchData();
+
+
   }, []);
 
   return (
@@ -156,6 +187,19 @@ export const InsertArticleModal = (props) => {
               placeholder="Caption"
               onChange={(e) => setCaption(e.target.value)}
               />
+            {' '}
+
+            <label htmlFor="regionChoice">Choose article regions: (Hold ctrl for multiple)</label>
+            <select id="regionChoice" onChange={handleRegionChange} multiple>
+              {allRegions.map((aRegion) => {
+                return (
+                    <option key={"add " + aRegion} value={aRegion}>
+                      {aRegion}
+                    </option>
+                );
+              })}
+            </select>
+
 
             <br/>
 

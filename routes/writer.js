@@ -15,6 +15,7 @@ router.post("/create", async (req, res) => {
       city: req.body.city,
       state: req.body.state,
       birthdate: req.body.birthdate,
+
     });
     res.status(201).json({
       status: "success",

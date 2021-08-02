@@ -24,7 +24,7 @@ router.get("/findAll", async (req, res) => {
 
 router.post("/createRegion", async (req, res) => {
  try {
-    const newRegion = await regions.create({
+    const newRegion = await region.create({
 		name: req.body.name,
 	});
 	res.status(200).json({
