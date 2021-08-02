@@ -17,7 +17,7 @@ export const InsertArticleModal = (props) => {
   const [image, setImage] = useState("");
   const [caption, setCaption] = useState("");
   const [region, setRegion] = useState([]);
-  const [allRegions, setAllRegions] = useState(["one", "two", "three"]);
+  const [allRegions, setAllRegions] = useState(["EssexCounty"]);
   const [file, setFile] = useState("");
 
   const handleRegionChange = (e) => {

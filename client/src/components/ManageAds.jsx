@@ -14,8 +14,8 @@ const ManageAds = (props) => {
     const [image, setImage] = useState("");
     const [regions, setRegions] = useState([]);
     const [categories, setCategories] = useState([]);
-    const [allRegions, setAllRegions] = useState(["one", "two", "three"]);
-    const [allCategories, setAllCategories] = useState(["A", "B", "C"]);
+    const [allRegions, setAllRegions] = useState(["EssexCounty"]);
+    const [allCategories, setAllCategories] = useState(["Acupuncture", "Audiologists", "Chiropractors", "Clinics"]);
 
     const [file, setFile] = useState("");
 

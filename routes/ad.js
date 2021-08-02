@@ -85,4 +85,31 @@ router.post("/getAdsBySize", async (req, res) => {
       } 
 })
 
+// Chooses appropriate sized ad for page.
+router.post("/getAdsBySizeAndCategory", async (req, res) => {
+
+    try {
+        let region = req.body.region;
+        let cat = req.body.category
+        const adResults = await ad.findAll({
+            where: {
+                type: req.body.size,
+                region: {
+                    [Op.contains]: [region]
+                },
+                categories: {
+                    [Op.contains]: [cat]
+                }
+            },
+            raw: true,
+        });
+        res.status(200).json({
+            status: "success",
+            data: adResults,
+        });
+    } catch (err) {
+        console.error(err);
+    }
+})
+
 module.exports = router;
