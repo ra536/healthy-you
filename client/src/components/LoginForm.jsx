@@ -12,7 +12,8 @@ const schema = yup.object().shape({
   role: yup.string().required(),
 });
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+  const region = props.currentRegion;
   let history = useHistory();
   const { setRole, setLoggedIn } = useContext(AuthContext);
   return (
@@ -43,19 +44,19 @@ const LoginForm = () => {
             if (response.data.user.role === "Doctor") {
               setLoggedIn(true);
               setRole(response.data.user.role);
-              history.push("/doctor-dashboard/" + response.data.user.doctor_id);
+              history.push("/doctor-dashboard/" + response.data.user.doctor_id + "/" + region);
             } else if (response.data.user.role === "Writer") {
               setLoggedIn(true);
               setRole(response.data.user.role);
-              history.push("/writer-dashboard/" + response.data.user.writer_id);
+              history.push("/writer-dashboard/" + response.data.user.writer_id + "/" + region);
             } else if (response.data.user.role === "Admin") {
               setLoggedIn(true);
               setRole(response.data.user.role);
-              history.push("/admin-dashboard/" + response.data.user.user_id);
+              history.push("/admin-dashboard/" + response.data.user.user_id + "/" + region);
             } else {
               setLoggedIn(true);
               setRole(response.data.user.role);
-              history.push("/user-dashboard/" + response.data.user.user_id);
+              history.push("/user-dashboard/" + response.data.user.user_id + "/" + region);
             }
           } else {
             if (response.data.target === "email") {

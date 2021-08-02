@@ -13,13 +13,13 @@ import { useParams } from "react-router-dom";
 
 const BlogSideBar = (props) => {
     const [ads, setAds] = useState([]);
-    const [ad1, setAd1] = useState({ ad_image: ad300, type: "300x600", ad_link: "/" })
     const [popular, setPopular] = useState([]);
     const [recent, setRecent] = useState([]);
     const category = props.category;
     const region = props.currentRegion;
     const [filterText, setFilterText] = useState("");
-    
+    const homePath = "/" + region;
+    const [ad1, setAd1] = useState({ ad_image: ad300, type: "300x600", ad_link: homePath })
     let { id } = useParams();
     const history = useHistory();
 
@@ -27,7 +27,10 @@ const BlogSideBar = (props) => {
         // Define a function fetchData that calls APIs which is then called in useEffect
         const fetchData = async () => {
             try {
-                const response = await AdAPI.post("/getAdsBySize", { size: "300x600" });
+                const response = await AdAPI.post("/getAdsBySize", {
+                    size: "300x600",
+                    region: region
+                });
                 setAds(response.data.data);
                 if (typeof (response.data.data[0]) == "object") {
                     setAd1(response.data.data[0]);
@@ -72,7 +75,7 @@ const BlogSideBar = (props) => {
         try {
           if(id == null) id = "Blog"
           history.push({
-            pathname: "/category/" + id + "/",
+            pathname: "/category/" + id + "/" + region + "/",
             search:
               "s=" + 
               filterText +
@@ -103,7 +106,7 @@ const BlogSideBar = (props) => {
 <hr />
                 <Card.Img variant="top" src={newMag} />
                 <div align="center">
-                <Button variant="link" size="md" href="/subscribe">
+                <Button variant="link" size="md" href={"/subscribe/" + region} >
                   Subscribe
                 </Button>
                 <Button variant="link" size="md" href="https://issuu.com/healthwellnessfitness/docs/1-56-compressed">
@@ -117,7 +120,7 @@ const BlogSideBar = (props) => {
             {popular.map((article) => {
                 return (
                     <>
-                    <Link to={"/article/" + article.article_id} style={{ textDecoration: "none", color: "black" }}>
+                    <Link to={"/article/" + article.article_id + "/" + region} style={{ textDecoration: "none", color: "black" }}>
                     <h6>{article.headline}</h6>
                     </Link>
                     <hr />
@@ -130,7 +133,7 @@ const BlogSideBar = (props) => {
             {recent.map((article) => {
                 return (
                     <>
-                    <Link to={"/article/" + article.article_id} style={{ textDecoration: "none", color: "black" }}>
+                    <Link to={"/article/" + article.article_id + "/" + region} style={{ textDecoration: "none", color: "black" }}>
                     <h6>{article.headline}</h6>
                     </Link>
                     <hr />

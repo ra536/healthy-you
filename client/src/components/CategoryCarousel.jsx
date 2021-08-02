@@ -11,7 +11,7 @@ const CategoryCarousel = (props) => {
   const category = props.category;
   const region = props.carouselRegion
   const link =
-    "https://healthy-you-project.herokuapp.com/article/87918716-f71f-4548-aea3-ad0496d44c9a";
+    "https://healthy-you-project.herokuapp.com/article/87918716-f71f-4548-aea3-ad0496d44c9a/" + region;
 
   const [articles, setArticles] = useState([]);
 

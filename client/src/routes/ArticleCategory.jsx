@@ -18,6 +18,7 @@ const ArticleCategory = () => {
                 const response = await ArticleAPI.post("/sameCategory",{
                     article_id: id,
                     numOfArticles: count,
+                    region: region
                 });
                 
                 console.log("response:", response.data.data);

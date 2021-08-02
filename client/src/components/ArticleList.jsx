@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 const ArticleList = (props) => {
   const { articles, setArticles } = useContext(AppContext);
+  const region = props.currentRegion;
 
   useEffect(() => {
     // Define a function fetchData that calls APIs which is then called in useEffect
@@ -57,7 +58,7 @@ const ArticleList = (props) => {
                 <td> {articles.summary}</td>
                 <td> {articles.category}</td>
                 <td>
-                  <Link to={"/article/" + articles.article_id}>
+                  <Link to={"/article/" + articles.article_id + "/" + region}>
                     <Button>View Article</Button>
                   </Link>{" "}
                   <UpdateArticleModal object={articles} />{" "}

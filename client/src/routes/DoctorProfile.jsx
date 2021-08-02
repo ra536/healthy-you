@@ -283,7 +283,7 @@ const DoctorProfile = (props) => {
               })}
               <br />
               <Card.Title>Appointments</Card.Title>
-              <Button size="lg" block href={"/book-appointment/" + doctorID}>
+              <Button size="lg" block href={"/book-appointment/" + doctorID + "/" + region}>
                 Book now
               </Button>
             </Card.Body>

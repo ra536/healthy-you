@@ -18,6 +18,7 @@ const Author = () => {
                 const response = await ArticleAPI.post("/author",{
                     article_id: id,
                     numOfArticles: count,
+                    region: region
                 });
                 
                 console.log("response:", response.data.data);

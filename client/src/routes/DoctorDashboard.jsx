@@ -206,7 +206,7 @@ const DoctorDashboard = (props) => {
         <Tabs defaultActiveKey="main" id="uncontrolled-tab" >
           <Tab eventKey="main" title="Main" >
             <br />
-            <a href={"/doctor-profile/" + doctorID}>View your profile</a>
+            <a href={"/doctor-profile/" + doctorID + "/" + region}>View your profile</a>
             <h1>Name</h1>
             <hr />
             {name}

@@ -95,6 +95,7 @@ const Home = () => {   ///// Look up how to set parameter default
       try {
         const response = await ArticleAPI.post("/mostViewed", {
           numOfArticles: 3,
+          region: region,
         });
         console.log(response.data.data);
       } catch (err) {
@@ -104,13 +105,8 @@ const Home = () => {   ///// Look up how to set parameter default
     fetchData();
   }, []);
 
-  var seeMore = "/latestArticles/100/" + region;
   console.log("am I logged in?", loggedIn);
   console.log("what's my role?", role);
-  const healthLink = "/category/Health/" + region;
-  const wellnessLink = "/category/Wellness/"+ region;
-  const fitnessLink = "/category/Fitness/"+ region;
-  const foodLink = "/category/Food/"+ region;
 
   return (
     <div>
@@ -124,7 +120,7 @@ const Home = () => {   ///// Look up how to set parameter default
                         </>
                     } */}
         <TopNavBar currentRegion={region}/>
-        <TopFeaturedAds />
+        <TopFeaturedAds currentRegion={region}/>
         <div align="center" display="inline">
           <Carousel
             interval={10000}
@@ -175,25 +171,22 @@ const Home = () => {   ///// Look up how to set parameter default
                         />
                       </Row>
                     </Container>
-
                     <hr />
                   </>
                 );
               })}
-              <Button variant="link" href={seeMore} block>See More</Button>
+              <Button variant="link" href={"/latestArticles/100/" + region} block>See More</Button>
               <br />
             </Col>
             <Col xs={6} md={4}>
-
-
               <br />
-              <HomeSideBar />
+              <HomeSideBar currentRegion={region}/>
               <br />
             </Col>
           </Row>
         </Container>
 
-        <AdBreak />
+        <AdBreak currentRegion={region}/>
 
         <br />
         <div style={{ backgroundColor: "#F8F8F8" }}>
@@ -205,7 +198,7 @@ const Home = () => {   ///// Look up how to set parameter default
           />
           <div align="center">
             <br />
-            <Button variant="link" href={healthLink}>More Health Articles </Button>
+            <Button variant="link" href={"/category/Health/" + region}>More Health Articles </Button>
           </div>
 
 
@@ -219,7 +212,7 @@ const Home = () => {   ///// Look up how to set parameter default
           />
           <div align="center">
             <br />
-            <Button variant="link" href={wellnessLink}>More Wellness Articles</Button>
+            <Button variant="link" href={"/category/Wellness/"+ region}>More Wellness Articles</Button>
           </div>
           <hr />
           <CategoryCarousel
@@ -230,7 +223,7 @@ const Home = () => {   ///// Look up how to set parameter default
           />
           <div align="center">
             <br />
-            <Button variant="link" href={fitnessLink}>More Fitness Articles</Button>
+            <Button variant="link" href={"/category/Fitness/"+ region}>More Fitness Articles</Button>
           </div>
           <hr />
           <CategoryCarousel
@@ -241,12 +234,12 @@ const Home = () => {   ///// Look up how to set parameter default
           />
           <div align="center">
             <br />
-            <Button variant="link" href={foodLink}>More Food Articles</Button>
+            <Button variant="link" href={"/category/Food/"+ region}>More Food Articles</Button>
           </div>
           <br />
         </div>
 
-        <AdBreak number={2} />
+        <AdBreak number={2} currentRegion={region}/>
         <br />
         <Footer currentRegion={region}/>
       </div>

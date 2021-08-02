@@ -13,7 +13,7 @@ const ArticleComponent = (props) => {
   const articleInfo = props.article;
   // const writerInfo = props.writer;
   const link =
-    "https://healthy-you-project.herokuapp.com/article/87918716-f71f-4548-aea3-ad0496d44c9a";
+    "https://healthy-you-project.herokuapp.com/article/87918716-f71f-4548-aea3-ad0496d44c9a/" + region;
 
   if (componentType === "featured-large") {
     return (

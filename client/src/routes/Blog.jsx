@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import queryString from "query-string";
 import ArticleAPI from "../apis/ArticleAPI";
-import { Container, Row, Col, Card, Form, FormControl, Button, Image, Badge, Pagination } from "react-bootstrap";
-import Moment from "react-moment";
+import { Container, Row, Col, Image, Pagination, Card, Form, FormControl, Button, Badge  } from "react-bootstrap";
 import "moment-timezone";
 import TopNavBar from "../components/TopNavBar";
 import ad300 from "../components/ads/ad300.jpg";
-import SocialShareButtons from "../components/SocialShareButtons";
 import ArticleComponent from "../components/ArticleComponent";
 import "bootstrap/dist/css/bootstrap.css";
 import blogPage from "./BlogPage.jpg";
@@ -15,23 +13,22 @@ import AdAPI from "../apis/AdAPI";
 import Footer from "../components/Footer";
 import BlogSideBar from "../components/BlogSideBar";
 import { useHistory } from "react-router-dom";
+import SocialShareButtons from "../components/SocialShareButtons";
+import Moment from "react-moment";
 
 const Blog = (props) => {
     const [articles, setArticles] = useState([]);
-
     const [ads, setAds] = useState([]);
-    const [ad1, setAd1] = useState({ ad_image: ad300, type: "300x600", ad_link: "/" });
     let { region } = useParams();
+    const homePath = "/" + region;
+    const [ad1, setAd1] = useState({ ad_image: ad300, type: "300x600", ad_link: homePath });
     const history = useHistory();
-
     const numResultsPerPage = 8;
     const [page, setPage] = useState(1);
     const [numOfPages, setNumPages] = useState([1]);
-
     const [filter, setFilter] = useState("");
-
     const link =
-        "https://healthy-you-project.herokuapp.com/article/87918716-f71f-4548-aea3-ad0496d44c9a";
+        "https://healthy-you-project.herokuapp.com/article/87918716-f71f-4548-aea3-ad0496d44c9a/" + region;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -91,7 +88,7 @@ const Blog = (props) => {
             }
 
             try {
-                const response = await AdAPI.post("/getAdsBySize", { size: "300x600" });
+                const response = await AdAPI.post("/getAdsBySize", { size: "300x600", region: region });
                 setAds(response.data.data);
                 if (typeof (response.data.data[0]) == "object") {
                     setAd1(response.data.data[0]);

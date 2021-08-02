@@ -37,7 +37,7 @@ const WriterDashboard = (props) => {
         <br />
         <br />
 
-        <ArticleList id={id} />
+        <ArticleList id={id} currentRegion={region}/>
       </Container>
       <br />
       <br />

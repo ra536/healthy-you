@@ -4,7 +4,6 @@ import AdAPI from "../apis/AdAPI";
 import { Table, Button } from "react-bootstrap";
 
 const ManageAds = (props) => {
-
     const sizeList = ["250x250", "300x600", "1000x300", "728x90"];
     const [results, setResults] = useState([]);
     const [link, setLink] = useState("");
@@ -44,6 +43,7 @@ const ManageAds = (props) => {
                 size: size,
                 link: link,
                 image: image,
+                //region: adRegion,
             })
             setResults([...results, result.data.data]);
         } catch (err) {

@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import ArticleAPI from "../apis/ArticleAPI";
 import { ListGroup, Container, Row } from "react-bootstrap";
-
 import "bootstrap/dist/css/bootstrap.css";
 import ArticleComponent from "../components/ArticleComponent";
 import TopNavBar from "../components/TopNavBar";
