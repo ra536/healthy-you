@@ -19,7 +19,7 @@ import { Link, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 
 const Home = () => {
-    let region = "Essex County"; //Redirect to default if region is null
+    let region = "EssexCounty"; //Redirect to default if region is null
     console.log(region);
     // Store the data retrieved from backend API into context
     const { loggedIn, role } = useContext(AuthContext);
