@@ -8,10 +8,12 @@ import TopNavBar from "../components/TopNavBar";
 import SocialShareButtons from "../components/SocialShareButtons";
 import "bootstrap/dist/css/bootstrap.css";
 import HomeSideBar from "../components/HomeSideBar";
+import ArticleSideBar from "../components/ArticleSideBar";
 import Footer from "../components/Footer";
 import ListGroup from 'react-bootstrap/ListGroup'
 import ArticleComponent from "../components/ArticleComponent";
 import AdBreak from "../components/AdBreak";
+import ArticleAdBreak from "../components/ArticleAdBreak";
 import TopFeaturedAds from "../components/TopFeaturedAds";
 
 const Article = (props) => {
@@ -139,7 +141,7 @@ const Article = (props) => {
                   return (
                     <React.Fragment key={key}>
                       <p>{i}</p>
-                      <AdBreak currentRegion={region}/>
+                      <ArticleAdBreak currentRegion={region} currentCategory={category}/>
                       <br/>
                     </React.Fragment>
                 )
@@ -147,7 +149,7 @@ const Article = (props) => {
                   return (
                       <React.Fragment key={key}>
                         <p>{i}</p>
-                        <AdBreak  currentRegion={region}/>
+                        <ArticleAdBreak  currentRegion={region} currentCategory={category}/>
                         <br/>
                       </React.Fragment>
                   )
@@ -192,7 +194,7 @@ const Article = (props) => {
           </Col>
           <Col xs={6} md={4}>
             <br />
-            <HomeSideBar  currentRegion={region}/>
+            <ArticleSideBar  currentRegion={region} currentCategory={category}/>
             <br />
           </Col>
         </Row>
