@@ -7,7 +7,7 @@ import { Table, Button } from "react-bootstrap";
 import AppointmentAPI from "../apis/AppointmentAPI";
 
 const ManageAds = (props) => {
-    const sizeList = ["250x250", "300x600", "1000x300", "728x90"];
+    const sizeList = ["250x250", "300x600", "1000x300", "728x90", "2000x400", "400x80"];
     const [results, setResults] = useState([]);
     const [size, setSize] = useState("250x250");
     const [link, setLink] = useState("");

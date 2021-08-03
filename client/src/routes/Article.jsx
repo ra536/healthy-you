@@ -12,6 +12,7 @@ import Footer from "../components/Footer";
 import ListGroup from 'react-bootstrap/ListGroup'
 import ArticleComponent from "../components/ArticleComponent";
 import AdBreak from "../components/AdBreak";
+import TopFeaturedAds from "../components/TopFeaturedAds";
 
 const Article = (props) => {
   let { id, region } = useParams();
@@ -109,6 +110,7 @@ const Article = (props) => {
     // Return different webpage, depending on the validity of the ID provided
     <>
       <TopNavBar currentRegion={region}/>
+      <TopFeaturedAds currentRegion={region}/>
       <Container>
         <Row>
           <Col xs={12} md={8}>
@@ -145,7 +147,7 @@ const Article = (props) => {
                   return (
                       <React.Fragment key={key}>
                         <p>{i}</p>
-                        <AdBreak currentRegion={region}/>
+                        <AdBreak  currentRegion={region}/>
                         <br/>
                       </React.Fragment>
                   )
@@ -190,7 +192,7 @@ const Article = (props) => {
           </Col>
           <Col xs={6} md={4}>
             <br />
-            <HomeSideBar currentRegion={region}/>
+            <HomeSideBar  currentRegion={region}/>
             <br />
           </Col>
         </Row>

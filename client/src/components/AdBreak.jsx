@@ -7,13 +7,13 @@ const AdBreak = (props) => {
   const region = props.currentRegion;
   const homePath = "/" + region;
   //const [ads, setAds] = useState([]);
-  const [ad1, setAd1] = useState({ ad_image: ad728, type: "728x90", ad_link: homePath});
-  const [ad2, setAd2] = useState({ ad_image: ad728, type: "728x90", ad_link: homePath});
+  const [ad1, setAd1] = useState({ ad_image: ad728, type: "400x80", ad_link: homePath}); //"728x90"
+  const [ad2, setAd2] = useState({ ad_image: ad728, type: "400x80", ad_link: homePath}); //"728x90"
 
   useEffect(() => {
     const fetchData = async () => {
 try {
-        const response = await AdAPI.post("/getAdsBySize", { size: "728x90", region: region });
+        const response = await AdAPI.post("/getAdsBySize", { size: "400x80", region: region }); //"728x90"
         //setAds(response.data.data);
 
         if(typeof(response.data.data[0]) == "object"){
