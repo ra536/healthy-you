@@ -56,7 +56,7 @@ const TopNavBar = (props) => {
   const nutritionPath = "/category/Nutrition/" + region;
   const healthPath = "/category/Health/" + region;
   const wellnessPath = "/category/Wellness/" + region;
-  const covidPath = "/category/Covid-19/" + region;
+  const advertisingPath = "/advertising/" + region;
   const newsPath = "/category/News/" + region;
   const exercisePath = "/category/Exercise/" + region;
 
@@ -66,7 +66,10 @@ const TopNavBar = (props) => {
         <Navbar bg="light" variant="light" expand="lg">
           <Navbar.Brand>
             <Nav.Link href={"/" + region}>
-              <img style={{ maxWidth:"100%", height: "auto"}} src={hwf_logo} />
+              <img
+                style={{ maxWidth: "100%", height: "auto" }}
+                src={hwf_logo}
+              />
             </Nav.Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -100,7 +103,9 @@ const TopNavBar = (props) => {
                 >
                   <NavDropdown.Item href={navLogin}>Login</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href={navRegister}>Register</NavDropdown.Item>
+                  <NavDropdown.Item href={navRegister}>
+                    Register
+                  </NavDropdown.Item>
                 </NavDropdown>
               )}
             </Nav>
@@ -111,19 +116,33 @@ const TopNavBar = (props) => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="m-auto">
-              <Nav.Link style={{color: "#fff"}} href={foodPath}><b>Food</b></Nav.Link>
+              <Nav.Link style={{ color: "#fff" }} href={foodPath}>
+                <b>Food</b>
+              </Nav.Link>
               <Nav.Link href=""></Nav.Link>
-              <Nav.Link style={{color: "#fff"}} href={nutritionPath}><b>Nutrition</b></Nav.Link>
+              <Nav.Link style={{ color: "#fff" }} href={nutritionPath}>
+                <b>Nutrition</b>
+              </Nav.Link>
               <Nav.Link href=""></Nav.Link>
-              <Nav.Link style={{color: "#fff"}} href={healthPath}><b>Health</b></Nav.Link>
+              <Nav.Link style={{ color: "#fff" }} href={healthPath}>
+                <b>Health</b>
+              </Nav.Link>
               <Nav.Link href=""></Nav.Link>
-              <Nav.Link style={{color: "#fff"}} href={wellnessPath}><b>Wellness</b></Nav.Link>
+              <Nav.Link style={{ color: "#fff" }} href={wellnessPath}>
+                <b>Wellness</b>
+              </Nav.Link>
               <Nav.Link href=""></Nav.Link>
-              <Nav.Link style={{color: "#fff"}} href={covidPath}><b>Covid-19</b></Nav.Link>
+              <Nav.Link style={{ color: "#fff" }} href={advertisingPath}>
+                <b>Advertising</b>
+              </Nav.Link>
               <Nav.Link href=""></Nav.Link>
-              <Nav.Link style={{color: "#fff"}} href={newsPath}><b>News</b></Nav.Link>
+              <Nav.Link style={{ color: "#fff" }} href={newsPath}>
+                <b>News</b>
+              </Nav.Link>
               <Nav.Link href=""></Nav.Link>
-              <Nav.Link style={{color: "#fff"}} href={exercisePath}><b>Exercise</b></Nav.Link>
+              <Nav.Link style={{ color: "#fff" }} href={exercisePath}>
+                <b>Exercise</b>
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
