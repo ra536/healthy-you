@@ -47,7 +47,7 @@ const App = () => {
             setId(response.data.doctor_id);
           } else if (response.data.role === "Writer") {
             setId(response.data.writer_id);
-          } else if(response.data.role === "User"){
+          } else if (response.data.role === "User") {
             setId(response.data.user_id);
           }
         } else {
@@ -67,12 +67,23 @@ const App = () => {
       <div>
         <Switch>
           <Route exact path="/register/:region" component={Registration} />
-          <Route exact path="/login/:region" component={Login} loggedIn={loggedIn} />
+          <Route
+            exact
+            path="/login/:region"
+            component={Login}
+            loggedIn={loggedIn}
+          />
           <Route exact path="/search/:region" component={Search} />
-          <Route exact path="/advertising/:region" component={Advertising} />
           <Route path="/results/:region" component={Results} />
-          <Route path="/doctor-profile/:doctorID/:region" component={DoctorProfile} />
-          <Route path="/writer-profile/:writerID/:region" component={WriterProfile} />
+          <Route path="/advertising/:region" component={Advertising} />
+          <Route
+            path="/doctor-profile/:doctorID/:region"
+            component={DoctorProfile}
+          />
+          <Route
+            path="/writer-profile/:writerID/:region"
+            component={WriterProfile}
+          />
           <ProtectedRoute
             path="/doctor-dashboard/:doctorID/:region"
             component={DoctorDashboard}
@@ -97,22 +108,28 @@ const App = () => {
             requiredRoles={["Writer"]}
           />{" "}
           <Route path="/article/:id/:region" component={Article} />
-          <ProtectedRoute 
+          <ProtectedRoute
             path="/book-appointment/:doctorID/:region"
-            component={Appointment} 
+            component={Appointment}
             requiredRoles={["User", "Admin", "Doctor", "Writer"]}
           />
           <Route exact path="/about-us/:region" component={AboutUs} />
           <Route exact path="/category/Blog/:region" component={Blog} />
           <Route path="/category/:id/:region" component={Category} />
           <Route path="/reviewSuccess/:region" component={ReviewSuccess} />
-          <Route path="/author/:id/:count/:region" component={Author}/>
-          <Route path="/sameCategory/:id/:count/:region" component={ArticleCategory}/>
-          <Route path="/LatestArticles/:count/:region" component={LatestArticles}/>
+          <Route path="/author/:id/:count/:region" component={Author} />
+          <Route
+            path="/sameCategory/:id/:count/:region"
+            component={ArticleCategory}
+          />
+          <Route
+            path="/LatestArticles/:count/:region"
+            component={LatestArticles}
+          />
           <Route path="/contact-us/:region" component={ContactUs} />
-          <Route path="/subscribe/:region" component={Subscribe}/>
-		  <Route exact path="/:region" component={Home} />
-		  <Route exact path="/" component={HomeDefault} />
+          <Route path="/subscribe/:region" component={Subscribe} />
+          <Route exact path="/:region" component={Home} />
+          <Route exact path="/" component={HomeDefault} />
         </Switch>
       </div>
     </AppContextProvider>

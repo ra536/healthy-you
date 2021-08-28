@@ -31,12 +31,14 @@ import { Link, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 
 const Advertising = () => {
-  const history = useHistory();
-  const handleSubmit = () => {
-    history.push("/advertising/order");
-  };
   ///// Look up how to set parameter default
   let { region } = useParams(); //Redirect to default if region is null
+
+  const history = useHistory();
+  const handleSubmit = () => {
+    history.push("/advertising/order/" + region);
+  };
+
   // Store the data retrieved from backend API into context
   const { loggedIn, role } = useContext(AuthContext);
   //const { featuredArticles, setFeaturedArticles } = useContext(ArticleContext);
