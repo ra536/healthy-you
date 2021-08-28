@@ -29,6 +29,7 @@ import Subscribe from "./routes/SubscriberForm";
 import AboutUs from "./routes/AboutUs";
 import HomeDefault from "./routes/HomeDefault";
 import Advertising from "./routes/Advertising";
+import AdvertisingOrder from "./routes/AdvertisingOrder";
 
 const App = () => {
   const { loggedIn, setLoggedIn, setRole, setId } = useContext(AuthContext);
@@ -76,6 +77,7 @@ const App = () => {
           <Route exact path="/search/:region" component={Search} />
           <Route path="/results/:region" component={Results} />
           <Route path="/advertising/:region" component={Advertising} />
+          <Route exact path="/order/:region" component={AdvertisingOrder} />
           <Route
             path="/doctor-profile/:doctorID/:region"
             component={DoctorProfile}

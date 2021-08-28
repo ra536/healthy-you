@@ -36,7 +36,7 @@ const Advertising = () => {
 
   const history = useHistory();
   const handleSubmit = () => {
-    history.push("/advertising/order/" + region);
+    history.push("/order/" + region);
   };
 
   // Store the data retrieved from backend API into context
