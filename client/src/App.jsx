@@ -28,6 +28,7 @@ import ContactUs from "./routes/ContactUs";
 import Subscribe from "./routes/SubscriberForm";
 import AboutUs from "./routes/AboutUs";
 import HomeDefault from "./routes/HomeDefault";
+import Advertising from "./routes/Advertising";
 
 const App = () => {
   const { loggedIn, setLoggedIn, setRole, setId } = useContext(AuthContext);
@@ -68,6 +69,7 @@ const App = () => {
           <Route exact path="/register/:region" component={Registration} />
           <Route exact path="/login/:region" component={Login} loggedIn={loggedIn} />
           <Route exact path="/search/:region" component={Search} />
+          <Route exact path="/advertising/:region" component={Advertising} />
           <Route path="/results/:region" component={Results} />
           <Route path="/doctor-profile/:doctorID/:region" component={DoctorProfile} />
           <Route path="/writer-profile/:writerID/:region" component={WriterProfile} />
