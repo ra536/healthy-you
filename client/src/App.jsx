@@ -30,6 +30,7 @@ import AboutUs from "./routes/AboutUs";
 import HomeDefault from "./routes/HomeDefault";
 import Advertising from "./routes/Advertising";
 import Order from "./routes/Order";
+import ViewForm from "./routes/ViewForm";
 
 const App = () => {
   const { loggedIn, setLoggedIn, setRole, setId } = useContext(AuthContext);
@@ -82,6 +83,7 @@ const App = () => {
             component={Order}
             requiredRoles={["Admin"]}
           />
+          <Route exact path="/viewOrder/:order_id" component={ViewForm} />
           <Route
             path="/doctor-profile/:doctorID/:region"
             component={DoctorProfile}

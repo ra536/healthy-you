@@ -56,7 +56,7 @@ const AdminCompletedOrders = () => {
                 <td>{formatDT(order.updatedAt)}</td>
                 <td>{order.total}</td>
                 <td>
-                  <Link to={"/order/view/" + order.order_id}>View</Link>
+                  <Link to={"/viewOrder/" + order.order_id}>View</Link>
                 </td>
                 <td>TODO</td>
                 <td style={{ color: "green" }}>{order.status}</td>
