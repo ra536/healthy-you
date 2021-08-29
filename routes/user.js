@@ -73,7 +73,7 @@ router.post("/getUser", async (req, res) => {
   try {
     const getUser = await user.findOne({
       where: {
-        user_id: req.body.user_id
+        user_id: req.body.user_id,
       },
       raw: true,
     });
@@ -90,12 +90,30 @@ router.post("/getUser", async (req, res) => {
 router.get("/getAllUsers", async (req, res) => {
   try {
     const getAllUsers = await user.findAll({
-      where:{
-        role: "User"
+      where: {
+        role: "User",
       },
       raw: true,
     });
     //console.log(getAllUsers);
+    res.status(200).json({
+      status: "success",
+      data: getAllUsers,
+    });
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+router.post("/getClient", async (req, res) => {
+  try {
+    const getAllUsers = await user.findOne({
+      where: {
+        email: req.body.email,
+      },
+      raw: true,
+    });
+    // console.log(getAllUsers);
     res.status(200).json({
       status: "success",
       data: getAllUsers,
