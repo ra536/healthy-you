@@ -18,6 +18,9 @@ import Button from "@material-ui/core/Button";
 //import OrderAPI from "../apis/OrderAPI";
 import { AppContext } from "../context/AppContext";
 import { useHistory } from "react-router-dom";
+import TopNavBar from "../components/TopNavBar";
+import Footer from "../components/Footer";
+import { useParams } from "react-router-dom";
 
 function createDigitalService(description, total) {
   return { description, total };
@@ -88,7 +91,8 @@ const unit = [
 ];
 const onlineUnit = [0, 0, 0, 0, 0, 0, 0, 0];
 
-const OrderConfirmation = () => {
+const OrderConfirmation = (props) => {
+  const region = props.currentRegion;
   let history = useHistory();
   const {
     setConfirming,
@@ -273,181 +277,189 @@ const OrderConfirmation = () => {
   };
 
   return (
-    <Container>
-      <h1>Order Confirmation</h1>
-      <Card>
-        <CardContent>
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel2a-content"
-              id="panel2a-header"
-            >
-              <Typography>Client</Typography>
-            </AccordionSummary>
-            <AccordionDetails>{user}</AccordionDetails>
-          </Accordion>
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Print Advertising</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <TableContainer component={Paper}>
-                <Table size="small" aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Description</TableCell>
-                      <TableCell>Print</TableCell>
-                      <TableCell>Unit</TableCell>
-                      <TableCell>Number of Units Ordered</TableCell>
-                      <TableCell>Total ($)</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {printingOptionsChosen.map((option, index) => (
-                      <TableRow key={index}>
-                        <TableCell>{option.description}</TableCell>
-                        <TableCell>{option.print}</TableCell>
-                        <TableCell>{option.unit}</TableCell>
-                        <TableCell>{option.unitsOrdered}</TableCell>
-                        <TableCell>{option.total}</TableCell>
+    <>
+      <TopNavBar currentRegion={region} />
+      <Container>
+        <h1>Order Confirmation</h1>
+        <Card>
+          <CardContent>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel2a-content"
+                id="panel2a-header"
+              >
+                <Typography>Client</Typography>
+              </AccordionSummary>
+              <AccordionDetails>{user}</AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography>Print Advertising</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <TableContainer component={Paper}>
+                  <Table size="small" aria-label="simple table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Description</TableCell>
+                        <TableCell>Print</TableCell>
+                        <TableCell>Unit</TableCell>
+                        <TableCell>Number of Units Ordered</TableCell>
+                        <TableCell>Total ($)</TableCell>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography>Online Advertising</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>Type: {onlineTypeChosen} </Typography>
-              <TableContainer component={Paper}>
-                <Table size="small" aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Description</TableCell>
-                      <TableCell>Size</TableCell>
-                      <TableCell>Unit</TableCell>
-                      <TableCell>Number of Months Ordered</TableCell>
-                      <TableCell>Total ($)</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {onlineAdvertisingChosen.map((option, index) => (
-                      <TableRow key={index}>
-                        <TableCell>{option.description}</TableCell>
-                        <TableCell>{option.size}</TableCell>
-                        <TableCell>{option.unit}</TableCell>
-                        <TableCell>{option.monthsOrdered}</TableCell>
-                        <TableCell>{option.total}</TableCell>
+                    </TableHead>
+                    <TableBody>
+                      {printingOptionsChosen.map((option, index) => (
+                        <TableRow key={index}>
+                          <TableCell>{option.description}</TableCell>
+                          <TableCell>{option.print}</TableCell>
+                          <TableCell>{option.unit}</TableCell>
+                          <TableCell>{option.unitsOrdered}</TableCell>
+                          <TableCell>{option.total}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography>Online Advertising</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>Type: {onlineTypeChosen} </Typography>
+                <TableContainer component={Paper}>
+                  <Table size="small" aria-label="simple table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Description</TableCell>
+                        <TableCell>Size</TableCell>
+                        <TableCell>Unit</TableCell>
+                        <TableCell>Number of Months Ordered</TableCell>
+                        <TableCell>Total ($)</TableCell>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel2a-content"
-              id="panel2a-header"
-            >
-              <Typography>Digital Services</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <TableContainer component={Paper}>
-                <Table size="small" aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Description</TableCell>
-                      <TableCell>Total ($)</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {digitalServicesChosen.map((service, index) => (
-                      <TableRow key={index}>
-                        <TableCell>{service.description}</TableCell>
-                        <TableCell>{service.total}</TableCell>
+                    </TableHead>
+                    <TableBody>
+                      {onlineAdvertisingChosen.map((option, index) => (
+                        <TableRow key={index}>
+                          <TableCell>{option.description}</TableCell>
+                          <TableCell>{option.size}</TableCell>
+                          <TableCell>{option.unit}</TableCell>
+                          <TableCell>{option.monthsOrdered}</TableCell>
+                          <TableCell>{option.total}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel2a-content"
+                id="panel2a-header"
+              >
+                <Typography>Digital Services</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <TableContainer component={Paper}>
+                  <Table size="small" aria-label="simple table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Description</TableCell>
+                        <TableCell>Total ($)</TableCell>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-              <Container>
-                <Typography variant="h6" gutterBottom>
-                  Web Design Comments:
-                </Typography>
-                <Typography gutterBottom>{webDesignCommentsChosen}</Typography>
-                <Typography variant="h6" gutterBottom>
-                  Web Design Total ($):
-                </Typography>
-                <Typography gutterBottom>{webDesignTotalChosen}</Typography>
-                <Typography variant="h6" gutterBottom>
-                  Web Hosting Comments:
-                </Typography>
-                <Typography gutterBottom>{webHostingCommentsChosen}</Typography>
-                <Typography variant="h6" gutterBottom>
-                  Web Hosting Total ($):
-                </Typography>
-                <Typography gutterBottom>{webHostingTotalChosen}</Typography>
-              </Container>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel2a-content"
-              id="panel2a-header"
-            >
-              <Typography>Advertising Duration</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              {advertisingDurationChosen[0]} Issues
-            </AccordionDetails>
-          </Accordion>
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel2a-content"
-              id="panel2a-header"
-            >
-              <Typography>Additional Comments</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Container>
-                <Typography gutterBottom>{commentsChosen}</Typography>
-              </Container>
-            </AccordionDetails>
-          </Accordion>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardContent>
-          <Button type="submit" onClick={handleBack}>
-            Back
-          </Button>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardContent>
-          <Button type="submit" onClick={handleSubmit}>
-            Submit
-          </Button>
-        </CardContent>
-      </Card>
-    </Container>
+                    </TableHead>
+                    <TableBody>
+                      {digitalServicesChosen.map((service, index) => (
+                        <TableRow key={index}>
+                          <TableCell>{service.description}</TableCell>
+                          <TableCell>{service.total}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+                <Container>
+                  <Typography variant="h6" gutterBottom>
+                    Web Design Comments:
+                  </Typography>
+                  <Typography gutterBottom>
+                    {webDesignCommentsChosen}
+                  </Typography>
+                  <Typography variant="h6" gutterBottom>
+                    Web Design Total ($):
+                  </Typography>
+                  <Typography gutterBottom>{webDesignTotalChosen}</Typography>
+                  <Typography variant="h6" gutterBottom>
+                    Web Hosting Comments:
+                  </Typography>
+                  <Typography gutterBottom>
+                    {webHostingCommentsChosen}
+                  </Typography>
+                  <Typography variant="h6" gutterBottom>
+                    Web Hosting Total ($):
+                  </Typography>
+                  <Typography gutterBottom>{webHostingTotalChosen}</Typography>
+                </Container>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel2a-content"
+                id="panel2a-header"
+              >
+                <Typography>Advertising Duration</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                {advertisingDurationChosen[0]} Issues
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel2a-content"
+                id="panel2a-header"
+              >
+                <Typography>Additional Comments</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Container>
+                  <Typography gutterBottom>{commentsChosen}</Typography>
+                </Container>
+              </AccordionDetails>
+            </Accordion>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent>
+            <Button type="submit" onClick={handleBack}>
+              Back
+            </Button>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent>
+            <Button type="submit" onClick={handleSubmit}>
+              Submit
+            </Button>
+          </CardContent>
+        </Card>
+      </Container>
+      <Footer currentRegion={region} />
+    </>
   );
 };
 

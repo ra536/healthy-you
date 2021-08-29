@@ -21,6 +21,9 @@ import { Select } from "formik-material-ui";
 import { CheckboxWithLabel, TextField } from "formik-material-ui";
 import { AppContext } from "../context/AppContext";
 import UserAPI from "../apis/UserAPI";
+import TopNavBar from "../components/TopNavBar";
+import Footer from "../components/Footer";
+import { useParams } from "react-router-dom";
 
 const schema = yup.object().shape({
   //printingOptions: yup.array().min(1),
@@ -94,6 +97,7 @@ const DigitalServices = [
 ];
 
 const Order = () => {
+  let { region } = useParams();
   const {
     confirming,
     setConfirming,
@@ -139,341 +143,347 @@ const Order = () => {
   }, [setConfirming]);
 
   return confirming === true ? (
-    <OrderConfirmation />
+    <OrderConfirmation currentRegion={region} />
   ) : (
-    <Formik
-      initialValues={{
-        printingOptions: printingOptions,
-        // typeOfAd: typeOfAd,
-        digitalServicesChecked: [],
-        digitalServices: digitalServices,
-        advertisingDuration: advertisingDuration,
-        user: "",
-        onlineAdvertising: onlineAdvertising,
-        onlineType: onlineType,
-        webDesignComments: webDesignComments,
-        webHostingComments: webHostingComments,
-        webDesignTotal: webDesignTotal,
-        webHostingTotal: webHostingTotal,
-        comments: comments,
-      }}
-      validationSchema={schema}
-      onSubmit={(values, { setSubmitting }, errors) => {
-        console.log(values.webDesignTotal);
-        console.log(values.webHostingTotal);
-        setPrintingOptions(values.printingOptions);
-        // setTypeOfAd(values.typeOfAd);
-        setDigitalServices(values.digitalServices);
-        setAdvertisingDuration(values.advertisingDuration);
-        setUser(values.user);
-        setOnlineAdvertising(values.onlineAdvertising);
-        setOnlineType(values.onlineType);
-        setWebDesignComments(values.webDesignComments);
-        setWebHostingComments(values.webHostingComments);
-        setWebDesignTotal(values.webDesignTotal);
-        setWebHostingTotal(values.webHostingTotal);
-        setComments(values.comments);
-        setConfirming(true);
-      }}
-    >
-      {({ submitForm, isSubmitting, errors, handleChange }) => (
-        <Form>
-          <Container>
-            <Card>
-              <CardHeader title="Choose a Client" />
-              <CardContent>
-                <Field component={Select} name="user">
-                  {userList.map((user, index) => (
-                    <MenuItem key={index} value={user.email}>
-                      {user.email}
-                    </MenuItem>
-                  ))}
-                </Field>
-                <FormHelperText>{errors.user}</FormHelperText>
-              </CardContent>
-            </Card>
-            <h1>Type of Ad</h1>
-            <Card>
-              <CardHeader title="Print Advertising" />
-              <CardContent>
-                <TableContainer component={Paper}>
-                  <Table size="small" aria-label="simple table">
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Description</TableCell>
-                        <TableCell>Print</TableCell>
-                        <TableCell>Unit</TableCell>
-                        <TableCell>Number of Units</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {rows.map((row, index) => (
-                        <TableRow key={index}>
-                          <TableCell>{row.description}</TableCell>
-                          <TableCell>{row.print}</TableCell>
-                          <TableCell>{row.unit}</TableCell>
-                          <TableCell>
-                            <Field
-                              component={Select}
-                              name={`printingOptions.${index}`}
-                            >
-                              <MenuItem value={0}>0</MenuItem>
-                              <MenuItem value={1}>1</MenuItem>
-                              <MenuItem value={2}>2</MenuItem>
-                              <MenuItem value={4}>4</MenuItem>
-                              <MenuItem value={6}>6</MenuItem>
-                            </Field>
-                          </TableCell>
+    <>
+      <TopNavBar currentRegion={region} />
+      <Formik
+        initialValues={{
+          printingOptions: printingOptions,
+          // typeOfAd: typeOfAd,
+          digitalServicesChecked: [],
+          digitalServices: digitalServices,
+          advertisingDuration: advertisingDuration,
+          user: "",
+          onlineAdvertising: onlineAdvertising,
+          onlineType: onlineType,
+          webDesignComments: webDesignComments,
+          webHostingComments: webHostingComments,
+          webDesignTotal: webDesignTotal,
+          webHostingTotal: webHostingTotal,
+          comments: comments,
+        }}
+        validationSchema={schema}
+        onSubmit={(values, { setSubmitting }, errors) => {
+          console.log(values.webDesignTotal);
+          console.log(values.webHostingTotal);
+          setPrintingOptions(values.printingOptions);
+          // setTypeOfAd(values.typeOfAd);
+          setDigitalServices(values.digitalServices);
+          setAdvertisingDuration(values.advertisingDuration);
+          setUser(values.user);
+          setOnlineAdvertising(values.onlineAdvertising);
+          setOnlineType(values.onlineType);
+          setWebDesignComments(values.webDesignComments);
+          setWebHostingComments(values.webHostingComments);
+          setWebDesignTotal(values.webDesignTotal);
+          setWebHostingTotal(values.webHostingTotal);
+          setComments(values.comments);
+          setConfirming(true);
+        }}
+      >
+        {({ submitForm, isSubmitting, errors, handleChange }) => (
+          <Form>
+            <Container>
+              <Card>
+                <CardHeader title="Choose a Client" />
+                <CardContent>
+                  <Field component={Select} name="user">
+                    {userList.map((user, index) => (
+                      <MenuItem key={index} value={user.email}>
+                        {user.email}
+                      </MenuItem>
+                    ))}
+                  </Field>
+                  <FormHelperText>{errors.user}</FormHelperText>
+                </CardContent>
+              </Card>
+              <h1>Type of Ad</h1>
+              <Card>
+                <CardHeader title="Print Advertising" />
+                <CardContent>
+                  <TableContainer component={Paper}>
+                    <Table size="small" aria-label="simple table">
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>Description</TableCell>
+                          <TableCell>Print</TableCell>
+                          <TableCell>Unit</TableCell>
+                          <TableCell>Number of Units</TableCell>
                         </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader title="Online Advertising" />
-              <CardContent>
-                <Card>
-                  <CardHeader title="Type" />
-                  <CardContent>
-                    <Field
-                      component={CheckboxWithLabel}
-                      type="checkbox"
-                      name="onlineType"
-                      value="Flash Banners"
-                      Label={{ label: "Flash Banners" }}
-                    />
-                    <Field
-                      component={CheckboxWithLabel}
-                      type="checkbox"
-                      name="onlineType"
-                      value="Animated GIF Banners"
-                      Label={{ label: "Animated GIF Banners" }}
-                    />
-                    <Field
-                      component={CheckboxWithLabel}
-                      type="checkbox"
-                      name="onlineType"
-                      value="Static Banners"
-                      Label={{ label: "Static Banners" }}
-                    />
-                    <Field
-                      component={CheckboxWithLabel}
-                      type="checkbox"
-                      name="onlineType"
-                      value="Video Ads"
-                      Label={{ label: "Video Ads" }}
-                    />
-                    <FormHelperText>{errors.onlineType}</FormHelperText>
-                  </CardContent>
-                </Card>
-                <TableContainer component={Paper}>
-                  <Table size="small" aria-label="simple table">
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Description</TableCell>
-                        <TableCell>Size</TableCell>
-                        <TableCell>Unit</TableCell>
-                        <TableCell>Number of Months</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {onlineRows.map((onlineRow, index) => (
-                        <TableRow key={index}>
-                          <TableCell>{onlineRow.description}</TableCell>
-                          <TableCell>{onlineRow.size}</TableCell>
-                          <TableCell>{onlineRow.unit}</TableCell>
-                          <TableCell>
-                            <Field
-                              component={Select}
-                              name={`onlineAdvertising.${index}`}
-                            >
-                              <MenuItem value={0}>0</MenuItem>
-                              <MenuItem value={3}>3</MenuItem>
-                              <MenuItem value={6}>6</MenuItem>
-                              <MenuItem value={9}>9</MenuItem>
-                              <MenuItem value={12}>12</MenuItem>
-                            </Field>
-                          </TableCell>
+                      </TableHead>
+                      <TableBody>
+                        {rows.map((row, index) => (
+                          <TableRow key={index}>
+                            <TableCell>{row.description}</TableCell>
+                            <TableCell>{row.print}</TableCell>
+                            <TableCell>{row.unit}</TableCell>
+                            <TableCell>
+                              <Field
+                                component={Select}
+                                name={`printingOptions.${index}`}
+                              >
+                                <MenuItem value={0}>0</MenuItem>
+                                <MenuItem value={1}>1</MenuItem>
+                                <MenuItem value={2}>2</MenuItem>
+                                <MenuItem value={4}>4</MenuItem>
+                                <MenuItem value={6}>6</MenuItem>
+                              </Field>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader title="Online Advertising" />
+                <CardContent>
+                  <Card>
+                    <CardHeader title="Type" />
+                    <CardContent>
+                      <Field
+                        component={CheckboxWithLabel}
+                        type="checkbox"
+                        name="onlineType"
+                        value="Flash Banners"
+                        Label={{ label: "Flash Banners" }}
+                      />
+                      <Field
+                        component={CheckboxWithLabel}
+                        type="checkbox"
+                        name="onlineType"
+                        value="Animated GIF Banners"
+                        Label={{ label: "Animated GIF Banners" }}
+                      />
+                      <Field
+                        component={CheckboxWithLabel}
+                        type="checkbox"
+                        name="onlineType"
+                        value="Static Banners"
+                        Label={{ label: "Static Banners" }}
+                      />
+                      <Field
+                        component={CheckboxWithLabel}
+                        type="checkbox"
+                        name="onlineType"
+                        value="Video Ads"
+                        Label={{ label: "Video Ads" }}
+                      />
+                      <FormHelperText>{errors.onlineType}</FormHelperText>
+                    </CardContent>
+                  </Card>
+                  <TableContainer component={Paper}>
+                    <Table size="small" aria-label="simple table">
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>Description</TableCell>
+                          <TableCell>Size</TableCell>
+                          <TableCell>Unit</TableCell>
+                          <TableCell>Number of Months</TableCell>
                         </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader title="Digital Services" />
-              <CardContent>
-                <TableContainer component={Paper}>
-                  <Table size="small" aria-label="simple table">
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Description</TableCell>
-                        <TableCell>Price</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {DigitalServices.map((service, index) => (
-                        <TableRow key={index}>
-                          <TableCell>
-                            <Field
-                              key={index}
-                              component={CheckboxWithLabel}
-                              type="checkbox"
-                              name="digitalServicesChecked"
-                              value={service}
-                              Label={{ label: service }}
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <Field
-                              component={TextField}
-                              name={`digitalServices.${index}`}
-                              id={`digitalServices.${index}`}
-                              label="Total ($)"
-                            />
-                          </TableCell>
+                      </TableHead>
+                      <TableBody>
+                        {onlineRows.map((onlineRow, index) => (
+                          <TableRow key={index}>
+                            <TableCell>{onlineRow.description}</TableCell>
+                            <TableCell>{onlineRow.size}</TableCell>
+                            <TableCell>{onlineRow.unit}</TableCell>
+                            <TableCell>
+                              <Field
+                                component={Select}
+                                name={`onlineAdvertising.${index}`}
+                              >
+                                <MenuItem value={0}>0</MenuItem>
+                                <MenuItem value={3}>3</MenuItem>
+                                <MenuItem value={6}>6</MenuItem>
+                                <MenuItem value={9}>9</MenuItem>
+                                <MenuItem value={12}>12</MenuItem>
+                              </Field>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader title="Digital Services" />
+                <CardContent>
+                  <TableContainer component={Paper}>
+                    <Table size="small" aria-label="simple table">
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>Description</TableCell>
+                          <TableCell>Price</TableCell>
                         </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-                <FormHelperText>{errors.digitalServicesChecked}</FormHelperText>
-                <Card>
-                  <CardContent>
-                    <Field
-                      component={TextField}
-                      name="webDesignComments"
-                      id="webDesignComments"
-                      label="Web Design"
-                      multiline
-                      rows={4}
-                      variant="outlined"
-                      fullWidth
-                    />
-                    <Field
-                      component={TextField}
-                      name="webDesignTotal"
-                      id="webDesignTotal"
-                      label="Web Design Total ($)"
-                    />
-                  </CardContent>
-                </Card>
-                <Card>
-                  <CardContent>
-                    <Field
-                      component={TextField}
-                      name="webHostingComments"
-                      id="webHostingComments"
-                      label="Web Hosting"
-                      multiline
-                      rows={4}
-                      variant="outlined"
-                      fullWidth
-                    />
-                    <Field
-                      component={TextField}
-                      name="webHostingTotal"
-                      id="webHostingTotal"
-                      label="Web Hosting Total ($)"
-                    />
-                  </CardContent>
-                </Card>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader title="Advertising Duration" />
-              <CardContent>
-                <Field
-                  component={CheckboxWithLabel}
-                  type="checkbox"
-                  name="advertisingDuration"
-                  value="2"
-                  Label={{ label: "2x Issues" }}
-                />
-                <Field
-                  component={CheckboxWithLabel}
-                  type="checkbox"
-                  name="advertisingDuration"
-                  value="4"
-                  Label={{ label: "4x Issues" }}
-                />
-                <Field
-                  component={CheckboxWithLabel}
-                  type="checkbox"
-                  name="advertisingDuration"
-                  value="6"
-                  Label={{ label: "6x Issues" }}
-                />
-                <Field
-                  component={CheckboxWithLabel}
-                  type="checkbox"
-                  name="advertisingDuration"
-                  value="8"
-                  Label={{ label: "8x Issues" }}
-                />
-                <Field
-                  component={CheckboxWithLabel}
-                  type="checkbox"
-                  name="advertisingDuration"
-                  value="12"
-                  Label={{ label: "12x Issues" }}
-                />
-                <Field
-                  component={CheckboxWithLabel}
-                  disabled
-                  type="checkbox"
-                  name="advertisingDuration"
-                  value="custom"
-                  Label={{ label: "__ Issues (TODO)" }}
-                />
-                <Field
-                  component={CheckboxWithLabel}
-                  disabled
-                  type="checkbox"
-                  name="advertisingDuration"
-                  value="Sponsorship Event"
-                  Label={{ label: "Sponsorship Event (TODO)" }}
-                />
-                <FormHelperText>{errors.advertisingDuration}</FormHelperText>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader title="Additional Comments" />
-              <CardContent>
-                <Field
-                  component={TextField}
-                  name="comments"
-                  id="comments"
-                  label="Comments"
-                  multiline
-                  rows={4}
-                  variant="outlined"
-                  fullWidth
-                />
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  disabled={isSubmitting}
-                  onClick={submitForm}
-                >
-                  Next
-                </Button>
-              </CardContent>
-            </Card>
-            <br />
-            <br />
-            <br />
-          </Container>
-        </Form>
-      )}
-    </Formik>
+                      </TableHead>
+                      <TableBody>
+                        {DigitalServices.map((service, index) => (
+                          <TableRow key={index}>
+                            <TableCell>
+                              <Field
+                                key={index}
+                                component={CheckboxWithLabel}
+                                type="checkbox"
+                                name="digitalServicesChecked"
+                                value={service}
+                                Label={{ label: service }}
+                              />
+                            </TableCell>
+                            <TableCell>
+                              <Field
+                                component={TextField}
+                                name={`digitalServices.${index}`}
+                                id={`digitalServices.${index}`}
+                                label="Total ($)"
+                              />
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                  <FormHelperText>
+                    {errors.digitalServicesChecked}
+                  </FormHelperText>
+                  <Card>
+                    <CardContent>
+                      <Field
+                        component={TextField}
+                        name="webDesignComments"
+                        id="webDesignComments"
+                        label="Web Design"
+                        multiline
+                        rows={4}
+                        variant="outlined"
+                        fullWidth
+                      />
+                      <Field
+                        component={TextField}
+                        name="webDesignTotal"
+                        id="webDesignTotal"
+                        label="Web Design Total ($)"
+                      />
+                    </CardContent>
+                  </Card>
+                  <Card>
+                    <CardContent>
+                      <Field
+                        component={TextField}
+                        name="webHostingComments"
+                        id="webHostingComments"
+                        label="Web Hosting"
+                        multiline
+                        rows={4}
+                        variant="outlined"
+                        fullWidth
+                      />
+                      <Field
+                        component={TextField}
+                        name="webHostingTotal"
+                        id="webHostingTotal"
+                        label="Web Hosting Total ($)"
+                      />
+                    </CardContent>
+                  </Card>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader title="Advertising Duration" />
+                <CardContent>
+                  <Field
+                    component={CheckboxWithLabel}
+                    type="checkbox"
+                    name="advertisingDuration"
+                    value="2"
+                    Label={{ label: "2x Issues" }}
+                  />
+                  <Field
+                    component={CheckboxWithLabel}
+                    type="checkbox"
+                    name="advertisingDuration"
+                    value="4"
+                    Label={{ label: "4x Issues" }}
+                  />
+                  <Field
+                    component={CheckboxWithLabel}
+                    type="checkbox"
+                    name="advertisingDuration"
+                    value="6"
+                    Label={{ label: "6x Issues" }}
+                  />
+                  <Field
+                    component={CheckboxWithLabel}
+                    type="checkbox"
+                    name="advertisingDuration"
+                    value="8"
+                    Label={{ label: "8x Issues" }}
+                  />
+                  <Field
+                    component={CheckboxWithLabel}
+                    type="checkbox"
+                    name="advertisingDuration"
+                    value="12"
+                    Label={{ label: "12x Issues" }}
+                  />
+                  <Field
+                    component={CheckboxWithLabel}
+                    disabled
+                    type="checkbox"
+                    name="advertisingDuration"
+                    value="custom"
+                    Label={{ label: "__ Issues (TODO)" }}
+                  />
+                  <Field
+                    component={CheckboxWithLabel}
+                    disabled
+                    type="checkbox"
+                    name="advertisingDuration"
+                    value="Sponsorship Event"
+                    Label={{ label: "Sponsorship Event (TODO)" }}
+                  />
+                  <FormHelperText>{errors.advertisingDuration}</FormHelperText>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader title="Additional Comments" />
+                <CardContent>
+                  <Field
+                    component={TextField}
+                    name="comments"
+                    id="comments"
+                    label="Comments"
+                    multiline
+                    rows={4}
+                    variant="outlined"
+                    fullWidth
+                  />
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    disabled={isSubmitting}
+                    onClick={submitForm}
+                  >
+                    Next
+                  </Button>
+                </CardContent>
+              </Card>
+              <br />
+              <br />
+              <br />
+            </Container>
+          </Form>
+        )}
+      </Formik>
+      <Footer currentRegion={region} />
+    </>
   );
 };
 
