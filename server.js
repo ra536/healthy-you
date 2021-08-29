@@ -171,6 +171,7 @@ app.use("/api/v1/subscriber", require("./routes/subscriber"));
 app.use("/api/v1/image", require("./routes/image"));
 app.use("/api/v1/contact", require("./routes/contact"));
 app.use("/api/v1/region", require("./routes/region"));
+app.use("/api/v1/order", require("./routes/order"));
 
 // Code to upload/save files into 'uploads' folder -- maybe move this later
 app.post("/upload", (req, res) => {

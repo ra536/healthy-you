@@ -15,7 +15,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
-//import OrderAPI from "../apis/OrderAPI";
+import OrderAPI from "../apis/OrderAPI";
 import { AppContext } from "../context/AppContext";
 import { useHistory } from "react-router-dom";
 import TopNavBar from "../components/TopNavBar";
@@ -246,30 +246,30 @@ const OrderConfirmation = (props) => {
     // console.log(printingOptionsChosen);
     // console.log(digitalServicesChosen);
     // console.log(advertisingDurationChosen);
-    console.log(total);
-    // try {
-    //   const response = await OrderAPI.post("/create", {
-    //     email: user,
-    //     total: total,
-    //     printing_options: printingOptionsChosen,
-    //     online_type: onlineTypeChosen,
-    //     digital_services: digitalServicesChosen,
-    //     advertising_duration: advertisingDurationChosen,
-    //     online_advertising: onlineAdvertisingChosen,
-    //     web_design_comments: webDesignCommentsChosen,
-    //     web_hosting_comments: webHostingCommentsChosen,
-    //     web_design_total: webDesignTotalChosen,
-    //     web_hosting_total: webHostingTotalChosen,
-    //     comments: commentsChosen,
-    //   });
-    //   console.log(response);
-    //   if (response.data.status === "success") {
-    //     alert("Your order has been successfully submitted!");
-    //     history.push("/dashboard");
-    //   }
-    // } catch (err) {
-    //   console.log(err);
-    // }
+    // console.log(total);
+    try {
+      const response = await OrderAPI.post("/create", {
+        email: user,
+        total: total,
+        printing_options: printingOptionsChosen,
+        online_type: onlineTypeChosen,
+        digital_services: digitalServicesChosen,
+        advertising_duration: advertisingDurationChosen,
+        online_advertising: onlineAdvertisingChosen,
+        web_design_comments: webDesignCommentsChosen,
+        web_hosting_comments: webHostingCommentsChosen,
+        web_design_total: webDesignTotalChosen,
+        web_hosting_total: webHostingTotalChosen,
+        comments: commentsChosen,
+      });
+      console.log(response.data);
+      if (response.data.status === "success") {
+        alert("Your order has been successfully submitted!");
+        history.push("/");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleBack = (e) => {
