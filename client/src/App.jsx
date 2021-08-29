@@ -77,7 +77,11 @@ const App = () => {
           <Route exact path="/search/:region" component={Search} />
           <Route path="/results/:region" component={Results} />
           <Route path="/advertising/:region" component={Advertising} />
-          <Route exact path="/order/:region" component={Order} />
+          <ProtectedRoute
+            path="/order/:region"
+            component={Order}
+            requiredRoles={["Admin"]}
+          />
           <Route
             path="/doctor-profile/:doctorID/:region"
             component={DoctorProfile}
