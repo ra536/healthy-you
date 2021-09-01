@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 const ProtectedRoute = ({ requiredRoles, component: Component, ...rest }) => {
   const { loggedIn, role } = useContext(AuthContext);
-
+  let { region } = useParams();
   return (
     <Route
       {...rest}
@@ -20,14 +20,14 @@ const ProtectedRoute = ({ requiredRoles, component: Component, ...rest }) => {
                 if (requiredRoles.includes(role)) {
                   return <Component {...props} />;
                 } else {
-                  return <Redirect to="/" />;
+                  return <Redirect to={"/" + region} />;
                 }
               } else {
                 return <Component {...props} />;
               }
             }
           } else {
-            return <Redirect to="/login" />;
+            return <Redirect to={"/login/" + region} />;
           }
         }
       }}

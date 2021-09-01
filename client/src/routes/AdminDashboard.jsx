@@ -14,6 +14,8 @@ import ManageFeatured from "../components/ManageFeatured";
 import ManageAds from "../components/ManageAds";
 import Footer from "../components/Footer";
 import ManageCategoryImages from "../components/ManageCategoryImages";
+import AdminCompletedOrders from "../components/AdminCompletedOrders";
+import AdminPendingOrders from "../components/AdminPendingOrders";
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 
@@ -45,7 +47,7 @@ const AdminDashboard = (props) => {
   return (
     <>
       <AdminContextProvider>
-        <TopNavBar currentRegion={region}/>
+        <TopNavBar currentRegion={region} />
         <Container>
           <h1>Admin Dashboard</h1>
           <div>
@@ -76,14 +78,19 @@ const AdminDashboard = (props) => {
               <Tab eventKey="emails" title="Emails">
                 <ManageEmailsTab />
               </Tab>
-
+              <Tab eventKey="adminPendingOrders" title="All Pending Orders">
+                <AdminPendingOrders />
+              </Tab>
+              <Tab eventKey="adminCompletedOrders" title="All Completed Orders">
+                <AdminCompletedOrders />
+              </Tab>
             </Tabs>
           </div>
         </Container>
       </AdminContextProvider>
       <br />
       <br />
-      <Footer currentRegion={region}/>
+      <Footer currentRegion={region} />
     </>
   );
 };
