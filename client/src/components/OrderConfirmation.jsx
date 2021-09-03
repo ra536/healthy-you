@@ -246,7 +246,6 @@ const OrderConfirmation = (props) => {
     // console.log(printingOptionsChosen);
     // console.log(digitalServicesChosen);
     // console.log(advertisingDurationChosen);
-    // console.log(total);
     try {
       const response = await OrderAPI.post("/create", {
         email: user,
